@@ -1,0 +1,22 @@
+.table-links {
+  font-size: 12px;
+  margin-top: 5px;
+  opacity: 0;
+  transition: all .3s;
+  a {
+    color: #666;
+  }
+}
+
+table tr:hover .table-links {
+  opacity: 1;
+}
+
+.bullet {
+  display: inline;
+  margin: 0 4px;
+}
+
+.bullet:after {
+  content: '\2022';
+}
