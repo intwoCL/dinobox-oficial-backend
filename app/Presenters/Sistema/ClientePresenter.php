@@ -4,7 +4,7 @@ namespace App\Presenters\Sistema;
 use App\Presenters\Presenter;
 use App\Services\Imagen;
 
-class UsuarioGeneralPresenter extends Presenter
+class ClientePresenter extends Presenter
 {
   private $folderImg = 'photo_usuarios_general';
   private $imgDefault = "/dist/img/img-default-user.jpg";

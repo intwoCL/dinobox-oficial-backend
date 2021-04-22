@@ -6,48 +6,48 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Sistema\TipoUsuario;
 
-use App\Models\Sistema\UsuarioGeneral;
+use App\Models\Sistema\Cliente;
 use App\Services\ImportImage;
-use App\Services\Policies\Sistema\UsuarioGeneralPolicy;
+// use App\Services\Policies\Sistema\UsuarioGeneralPolicy;
 
-class UsuarioGeneralController extends Controller
+class ClienteController extends Controller
 {
-  private $policy;
+  // private $policy;
 
-  public function __construct() {
-    $this->policy = new UsuarioGeneralPolicy();
-  }
+  // public function __construct() {
+  //   $this->policy = new UsuarioGeneralPolicy();
+  // }
 
   public function index(){
-    $this->policy->index();
-    $permiso_editar = $this->policy->can();
+    // $this->policy->index();
+    // $permiso_editar = $this->policy->can();
 
-    $usuarios = UsuarioGeneral::where('activo',true)->get();
+    $usuarios = Cliente::where('activo',true)->get();
     return view('admin.usuario_general.index', compact('usuarios','permiso_editar'));
   }
 
   public function indexDelete(){
-    $this->policy->indexDelete();
+    // $this->policy->indexDelete();
 
-    $usuarios = UsuarioGeneral::where('activo',false)->get();
+    $usuarios = Cliente::where('activo',false)->get();
     return view('admin.usuario_general.indexdelete', compact('usuarios'));
   }
 
   public function create(){
-    $this->policy->create();
+    // $this->policy->create();
 
-    $tipos = TipoUsuario::get();
+    // $tipos = TipoUsuario::get();
     return view('admin.usuario_general.create',compact('tipos'));
   }
 
   public function store(Request $request){
-    $this->policy->store();
+    // $this->policy->store();
 
     try {
-      $user = UsuarioGeneral::where('run',$request->input('run'))->first();
+      $user = Cliente::where('run',$request->input('run'))->first();
 
       if(empty($user)) {
-        $user = new UsuarioGeneral();
+        $user = new Cliente();
         $user->run = $request->input('run');
         $user->nombre =$request->input('nombre');
         $user->apellido = $request->input('apellido',null);
@@ -72,10 +72,10 @@ class UsuarioGeneralController extends Controller
   }
 
   public function edit($id){
-    $this->policy->edit();
+    // $this->policy->edit();
     try {
-      $tipos = TipoUsuario::get();
-      $u = UsuarioGeneral::findOrFail($id);
+      // $tipos = TipoUsuario::get();
+      $u = Cliente::findOrFail($id);
       return view('admin.usuario_general.edit',compact('u','tipos'));
     } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
@@ -83,12 +83,12 @@ class UsuarioGeneralController extends Controller
   }
 
   public function update(Request $request, $id){
-    return $this->policy->update();
+    // return $this->policy->update();
     try {
       $id = $request->input('id');
       $run = $request->input('run');
 
-      $user = UsuarioGeneral::where('run',$run)->findOrFail($id);
+      $user = Cliente::where('run',$run)->findOrFail($id);
       // $user->run = $request->input('run');
       $user->nombre = $request->input('nombre');
       $user->apellido = $request->input('apellido',null);
@@ -112,7 +112,7 @@ class UsuarioGeneralController extends Controller
 
   public function destroy(Request $request, $id){
     try {
-      $user = UsuarioGeneral::findOrFail($request->input('id_usuario'));
+      $user = Cliente::findOrFail($request->input('id_usuario'));
       $user->activo = !$user->activo;
       $user->update();
       return back()->with('success','Se ha actualizado.');

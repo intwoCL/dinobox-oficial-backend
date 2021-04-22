@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSTipoUsuario extends Migration
+class CreateTableSSucursal extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateSTipoUsuario extends Migration
      */
     public function up()
     {
-        Schema::create('s_tipo_usuario', function (Blueprint $table) {
+        Schema::create('s_sucursal', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->unique();
+            $table->string('nombre',100);
+            $table->string('descripcion',300);
+            $table->string('foto')->nullable();
+            $table->json('config')->nullable();
+            $table->boolean('activo')->default(true);
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateSTipoUsuario extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_tipo_usuario');
+        Schema::dropIfExists('s_sucursal');
     }
 }

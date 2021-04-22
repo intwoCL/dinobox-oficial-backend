@@ -17,19 +17,13 @@ class DatabaseSeeder extends Seeder
   {
 
     $this->truncateTables([
-      's_admin',
       's_sistema',
-      // 's_escuela',
-      // 's_carrera',
-      // 's_alumno',
+      's_usuario',
+      's_cliente',
     ]);
 
-    $this->call(UserSeeder::class);
     $this->call(SistemaSeeder::class);
-    // Artisan::call('edu:escuela');
-    // Artisan::call('edu:carreras');
-    // Artisan::call('edu:alumnos');
-    Artisan::call('edugestion:import');
+    $this->call(UserSeeder::class);
   }
 
 

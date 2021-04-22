@@ -19,7 +19,6 @@ class CreateTableSSistema extends Migration
             $table->string('imagen_logo')->nullable();
             $table->string('imagen_fondo')->nullable();
             $table->json('config')->nullable();
-            $table->json('modulo')->nullable();
             $table->longText('js_chat')->nullable();
             $table->timestamps();
         });

@@ -21,12 +21,12 @@ class CreateTableSUsuario extends Migration
             $table->string('apellido');
             $table->string('correo')->unique();
             $table->string('foto')->nullable();
-            $table->string('integration')->nullable();
             $table->string('config_theme')->default('default');
-            $table->boolean('bloqueado')->default(false);
-            $table->json('permisos')->nullable();
+            $table->string('integrations')->nullable();
             $table->json('config')->nullable();
             $table->datetime('last_session')->nullable();
+            $table->boolean('admin')->default(false);
+            $table->boolean('bloqueado')->default(false);
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });

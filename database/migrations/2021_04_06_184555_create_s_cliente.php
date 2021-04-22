@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSUsuarioGeneral extends Migration
+class CreateSCliente extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,21 @@ class CreateSUsuarioGeneral extends Migration
      */
     public function up()
     {
-        Schema::create('s_usuario_general', function (Blueprint $table) {
+        Schema::create('s_cliente', function (Blueprint $table) {
             $table->id();
-            $table->string('run');
+            $table->string('uid')->unique();
+            $table->string('run')->unique();
+            $table->string('password');
             $table->string('nombre');
-            $table->string('apellido')->nullable();
-            $table->string('correo')->nullable();
+            $table->string('apellido');
+            $table->string('correo')->unique();
             $table->string('telefono')->nullable();
             $table->string('foto')->nullable();
-            $table->foreignId('id_tipo_usuario')->references('id')->on('s_tipo_usuario');
+            $table->integer('id_usuario')->nullable();
             $table->json('config')->nullable();
+            $table->json('integrations')->nullable();
+            $table->boolean('verificado')->default(false);
+            $table->datetime('last_session')->nullable();
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });
@@ -35,6 +40,6 @@ class CreateSUsuarioGeneral extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_usuario_general');
+        Schema::dropIfExists('s_cliente');
     }
 }

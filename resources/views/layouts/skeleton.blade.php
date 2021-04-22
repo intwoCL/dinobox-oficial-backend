@@ -27,13 +27,11 @@
   @endif
   @stack('stylesheet')
 </head>
-<body class="text-sm hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed {{ $darkMode ?? '' }}">
+<body class="text-sm hold-transition sidebar-mini layout-fixed layout-footer-fixed {{ $darkMode ?? '' }}">
   <div class="wrapper" id="app">
     @yield('app')
   </div>
   @stack('extra')
-  {{-- <script src="{{ mix('js/manifest.js') }}"></script> --}}
-  {{-- <script src="{{ mix('js/vendor.js') }}"></script> --}}
   <script src="{{ mix('js/manifest.js') }}"></script>
   <script src="{{ mix('js/vendor.js') }}"></script>
   <script src="{{ mix('js/app.js') }}"></script>

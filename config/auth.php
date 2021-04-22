@@ -50,21 +50,9 @@ return [
           'driver' => 'session',
           'provider' => 'usuario',
         ],
-        'admin' => [
+        'cliente' => [
           'driver' => 'session',
-          'provider' => 'admin',
-        ],
-        'stand' => [
-          'driver' => 'session',
-          'provider' => 'stand',
-        ],
-        'votacion' => [
-          'driver' => 'session',
-          'provider' => 'votacion',
-        ],
-        'votacionOnline' => [
-          'driver' => 'session',
-          'provider' => 'votacionOnline',
+          'provider' => 'cliente',
         ],
     ],
 
@@ -94,25 +82,9 @@ return [
           'driver' => 'eloquent',
           'model' => App\Models\Sistema\Usuario::class,
         ],
-        'admin' => [
+        'cliente' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Sistema\Admin::class,
-        ],
-        'stand' => [
-          'driver' => 'eloquent',
-          'model' => App\Models\Evento\Stand::class,
-        ],
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
-        'votacion' => [
-          'driver' => 'eloquent',
-          'model' => App\Models\Votacion\Votacion::class,
-        ],
-        'votacionOnline' => [
-          'driver' => 'eloquent',
-          'model' => App\Models\Votacion\AlumnoOnline::class,
+            'model' => App\Models\Sistema\Cliente::class,
         ],
     ],
 

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 //  prefix /admin
 // auth.admin.user
  // - {ALUMNO}
-Route::middleware('auth.admin.user')->prefix('admin')->namespace('Sistema')->name('admin.')->group( function () {
+Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('admin.')->group( function () {
   // Route::get('/debug-sentry', function () {
   //   throw new Exception('My first Sentry error!');
   // });
@@ -29,7 +29,7 @@ Route::middleware('auth.admin.user')->prefix('admin')->namespace('Sistema')->nam
   Route::put('usuarioGeneral/password/{id}','UsuarioGeneralController@password')->name('usuarioGeneral.password');
 });
 
-Route::middleware('auth.admin.user')->namespace('Sistema')->group( function () {
+Route::middleware('auth.usuario')->namespace('Sistema')->group( function () {
 
   Route::get('settings/profile','ConfiguracionController@profile')->name('settings.profile');
   Route::post('settings/profile','ConfiguracionController@profileStore')->name('settings.profile');
@@ -39,7 +39,7 @@ Route::middleware('auth.admin.user')->namespace('Sistema')->group( function () {
 
 });
 
-Route::middleware('auth.admin')->prefix('admin')->namespace('Sistema')->name('admin.')->group( function () {
+Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('admin.')->group( function () {
   Route::get('home','DashboardController@index')->name('home');
 
   // - {USUARIO}
@@ -81,15 +81,15 @@ Route::middleware('auth.admin')->prefix('admin')->namespace('Sistema')->name('ad
 
 
 //  API
-Route::middleware('auth.admin.user')->group( function () {
+Route::middleware('auth.usuario')->group( function () {
   Route::post('api/v1/consultas/query', 'Api\v1\ApiQueryController@query')->name('api.v1.consultas.query');
 });
 
 
 // MODE MAIN
-Route::middleware('auth.admin')->group( function () {
+Route::middleware('auth.usuario')->group( function () {
   Route::post('/admin/modeMain/admin','Auth\AuthAdminController@modeMainAdmin')->name('auth.modeMain.admin');
 });
-Route::middleware('auth.user')->group( function () {
+Route::middleware('auth.usuario')->group( function () {
   Route::post('/admin/modeMain/user','Auth\AuthAdminController@modeMainUser')->name('auth.modeMain.user');
 });

@@ -14,22 +14,24 @@ use App\Services\UserSession;
 class AuthUsuarioController extends Controller
 {
 
-  public function auth(){
+  public function auth() {
     close_sessions();
 
     $sistema = Sistema::first();
     return view('auth.usuario',compact('sistema'));
   }
 
-  public function login(AuthRequest $request){
+  public function login(AuthRequest $request) {
     try {
       $u = Usuario::findByUsername($request->username)->firstOrFail();
       $pass =  hash('sha256', $request->password);
-      if($u->password==$pass){
+      // return $u;
+      if ($u->password == $pass) {
         Auth::guard('usuario')->loginUsingId($u->id);
-        UserSession::getInstance();
+
+        // UserSession::getInstance();
         return redirect()->route('home');
-      }else{
+      } else {
         return back()->with('info','Error. Intente nuevamente.');
       }
     } catch (\Throwable $th) {
@@ -37,7 +39,7 @@ class AuthUsuarioController extends Controller
     }
   }
 
-  public function logout(){
+  public function logout() {
     close_sessions();
     return redirect()->route('root');
   }

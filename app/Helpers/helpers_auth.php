@@ -11,12 +11,12 @@ function current_user(){
 }
 
 function current_admin(){
-  return auth('admin')->user();
+  return auth('cliente')->user();
 }
 
 function close_sessions(){
-  if(Auth::guard('admin')->check()){
-    Auth::guard('admin')->logout();
+  if(Auth::guard('cliente')->check()){
+    Auth::guard('cliente')->logout();
   }
   if(Auth::guard('usuario')->check()){
     Auth::guard('usuario')->logout();
@@ -24,7 +24,7 @@ function close_sessions(){
 
 
   // session()->flush();
-  // session()->forget('permissions');
+  session()->forget('permissions');
   session()->forget('modeMain');
   return true;
 }

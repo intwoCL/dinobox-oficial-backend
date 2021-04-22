@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableSAdmin extends Migration
+class CreateTableSSucursalUsuario extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateTableSAdmin extends Migration
      */
     public function up()
     {
-        Schema::create('s_admin', function (Blueprint $table) {
+        Schema::create('s_sucursal_usuario', function (Blueprint $table) {
             $table->id();
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->string('nombre');
-            $table->string('correo')->unique();
-            $table->string('foto')->nullable();
+            $table->foreignId('id_sucursal')->references('id')->on('s_sucursal');
+            $table->foreignId('id_usuario')->references('id')->on('s_usuario');
+            $table->integer('rol');
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ class CreateTableSAdmin extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_admin');
+        Schema::dropIfExists('s_sucursal_usuario');
     }
 }

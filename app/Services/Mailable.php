@@ -30,24 +30,4 @@ class Mailable
       return false;
     }
   }
-
-  public static function voteOuting($correo, $nombre,$run, $secret_token, $id, $nombre_votacion){
-    try {
-      $url = route('web.votacionOnline.login',[$secret_token,$id]);
-      $mail = new VotoMail($correo,$nombre, $run, $nombre_votacion, $url);
-      Mail::to($correo)->queue($mail);
-      return true;
-    } catch (\Throwable $th) {
-      return false;
-    }
-  }
-
-
-  // public static function testImg($data){
-
-  //   $mail = new VotoImg($data['img']);
-  //   // return $mail;
-  //   Mail::to($data['correo'])->queue($mail);
-  //   return true;
-  // }
 }

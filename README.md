@@ -1,4 +1,7 @@
-# Team project
+Es un sistema de delivery escalable
+# Devivery-backend INTWO
+
+## Team project
 
 Laravel Framework 8.0
 VERSION PROJECT 2021.0
@@ -34,10 +37,6 @@ php artisan storage:link
 composer dump-autoload
 
 php artisan migrate:fresh --seed
-# php artisan  edugestion:import
-
-# php artisan migrate:fresh --seed
-# php artisan make:migration create_nombre_tabla_table --create=nombre_tabla
 ```
 
 ### Inicial laravel-mix mode dev
@@ -62,9 +61,3 @@ vendor/bin/phpstan analyse
 vendor\bin\phpstan analyse app
 vendor\bin\phpstan analyse resource
 ```
-
-
-## cambios importantenes
-Se agregara en las migraciones
-
-En la version 0.4.0 se actualiza la base de datos *sql_tipo_usuario.sql*

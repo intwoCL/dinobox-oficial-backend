@@ -18,7 +18,7 @@ class CreateTableCoConsulta extends Migration
             $table->string('nombre',100);
             $table->string('descripcion',300);
             $table->string('contenido',3000)->nullable();
-            $table->integer('id_admin_creador');
+            $table->foreignId('id_usuario')->references('id')->on('s_usuario');
             $table->timestamps();
         });
     }

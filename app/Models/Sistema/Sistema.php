@@ -13,7 +13,6 @@ class Sistema extends Model
 
   protected $casts = [
     'config' => Json::class,
-    'modulo' => Json::class
   ];
 
   public function present() {
