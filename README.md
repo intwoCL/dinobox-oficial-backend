@@ -16,6 +16,34 @@ Copy .env
 cp .env.example .env
 ```
 
+## Tree
+
+- `app`
+  - `Casts` Serializer model
+  - `Console` Script command
+  - `Helpers` Global functions
+  - `Http`
+    - `Controllers`
+      - `Api` Connected inside api
+      - `Auth` Autenticated
+      - `---modules--`
+  - `Lib` One Module
+  - `Mail` Section mailable
+  - `Model`
+      - `---modules--`
+  - `Presenters` They are classes with friendly functions that represent models
+      - `---modules--`
+  - `Services` Logic outside of controllers and models
+- `resources`
+  - `sass`
+  - `js` Include vue
+  - `lang` Translate es, en, etc..
+  - `views`
+    - `---modules--`
+
+
+
+
 # NOTA: Este codigo hace todo de una
 ```shell
 
