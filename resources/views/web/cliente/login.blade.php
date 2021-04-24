@@ -1,4 +1,4 @@
-@extends('web.votacion.skeleton')
+@extends('web.evento.skeleton')
 @push('stylesheet')
 <link rel="stylesheet" href="/dist/css/tres.css">
 @endpush
@@ -8,7 +8,7 @@
     <div class="card login-card">
       <div class="row no-gutters">
         <div class="col-md-6">
-          <img src="/dist/img/online.jpg" alt="login" class="login-card-img">
+          <img src="/dist/img/ticket.jpg" alt="login" class="login-card-img">
         </div>
         <div class="col-md-6">
           <div class="card-body">
@@ -16,11 +16,11 @@
               <img src="assets/images/logo.svg" alt="logo" class="logo">
             </div> --}}
             <p class="login-card-description">INGRESO</p>
-            <form action="{{ route('web.votacionOnline.codigo') }}" method="POST">
+            <form action="" method="POST">
               @csrf
               <div class="form-group">
-                <label for="email" >CÓDIGO DE VOTACIÓN ONLINE</label>
-                <input type="text" name="code" id="code" class="form-control text-uppercase" maxlength="15" placeholder="Ingrese el código de la votacion" required>
+                <label for="email" >CÓDIGO DE EVENTO</label>
+                <input type="text" name="code" id="code" class="form-control text-uppercase" maxlength="10" placeholder="Ingrese el código del evento" required>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary btn-block">INGRESAR</button>

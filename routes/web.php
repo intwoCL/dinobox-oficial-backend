@@ -16,7 +16,7 @@ Route::post('/admin/logout','Auth\AuthAdminController@logout')->name('auth.logou
 
 Route::middleware('auth.usuario')->group( function () {
 
-  Route::get('home','home@index')->name('home');
+  Route::get('home','DashboardController@index')->name('home');
   Route::post('/user/logout','Auth\AuthUsuarioController@logout')->name('auth.user.logout');
 
 });
@@ -40,3 +40,7 @@ Route::middleware('auth.usuario')->group( function () {
 
 //   return Mailable::bikeOuting($correo, $data, true);
 // });
+
+
+
+Route::get('web','Web\DashboardController@index')->name('home');

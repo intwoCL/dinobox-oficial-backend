@@ -6,14 +6,16 @@
   <title>@yield('title', 'Evento - Edugestion')</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="{{ mix('css/app.css') }}">
   @stack('stylesheet')
 </head>
 <body>
   <div id="app">
     @yield('app')
   </div>
-  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ mix('js/manifest.js') }}"></script>
+  <script src="{{ mix('js/vendor.js') }}"></script>
+  <script src="{{ mix('js/app.js') }}"></script>
   @include('layouts._toast')
   @stack('javascript')
 </body>

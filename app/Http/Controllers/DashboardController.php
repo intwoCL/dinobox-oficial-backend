@@ -11,7 +11,7 @@ class DashboardController extends Controller
     return view('dashboard.welcome');
   }
 
-  public function index(){
+  public function usuario(){
     return view('dashboard.welcome');
   }
 
