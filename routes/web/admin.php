@@ -7,14 +7,6 @@ use Illuminate\Support\Facades\Route;
 // auth.admin.user
  // - {ALUMNO}
 Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('admin.')->group( function () {
-  // Route::get('/debug-sentry', function () {
-  //   throw new Exception('My first Sentry error!');
-  // });
-  // Route::get('cache',function(){
-  //   Artisan::call('cache:clear');
-  //   Artisan::call('config:clear');
-  //   Artisan::call('config:cache');
-  // });
 
   Route::resource('alumno','AlumnoController',['except'=>['create','edit']]);
 

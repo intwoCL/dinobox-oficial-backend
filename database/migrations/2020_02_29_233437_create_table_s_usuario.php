@@ -20,7 +20,7 @@ class CreateTableSUsuario extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('correo')->unique();
-            $table->string('foto')->nullable();
+            $table->string('imagen')->nullable();
             $table->string('config_theme')->default('default');
             $table->string('integrations')->nullable();
             $table->json('config')->nullable();

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSCliente extends Migration
+class CreateTableSCliente extends Migration
 {
     /**
      * Run the migrations.
@@ -23,7 +23,7 @@ class CreateSCliente extends Migration
             $table->string('correo')->unique();
             $table->string('telefono')->nullable();
             $table->string('foto')->nullable();
-            $table->integer('id_usuario')->nullable();
+            $table->integer('id_usuario_creador')->nullable();
             $table->json('config')->nullable();
             $table->json('integrations')->nullable();
             $table->boolean('verificado')->default(false);

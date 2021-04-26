@@ -10,7 +10,7 @@ class UsuarioPresenter extends Presenter
   private $imgDefault = "/dist/img/img-default-user.jpg";
 
   public function getPhoto(){
-    return (new Imagen($this->model->foto, $this->folderImg, $this->imgDefault))->call();
+    return (new Imagen($this->model->imagen, $this->folderImg, $this->imgDefault))->call();
   }
 
   public function nombre_completo(){

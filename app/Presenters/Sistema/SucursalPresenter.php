@@ -11,7 +11,7 @@ class SucursalPresenter extends Presenter
   private $imgDefault = "/dist/img/bag.jpg";
 
   public function getPhoto(){
-    return (new Imagen($this->model->foto, $this->folderImg, $this->imgDefault))->call();
+    return (new Imagen($this->model->imagen, $this->folderImg, $this->imgDefault))->call();
   }
 
   // public function getFormularioStatusHTML(){

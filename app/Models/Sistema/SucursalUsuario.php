@@ -24,8 +24,4 @@ class SucursalUsuario extends Model
   public function sucursal(){
     return $this->belongsTo(Sucursal::class,'id_sucursal');
   }
-
-  public function present(){
-    return new SucursalUsuarioPresenter($this);
-  }
 }

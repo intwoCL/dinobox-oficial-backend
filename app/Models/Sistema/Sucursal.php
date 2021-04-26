@@ -19,10 +19,6 @@ class Sucursal extends Model
     2 => 'NO DISPONIBLE'
   ];
 
-  public function usuarios(){
-    return $this->hasMany(DepartamentoUsuario::class,'id_departamento')->with('usuario');
-  }
-
   public function sucursal(){
     return $this->hasOne(Sucursal::class,'id_sucursal');
   }

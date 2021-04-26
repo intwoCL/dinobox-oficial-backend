@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableSSucursal extends Migration
+class CreateTableSVehiculo extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateTableSSucursal extends Migration
      */
     public function up()
     {
-        Schema::create('s_sucursal', function (Blueprint $table) {
+        Schema::create('s_vehiculo', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',100);
-            $table->string('codigo',100)->unique();
-            $table->string('descripcion',300);
+            $table->foreignId('id_usuario')->references('id')->on('s_usuario');
+            $table->string('patente');
+            $table->string('modelo');
+            $table->string('marca');
+            $table->integer('tipo');
             $table->string('imagen')->nullable();
-            $table->json('config')->nullable();
-            $table->boolean('activo')->default(true);
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateTableSSucursal extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_sucursal');
+        Schema::dropIfExists('s_vehiculo');
     }
 }

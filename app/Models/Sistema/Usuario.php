@@ -44,10 +44,6 @@ class Usuario extends Authenticatable
     return $this->hasMany(Sucursal::class,'id_usuario')->with('sucursal');
   }
 
-  // public function myEspecialidad(){
-  //   return $this->hasOne(Especialidad::class,'id_usuario');
-  // }
-
   public function scopefindByUsername($query, $username){
     return $query->where('username',$username)->where('activo',true)->where('bloqueado',false);
   }
@@ -55,26 +51,6 @@ class Usuario extends Authenticatable
   public function getConfigDarkMode(){
     return $this->config['darkmode'] ?? false;
   }
-
-  // public function getPermisoAlumno(){
-  //   return $this->permisos['alumno'] ?? 3;
-  // }
-
-  // public function getPermisoUsuarioGeneral(){
-  //   return $this->permisos['usuario_general'] ?? 3;
-  // }
-
-  // public function isPolicy(){
-  //   return $this->config['policy'] ?? false;
-  // }
-
-  // public function me(){
-  //   return session()->get(Permissions::NAME);
-  // }
-
-  // public function getPerfilBicicleta(){
-  //   return $this->me()['bicicleta'];
-  // }
 
   public function getLastSession(){
     return new ConvertDatetime($this->last_session);

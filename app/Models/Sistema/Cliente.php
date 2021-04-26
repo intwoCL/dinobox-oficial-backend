@@ -33,40 +33,8 @@ class Cliente extends Authenticatable
     return new UsuarioPresenter($this);
   }
 
-  public function departamentosUsuario(){
-    return $this->hasMany(DepartamentoUsuario::class,'id_usuario')->with('departamento');
-  }
-
-  public function myEspecialidad(){
-    return $this->hasOne(Especialidad::class,'id_usuario');
-  }
-
   public function scopefindByUsername($query, $username){
-    return $query->where('username',$username)->where('activo',true)->where('bloqueado',false);
-  }
-
-  public function getConfigDarkMode(){
-    return $this->config['darkmode'] ?? false;
-  }
-
-  public function getPermisoAlumno(){
-    return $this->permisos['alumno'] ?? 3;
-  }
-
-  public function getPermisoUsuarioGeneral(){
-    return $this->permisos['usuario_general'] ?? 3;
-  }
-
-  public function isPolicy(){
-    return $this->config['policy'] ?? false;
-  }
-
-  public function me(){
-    return session()->get(Permissions::NAME);
-  }
-
-  public function getPerfilBicicleta(){
-    return $this->me()['bicicleta'];
+    return $query->where('username',$username)->where('activo',true);
   }
 
   public function getLastSession(){

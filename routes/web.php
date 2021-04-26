@@ -5,9 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () { return redirect()->route('auth.usuario'); })->name('root');
 
-// Route::get('/admin','Auth\AuthAdminController@auth')->name('auth.admin');
-// Route::post('/admin','Auth\AuthAdminController@login')->name('auth.admin');
-
 Route::get('/acceso','Auth\AuthUsuarioController@auth')->name('auth.usuario');
 Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
 
@@ -15,10 +12,8 @@ Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
 Route::post('/admin/logout','Auth\AuthAdminController@logout')->name('auth.logout');
 
 Route::middleware('auth.usuario')->group( function () {
-
   Route::get('home','DashboardController@index')->name('home');
   Route::post('/user/logout','Auth\AuthUsuarioController@logout')->name('auth.user.logout');
-
 });
 
 // Route::get('routes', function () {
@@ -41,6 +36,14 @@ Route::middleware('auth.usuario')->group( function () {
 //   return Mailable::bikeOuting($correo, $data, true);
 // });
 
+ // Route::get('/debug-sentry', function () {
+  //   throw new Exception('My first Sentry error!');
+  // });
+  // Route::get('cache',function(){
+  //   Artisan::call('cache:clear');
+  //   Artisan::call('config:clear');
+  //   Artisan::call('config:cache');
+  // });
 
 
 Route::get('web','Web\DashboardController@index')->name('home');

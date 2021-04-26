@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableSSucursal extends Migration
+class CreateTableOrOrden extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateTableSSucursal extends Migration
      */
     public function up()
     {
-        Schema::create('s_sucursal', function (Blueprint $table) {
+        Schema::create('or_orden', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre',100);
-            $table->string('codigo',100)->unique();
-            $table->string('descripcion',300);
-            $table->string('imagen')->nullable();
-            $table->json('config')->nullable();
+            $table->integer('id_usuario')->nullable();
+            $table->integer('id_usuario')->nullable();
+
+
+            $table->double('precio')->default(0);
+            $table->integer('estado')->default(1);
             $table->boolean('activo')->default(true);
             $table->timestamps();
         });
@@ -32,6 +33,6 @@ class CreateTableSSucursal extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('s_sucursal');
+        Schema::dropIfExists('or_orden');
     }
 }
