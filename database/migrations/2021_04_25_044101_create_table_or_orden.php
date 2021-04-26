@@ -16,7 +16,7 @@ class CreateTableOrOrden extends Migration
         Schema::create('or_orden', function (Blueprint $table) {
             $table->id();
             $table->integer('id_usuario')->nullable();
-            $table->integer('id_usuario')->nullable();
+            // $table->integer('id_usuario')->nullable();
 
 
             $table->double('precio')->default(0);
