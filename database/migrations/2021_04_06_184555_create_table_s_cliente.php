@@ -22,7 +22,8 @@ class CreateTableSCliente extends Migration
             $table->string('apellido');
             $table->string('correo')->unique();
             $table->string('telefono')->nullable();
-            $table->string('foto')->nullable();
+            $table->string('imagen')->nullable();
+            $table->date('birthdate')->nullable();
             $table->integer('id_usuario_creador')->nullable();
             $table->json('config')->nullable();
             $table->json('integrations')->nullable();

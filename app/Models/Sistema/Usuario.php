@@ -41,7 +41,7 @@ class Usuario extends Authenticatable
   }
 
   public function sucursalesUsuario(){
-    return $this->hasMany(Sucursal::class,'id_usuario')->with('sucursal');
+    return $this->hasMany(SucursalUsuario::class,'id_usuario')->with('sucursal');
   }
 
   public function scopefindByUsername($query, $username){

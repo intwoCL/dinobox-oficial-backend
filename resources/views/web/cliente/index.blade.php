@@ -1,111 +1,17 @@
 @extends('web.cliente.app')
 @push('stylesheet')
 
-<style>
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
-    }
-  }
-
-
-  html,
-body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
-}
-
-body {
-  padding-top: 56px;
-}
-
-@media (max-width: 991.98px) {
-  .offcanvas-collapse {
-    position: fixed;
-    top: 56px; /* Height of navbar */
-    bottom: 0;
-    left: 100%;
-    width: 100%;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    overflow-y: auto;
-    visibility: hidden;
-    background-color: #343a40;
-    transition: visibility .3s ease-in-out, -webkit-transform .3s ease-in-out;
-    transition: transform .3s ease-in-out, visibility .3s ease-in-out;
-    transition: transform .3s ease-in-out, visibility .3s ease-in-out, -webkit-transform .3s ease-in-out;
-  }
-  .offcanvas-collapse.open {
-    visibility: visible;
-    -webkit-transform: translateX(-100%);
-    transform: translateX(-100%);
-  }
-}
-
-.nav-scroller {
-  position: relative;
-  z-index: 2;
-  height: 2.75rem;
-  overflow-y: hidden;
-}
-
-.nav-scroller .nav {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  padding-bottom: 1rem;
-  margin-top: -1px;
-  overflow-x: auto;
-  color: rgba(255, 255, 255, .75);
-  text-align: center;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-}
-
-.nav-underline .nav-link {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: .875rem;
-  color: #6c757d;
-}
-
-.nav-underline .nav-link:hover {
-  color: #007bff;
-}
-
-.nav-underline .active {
-  font-weight: 500;
-  color: #343a40;
-}
-
-.text-white-50 { color: rgba(255, 255, 255, .5); }
-
-.bg-purple { background-color: #6f42c1; }
-
-.lh-100 { line-height: 1; }
-.lh-125 { line-height: 1.25; }
-.lh-150 { line-height: 1.5; }
-</style>
-
-
 @endpush
 @section('content')
-
-
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-  <a class="navbar-brand mr-auto mr-lg-0" href="#">Offcanvas navbar</a>
-  <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark tutorial-youtube">
+  <button class="navbar-toggler p-0 border-0 mr-2" type="button" data-toggle="offcanvas">
     <span class="navbar-toggler-icon"></span>
   </button>
+
+  <a class="navbar-brand mr-auto mr-lg-4 ml-lg-4" href="#">
+    Delivery
+    {{-- Insertar imagen --}}
+  </a>
 
   <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
@@ -130,14 +36,14 @@ body {
         </div>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    {{-- <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    </form> --}}
   </div>
 </nav>
 
-<div class="nav-scroller bg-white shadow-sm">
+{{-- <div class="nav-scroller bg-white shadow-sm">
   <nav class="nav nav-underline">
     <a class="nav-link active" href="#">Dashboard</a>
     <a class="nav-link" href="#">
@@ -152,18 +58,48 @@ body {
     <a class="nav-link" href="#">Link</a>
     <a class="nav-link" href="#">Link</a>
   </nav>
+</div> --}}
+
+{{-- <div class="position-relative overflow-hidden text-center bg-light my-2">
+  <div class="col-md-5 p-lg-5 mx-auto">
+    <p class="lead font-weight-normal ">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple's marketing pages.</p>
+  </div>
+</div> --}}
+
+{{-- <div class="position-relative overflow-hidden text-center bg-light my-2">
+  <p class="lead font-weight-normal ">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple's marketing pages.</p>
+</div> --}}
+
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <div class="col-md-5 p-lg-5 mx-auto my-5">
+    {{-- <h1 class="display-4 font-weight-normal">Busca tu orden</h1> --}}
+    <p class="lead font-weight-normal">Busca tu orden.</p>
+    {{-- <a class="btn btn-outline-secondary" href="#">Coming soon</a> --}}
+
+    <form class="my-2">
+      <div class="input-group">
+        <input class="form-control" autofocus type="text" placeholder="Ingresar código de seguimiento" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="product-device box-shadow d-none d-md-block"></div>
+  <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
 </div>
 
 <main role="main" class="container">
   <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
-    <img class="mr-3" src="/docs/4.6/assets/brand/bootstrap-outline.svg" alt="" width="48" height="48">
+    <img class="mr-3" src="/dist/img/svg/undraw_takeout_boxes.svg" alt="" width="48" height="48">
     <div class="lh-100">
-      <h6 class="mb-0 text-white lh-100">Bootstrap</h6>
-      <small>Since 2011</small>
+      <h6 class="mb-0 text-white lh-100">Delivery</h6>
+      <small>v 0.1.0</small>
     </div>
   </div>
 
-  <div class="my-3 p-3 bg-white rounded shadow-sm">
+  {{-- <div class="my-3 p-3 bg-white rounded shadow-sm">
     <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
     <div class="media text-muted pt-3">
       <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 32x32" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
@@ -232,21 +168,10 @@ body {
     <small class="d-block text-right mt-3">
       <a href="#">All suggestions</a>
     </small>
-  </div>
+  </div> --}}
 </main>
 
 @endsection
 @push('javascript')
-
-
-<script>
-  $(function () {
-  'use strict'
-
-    $('[data-toggle="offcanvas"]').on('click', function () {
-      $('.offcanvas-collapse').toggleClass('open')
-    })
-  })
-</script>
 
 @endpush

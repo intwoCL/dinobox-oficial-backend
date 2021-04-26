@@ -7,6 +7,10 @@ use App\Models\Sistema\DepartamentoUsuario;
 
 class DashboardController extends Controller
 {
+  public function index(){
+    return view('web.cliente.index');
+  }
+
   public function admin(){
     return view('dashboard.welcome');
   }
@@ -15,7 +19,4 @@ class DashboardController extends Controller
     return view('dashboard.welcome');
   }
 
-  // public function usuario(){
-  //   return view('dashboard.welcome');
-  // }
 }

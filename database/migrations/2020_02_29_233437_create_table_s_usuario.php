@@ -24,6 +24,7 @@ class CreateTableSUsuario extends Migration
             $table->string('config_theme')->default('default');
             $table->string('integrations')->nullable();
             $table->json('config')->nullable();
+            $table->date('birthdate')->nullable();
             $table->datetime('last_session')->nullable();
             $table->boolean('admin')->default(false);
             $table->boolean('bloqueado')->default(false);
