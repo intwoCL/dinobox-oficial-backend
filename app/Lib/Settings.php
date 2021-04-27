@@ -1,9 +1,9 @@
 <?php
-namespace App\Services;
+namespace App\Lib;
 
-class Settings{
+class Settings {
   const THEMES = [
-    'default'   => 'Sistema Edugestión',
+    'default'   => 'Sin tema',
     'cerulean'  => 'cerulean',
     'cosmo'     => 'cosmo',
     'cyborg'    => 'cyborg',

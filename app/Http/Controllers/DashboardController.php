@@ -11,11 +11,7 @@ class DashboardController extends Controller
     return view('web.cliente.index');
   }
 
-  public function admin(){
-    return view('dashboard.welcome');
-  }
-
-  public function usuario(){
+  public function home(){
     return view('dashboard.welcome');
   }
 

@@ -7,9 +7,8 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Sistema\Usuario;
 
-use App\Http\Requests\AuthUsuarioRequest as UsuarioRequest;
 use App\Http\Requests\UsuarioCreateRequest as UserCreateRequest;
-use App\Http\Requests\AuthUsuarioPasswordRequest as PasswordUserRequest;
+use App\Lib\Permissions;
 use App\Services\ImportImage;
 
 class UsuarioController extends Controller
@@ -25,8 +24,8 @@ class UsuarioController extends Controller
   }
 
   public function create(){
-    $permiso_alumno = Usuario::PERMISO_ALUMNO;
-    return view('admin.usuario.create',compact('permiso_alumno'));
+    $roles = Permissions::ROLES;
+    return view('admin.usuario.create',compact('roles'));
   }
 
   public function store(UserCreateRequest $request){
@@ -44,6 +43,8 @@ class UsuarioController extends Controller
         $user->foto = ImportImage::save($request, 'image', $filename, $folder);
       }
 
+      // agregar aca el rol
+
       $user->save();
       return redirect()->route('admin.usuario.index')->with('success','Se ha creado correctamente.');
     } catch (\Throwable $th) {
@@ -53,7 +54,6 @@ class UsuarioController extends Controller
 
   public function edit($id){
     try {
-      $permiso_alumno = Usuario::PERMISO_ALUMNO;
       $u = Usuario::findOrFail($id);
       return view('admin.usuario.edit',compact('u','permiso_alumno'));
     } catch (\Throwable $th) {
@@ -75,6 +75,8 @@ class UsuarioController extends Controller
         $user->foto = ImportImage::save($request, 'image', $filename, $folder);
       }
 
+      // Actualizar el rol
+
       $user->update();
       return back()->with('success','Se ha actualizado.');
     } catch (\Throwable $th) {
@@ -95,27 +97,14 @@ class UsuarioController extends Controller
     }
   }
 
-  // public function destroy(Request $request, $id){
-  //   try {
-  //     $user = Usuario::findOrFail($request->input('id_usuario'));
-
-  //     if ($user->activo) {
-  //       foreach ($user->departamentosUsuario as $du) {
-  //         $du->activo = false;
-  //         $du->update();
-  //       }
-  //     }
-
-  //     $user->activo = !$user->activo;
-  //     $user->update();
-
-  //     // $autUser = new AuditUserDeleteReporte();
-  //     // $autUser->id_usuario = $user->id;
-  //     // $autUser->motivo = $user->activo ? 2 : 1;
-  //     // $autUser->save();
-  //     return back()->with('success','Se ha actualizado.');
-  //   } catch (\Throwable $th) {
-  //     return back()->with('info','Error Intente nuevamente.');
-  //   }
-  // }
+  public function destroy(Request $request, $id){
+    try {
+      $user = Usuario::findOrFail($request->input('id_usuario'));
+      $user->activo = !$user->activo;
+      $user->update();
+      return back()->with('success','Se ha actualizado.');
+    } catch (\Throwable $th) {
+      return back()->with('info','Error Intente nuevamente.');
+    }
+  }
 }

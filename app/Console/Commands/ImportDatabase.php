@@ -12,7 +12,7 @@ class ImportDatabase extends Command
      *
      * @var string
      */
-    protected $signature = 'edugestion:import';
+    protected $signature = 'cities:import';
 
     /**
      * The console command description.
@@ -39,9 +39,7 @@ class ImportDatabase extends Command
     public function handle()
     {
         try {
-            DB::unprepared(file_get_contents('database/import/sql_sedes.sql'));
-            DB::unprepared(file_get_contents('database/import/sql_tipo_usuario.sql'));
-            DB::unprepared(file_get_contents('database/import/sql_tipo_visitas.sql'));
+            DB::unprepared(file_get_contents('database/sql/cities.sql'));
             $this->info("Import completed!");
         } catch (\Throwable $th) {
             $this->info("Error. " . $th);

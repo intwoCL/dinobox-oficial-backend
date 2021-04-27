@@ -10,9 +10,9 @@ use Rap2hpoutre\FastExcel\FastExcel;
 
 class UtilsController extends Controller
 {
-  // public function index(){
-  //   return view('admin.utils.index');
-  // }
+  public function index(){
+    return view('admin.utils.index');
+  }
 
 
   // public function importAlumnos(){

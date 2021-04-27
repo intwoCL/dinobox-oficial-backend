@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\AuthUsuarioPasswordRequest as PasswordUserRequest;
+use App\Lib\Settings;
 use App\Services\ImportImage;
-use App\Services\Settings;
 
 class ConfiguracionController extends Controller
 {
@@ -40,7 +40,6 @@ class ConfiguracionController extends Controller
       return back()->with('success','Se ha actualizado.')->with('tabs','user');
     } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.')->with('tabs','user');
-      return $th;
     }
   }
 

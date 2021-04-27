@@ -30,12 +30,6 @@ class Usuario extends Authenticatable
     'permisos' => Json::class,
   ];
 
-  CONST PERMISO_ALUMNO = [
-    1 => 'GESTOR',
-    2 => 'VISITA',
-    3 => 'OCULTO'
-  ];
-
   public function present(){
     return new UsuarioPresenter($this);
   }

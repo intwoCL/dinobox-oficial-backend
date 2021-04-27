@@ -10,11 +10,11 @@ class Permissions {
     2 => 'DISABLED'
   ];
 
-  CONST ALLOWS = [
+  CONST ROLES = array(
     1 => 'GESTOR',
-    2 => 'VISITA',
-    3 => 'OCULTO'
-  ];
+    2 => 'EMPLEADO',
+    3 => 'REPARTIDOR',
+  );
 
   private function reverse($allows) {
     return array_flip($allows);
@@ -24,7 +24,7 @@ class Permissions {
     return $this->reverse(self::ALLOWS_SUCURSAL);
   }
 
-  public function getAllows() {
-    return $this->reverse(self::ALLOWS);
+  public function getRoles() {
+    return $this->reverse(self::ROLES);
   }
 }

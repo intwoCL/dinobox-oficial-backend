@@ -58,24 +58,13 @@
               <div class="form-group row text-center">
                 <div id="preview"></div>
               </div>
-
               <hr>
               <div class="form-group row">
                 <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Gestionar alumnos</label>
                 <div class="col-sm-8">
                   <select name="permiso_alumno" id="permiso_alumno" class="form-control" required>
-                    @foreach ($permiso_alumno as $key => $value)
-                      <option {{ $key==$u->getPermisoAlumno() ? 'selected' : '' }} value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
-                  </select>
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Gestionar Usuarios</label>
-                <div class="col-sm-8">
-                  <select name="permiso_usuario_general" id="permiso_usuario_general" class="form-control" required>
-                    @foreach ($permiso_alumno as $key => $value)
-                      <option {{ $key==$u->getPermisoUsuarioGeneral() ? 'selected' : '' }} value="{{ $key }}">{{ $value }}</option>
+                    @foreach ($roles as $key => $value)
+                    <option value="{{ $key }}">{{ $value }}</option>
                     @endforeach
                   </select>
                 </div>
@@ -125,52 +114,6 @@
         <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
           <strong>MODO MAIN</strong>
         </button>
-
-        <div class="card card-dark">
-          <div class="card-header">
-            <h3 class="card-title">Departamentos asociados</h3>
-          </div>
-          <div class="card-body table-responsive">
-            <table class="table table-bordered table-hover table-sm text-center">
-              <thead>
-              <tr>
-                <th>Estado</th>
-                <th>Imagen</th>
-                <th>Nombre de Usuario</th>
-              </tr>
-              </thead>
-              <tbody>
-              @forelse ($u->departamentosUsuario as $du)
-                <tr>
-                  <td>
-                    {!! $du->present()->getActive() !!}
-                  </td>
-                  <td>
-                    <img src="{{ $du->departamento->present()->getPhoto() }}" alt="Imagenes de fondo" width="50px" srcset="">
-                  </td>
-                  <td>
-                    {{ $du->departamento->nombre }}
-                    <div class="table-links">
-                      <div class="btn-group">
-                        <a href="">
-                          <h6>
-                            <span class="badge badge-primary">ENTRAR</span>
-                          </h6>
-                        </a>
-
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              @empty
-                <tr>
-                  <td colspan="2"><h1>No hay departamentos</h1></td>
-                </tr>
-              @endforelse
-              </tbody>
-            </table>
-          </div>
-        </div>
       </div>
     </div>
   </div>

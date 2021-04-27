@@ -16,12 +16,12 @@ class CreateTableOrOrden extends Migration
         Schema::create('or_orden', function (Blueprint $table) {
             $table->id();
             $table->integer('id_usuario')->nullable();
-            $table->integer('id_usuario')->nullable();
+            // $table->integer('id_usuario')->nullable();
 
 
-            $table->double('precio')->default(0);
-            $table->integer('estado')->default(1);
-            $table->boolean('activo')->default(true);
+            // $table->double('precio')->default(0);
+            // $table->integer('estado')->default(1);
+            // $table->boolean('activo')->default(true);
             $table->timestamps();
         });
     }

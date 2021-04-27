@@ -11,12 +11,6 @@ class SucursalUsuario extends Model
 {
   protected $table = 's_sucursal_usuario';
 
-  CONST ROLES = array(
-    1 => 'GESTOR',
-    2 => 'EMPLEADO',
-    3 => 'REPARTIDOR',
-  );
-
   public function usuario(){
     return $this->belongsTo(Usuario::class,'id_usuario');
   }

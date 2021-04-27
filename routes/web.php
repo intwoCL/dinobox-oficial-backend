@@ -4,9 +4,7 @@ use App\Services\Mailable;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/','DashboardController@index')->name('web.index');
-
-// Route::get('/', function () { return redirect()->route('auth.usuario'); })->name('root');
+Route::get('/','DashboardController@index')->name('root');
 
 Route::get('/acceso','Auth\AuthUsuarioController@auth')->name('auth.usuario');
 Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
@@ -15,8 +13,12 @@ Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
 Route::post('/admin/logout','Auth\AuthAdminController@logout')->name('auth.logout');
 
 Route::middleware('auth.usuario')->group( function () {
-  // Route::get('home','DashboardController@index')->name('home');
+
+  Route::get('home','DashboardController@home')->name('home');
   Route::post('/user/logout','Auth\AuthUsuarioController@logout')->name('auth.user.logout');
+
+
+
 });
 
 // Route::get('routes', function () {
@@ -49,4 +51,4 @@ Route::middleware('auth.usuario')->group( function () {
   // });
 
 
-Route::get('web','Web\DashboardController@index')->name('home');
+// Route::get('web','Web\DashboardController@index')->name('home');
