@@ -66,7 +66,7 @@
 
         <li class="nav-item {{ open('admin/cliente') }}{{ open('admin/cliente/*') }}">
           <a href="{{ route('cliente.index') }}" class="nav-link">
-            <i class="fas fa-id-card"></i>
+            <i class="fas fa-id-card nav-icon"></i>
             <p>Clientes</p>
           </a>
         </li>
