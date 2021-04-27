@@ -9,8 +9,7 @@ Route::get('/','DashboardController@index')->name('root');
 Route::get('/acceso','Auth\AuthUsuarioController@auth')->name('auth.usuario');
 Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
 
-Route::resource('admin', 'Sistema\UsuarioController');
-Route::resource('cliente', 'Sistema\ClienteController');
+
 
 
 Route::middleware('auth.usuario')->group( function () {
@@ -18,7 +17,8 @@ Route::middleware('auth.usuario')->group( function () {
 
   Route::get('home','DashboardController@home')->name('home');
 
-
+  Route::resource('admin', 'Sistema\UsuarioController');
+  Route::resource('cliente', 'Sistema\ClienteController');
 
 });
 

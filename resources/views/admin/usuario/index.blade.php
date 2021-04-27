@@ -18,10 +18,10 @@
       <div class="card">
         <div class="card-header">
           {{-- <h3 class="card-title">Lista de Usuarios</h3> --}}
-          <a href="{{ route('admin.usuario.indexDelete') }}" class="btn btn-dark float-left btn-sm"> 
+          <a href="{{ route('admin.usuario.indexDelete') }}" class="btn btn-dark float-left btn-sm">
             Usuarios eliminados
           </a>
-          <a href="{{ route('admin.create') }}" class="btn btn-success float-right btn-sm"> 
+          <a href="{{ route('admin.create') }}" class="btn btn-success float-right btn-sm">
             Nuevo
           </a>
         </div>

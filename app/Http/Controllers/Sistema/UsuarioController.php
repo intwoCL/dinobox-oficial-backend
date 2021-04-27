@@ -77,7 +77,7 @@ class UsuarioController extends Controller
       $user->apellido = $request->input('apellido');
       $user->correo = $request->input('correo');
       $user->username = $request->input('username');
-      
+
 
       if(!empty($request->file('image'))){
         $filename = time();
@@ -86,7 +86,7 @@ class UsuarioController extends Controller
       }
 
       //Actualizar el rol
-      
+
 
 
       $user->update();
