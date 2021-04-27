@@ -31,15 +31,15 @@
 
         <li class="nav-item {{ open('admin/departamento*') }}">
           <a href="" class="nav-link">
-            <i class="fas fa-network-wired nav-icon"></i>
-            <p>Reportes</p>
+            <i class="fas fa-boxes nav-icon"></i>
+            <p>Orden</p>
           </a>
         </li>
 
         <li class="nav-item {{ open('admin/departamento*') }}">
           <a href="" class="nav-link">
-            <i class="fas fa-network-wired nav-icon"></i>
-            <p>Orden</p>
+            <i class="fas fa-chart-bar nav-icon"></i>
+            <p>Reportes</p>
           </a>
         </li>
 
