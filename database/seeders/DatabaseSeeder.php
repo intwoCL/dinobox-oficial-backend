@@ -17,10 +17,14 @@ class DatabaseSeeder extends Seeder
   {
 
     $this->truncateTables([
+      's_comuna',
+      's_region',
       's_sistema',
       's_usuario',
       's_cliente',
     ]);
+
+    Artisan::call('cities:import');
 
     $this->call(SistemaSeeder::class);
     $this->call(UserSeeder::class);

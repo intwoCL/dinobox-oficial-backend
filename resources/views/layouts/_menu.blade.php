@@ -55,6 +55,7 @@
             <p>Utils</p>
           </a>
         </li>
+
         <li class="nav-header">Usuarios</li>
         <li class="nav-item {{ open('admin/usuario') }}{{ open('admin/usuario/*') }}">
           <a href="{{ route('admin.index') }}" class="nav-link">
@@ -62,8 +63,7 @@
             <p>Usuarios</p>
           </a>
         </li>
-        
-        <li class="nav-header">Clientes</li>
+
         <li class="nav-item {{ open('admin/cliente') }}{{ open('admin/cliente/*') }}">
           <a href="{{ route('cliente.index') }}" class="nav-link">
             <i class="fas fa-id-card"></i>
