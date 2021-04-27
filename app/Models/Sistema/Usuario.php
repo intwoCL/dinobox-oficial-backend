@@ -34,9 +34,14 @@ class Usuario extends Authenticatable
     return new UsuarioPresenter($this);
   }
 
-  public function sucursalesUsuario(){
-    return $this->hasMany(SucursalUsuario::class,'id_usuario')->with('sucursal');
+  // busca el rol
+  public function sucursalUsuario(){
+    return $this->hasOne(SucursalUsuario::class,'id_usuario');
   }
+
+  // public function sucursalesUsuario(){
+  //   return $this->hasMany(SucursalUsuario::class,'id_usuario')->with('sucursal');
+  // }
 
   public function scopefindByUsername($query, $username){
     return $query->where('username',$username)->where('activo',true)->where('bloqueado',false);
@@ -48,5 +53,17 @@ class Usuario extends Authenticatable
 
   public function getLastSession(){
     return new ConvertDatetime($this->last_session);
+  }
+
+  public function is_gestor(){
+    return $this->sucursalUsuario->rol === 1;
+  }
+
+  public function is_empleado(){
+    return $this->sucursalUsuario->rol === 2;
+  }
+
+  public function is_repartidor(){
+    return $this->sucursalUsuario->rol === 3;
   }
 }

@@ -17,7 +17,7 @@ class CreateTableSSucursal extends Migration
             $table->id();
             $table->string('nombre',100);
             $table->string('codigo',100)->unique();
-            $table->string('descripcion',300);
+            $table->string('descripcion',300)->nullable();
             $table->string('imagen')->nullable();
             $table->json('config')->nullable();
             $table->boolean('activo')->default(true);

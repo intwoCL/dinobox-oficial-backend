@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
       $su->id_sucursal = 1;
       $su->id_usuario = $u->id;
       $su->rol = 1;
-
+      $su->save();
 
       $u = new Usuario();
       $u->username = "gestor";
@@ -47,6 +47,7 @@ class UserSeeder extends Seeder
       $su->id_sucursal = 1;
       $su->id_usuario = $u->id;
       $su->rol = 1;
+      $su->save();
 
       $u = new Usuario();
       $u->username = "empleado";
@@ -60,6 +61,7 @@ class UserSeeder extends Seeder
       $su->id_sucursal = 1;
       $su->id_usuario = $u->id;
       $su->rol = 2;
+      $su->save();
 
       $u = new Usuario();
       $u->username = "repartidor1";
@@ -73,7 +75,7 @@ class UserSeeder extends Seeder
       $su->id_sucursal = 1;
       $su->id_usuario = $u->id;
       $su->rol = 3;
-
+      $su->save();
 
       $c = new Cliente();
       $c->uid = "INTWO2000001";

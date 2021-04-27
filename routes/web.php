@@ -3,19 +3,16 @@
 use App\Services\Mailable;
 use Illuminate\Support\Facades\Route;
 
-
 Route::get('/','DashboardController@index')->name('root');
 
 Route::get('/acceso','Auth\AuthUsuarioController@auth')->name('auth.usuario');
 Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
 
-// ADMIN -> /admin | /web/admin.php
-Route::post('/admin/logout','Auth\AuthAdminController@logout')->name('auth.logout');
-
 Route::middleware('auth.usuario')->group( function () {
+  Route::post('/user/logout','Auth\AuthUsuarioController@logout')->name('auth.user.logout');
 
   Route::get('home','DashboardController@home')->name('home');
-  Route::post('/user/logout','Auth\AuthUsuarioController@logout')->name('auth.user.logout');
+
 
 
 
@@ -49,6 +46,3 @@ Route::middleware('auth.usuario')->group( function () {
   //   Artisan::call('config:clear');
   //   Artisan::call('config:cache');
   // });
-
-
-// Route::get('web','Web\DashboardController@index')->name('home');

@@ -7,7 +7,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-12">
-        <h1>Listado de colaboradores</h1>
+        <h1>Usuarios</h1>
       </div>
     </div>
   </div>
@@ -25,17 +25,17 @@
           <table id="tableSelect" class="table table-bordered table-hover table-sm text-center">
             <thead>
             <tr>
-              <th></th>
-              <th>Username</th>
+              <th>Perfil</th>
+              <th>Imagen</th>
+              <th>Usuario</th>
               <th>Nombre</th>
               <th>Correo</th>
-              <th>Permitir Alumno</th>
-              <th>Permitir Usuario</th>
             </tr>
             </thead>
             <tbody>
               @foreach ($usuarios as $u)
               <tr>
+                <td>{!! $u->present()->getPerfil() !!}</td>
                 <td class="align-middle">
                   <img src="{{ $u->present()->getPhoto() }}" alt="Imagenes de fondo" height="50px" srcset="">
                 </td>
@@ -53,8 +53,6 @@
                 </td>
                 <td class="align-middle">{{$u->present()->nombre_completo()}}</td>
                 <td class="align-middle">{{$u->correo}}</td>
-                <td class="align-middle">{!! $u->present()->getPermisoStatusHTML() !!}</td>
-                <td class="align-middle">{!! $u->present()->getPermisoUsuarioStatusHTML() !!}</td>
               </tr>
               @endforeach
             </tbody>

@@ -17,5 +17,4 @@ class SistemaPresenter extends Presenter
   public function getImagenLogo(){
     return (new Imagen($this->model->imagen_logo, $this->folderImg, $this->imgLogo))->call();
   }
-
 }

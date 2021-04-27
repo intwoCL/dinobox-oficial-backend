@@ -10,6 +10,10 @@ function current_user(){
   return auth('usuario')->user();
 }
 
+function is_admin(){
+  return current_user()->admin;
+}
+
 function current_admin(){
   return auth('cliente')->user();
 }
@@ -24,7 +28,7 @@ function close_sessions(){
 
 
   // session()->flush();
-  session()->forget('permissions');
+  // session()->forget('permissions');
   session()->forget('modeMain');
   return true;
 }

@@ -33,8 +33,8 @@ class UserSession extends Permissions
 
   private function handle() {
     $permisos = array(
-      'admin'    => false,
-      'rol'  => [], //gestor, empleado, admin
+      'admin' => false,
+      'rol'   => [], //gestor, empleado, admin
     );
 
     current_user()->last_session = (new \DateTime())->format("Y-m-d H:i:s");

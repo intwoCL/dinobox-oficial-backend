@@ -1,37 +1,11 @@
 @php
-  function active($url){return request()->is($url) ? 'active' : '';}
-  function open($url){return request()->is($url) ? 'menu-open' : '';}
-  $name = '';
-  $img = '';
-  $modeMain = [];
-
-  if(auth('usuario')->check()){
-    $name = current_user()->present()->nombre_completo();
-    $img  = current_user()->present()->getPhoto();
-    // $p = current_user()->me();
-    // $plataforma_evento     = $p['evento'];
-    // $plataforma_votacion   = $p['votacion'];
-    // $plataforma_bicicleta  = $p['bicicleta'];
-    // $plataforma_tutoria    = $p['tutoria'];
-    // $plataforma_formulario = $p['formulario'];
-    // $plataforma_servicio   = $p['servicio'];
-    // $plataforma_chat       = $p['chat'];
-    // $plataforma_atencion   = $p['atencion'];
-    // $plataforma_alumno     = $p['alumno'];
-    // $plataforma_usuario    = $p['usuario'];
-
-    $modeMain = session()->get('modeMain');
-  }
+  function active($url){ return request()->is($url) ? 'active' : '';}
+  function open($url){ return request()->is($url) ? 'menu-open' : '';}
+  $name = current_user()->nombre;
+  $img = current_user()->present()->getPhoto();
 @endphp
-<aside class="main-sidebar sidebar-dark-dark elevation-4">
-  <!-- Brand Logo -->
-  {{-- <a href="{{ route('home.index') }}" class="brand-link bg-white"> --}}
-    {{-- <span class="brand-text font-weight-light">Gestión Estudiantil</span> --}}
-    {{-- <span class="brand-text">Gestión Estidiantil</span> --}}
-    {{-- <img src="{{ $logo }}" alt="Sistema Edugestión Estudiantil" class="brand-image brand-text elevation-3"> --}}
-
-  {{-- </a> --}}
-  <a href="{{ route('home') }}" class="brand-link bg-info text-sm">
+<aside class="main-sidebar sidebar-dark- elevation-4">
+  <a href="" class="brand-link bg-primary">
     <span class="brand-text font-weight-light">Panel</span>
     <span class="brand-text"><b> Administrativo</b></span>
   </a>
@@ -45,50 +19,49 @@
       </div>
     </div>
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent text-sm" data-widget="treeview" role="menu" data-accordion="false">
-
-        @if (!empty($modeMain))
-        @if ($modeMain['modeMain'])
-        <li class="nav-item">
-          <a href="#" class="nav-link bg-danger">
-            <i class="nav-icon fas fa-copy"></i>
-            <p>
-              MODO MAIN
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview" style="display: none;">
-            <li class="nav-item">
-              <form action="{{ route('auth.modeMain.user') }}" method="post">
-                @csrf
-                <div class="nav-icon ">
-                  <button class="btn btn-danger">SALIR MODO MAIN</button>
-                </div>
-              </form>
-            </li>
-          </ul>
-        </li>
-        <br>
-        @endif
-        @endif
-
+      <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item {{ open('home*') }}">
-          <a href="/home" class="nav-link">
+          <a href="{{ route('home') }}" class="nav-link">
             <i class="nav-icon fa fa-home"></i>
             <p>Inicio</p>
           </a>
         </li>
 
-        <li class="nav-header">Gestión</li>
+        <li class="nav-header">Administración</li>
 
-
-        <li class="nav-item {{ open('panel/votacion*') }} {{ open('votacion*') }}">
+        <li class="nav-item {{ open('admin/departamento*') }}">
           <a href="" class="nav-link">
-            <i class="nav-icon fas fa-vote-yea"></i>
-            <p>Otro elementos</p>
+            <i class="fas fa-network-wired nav-icon"></i>
+            <p>Reportes</p>
           </a>
         </li>
 
+        <li class="nav-item {{ open('admin/departamento*') }}">
+          <a href="" class="nav-link">
+            <i class="fas fa-network-wired nav-icon"></i>
+            <p>Orden</p>
+          </a>
+        </li>
+
+        <li class="nav-item {{ open('admin/sistema*') }}">
+          <a href="" class="nav-link">
+            <i class="fas fa-cogs nav-icon"></i>
+            <p>Configuración</p>
+          </a>
+        </li>
+        <li class="nav-item {{ open('admin/utils*') }}{{ open('admin/reportes/consulta*') }}">
+          <a href="" class="nav-link">
+            <i class="fas fa-th-large nav-icon"></i>
+            <p>Utils</p>
+          </a>
+        </li>
+        <li class="nav-header">Usuarios</li>
+        <li class="nav-item {{ open('admin/usuario') }}{{ open('admin/usuario/*') }}">
+          <a href="{{ route('admin.usuario.index') }}" class="nav-link">
+            <i class="fas fa-user nav-icon"></i>
+            <p>Usuarios</p>
+          </a>
+        </li>
       </ul>
     </nav>
   </div>

@@ -1,12 +1,7 @@
 @extends('layouts.skeleton')
 @section('app')
 @include('layouts._nav')
-{{-- @if (auth('usuario')->check())
-  @include('layouts._menu')
-@else --}}
-  @include('layouts._menu_admin')
-{{-- @endif --}}
-
+@include('layouts._menu')
 <div class="content-wrapper" style="min-height: 1203.6px;">
   @yield('content')
 </div>
