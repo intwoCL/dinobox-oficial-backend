@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('web.cliente.app')
 @section('content')
+@include('layouts._nav2')
 @component('components.button._back')
-  @slot('route', route('admin.index'))
+  @slot('route', route('user.index'))
   @slot('color', 'secondary')
-  @slot('body', 'Nuevo Usuario Colaborador')
+  @slot('body', 'Nuevo Usuario')
 @endcomponent
 <section class="content">
   <div class="container-fluid">
@@ -11,9 +12,9 @@
       <div class="col-md-6">
         <div class="card card-dark">
           <div class="card-header">
-            <h3 class="card-title">Nuevo Colaborador</h3>
+            <h3 class="card-title">Nuevo Usuario</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.store') }}"  enctype="multipart/form-data">
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.usuario.store') }}"  enctype="multipart/form-data">
             @csrf
             <div class="card-body">
               <div class="form-group row">
@@ -35,9 +36,9 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña <small>(12345)</small></label>
+                <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña <small>(123456)</small></label>
                 <div class="col-sm-10">
-                  <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" id="password" value="12345" placeholder="Contraseña" required>
+                  <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" id="password" value="123456" placeholder="Contraseña" required>
                   {!! $errors->first('password', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
@@ -58,18 +59,6 @@
               </div>
               <div class="form-group center-text">
                 <div id="preview"></div>
-              </div>
-
-              <hr>
-              <div class="form-group row">
-                <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Rol</label>
-                <div class="col-sm-8">
-                  <select name="permiso_alumno" id="permiso_alumno" class="form-control" required>
-                    @foreach ($roles as $key => $value)
-                      <option value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
-                  </select>
-                </div>
               </div>
             </div>
             <div class="card-footer">

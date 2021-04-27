@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 @component('components.button._back')
-  @slot('route', route('admin.usuarioGeneral.index'))
+  @slot('route', route('cliente.index'))
   @slot('color', 'secondary')
-  @slot('body', 'Usuario - Create')
+  @slot('body', 'Cliente - Create')
 @endcomponent
 <section class="content">
   <div class="container-fluid">
@@ -11,9 +11,9 @@
       <div class="col-md-6">
         <div class="card card-dark">
           <div class="card-header">
-            <h3 class="card-title">Nuevo Usuario</h3>
+            <h3 class="card-title">Nuevo Cliente</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.usuarioGeneral.store') }}"  enctype="multipart/form-data">
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('cliente.store') }}"  enctype="multipart/form-data">
             @csrf
             <div class="card-body">
               <div class="form-group row">
@@ -28,11 +28,11 @@
               <div class="form-group row">
                 <label for="inputnombre" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ old('nombre') }}" placeholder="nombre" required>
+                  <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ old('nombre') }}" placeholder="Nombre" required>
                   {!! $errors->first('nombre', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ old('apellido') }}" placeholder="apellido">
+                  <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ old('apellido') }}" placeholder="Apellido">
                   {!! $errors->first('apellido', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
@@ -46,13 +46,21 @@
               </div>
 
               <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña <small>(12345)</small></label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" id="password" value="12345" placeholder="Contraseña" required>
+                  {!! $errors->first('password', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                </div>
+              </div>
+
+              <div class="form-group row">
                 <label for="nameEvento" class="col-form-label col-sm-2">Teléfono</label>
                 <div class="input-group col-sm-10">
                     <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Ingrese su teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos">
                 </div>
               </div>
 
-              <div class="form-group row">
+              {{-- <div class="form-group row">
                 <label for="id_tipo_usuario" class="col-sm-2 col-form-label">Tipo Usuario</label>
                 <div class="col-sm-10">
                   <select class="form-control {{ $errors->has('id_tipo_usuario') ? 'is-invalid' : '' }}" name="id_tipo_usuario" id="id_tipo_usuario" required>
@@ -65,7 +73,7 @@
                 <div class="col-sm-12">
                   {!! $errors->first('id_tipo_usuario', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
-              </div>
+              </div> --}}
 
               <div class="form-group">
                 <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>

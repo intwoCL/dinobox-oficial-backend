@@ -40,10 +40,11 @@ class UsuarioController extends Controller
       if(!empty($request->file('image'))){
         $filename = time();
         $folder = 'public/photo_usuarios';
-        $user->foto = ImportImage::save($request, 'image', $filename, $folder);
+        $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
       }
 
       // agregar aca el rol
+      
 
       $user->save();
       return redirect()->route('admin.usuario.index')->with('success','Se ha creado correctamente.');
@@ -55,7 +56,7 @@ class UsuarioController extends Controller
   public function edit($id){
     try {
       $u = Usuario::findOrFail($id);
-      return view('admin.usuario.edit',compact('u','permiso_alumno'));
+      return view('admin.usuario.edit',compact('u'));
     } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
     }
@@ -72,7 +73,7 @@ class UsuarioController extends Controller
       if(!empty($request->file('image'))){
         $filename = time();
         $folder = 'public/photo_usuarios';
-        $user->foto = ImportImage::save($request, 'image', $filename, $folder);
+        $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
       }
 
       // Actualizar el rol

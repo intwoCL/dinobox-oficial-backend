@@ -4,7 +4,7 @@
 @endpush
 @section('content')
 @component('components.button._back')
-@slot('route', route('admin.usuarioGeneral.index'))
+@slot('route', route('cliente.index'))
 @slot('color', 'secondary')
 @slot('body', "Usuarios eliminados")
 @endcomponent
@@ -20,32 +20,34 @@
               <th>Rut</th>
               <th>Nombre</th>
               <th>Correo</th>
+              <th>Teléfono</th>
             </tr>
             </thead>
             <tbody>
-              @foreach ($usuarios as $u)
+              @foreach ($clientes as $c)
               <tr>
                 <td class="align-middle">
-                  <img src="{{ $u->present()->getPhoto() }}" alt="Imagenes de fondo" height="50px" srcset="">
+                  <img src="{{ $c->present()->getPhoto() }}" alt="Imagenes de fondo" height="50px" srcset="">
                 </td>
                 <td class="align-middle">
-                  {{ $u->run }}
+                  {{ $c->run }}
                 </td>
                 <td class="align-middle">
-                  <strong>{{ $u->present()->nombre_completo() }}</strong>
-                  @if ($permiso_editar)
+                  <strong>{{ $c->present()->nombre_completo() }}</strong>
+                  {{-- @if ($permiso_editar) --}}
                   <div class="table-links">
                     <div class="btn-group">
-                      <a href="{{ route('admin.usuarioGeneral.edit',$u->id) }}" class="ml-2">
+                      <a href="{{ route('cliente.edit',$c->id) }}" class="ml-2">
                         <h6>
                           <span class="badge badge-success">EDITAR</span>
                         </h6>
                       </a>
                     </div>
                   </div>
-                  @endif
+                  {{-- @endif --}}
                 </td>
-                <td class="align-middle">{{$u->correo}}</td>
+                <td class="align-middle">{{ $c->correo }}</td>
+                <td class="align-middle">{{ $c->telefono }}</td>
               </tr>
               @endforeach
             </tbody>

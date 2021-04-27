@@ -7,7 +7,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-12">
-        <h1>Listado de usuarios</h1>
+        <h1>Listado de clientes</h1>
       </div>
     </div>
   </div>
@@ -18,47 +18,52 @@
       <div class="card">
         <div class="card-header">
           {{-- <h3 class="card-title">Lista de Usuarios</h3> --}}
-          <a href="{{ route('admin.usuarioGeneral.indexDelete') }}" class="btn btn-dark float-left btn-sm"> Usuarios eliminados</a>
-          @if ($permiso_editar)
-          <a href="{{ route('admin.usuarioGeneral.create') }}" class="btn btn-success float-right btn-sm"> Nuevo</a>
-          @endif
+          <a href="" class="btn btn-dark float-left btn-sm"> 
+            Clientes eliminados
+          </a>
+          {{-- @if ($permiso_editar) --}}
+          <a href="{{ route('cliente.create') }}" class="btn btn-success float-right btn-sm"> 
+            Nuevo
+          </a>
+          {{-- @endif --}}
         </div>
         <div class="card-body table-responsive">
           <table id="tableSelect" class="table table-bordered table-hover table-sm text-center">
             <thead>
             <tr>
-              <th></th>
+              <th>Foto</th>
               <th>Rut</th>
               <th>Nombre</th>
               <th>Correo</th>
-              <th>Tipo usuario</th>
+              <th>Telefono</th>
             </tr>
             </thead>
             <tbody>
-              @foreach ($usuarios as $u)
+              @foreach ($clientes as $c)
               <tr>
                 <td class="align-middle">
-                  <img src="{{ $u->present()->getPhoto() }}" alt="Imagenes de fondo" height="50px" srcset="">
+                  <img src="{{ $c->present()->getPhoto() }}" alt="Imagenes de fondo" height="50px" srcset="">
                 </td>
                 <td class="align-middle">
-                  {{ $u->run }}
+                  {{ $c->run }}
                 </td>
                 <td class="align-middle">
-                  <strong>{{ $u->present()->nombre_completo() }}</strong>
-                  @if ($permiso_editar)
+                  <strong>{{ $c->present()->nombre_completo() }}</strong>
+                  {{-- @if ($permiso_editar) --}}
                   <div class="table-links">
                     <div class="btn-group">
-                      <a href="{{ route('admin.usuarioGeneral.edit',$u->id) }}" class="ml-2">
+                      <a href="{{ route('cliente.edit',$c->id) }}" class="ml-2">
                         <h6>
                           <span class="badge badge-success">EDITAR</span>
                         </h6>
                       </a>
                     </div>
                   </div>
-                  @endif
+                  {{-- @endif --}}
                 </td>
-                <td class="align-middle">{{$u->correo}}</td>
-                <td class="align-middle">{{$u->tipo->nombre}}</td>
+                <td class="align-middle">{{ $c->correo }}</td>
+                <td class="align-middle">{{ $c->telefono }}</td>
+                {{-- <td class="align-middle">{{$c->tipo->nombre}}</td> --}}
               </tr>
               @endforeach
             </tbody>
