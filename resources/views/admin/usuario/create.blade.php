@@ -64,7 +64,7 @@
               <div class="form-group row">
                 <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Rol</label>
                 <div class="col-sm-8">
-                  <select name="permiso_alumno" id="permiso_alumno" class="form-control" required>
+                  <select name="rol" id="rol" class="form-control" required>
                     @foreach ($roles as $key => $value)
                       <option value="{{ $key }}">{{ $value }}</option>
                     @endforeach

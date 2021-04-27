@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Sistema;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -44,6 +44,7 @@ class ClienteController extends Controller
     {
       try {
         $cliente = new Cliente();
+        $cliente->run = $request->input('run');
         $cliente->nombre = $request->input('nombre');
         $cliente->apellido = $request->input('apellido');
         $cliente->correo = $request->input('correo');
@@ -58,9 +59,9 @@ class ClienteController extends Controller
 
         $cliente->save();
 
-        return redirect()->route('admin.cliente.index')->with('success','Se ha creado correctamente.');
+        return redirect()->route('cliente.index')->with('success','Se ha creado correctamente.');
       } catch (\Throwable $th) {
-        //throw $th;
+        throw $th;
         return back()->with('info','Error Intente nuevamente.');
       }
     }
@@ -106,7 +107,6 @@ class ClienteController extends Controller
         $cliente->nombre = $request->input('nombre');
         $cliente->apellido = $request->input('apellido');
         $cliente->correo = $request->input('correo');
-        $cliente->password = hash('sha256', $request->input('password'));
         $cliente->telefono = $request->input('telefono');
 
         if(!empty($request->file('image'))){

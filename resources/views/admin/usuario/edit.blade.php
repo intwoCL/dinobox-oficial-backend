@@ -59,6 +59,16 @@
                 <div id="preview"></div>
               </div>
               <hr>
+              <div class="form-group row">
+                <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Rol</label>
+                <div class="col-sm-8">
+                  <select name="rol" id="rol" class="form-control" required>
+                    @foreach ($roles as $key => $value)
+                      <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
               {{-- <div class="form-group row">
                 <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Gestionar alumnos</label>
                 <div class="col-sm-8">

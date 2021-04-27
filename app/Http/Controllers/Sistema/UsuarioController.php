@@ -9,6 +9,7 @@ use App\Models\Sistema\Usuario;
 
 use App\Http\Requests\UsuarioCreateRequest as UserCreateRequest;
 use App\Lib\Permissions;
+use App\Models\Sistema\SucursalUsuario;
 use App\Services\ImportImage;
 
 class UsuarioController extends Controller
@@ -43,20 +44,27 @@ class UsuarioController extends Controller
         $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
       }
 
-      // agregar aca el rol
-      
-
       $user->save();
-      return redirect()->route('admin.usuario.index')->with('success','Se ha creado correctamente.');
+
+      //Agregar rol
+      $su = new SucursalUsuario();
+      $su->id_sucursal = 1;
+      $su->id_usuario = $user->id;
+      $su->rol = $request->input('rol');
+      $su->save();
+
+      return redirect()->route('admin.index')->with('success','Se ha creado correctamente.');
     } catch (\Throwable $th) {
+      return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
 
   public function edit($id){
     try {
+      $roles = Permissions::ROLES;
       $u = Usuario::findOrFail($id);
-      return view('admin.usuario.edit',compact('u'));
+      return view('admin.usuario.edit',compact('u','roles'));
     } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
     }
@@ -69,6 +77,7 @@ class UsuarioController extends Controller
       $user->apellido = $request->input('apellido');
       $user->correo = $request->input('correo');
       $user->username = $request->input('username');
+      
 
       if(!empty($request->file('image'))){
         $filename = time();
@@ -76,7 +85,9 @@ class UsuarioController extends Controller
         $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
       }
 
-      // Actualizar el rol
+      //Actualizar el rol
+      
+
 
       $user->update();
       return back()->with('success','Se ha actualizado.');
