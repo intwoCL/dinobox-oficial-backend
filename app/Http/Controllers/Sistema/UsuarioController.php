@@ -53,7 +53,7 @@ class UsuarioController extends Controller
       $su->rol = $request->input('rol');
       $su->save();
 
-      return redirect()->route('admin.index')->with('success','Se ha creado correctamente.');
+      return redirect()->route('usuario.index')->with('success','Se ha creado correctamente.');
     } catch (\Throwable $th) {
       return $th;
       return back()->with('info','Error Intente nuevamente.');

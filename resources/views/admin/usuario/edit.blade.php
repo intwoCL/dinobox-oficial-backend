@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @component('components.button._back')
-  @slot('route', route('admin.index'))
+  @slot('route', route('usuario.index'))
   @slot('color', 'secondary')
   @slot('body', "Editar Usuario Colaborador <strong>".$u->present()->nombre_completo()."</strong>")
 @endcomponent
@@ -13,7 +13,7 @@
           <div class="card-header">
             <h3 class="card-title">Actualizar Colaborador</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.update',$u->id) }}"  enctype="multipart/form-data">
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('usuario.update',$u->id) }}"  enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card-body">

@@ -17,7 +17,7 @@ Route::middleware('auth.usuario')->group( function () {
 
   Route::get('home','DashboardController@home')->name('home');
 
-  Route::resource('admin', 'Sistema\UsuarioController');
+  Route::resource('usuario', 'Sistema\UsuarioController');
   Route::resource('cliente', 'Sistema\ClienteController');
 
 });

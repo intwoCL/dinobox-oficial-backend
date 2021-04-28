@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @component('components.button._back')
-  @slot('route', route('admin.index'))
+  @slot('route', route('usuario.index'))
   @slot('color', 'secondary')
   @slot('body', 'Nuevo Usuario Colaborador')
 @endcomponent
@@ -13,7 +13,7 @@
           <div class="card-header">
             <h3 class="card-title">Nuevo Colaborador</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.store') }}"  enctype="multipart/form-data">
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('usuario.store') }}"  enctype="multipart/form-data">
             @csrf
             <div class="card-body">
               <div class="form-group row">

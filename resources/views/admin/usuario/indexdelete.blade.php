@@ -4,7 +4,7 @@
 @endpush
 @section('content')
 @component('components.button._back')
-@slot('route', route('admin.index'))
+@slot('route', route('usuario.index'))
 @slot('color', 'secondary')
 @slot('body', "Clientes eliminados")
 @endcomponent

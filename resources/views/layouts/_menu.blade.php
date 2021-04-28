@@ -58,7 +58,7 @@
 
         <li class="nav-header">Usuarios</li>
         <li class="nav-item {{ open('admin/usuario') }}{{ open('admin/usuario/*') }}">
-          <a href="{{ route('admin.index') }}" class="nav-link">
+          <a href="{{ route('usuario.index') }}" class="nav-link">
             <i class="fas fa-user nav-icon"></i>
             <p>Usuarios</p>
           </a>
