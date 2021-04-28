@@ -9,7 +9,7 @@ use App\Casts\Json;
 use App\Lib\Permissions;
 
 use App\Models\TomaHora\Especialidad;
-use App\Presenters\Sistema\UsuarioPresenter;
+use App\Presenters\Sistema\ClientePresenter;
 use App\Services\ConvertDatetime;
 
 class Cliente extends Authenticatable
@@ -30,7 +30,7 @@ class Cliente extends Authenticatable
   ];
 
   public function present(){
-    return new UsuarioPresenter($this);
+    return new ClientePresenter($this);
   }
 
   public function scopefindByUsername($query, $username){
