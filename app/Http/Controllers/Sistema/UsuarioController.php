@@ -37,6 +37,8 @@ class UsuarioController extends Controller
       $user->correo = $request->input('correo');
       $user->username = $request->input('username');
       $user->password = hash('sha256', $request->input('password'));
+      $user->run = $request->input('run');
+      $user->birthdate = $request->input('birthdate');
 
       if(!empty($request->file('image'))){
         $filename = time();
@@ -53,7 +55,7 @@ class UsuarioController extends Controller
       $su->rol = $request->input('rol');
       $su->save();
 
-      return redirect()->route('usuario.index')->with('success','Se ha creado correctamente.');
+      return redirect()->route('admin.usuario.index')->with('success','Se ha creado correctamente.');
     } catch (\Throwable $th) {
       return $th;
       return back()->with('info','Error Intente nuevamente.');
@@ -77,7 +79,7 @@ class UsuarioController extends Controller
       $user->apellido = $request->input('apellido');
       $user->correo = $request->input('correo');
       $user->username = $request->input('username');
-
+      $user->birthdate = $request->input('birthdate');
 
       if(!empty($request->file('image'))){
         $filename = time();
@@ -86,8 +88,9 @@ class UsuarioController extends Controller
       }
 
       //Actualizar el rol
-
-
+      $rol = $user->sucursalUsuario;
+      $rol->rol = $request->input('rol');
+      $rol->update();
 
       $user->update();
       return back()->with('success','Se ha actualizado.');

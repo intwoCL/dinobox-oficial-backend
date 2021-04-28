@@ -15,6 +15,11 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
   Route::get('usuario/eliminados','UsuarioController@indexDelete')->name('usuario.indexDelete');
   Route::put('usuario/password/{id}','UsuarioController@password')->name('usuario.password');
 
+  // - {CLIENTE}
+  Route::resource('cliente','ClienteController',['except'=>['show']]);
+  Route::get('cliente/eliminados','ClienteController@indexDelete')->name('cliente.indexDelete');
+  Route::put('cliente/password/{id}','ClienteController@password')->name('cliente.password');
+
   // - {Reportes}
   Route::prefix('reportes')->group( function () {
     Route::get('consulta','ConsultasController@index')->name('reportes.consulta.index');

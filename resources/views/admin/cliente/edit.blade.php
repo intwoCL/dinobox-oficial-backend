@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @component('components.button._back')
-  @slot('route', route('cliente.index'))
+  @slot('route', route('admin.cliente.index'))
   @slot('color', 'secondary')
   @slot('body', "Editar Cliente <strong>".$c->present()->nombre_completo()."</strong>")
 @endcomponent
@@ -13,7 +13,7 @@
           <div class="card-header">
             <h3 class="card-title">Actualizar Cliente</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('cliente.update',$c->id) }}"  enctype="multipart/form-data">
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.cliente.update',$c->id) }}"  enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <input type="hidden" name="id" value="{{ $c->id }}">
@@ -51,6 +51,14 @@
                 <label for="nameEvento" class="col-form-label col-sm-2">Teléfono</label>
                 <div class="input-group col-sm-10">
                     <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Ingrese su teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos" value="{{ $c->telefono }}">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+                <div class="input-group col-sm-10">
+                  <input id="start" type="datetime-local" class="form-control {{ $errors->has('birthdate') ? 'is-invalid' : '' }}" name="birthdate" value="{{ $c->birthdate }}" id="inputNombres" placeholder="Ingrese fecha nacimiento" required>
+                  {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
 
@@ -102,12 +110,12 @@
           </form>
         </div>
       </div>
-      {{-- <div class="col-md-6">
+      <div class="col-md-6">
         <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title">Actualizar contraseña</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('cliente.password', $c->id) }}">
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.cliente.password', $c->id) }}">
             @csrf
             @method('PUT')
             <div class="card-body">
@@ -132,7 +140,7 @@
         <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
           <strong>MODO MAIN</strong>
         </button>
-      </div> --}}
+      </div>
     </div>
   </div>
 </section>
@@ -140,7 +148,7 @@
 
 {{-- Modal --}}
 <div class="modal fade" id="modalBorrar" tabindex="-1" role="dialog" aria-labelledby="modalAccionLabel" aria-hidden="true">
-  <form action="{{ route('cliente.destroy',$c->id) }}" method="POST">
+  <form action="{{ route('admin.cliente.destroy',$c->id) }}" method="POST">
     @csrf
     @method('DELETE')
     <input type="hidden" name="id_usuario" value="{{ $c->id }}">

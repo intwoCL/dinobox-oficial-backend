@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @component('components.button._back')
-  @slot('route', route('cliente.index'))
+  @slot('route', route('admin.cliente.index'))
   @slot('color', 'secondary')
   @slot('body', 'Cliente - Create')
 @endcomponent
@@ -13,7 +13,7 @@
           <div class="card-header">
             <h3 class="card-title">Nuevo Cliente</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('cliente.store') }}"  enctype="multipart/form-data">
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.cliente.store') }}"  enctype="multipart/form-data">
             @csrf
             <div class="card-body">
               <div class="form-group row">
@@ -57,6 +57,14 @@
                 <label for="nameEvento" class="col-form-label col-sm-2">Teléfono</label>
                 <div class="input-group col-sm-10">
                     <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Ingrese su teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos">
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+                <div class="input-group col-sm-10">
+                  <input id="start" type="datetime-local" class="form-control {{ $errors->has('birthdate') ? 'is-invalid' : '' }}" name="birthdate" value="{{ old('birthdate') }}" id="inputNombres" placeholder="Ingrese fecha nacimiento" required>
+                  {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
 

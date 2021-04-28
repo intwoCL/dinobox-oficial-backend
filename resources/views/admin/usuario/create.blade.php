@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 @component('components.button._back')
-  @slot('route', route('usuario.index'))
+  @slot('route', route('admin.usuario.index'))
   @slot('color', 'secondary')
-  @slot('body', 'Nuevo Usuario Colaborador')
+  @slot('body', 'Nuevo Usuario')
 @endcomponent
 <section class="content">
   <div class="container-fluid">
@@ -11,11 +11,19 @@
       <div class="col-md-6">
         <div class="card card-dark">
           <div class="card-header">
-            <h3 class="card-title">Nuevo Colaborador</h3>
+            <h3 class="card-title">Nuevo Usuario</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('usuario.store') }}"  enctype="multipart/form-data">
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.usuario.store') }}"  enctype="multipart/form-data">
             @csrf
             <div class="card-body">
+              <div class="form-group row">
+                <label for="f1" class="col-form-label col-sm-2">Rut</label>
+                <div class="input-group col-sm-10">
+                  <input type="text" class="form-control" name="run" placeholder=""
+                    required="" maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
+                  <small id="error" class="text-danger"></small>
+                </div>
+              </div>
               <div class="form-group row">
                 <label for="inputnombre" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-5">
@@ -46,6 +54,13 @@
                 <div class="col-sm-10">
                   <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ old('correo') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+                <div class="input-group col-sm-10">
+                  <input id="start" type="datetime-local" class="form-control {{ $errors->has('birthdate') ? 'is-invalid' : '' }}" name="birthdate" value="{{ old('birthdate') }}" id="inputNombres" placeholder="Ingrese fecha nacimiento" required>
+                  {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group">
@@ -84,4 +99,17 @@
 @endsection
 @push('javascript')
 <script src="/dist/js/preview.js"></script>
+<script>
+  // Validad Rut
+  function validarRut(string) {//solo letras y numeros
+    var out = '';
+    //Se añaden las letras validas
+    var filtro = '1234567890Kk';//Caracteres validos
+
+    for (var i = 0; i < string.length; i++)
+      if (filtro.indexOf(string.charAt(i)) != -1)
+        out += string.charAt(i).toUpperCase();
+    return out;
+  }
+</script>
 @endpush

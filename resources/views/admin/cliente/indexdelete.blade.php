@@ -4,9 +4,9 @@
 @endpush
 @section('content')
 @component('components.button._back')
-@slot('route', route('cliente.index'))
+@slot('route', route('admin.cliente.index'))
 @slot('color', 'secondary')
-@slot('body', "Usuarios eliminados")
+@slot('body', "Clientes eliminados")
 @endcomponent
 <section class="content">
   <div class="row">
@@ -37,7 +37,7 @@
                   {{-- @if ($permiso_editar) --}}
                   <div class="table-links">
                     <div class="btn-group">
-                      <a href="{{ route('cliente.edit',$c->id) }}" class="ml-2">
+                      <a href="{{ route('admin.cliente.edit',$c->id) }}" class="ml-2">
                         <h6>
                           <span class="badge badge-success">EDITAR</span>
                         </h6>

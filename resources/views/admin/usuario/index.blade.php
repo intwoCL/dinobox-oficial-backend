@@ -21,7 +21,7 @@
           <a href="{{ route('admin.usuario.indexDelete') }}" class="btn btn-dark float-left btn-sm">
             Usuarios eliminados
           </a>
-          <a href="{{ route('usuario.create') }}" class="btn btn-success float-right btn-sm">
+          <a href="{{ route('admin.usuario.create') }}" class="btn btn-success float-right btn-sm">
             Nuevo
           </a>
         </div>
@@ -47,7 +47,7 @@
                   <strong>{{$u->username}}</strong>
                   <div class="table-links">
                     <div class="btn-group">
-                      <a href="{{ route('usuario.edit',$u->id) }}" class="ml-2">
+                      <a href="{{ route('admin.usuario.edit',$u->id) }}" class="ml-2">
                         <h6>
                           <span class="badge badge-success">EDITAR</span>
                         </h6>

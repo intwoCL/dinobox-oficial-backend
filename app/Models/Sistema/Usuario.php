@@ -56,14 +56,18 @@ class Usuario extends Authenticatable
   }
 
   public function is_gestor(){
-    return $this->sucursalUsuario->rol === 1;
+    return $this->rol() === 1;
   }
 
   public function is_empleado(){
-    return $this->sucursalUsuario->rol === 2;
+    return $this->rol() === 2;
   }
 
   public function is_repartidor(){
-    return $this->sucursalUsuario->rol === 3;
+    return $this->rol() === 3;
+  }
+
+  public function rol() {
+    return $this->sucursalUsuario->rol;
   }
 }

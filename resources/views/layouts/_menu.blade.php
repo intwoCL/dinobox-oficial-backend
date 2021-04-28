@@ -58,14 +58,14 @@
 
         <li class="nav-header">Usuarios</li>
         <li class="nav-item {{ open('admin/usuario') }}{{ open('admin/usuario/*') }}">
-          <a href="{{ route('usuario.index') }}" class="nav-link">
+          <a href="{{ route('admin.usuario.index') }}" class="nav-link">
             <i class="fas fa-user nav-icon"></i>
             <p>Usuarios</p>
           </a>
         </li>
 
         <li class="nav-item {{ open('admin/cliente') }}{{ open('admin/cliente/*') }}">
-          <a href="{{ route('cliente.index') }}" class="nav-link">
+          <a href="{{ route('admin.cliente.index') }}" class="nav-link">
             <i class="fas fa-id-card nav-icon"></i>
             <p>Clientes</p>
           </a>

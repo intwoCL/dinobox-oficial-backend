@@ -4,9 +4,9 @@
 @endpush
 @section('content')
 @component('components.button._back')
-@slot('route', route('usuario.index'))
+@slot('route', route('admin.usuario.index'))
 @slot('color', 'secondary')
-@slot('body', "Clientes eliminados")
+@slot('body', "Usuarios eliminados")
 @endcomponent
 <section class="content">
   <div class="row">

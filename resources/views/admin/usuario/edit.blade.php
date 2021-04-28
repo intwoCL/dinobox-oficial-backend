@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 @component('components.button._back')
-  @slot('route', route('usuario.index'))
+  @slot('route', route('admin.usuario.index'))
   @slot('color', 'secondary')
-  @slot('body', "Editar Usuario Colaborador <strong>".$u->present()->nombre_completo()."</strong>")
+  @slot('body', "Editar Usuario <strong>".$u->present()->nombre_completo()."</strong>")
 @endcomponent
 <section class="content">
   <div class="container-fluid">
@@ -11,12 +11,22 @@
       <div class="col-md-6">
         <div class="card card-{{ $u->activo ? 'success' : 'danger' }}">
           <div class="card-header">
-            <h3 class="card-title">Actualizar Colaborador</h3>
+            <h3 class="card-title">Actualizar Usuario</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('usuario.update',$u->id) }}"  enctype="multipart/form-data">
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.usuario.update',$u->id) }}"  enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card-body">
+              <input type="hidden" name="id" value="{{ $u->id }}">
+              <input type="hidden" name="run" value="{{ $u->run }}">
+              <div class="card-body">
+                <div class="form-group row">
+                  <label for="f1" class="col-form-label col-sm-2">Rut</label>
+                  <div class="input-group col-sm-10">
+                    <input type="text" class="form-control" placeholder="" readonly  value="{{ $u->run }}">
+                    <small id="error" class="text-danger"></small>
+                  </div>
+                </div>
               <div class="form-group row">
                 <label for="inputnombre" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-5">
@@ -42,7 +52,13 @@
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
-
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+                <div class="input-group col-sm-10">
+                  <input id="start" type="datetime-local" class="form-control {{ $errors->has('birthdate') ? 'is-invalid' : '' }}" name="birthdate" value="{{ $u->birthdate }}" id="inputNombres" placeholder="Ingrese fecha nacimiento" required>
+                  {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
                 <div class="input-group">
@@ -64,7 +80,9 @@
                 <div class="col-sm-8">
                   <select name="rol" id="rol" class="form-control" required>
                     @foreach ($roles as $key => $value)
-                      <option value="{{ $key }}">{{ $value }}</option>
+                      <option {{ $key == $u->rol() ? 'selected' : '' }} value="{{ $key }}">
+                        {{ $value }}
+                      </option>
                     @endforeach
                   </select>
                 </div>
@@ -94,7 +112,7 @@
           </form>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title">Actualizar contraseña</h3>
