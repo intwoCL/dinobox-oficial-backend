@@ -31,6 +31,10 @@ class ConvertDatetime
     return $this->getDateTimeFormat("j F Y") . " a las " . $this->getDateTimeFormat("g:i a");
   }
 
+  public function isToday(){
+    return date('d-m-Y') == $this->getDate();
+  }
+
   public function getDateTimeFormat($format){
     return $this->format($this->date,$format);
   }
