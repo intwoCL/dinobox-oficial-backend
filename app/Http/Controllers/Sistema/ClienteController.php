@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sistema\Cliente;
 use App\Services\ImportImage;
+use App\Http\Requests\ClienteCreateRequest as ClientCreateRequest;
+use App\Http\Requests\ClienteUpdateRequest as ClientUpdateRequest;
 
 class ClienteController extends Controller
 {
@@ -23,7 +25,7 @@ class ClienteController extends Controller
       return view('admin.cliente.create');
     }
 
-    public function store(Request $request) {
+    public function store(ClientCreateRequest $request) {
       try {
         $cliente = new Cliente();
         $cliente->run = $request->input('run');
@@ -33,7 +35,7 @@ class ClienteController extends Controller
         $cliente->password = hash('sha256', $request->input('password'));
         $cliente->telefono = $request->input('telefono');
         $cliente->id_usuario_creador = current_user()->id;
-        $cliente->birthdate = $request->input('birthdate');
+        $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
         if(!empty($request->file('image'))){
           $filename = time();
@@ -59,14 +61,14 @@ class ClienteController extends Controller
       }
     }
 
-    public function update(Request $request, $id) {
+    public function update(ClientUpdateRequest $request, $id) {
       try {
         $cliente = Cliente::findOrFail($id);
         $cliente->nombre = $request->input('nombre');
         $cliente->apellido = $request->input('apellido');
         $cliente->correo = $request->input('correo');
         $cliente->telefono = $request->input('telefono');
-        // $cliente->birthdate = $request->input('birthdate');
+        $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
         if(!empty($request->file('image'))){
           $filename = time();

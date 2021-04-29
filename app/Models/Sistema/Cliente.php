@@ -40,4 +40,13 @@ class Cliente extends Authenticatable
   public function getLastSession(){
     return new ConvertDatetime($this->last_session);
   }
+
+  public function getFechaNacimiento(){
+    $date = $this->birthdate ? $this->birthdate : date('d-m-Y');
+    return new ConvertDatetime($date);
+  }
+
+  public function isHappy(){
+    return $this->birthdate ? (new ConvertDatetime($this->birthdate))->isToday() : false;
+  }
 }

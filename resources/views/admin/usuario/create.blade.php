@@ -5,6 +5,10 @@
   @slot('color', 'secondary')
   @slot('body', 'Nuevo Usuario')
 @endcomponent
+@push('stylesheet')
+  <link rel="stylesheet" href="/vendor/clockpicker/css/bootstrap-clockpicker.min.css">
+  <link rel="stylesheet" href="/vendor/datepicker2/css/bootstrap-datepicker3.css">
+@endpush
 <section class="content">
   <div class="container-fluid">
     <div class="row">
@@ -56,11 +60,14 @@
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
-                <div class="input-group col-sm-10">
-                  <input id="start" type="datetime-local" class="form-control {{ $errors->has('birthdate') ? 'is-invalid' : '' }}" name="birthdate" value="{{ old('birthdate') }}" id="inputNombres" placeholder="Ingrese fecha nacimiento" required>
-                  {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+              <div class="form-group row" id="data_1">
+                <label for="fecha" class="col-sm-4 col-form-label">Fecha Nacimiento</label>
+                <div class="input-group date col-sm-8">
+                  <span class="input-group-addon btn btn-info btn-sm"><i class="fa fa-calendar"></i></span>
+                  <input type="text" class="form-control" readonly name="birthdate" required value="{{ old('birthdate') }}">
+                </div>
+                <div class="col-sm-12">
+                  {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group">
@@ -99,17 +106,19 @@
 @endsection
 @push('javascript')
 <script src="/dist/js/preview.js"></script>
-<script>
-  // Validad Rut
-  function validarRut(string) {//solo letras y numeros
-    var out = '';
-    //Se añaden las letras validas
-    var filtro = '1234567890Kk';//Caracteres validos
+<script src="/dist/js/validate-run.js"></script>
+<script src="/vendor/clockpicker/js/bootstrap-clockpicker.min.js"></script>
+<script src="/vendor/datepicker2/js/bootstrap-datepicker.min.js"></script>
+<script src="/vendor/datepicker2/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
+<script type="text/javascript">
+  $('.clockpicker').clockpicker();
 
-    for (var i = 0; i < string.length; i++)
-      if (filtro.indexOf(string.charAt(i)) != -1)
-        out += string.charAt(i).toUpperCase();
-    return out;
-  }
+  $('#data_1 .input-group.date').datepicker({
+  language: "es",
+  format: 'dd-mm-yyyy',
+  orientation: "bottom",
+  showButtonPanel: true,
+  autoclose: true
+  });
 </script>
 @endpush

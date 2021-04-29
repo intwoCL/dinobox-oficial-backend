@@ -5,6 +5,10 @@
   @slot('color', 'secondary')
   @slot('body', "Editar Usuario <strong>".$u->present()->nombre_completo()."</strong>")
 @endcomponent
+@push('stylesheet')
+  <link rel="stylesheet" href="/vendor/clockpicker/css/bootstrap-clockpicker.min.css">
+  <link rel="stylesheet" href="/vendor/datepicker2/css/bootstrap-datepicker3.css">
+@endpush
 <section class="content">
   <div class="container-fluid">
     <div class="row">
@@ -52,13 +56,16 @@
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
-              {{-- <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
-                <div class="input-group col-sm-10">
-                  <input id="start" type="datetime-local" class="form-control {{ $errors->has('birthdate') ? 'is-invalid' : '' }}" name="birthdate" value="{{ $u->birthdate }}" id="inputNombres" placeholder="Ingrese fecha nacimiento" required>
-                  {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+              <div class="form-group row" id="data_1">
+                <label for="fecha" class="col-sm-4 col-form-label">Fecha Nacimiento</label>
+                <div class="input-group date col-sm-8">
+                  <span class="input-group-addon btn btn-info btn-sm"><i class="fa fa-calendar"></i></span>
+                  <input type="text" class="form-control" readonly name="birthdate" required value="{{ $u->getFechaNacimiento()->getDate() }}">
                 </div>
-              </div> --}}
+                <div class="col-sm-12">
+                  {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
                 <div class="input-group">
@@ -87,16 +94,6 @@
                   </select>
                 </div>
               </div>
-              {{-- <div class="form-group row">
-                <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Gestionar alumnos</label>
-                <div class="col-sm-8">
-                  <select name="permiso_alumno" id="permiso_alumno" class="form-control" required>
-                    @foreach ($roles as $key => $value)
-                    <option value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
-                  </select>
-                </div>
-              </div> --}}
               @if ($u->last_session)
               <div class="form-group row">
                 <label for="plataforma_toma_hora" class="col-sm-4 col-form-label">Última conexión</label>
@@ -211,4 +208,18 @@
 @endsection
 @push('javascript')
 <script src="/dist/js/preview.js"></script>
+<script src="/vendor/clockpicker/js/bootstrap-clockpicker.min.js"></script>
+<script src="/vendor/datepicker2/js/bootstrap-datepicker.min.js"></script>
+<script src="/vendor/datepicker2/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
+<script type="text/javascript">
+  $('.clockpicker').clockpicker();
+
+  $('#data_1 .input-group.date').datepicker({
+  language: "es",
+  format: 'dd-mm-yyyy',
+  orientation: "bottom",
+  showButtonPanel: true,
+  autoclose: true
+  });
+</script>
 @endpush

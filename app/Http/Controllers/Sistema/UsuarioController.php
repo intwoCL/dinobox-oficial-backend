@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Sistema\Usuario;
 
 use App\Http\Requests\UsuarioCreateRequest as UserCreateRequest;
+use App\Http\Requests\UsuarioUpdateRequest as UserUpdateRequest;
 use App\Lib\Permissions;
 use App\Models\Sistema\SucursalUsuario;
 use App\Services\ImportImage;
@@ -38,7 +39,7 @@ class UsuarioController extends Controller
       $user->username = $request->input('username');
       $user->password = hash('sha256', $request->input('password'));
       $user->run = $request->input('run');
-      $user->birthdate = $request->input('birthdate');
+      $user->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
       if(!empty($request->file('image'))){
         $filename = time();
@@ -72,14 +73,14 @@ class UsuarioController extends Controller
     }
   }
 
-  public function update(Request $request, $id){
+  public function update(UserUpdateRequest $request, $id){
     try {
       $user = Usuario::findOrFail($id);
       $user->nombre = $request->input('nombre');
       $user->apellido = $request->input('apellido');
       $user->correo = $request->input('correo');
       $user->username = $request->input('username');
-      // $user->birthdate = $request->input('birthdate');
+      $user->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
       if(!empty($request->file('image'))){
         $filename = time();

@@ -70,4 +70,13 @@ class Usuario extends Authenticatable
   public function rol() {
     return $this->sucursalUsuario->rol;
   }
+
+  public function getFechaNacimiento(){
+    $date = $this->birthdate ? $this->birthdate : date('d-m-Y');
+    return new ConvertDatetime($date);
+  }
+
+  public function isHappy(){
+    return $this->birthdate ? (new ConvertDatetime($this->birthdate))->isToday() : false;
+  }
 }
