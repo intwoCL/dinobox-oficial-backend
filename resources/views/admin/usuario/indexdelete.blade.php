@@ -16,11 +16,10 @@
           <table id="tableSelect" class="table table-bordered table-hover table-sm text-center">
             <thead>
             <tr>
-              <th></th>
+              <th>Foto</th>
               <th>Username</th>
               <th>Nombre</th>
               <th>Correo</th>
-              <th>Permitir Alumno</th>
             </tr>
             </thead>
             <tbody>
@@ -43,7 +42,7 @@
                 </td>
                 <td class="align-middle">{{$u->present()->nombre_completo()}}</td>
                 <td class="align-middle">{{$u->correo}}</td>
-                <td class="align-middle">{!! $u->present()->getPermisoStatusHTML() !!}</td>
+                {{-- <td class="align-middle">{!! $u->present()->getPermisoStatusHTML() !!}</td> --}}
               </tr>
               @endforeach
             </tbody>

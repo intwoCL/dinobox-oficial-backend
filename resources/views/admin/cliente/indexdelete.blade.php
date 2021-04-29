@@ -16,7 +16,7 @@
           <table id="tableSelect" class="table table-bordered table-hover table-sm text-center">
             <thead>
             <tr>
-              <th></th>
+              <th>Foto</th>
               <th>Rut</th>
               <th>Nombre</th>
               <th>Correo</th>

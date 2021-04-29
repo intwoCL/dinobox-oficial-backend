@@ -53,30 +53,13 @@
                     <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Ingrese su teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos" value="{{ $c->telefono }}">
                 </div>
               </div>
-
-              <div class="form-group row">
+              {{-- <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
                 <div class="input-group col-sm-10">
                   <input id="start" type="datetime-local" class="form-control {{ $errors->has('birthdate') ? 'is-invalid' : '' }}" name="birthdate" value="{{ $c->birthdate }}" id="inputNombres" placeholder="Ingrese fecha nacimiento" required>
                   {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
-              </div>
-
-              {{-- <div class="form-group row">
-                <label for="id_tipo_usuario" class="col-sm-2 col-form-label">Tipo Usuario</label>
-                <div class="col-sm-10">
-                  <select class="form-control {{ $errors->has('id_tipo_usuario') ? 'is-invalid' : '' }}" name="id_tipo_usuario" id="id_tipo_usuario" required>
-                    @foreach ($tipos as $t)
-                      @continue($t->id == 1 || $t->id == 98)
-                      <option {{ $t->id == $c->id_tipo_usuario ? 'selected' : '' }}  value="{{ $t->id }}">{{ $t->nombre }}</option>
-                    @endforeach
-                  </select>
-                </div>
-                <div class="col-sm-12">
-                  {!! $errors->first('id_tipo_usuario', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
-                </div>
               </div> --}}
-
               <div class="form-group">
                 <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
                 <div class="input-group">

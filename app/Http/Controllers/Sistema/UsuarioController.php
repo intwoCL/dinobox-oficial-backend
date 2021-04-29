@@ -79,7 +79,7 @@ class UsuarioController extends Controller
       $user->apellido = $request->input('apellido');
       $user->correo = $request->input('correo');
       $user->username = $request->input('username');
-      $user->birthdate = $request->input('birthdate');
+      // $user->birthdate = $request->input('birthdate');
 
       if(!empty($request->file('image'))){
         $filename = time();

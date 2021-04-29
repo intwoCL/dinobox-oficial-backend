@@ -66,7 +66,7 @@ class ClienteController extends Controller
         $cliente->apellido = $request->input('apellido');
         $cliente->correo = $request->input('correo');
         $cliente->telefono = $request->input('telefono');
-        $cliente->birthdate = $request->input('birthdate');
+        // $cliente->birthdate = $request->input('birthdate');
 
         if(!empty($request->file('image'))){
           $filename = time();

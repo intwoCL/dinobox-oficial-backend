@@ -52,13 +52,13 @@
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
-              <div class="form-group row">
+              {{-- <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
                 <div class="input-group col-sm-10">
                   <input id="start" type="datetime-local" class="form-control {{ $errors->has('birthdate') ? 'is-invalid' : '' }}" name="birthdate" value="{{ $u->birthdate }}" id="inputNombres" placeholder="Ingrese fecha nacimiento" required>
                   {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
-              </div>
+              </div> --}}
               <div class="form-group">
                 <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
                 <div class="input-group">
