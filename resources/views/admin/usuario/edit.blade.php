@@ -1,3 +1,6 @@
+@php
+    $date = "";
+@endphp
 @extends('layouts.app')
 @section('content')
 @component('components.button._back')
@@ -23,14 +26,14 @@
             <div class="card-body">
               <input type="hidden" name="id" value="{{ $u->id }}">
               <input type="hidden" name="run" value="{{ $u->run }}">
-              <div class="card-body">
-                <div class="form-group row">
-                  <label for="f1" class="col-form-label col-sm-2">Rut</label>
-                  <div class="input-group col-sm-10">
-                    <input type="text" class="form-control" placeholder="" readonly  value="{{ $u->run }}">
-                    <small id="error" class="text-danger"></small>
-                  </div>
+
+              <div class="form-group row">
+                <label for="f1" class="col-form-label col-sm-2">Rut</label>
+                <div class="input-group col-sm-10">
+                  <input type="text" class="form-control" placeholder="" readonly  value="{{ $u->run }}">
+                  <small id="error" class="text-danger"></small>
                 </div>
+              </div>
               <div class="form-group row">
                 <label for="inputnombre" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-5">
@@ -106,11 +109,40 @@
             <div class="card-footer">
               <button type="submit" class="btn btn-success float-right">Guardar</button>
             </div>
+
           </form>
         </div>
       </div>
-      
-      <div class="col-md-12">
+      <div class="col-md-6">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Actualizar contraseña</h3>
+          </div>
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.usuario.password',$u->id) }}">
+            @csrf
+            @method('PUT')
+            <div class="card-body">
+              <div class="form-group row">
+                <label for="inputUsername" class="col-sm-12 col-form-label">Contraseña <small>(123123)</small></label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control {{ $errors->has('password_2') ? 'is-invalid' : '' }}" value="123123" name="password_2" id="password_2" autocomplete="off" placeholder="*********" required>
+                  {!! $errors->first('password_2', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                </div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-success float-right">Guardar</button>
+              <button type="button" class="btn btn-{{ $u->activo ? 'danger' : 'success' }} mt-2 mb-4" data-toggle="modal" data-target="#modalBorrar">
+                <strong>{{ $u->activo ? 'DAR DE BAJA' : 'VOLVER ACTIVAR' }}</strong>
+              </button>
+
+              <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
+                <strong>MODO MAIN</strong>
+              </button>
+            </div>
+          </form>
+        </div>
+
         <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title">Vehículo</h3>
@@ -163,36 +195,6 @@
             </div>
             <div class="card-footer">
               <button type="submit" class="btn btn-success float-right">Guardar</button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="card card-primary">
-          <div class="card-header">
-            <h3 class="card-title">Actualizar contraseña</h3>
-          </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.usuario.password',$u->id) }}">
-            @csrf
-            @method('PUT')
-            <div class="card-body">
-              <div class="form-group row">
-                <label for="inputUsername" class="col-sm-12 col-form-label">Contraseña <small>(123123)</small></label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control {{ $errors->has('password_2') ? 'is-invalid' : '' }}" value="123123" name="password_2" id="password_2" autocomplete="off" placeholder="*********" required>
-                  {!! $errors->first('password_2', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
-                </div>
-              </div>
-            </div>
-            <div class="card-footer">
-              <button type="submit" class="btn btn-success float-right">Guardar</button>
-              <button type="button" class="btn btn-{{ $u->activo ? 'danger' : 'success' }} mt-2 mb-4" data-toggle="modal" data-target="#modalBorrar">
-                <strong>{{ $u->activo ? 'DAR DE BAJA' : 'VOLVER ACTIVAR' }}</strong>
-              </button>
-      
-              <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
-                <strong>MODO MAIN</strong>
-              </button>
             </div>
           </form>
         </div>

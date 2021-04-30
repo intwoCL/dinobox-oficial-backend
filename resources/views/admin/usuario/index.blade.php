@@ -15,6 +15,20 @@
 <section class="content">
   <div class="row">
     <div class="col-md-12">
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#"><i class="fa fa-user mr-2"></i> Repartidores</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fa fa-user mr-2"></i> </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
       <div class="card">
         <div class="card-header">
           {{-- <h3 class="card-title">Lista de Usuarios</h3> --}}

@@ -64,7 +64,7 @@
                 <label for="fecha" class="col-sm-4 col-form-label">Fecha Nacimiento</label>
                 <div class="input-group date col-sm-8">
                   <span class="input-group-addon btn btn-info btn-sm"><i class="fa fa-calendar"></i></span>
-                  <input type="text" class="form-control" readonly name="birthdate" required value="{{ old('birthdate') }}">
+                  <input type="text" class="form-control" readonly name="birthdate" required value="{{ old('birthdate') ?? date('d-m-Y') }}">
                 </div>
                 <div class="col-sm-12">
                   {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
