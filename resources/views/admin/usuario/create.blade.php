@@ -73,7 +73,6 @@
               <div class="form-group">
                 <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
                 <div class="input-group">
-                  <!-- <img src=""  class='Responsive image img-thumbnail'  width='200px' height='200px' alt=""> -->
                   <input type="file" name="image" accept="image/*" onchange="preview(this)" />
                   <br>
                 </div>

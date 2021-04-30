@@ -11,6 +11,7 @@ use App\Http\Requests\UsuarioCreateRequest as UserCreateRequest;
 use App\Http\Requests\UsuarioUpdateRequest as UserUpdateRequest;
 use App\Lib\Permissions;
 use App\Models\Sistema\SucursalUsuario;
+use App\Models\Sistema\Vehiculo;
 use App\Services\ImportImage;
 
 class UsuarioController extends Controller
@@ -65,9 +66,10 @@ class UsuarioController extends Controller
 
   public function edit($id){
     try {
+      $tipos = Vehiculo::STATE;
       $roles = Permissions::ROLES;
       $u = Usuario::findOrFail($id);
-      return view('admin.usuario.edit',compact('u','roles'));
+      return view('admin.usuario.edit',compact('u','roles','tipos'));
     } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
     }
@@ -109,6 +111,32 @@ class UsuarioController extends Controller
       // TODO: Falta agregar envio de correo
       return back()->with('success','Se ha actualizado.');
     } catch (\Throwable $th) {
+      return back()->with('info','Error Intente nuevamente.');
+    }
+  }
+
+
+  public function vehiculoStore(Request $request, $id){
+    try {
+      $user = Usuario::findOrFail($id);
+      $vehiculo = new Vehiculo();
+      $vehiculo->id_usuario = $user->id;
+      $vehiculo->patente = $request->input('patente');
+      $vehiculo->modelo = $request->input('modelo');
+      $vehiculo->marca = $request->input('marca');
+      $vehiculo->tipo = $request->input('tipo');
+
+      if(!empty($request->file('image'))){
+        $filename = time();
+        $folder = 'public/photo_vehiculos';
+        $vehiculo->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      }
+
+      $vehiculo->save();
+
+      return back()->with('success','Se ha agregado exitosamente.');
+    } catch (\Throwable $th) {
+      //throw $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }

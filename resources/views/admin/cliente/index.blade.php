@@ -63,7 +63,6 @@
                 </td>
                 <td class="align-middle">{{ $c->correo }}</td>
                 <td class="align-middle">{{ $c->telefono }}</td>
-                {{-- <td class="align-middle">{{$c->tipo->nombre}}</td> --}}
               </tr>
               @endforeach
             </tbody>
