@@ -107,6 +107,9 @@
               @endif
             </div>
             <div class="card-footer">
+              <button type="button" class="btn btn-{{ $u->activo ? 'danger' : 'success' }}" data-toggle="modal" data-target="#modalBorrar">
+                <strong>{{ $u->activo ? 'DAR DE BAJA' : 'VOLVER ACTIVAR' }}</strong>
+              </button>
               <button type="submit" class="btn btn-success float-right">Guardar</button>
             </div>
 
@@ -132,9 +135,6 @@
             </div>
             <div class="card-footer">
               <button type="submit" class="btn btn-success float-right">Guardar</button>
-              <button type="button" class="btn btn-{{ $u->activo ? 'danger' : 'success' }} mt-2 mb-4" data-toggle="modal" data-target="#modalBorrar">
-                <strong>{{ $u->activo ? 'DAR DE BAJA' : 'VOLVER ACTIVAR' }}</strong>
-              </button>
 
               <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
                 <strong>MODO MAIN</strong>

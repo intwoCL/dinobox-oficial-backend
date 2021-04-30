@@ -97,8 +97,33 @@
           </form>
         </div>
       </div>
-
       <div class="col-md-6">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Actualizar contraseña</h3>
+          </div>
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.cliente.password', $c->id) }}">
+            @csrf
+            @method('PUT')
+            <div class="card-body">
+              <div class="form-group row">
+                <label for="inputUsername" class="col-sm-12 col-form-label">Contraseña <small>(123123)</small></label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control {{ $errors->has('password_2') ? 'is-invalid' : '' }}" value="123123" name="password_2" id="password_2" autocomplete="off" placeholder="*********" required>
+                  {!! $errors->first('password_2', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-success float-right">Guardar</button>
+              <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
+                <strong>MODO MAIN</strong>
+              </button>
+            </div>
+
+          </form>
+        </div>
         <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title">Direcciones</h3>
@@ -152,40 +177,6 @@
             </div>
           </form>
         </div>
-
-        <div class="col-md-12">
-          <div class="card card-primary">
-            <div class="card-header">
-              <h3 class="card-title">Actualizar contraseña</h3>
-            </div>
-            <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.cliente.password', $c->id) }}">
-              @csrf
-              @method('PUT')
-              <div class="card-body">
-                <div class="form-group row">
-                  <label for="inputUsername" class="col-sm-12 col-form-label">Contraseña <small>(123123)</small></label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control {{ $errors->has('password_2') ? 'is-invalid' : '' }}" value="123123" name="password_2" id="password_2" autocomplete="off" placeholder="*********" required>
-                    {!! $errors->first('password_2', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
-                  </div>
-                </div>
-              </div>
-              <div class="card-footer">
-                <button type="submit" class="btn btn-success float-right">Guardar</button>
-
-                <button type="button" class="btn btn-{{ $c->activo ? 'danger' : 'success' }} mt-2 mb-4" data-toggle="modal" data-target="#modalBorrar">
-                  <strong>{{ $c->activo ? 'DAR DE BAJA' : 'VOLVER ACTIVAR' }}</strong>
-                </button>
-        
-                <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
-                  <strong>MODO MAIN</strong>
-                </button>
-
-              </div>
-            </form>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
