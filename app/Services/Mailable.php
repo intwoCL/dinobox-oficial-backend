@@ -2,13 +2,10 @@
 
 namespace App\Services;
 
-use App\Mail\BicicletaFinishedMail;
-use App\Mail\BicicletaVerifiedMail;
-use App\Mail\VotoImg;
-use App\Mail\VotoMail;
-use App\Models\Sistema\Alumno;
-use App\Models\Sistema\Departamento;
+use App\Mail\DeliveryMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class Mailable
 {
@@ -17,17 +14,16 @@ class Mailable
   // Mail::to($email)->cc([$email,$email])->bcc($email)->queue($mail);
   // Mail::to($email)->queue($mail);
 
-  public static function bikeOuting($email, $data = [], $verified = false){
+  public static function DeliveryMail($correo, $data = []){
     try {
+      $mail = new DeliveryMail($data);
+   
+      Mail::to($correo)->queue($mail);
 
-      $data['route'] = $verified ? route('bicicleta.receive.token',[$data['token'],$data['id']]) : null;
+      return $mail; 
 
-      $mail = $verified ? new BicicletaVerifiedMail($data) : new BicicletaFinishedMail($data);
-
-      Mail::to($email)->queue($mail);
-      return true;
     } catch (\Throwable $th) {
-      return false;
+      return $th;
     }
   }
 }

@@ -50,3 +50,15 @@ Route::middleware('auth.usuario')->group( function () {
   //   Artisan::call('config:clear');
   //   Artisan::call('config:cache');
   // });
+
+  Route::get('email1',function(){
+   $correo = 'pcamposgarate@gmail.com';
+
+   $data = [
+     'nombre' => 'Patricia',
+     'apellido' => 'Campos'
+   ];
+
+   return Mailable::DeliveryMail($correo, $data);
+ });
+
