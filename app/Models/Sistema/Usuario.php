@@ -56,14 +56,27 @@ class Usuario extends Authenticatable
   }
 
   public function is_gestor(){
-    return $this->sucursalUsuario->rol === 1;
+    return $this->rol() === 1;
   }
 
   public function is_empleado(){
-    return $this->sucursalUsuario->rol === 2;
+    return $this->rol() === 2;
   }
 
   public function is_repartidor(){
-    return $this->sucursalUsuario->rol === 3;
+    return $this->rol() === 3;
+  }
+
+  public function rol() {
+    return $this->sucursalUsuario->rol;
+  }
+
+  public function getFechaNacimiento(){
+    $date = $this->birthdate ? $this->birthdate : date('d-m-Y');
+    return new ConvertDatetime($date);
+  }
+
+  public function isHappy(){
+    return $this->birthdate ? (new ConvertDatetime($this->birthdate))->isToday() : false;
   }
 }

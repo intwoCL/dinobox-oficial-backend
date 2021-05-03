@@ -15,8 +15,8 @@ class CreateTableSComuna extends Migration
     {
         Schema::create('s_comuna', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_region')->references('id')->on('s_region');
             $table->string('nombre');
+            $table->foreignId('id_region')->references('id')->on('s_region');
         });
     }
 

@@ -1,22 +1,39 @@
+@php
+    $date = "";
+@endphp
 @extends('layouts.app')
 @section('content')
 @component('components.button._back')
-  @slot('route', route('admin.index'))
+  @slot('route', route('admin.usuario.index'))
   @slot('color', 'secondary')
-  @slot('body', "Editar Usuario Colaborador <strong>".$u->present()->nombre_completo()."</strong>")
+  @slot('body', "Editar Usuario <strong>".$u->present()->nombre_completo()."</strong>")
 @endcomponent
+@push('stylesheet')
+  <link rel="stylesheet" href="/vendor/clockpicker/css/bootstrap-clockpicker.min.css">
+  <link rel="stylesheet" href="/vendor/datepicker2/css/bootstrap-datepicker3.css">
+@endpush
 <section class="content">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-6">
         <div class="card card-{{ $u->activo ? 'success' : 'danger' }}">
           <div class="card-header">
-            <h3 class="card-title">Actualizar Colaborador</h3>
+            <h3 class="card-title">Actualizar Usuario</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.update',$u->id) }}"  enctype="multipart/form-data">
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.usuario.update',$u->id) }}"  enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card-body">
+              <input type="hidden" name="id" value="{{ $u->id }}">
+              <input type="hidden" name="run" value="{{ $u->run }}">
+
+              <div class="form-group row">
+                <label for="f1" class="col-form-label col-sm-2">Rut</label>
+                <div class="input-group col-sm-10">
+                  <input type="text" class="form-control" placeholder="" readonly  value="{{ $u->run }}">
+                  <small id="error" class="text-danger"></small>
+                </div>
+              </div>
               <div class="form-group row">
                 <label for="inputnombre" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-5">
@@ -42,7 +59,16 @@
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
-
+              <div class="form-group row" id="data_1">
+                <label for="fecha" class="col-sm-4 col-form-label">Fecha Nacimiento</label>
+                <div class="input-group date col-sm-8">
+                  <span class="input-group-addon btn btn-info btn-sm"><i class="fa fa-calendar"></i></span>
+                  <input type="text" class="form-control" readonly name="birthdate" required value="{{ $u->getFechaNacimiento()->getDate() }}">
+                </div>
+                <div class="col-sm-12">
+                  {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
                 <div class="input-group">
@@ -59,16 +85,18 @@
                 <div id="preview"></div>
               </div>
               <hr>
-              {{-- <div class="form-group row">
-                <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Gestionar alumnos</label>
+              <div class="form-group row">
+                <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Rol</label>
                 <div class="col-sm-8">
-                  <select name="permiso_alumno" id="permiso_alumno" class="form-control" required>
+                  <select name="rol" id="rol" class="form-control" required>
                     @foreach ($roles as $key => $value)
-                    <option value="{{ $key }}">{{ $value }}</option>
+                      <option {{ $key == $u->rol() ? 'selected' : '' }} value="{{ $key }}">
+                        {{ $value }}
+                      </option>
                     @endforeach
                   </select>
                 </div>
-              </div> --}}
+              </div>
               @if ($u->last_session)
               <div class="form-group row">
                 <label for="plataforma_toma_hora" class="col-sm-4 col-form-label">Última conexión</label>
@@ -79,8 +107,12 @@
               @endif
             </div>
             <div class="card-footer">
+              <button type="button" class="btn btn-{{ $u->activo ? 'danger' : 'success' }}" data-toggle="modal" data-target="#modalBorrar">
+                <strong>{{ $u->activo ? 'DAR DE BAJA' : 'VOLVER ACTIVAR' }}</strong>
+              </button>
               <button type="submit" class="btn btn-success float-right">Guardar</button>
             </div>
+
           </form>
         </div>
       </div>
@@ -103,17 +135,69 @@
             </div>
             <div class="card-footer">
               <button type="submit" class="btn btn-success float-right">Guardar</button>
+
+              <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
+                <strong>MODO MAIN</strong>
+              </button>
             </div>
           </form>
         </div>
 
-        <button type="button" class="btn btn-{{ $u->activo ? 'danger' : 'success' }} mt-2 mb-4" data-toggle="modal" data-target="#modalBorrar">
-          <strong>{{ $u->activo ? 'DAR DE BAJA' : 'VOLVER ACTIVAR' }}</strong>
-        </button>
-
-        <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
-          <strong>MODO MAIN</strong>
-        </button>
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Vehículo</h3>
+          </div>
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.usuario.vehiculo.store',$u->id) }}">
+            @csrf
+            <div class="card-body">
+              <div class="form-group row">
+                <label for="inputUsername" class="col-sm-2 col-form-label">Patente </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control {{ $errors->has('patente') ? 'is-invalid' : '' }}" value="" name="patente" id="patente" autocomplete="off" placeholder="Ingrese patente" required>
+                  {!! $errors->first('patente', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputUsername" class="col-sm-2 col-form-label">Modelo </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control {{ $errors->has('modelo') ? 'is-invalid' : '' }}" value="" name="modelo" id="modelo" autocomplete="off" placeholder="Ingrese modelo" required>
+                  {!! $errors->first('modelo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputUsername" class="col-sm-2 col-form-label">Marca </label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control {{ $errors->has('marca') ? 'is-invalid' : '' }}" value="" name="marca" id="marca" autocomplete="off" placeholder="Ingrese marca" required>
+                  {!! $errors->first('marca', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Tipo Vehículo</label>
+                <div class="col-sm-10">
+                  <select name="tipo" id="select1" class="form-control {{ $errors->has('tipo') ? 'is_invalid' : '' }}" required>
+                    @foreach ($tipos as $key=> $value)
+                      <option value="{{ $key }}">{{ $value }}</option>
+                    @endforeach
+                  </select>
+                  {!! $errors->first('tipo','<div class="invalid-feedback">:message</div>') !!}
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
+                <div class="input-group">
+                  <input type="file" name="image" accept="image/*" onchange="preview(this)" />
+                  <br>
+                </div>
+              </div>
+              <div class="form-group center-text">
+                <div id="preview"></div>
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-success float-right">Guardar</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -183,4 +267,18 @@
 @endsection
 @push('javascript')
 <script src="/dist/js/preview.js"></script>
+<script src="/vendor/clockpicker/js/bootstrap-clockpicker.min.js"></script>
+<script src="/vendor/datepicker2/js/bootstrap-datepicker.min.js"></script>
+<script src="/vendor/datepicker2/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
+<script type="text/javascript">
+  $('.clockpicker').clockpicker();
+
+  $('#data_1 .input-group.date').datepicker({
+  language: "es",
+  format: 'dd-mm-yyyy',
+  orientation: "bottom",
+  showButtonPanel: true,
+  autoclose: true
+  });
+</script>
 @endpush

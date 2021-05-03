@@ -18,11 +18,11 @@
       <div class="card">
         <div class="card-header">
           {{-- <h3 class="card-title">Lista de Usuarios</h3> --}}
-          <a href="" class="btn btn-dark float-left btn-sm"> 
+          <a href="{{ route('admin.cliente.indexDelete') }}" class="btn btn-dark float-left btn-sm"> 
             Clientes eliminados
           </a>
           {{-- @if ($permiso_editar) --}}
-          <a href="{{ route('cliente.create') }}" class="btn btn-success float-right btn-sm"> 
+          <a href="{{ route('admin.cliente.create') }}" class="btn btn-success float-right btn-sm"> 
             Nuevo
           </a>
           {{-- @endif --}}
@@ -52,7 +52,7 @@
                   {{-- @if ($permiso_editar) --}}
                   <div class="table-links">
                     <div class="btn-group">
-                      <a href="{{ route('cliente.edit',$c->id) }}" class="ml-2">
+                      <a href="{{ route('admin.cliente.edit',$c->id) }}" class="ml-2">
                         <h6>
                           <span class="badge badge-success">EDITAR</span>
                         </h6>
@@ -63,7 +63,6 @@
                 </td>
                 <td class="align-middle">{{ $c->correo }}</td>
                 <td class="align-middle">{{ $c->telefono }}</td>
-                {{-- <td class="align-middle">{{$c->tipo->nombre}}</td> --}}
               </tr>
               @endforeach
             </tbody>

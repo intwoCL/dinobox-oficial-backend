@@ -5,8 +5,8 @@ use App\Presenters\Presenter;
 use App\Services\Imagen;
 use App\Services\Imagen64;
 
-class SucursalPresenter extends Presenter
-{
+class SucursalPresenter extends Presenter{
+  
   private $folderImg = 'photo_sucursal';
   private $imgDefault = "/dist/img/bag.jpg";
 

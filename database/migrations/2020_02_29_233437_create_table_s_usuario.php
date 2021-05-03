@@ -17,7 +17,6 @@ class CreateTableSUsuario extends Migration
             $table->id();
             $table->string('username')->unique();
             $table->string('password');
-            // $table->string('run')->unique();
             $table->string('nombre');
             $table->string('apellido');
             $table->string('correo')->unique();
@@ -31,6 +30,7 @@ class CreateTableSUsuario extends Migration
             $table->boolean('bloqueado')->default(false);
             $table->boolean('activo')->default(true);
             $table->timestamps();
+            $table->string('run')->unique();
         });
     }
 

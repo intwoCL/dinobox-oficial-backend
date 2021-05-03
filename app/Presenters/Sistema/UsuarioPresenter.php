@@ -4,8 +4,8 @@ namespace App\Presenters\Sistema;
 use App\Presenters\Presenter;
 use App\Services\Imagen;
 
-class UsuarioPresenter extends Presenter
-{
+class UsuarioPresenter extends Presenter{
+  
 
   const PROFILE = [
     1 => ['admin', 'user-shield', 'purple'],
