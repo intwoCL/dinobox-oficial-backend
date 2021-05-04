@@ -235,7 +235,7 @@ return [
         'FastExcel' => Rap2hpoutre\FastExcel\Facades\FastExcel::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Image' => \Intervention\Image\Facades\Image::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

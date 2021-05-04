@@ -11,6 +11,7 @@ use App\Http\Requests\ClienteUpdateRequest as ClientUpdateRequest;
 use App\Models\Sistema\Region;
 use App\Models\Sistema\Comuna;
 use App\Models\Sistema\Direccion;
+use Intervention\Image\Facades\Image;
 
 class ClienteController extends Controller
 {
@@ -42,10 +43,23 @@ class ClienteController extends Controller
         $cliente->id_usuario_creador = current_user()->id;
         $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
+        // if(!empty($request->file('image'))){
+        //   $filename = time();
+        //   $folder = 'public/photo_clientes';
+        //   $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+        // }
         if(!empty($request->file('image'))){
-          $filename = time();
-          $folder = 'public/photo_clientes';
-          $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+
+          $nombre_imagen = $request->file('image')->getClientOriginalName();
+          $ruta = public_path() . '\storage\photo_clientes/';
+          // return $ruta;
+          $image = Image::make($request->file('image'));
+          $image->resize(300,300);
+    
+          for($i = 1; $i <=10;$i++) {
+            $image->save($ruta . $nombre_imagen, $i*10, 'jpg');
+          }
+          $cliente->imagen = $nombre_imagen;
         }
 
         $cliente->save();
@@ -78,10 +92,23 @@ class ClienteController extends Controller
         $cliente->telefono = $request->input('telefono');
         $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
+        // if(!empty($request->file('image'))){
+        //   $filename = time();
+        //   $folder = 'public/photo_clientes';
+        //   $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+        // }
         if(!empty($request->file('image'))){
-          $filename = time();
-          $folder = 'public/photo_clientes';
-          $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+
+          $nombre_imagen = $request->file('image')->getClientOriginalName();
+          $ruta = public_path() . '\storage\photo_clientes/';
+          // return $ruta;
+          $image = Image::make($request->file('image'));
+          $image->resize(300,300);
+    
+          for($i = 1; $i <=10;$i++) {
+            $image->save($ruta . $nombre_imagen, $i*10, 'jpg');
+          }
+          $cliente->imagen = $nombre_imagen;
         }
 
         $cliente->update();
