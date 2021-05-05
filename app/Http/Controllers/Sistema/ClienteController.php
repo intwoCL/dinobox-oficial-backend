@@ -11,7 +11,6 @@ use App\Http\Requests\ClienteUpdateRequest as ClientUpdateRequest;
 use App\Models\Sistema\Region;
 use App\Models\Sistema\Comuna;
 use App\Models\Sistema\Direccion;
-use Intervention\Image\Facades\Image;
 
 class ClienteController extends Controller
 {
@@ -43,23 +42,10 @@ class ClienteController extends Controller
         $cliente->id_usuario_creador = current_user()->id;
         $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
-        // if(!empty($request->file('image'))){
-        //   $filename = time();
-        //   $folder = 'public/photo_clientes';
-        //   $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
-        // }
         if(!empty($request->file('image'))){
-
-          $nombre_imagen = $request->file('image')->getClientOriginalName();
-          $ruta = public_path() . '\storage\photo_clientes/';
-          // return $ruta;
-          $image = Image::make($request->file('image'));
-          $image->resize(300,300);
-    
-          for($i = 1; $i <=10;$i++) {
-            $image->save($ruta . $nombre_imagen, $i*10, 'jpg');
-          }
-          $cliente->imagen = $nombre_imagen;
+          $filename = time();
+          $folder = 'public/photo_clientes';
+          $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
         }
 
         $cliente->save();
@@ -73,10 +59,12 @@ class ClienteController extends Controller
 
     public function edit($id) {
       try {
+
         $c = Cliente::findOrFail($id);
         $comunas = Comuna::get();
         $regions = Region::get();
         $direccion = Direccion::first();
+
         return view('admin.cliente.edit',compact('c','comunas','regions','direccion'));
       } catch (\Throwable $th) {
         return back()->with('info','Error Intente nuevamente.');
@@ -92,23 +80,10 @@ class ClienteController extends Controller
         $cliente->telefono = $request->input('telefono');
         $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
-        // if(!empty($request->file('image'))){
-        //   $filename = time();
-        //   $folder = 'public/photo_clientes';
-        //   $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
-        // }
         if(!empty($request->file('image'))){
-
-          $nombre_imagen = $request->file('image')->getClientOriginalName();
-          $ruta = public_path() . '\storage\photo_clientes/';
-          // return $ruta;
-          $image = Image::make($request->file('image'));
-          $image->resize(300,300);
-    
-          for($i = 1; $i <=10;$i++) {
-            $image->save($ruta . $nombre_imagen, $i*10, 'jpg');
-          }
-          $cliente->imagen = $nombre_imagen;
+          $filename = time();
+          $folder = 'public/photo_clientes';
+          $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
         }
 
         $cliente->update();
@@ -122,7 +97,6 @@ class ClienteController extends Controller
 
     public function direccionStore(Request $request, $id){
       try {
-
         $cliente = Cliente::findOrFail($id);
         $direccion = new Direccion();
         $direccion->id_cliente = $cliente->id;
@@ -147,7 +121,9 @@ class ClienteController extends Controller
         $cliente = Cliente::findOrFail($id);
         $cliente->password = hash('sha256', $request->input('password_2'));
         $cliente->update();
+
         // TODO: Falta agregar envio de correo
+
         return back()->with('success','Se ha actualizado.');
       } catch (\Throwable $th) {
         return back()->with('info','Error Intente nuevamente.');

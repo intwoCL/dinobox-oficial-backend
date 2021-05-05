@@ -13,7 +13,7 @@ use App\Lib\Permissions;
 use App\Models\Sistema\SucursalUsuario;
 use App\Models\Sistema\Vehiculo;
 use App\Services\ImportImage;
-use Intervention\Image\Facades\Image;
+use App\Services\SaveImage;
 
 class UsuarioController extends Controller
 {
@@ -43,23 +43,11 @@ class UsuarioController extends Controller
       $user->run = $request->input('run');
       $user->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
-      // if(!empty($request->file('image'))){
-      //   $filename = time();
-      //   $folder = 'public/photo_usuarios';
-      //   $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
-      // }
-      if(!empty($request->file('image'))){
+      if(!empty($request->file('image'))) {
+        $filename = time();
+        $folder = 'pablo';
 
-        $nombre_imagen = $request->file('image')->getClientOriginalName();
-        $ruta = public_path() . '\storage\photo_usuarios/';
-        // return $ruta;
-        $image = Image::make($request->file('image'));
-        $image->resize(300,300);
-  
-        for($i = 1; $i <=10;$i++) {
-          $image->save($ruta . $nombre_imagen, $i*10, 'jpg');
-        }
-        $user->imagen = $nombre_imagen;
+        $user->imagen = SaveImage::save($request, 'image', $filename, $folder);
       }
 
       $user->save();
@@ -98,23 +86,10 @@ class UsuarioController extends Controller
       $user->username = $request->input('username');
       $user->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
-      // if(!empty($request->file('image'))){
-      //   $filename = time();
-      //   $folder = 'public/photo_usuarios';
-      //   $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
-      // }
       if(!empty($request->file('image'))){
-
-        $nombre_imagen = $request->file('image')->getClientOriginalName();
-        $ruta = public_path() . '\storage\photo_usuarios/';
-        // return $ruta;
-        $image = Image::make($request->file('image'));
-        $image->resize(300,300);
-  
-        for($i = 1; $i <=10;$i++) {
-          $image->save($ruta . $nombre_imagen, $i*10, 'jpg');
-        }
-        $user->imagen = $nombre_imagen;
+        $filename = time();
+        $folder = 'public/photo_usuarios';
+        $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
       }
 
       //Actualizar el rol
@@ -135,7 +110,9 @@ class UsuarioController extends Controller
       $user = Usuario::findOrFail($id);
       $user->password = hash('sha256', $request->input('password_2'));
       $user->update();
+
       // TODO: Falta agregar envio de correo
+
       return back()->with('success','Se ha actualizado.');
     } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
@@ -163,7 +140,6 @@ class UsuarioController extends Controller
 
       return back()->with('success','Se ha agregado exitosamente.');
     } catch (\Throwable $th) {
-      //throw $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
