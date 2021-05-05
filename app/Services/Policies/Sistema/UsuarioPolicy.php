@@ -13,6 +13,7 @@ class UsuarioPolicy extends PolicyModel
   // 3 => 'REPARTIDOR',
 
   public function index() {
+    return $this->u;
     if ($this->admin() || $this->gestor() || $this->empleado()) {
       return true;
     }

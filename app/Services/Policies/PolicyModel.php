@@ -7,9 +7,10 @@ use App\Models\Sistema\Departamento;
 use App\Models\Sistema\DepartamentoUsuario;
 use App\Models\Sistema\Usuario;
 
-abstract class PolicyModel
-{
+class PolicyModel {
+
   protected $user;
+  protected $u = 123123;
 
   public function __construct(){
     $this->user = current_user();
@@ -20,7 +21,7 @@ abstract class PolicyModel
   }
 
   public function admin(){
-    return $this->user->admin;
+    return $this->user->is_admin();
   }
 
   // Identifica permiso

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Lib\IconRender;
+use App\Lib\Icons;
 use App\Models\Sistema\DepartamentoUsuario;
 
 class DashboardController extends Controller
@@ -12,7 +14,8 @@ class DashboardController extends Controller
   }
 
   public function home(){
-    return view('dashboard.welcome');
+    $icon = (new IconRender('encomienda_2','#ffff22'))->getSVG();
+    return view('dashboard.welcome',compact('icon'));
   }
 
 }

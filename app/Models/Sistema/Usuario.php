@@ -67,6 +67,10 @@ class Usuario extends Authenticatable
     return $this->rol() === 3;
   }
 
+  public function is_admin(){
+    return $this->admin;
+  }
+
   public function rol() {
     return $this->sucursalUsuario->rol;
   }

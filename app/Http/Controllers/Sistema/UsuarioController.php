@@ -13,11 +13,28 @@ use App\Lib\Permissions;
 use App\Models\Sistema\SucursalUsuario;
 use App\Models\Sistema\Vehiculo;
 use App\Services\ImportImage;
+use App\Services\Policies\Sistema\UsuarioPolicy;
 
 class UsuarioController extends Controller
 {
+  private $policy;
+
+  public function __construct() {
+    $this->policy = new UsuarioPolicy();
+  }
+
   public function index(){
+    return $this->policy->index();
+
     $usuarios = Usuario::where('activo',true)->get();
+    return view('admin.usuario.index', compact('usuarios'));
+  }
+
+
+  public function indexRepartidor(){
+    return $this->policy->index();
+
+    $usuarios = Usuario::where('activo',true)->get()->is_repartidor();
     return view('admin.usuario.index', compact('usuarios'));
   }
 
