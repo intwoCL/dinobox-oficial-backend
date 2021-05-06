@@ -7,12 +7,13 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class DeliveryMail extends Mailable
+class UsuarioAgregado extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $nombre;
     public $apellido;
+    public $email;
 
     /**
      * Create a new message instance.
@@ -22,7 +23,8 @@ class DeliveryMail extends Mailable
     public function __construct($data)
     {
       $this->nombre = $data['nombre'];
-      $this->nombre = $data['apellido'];
+      $this->apellido = $data['apellido'];
+      $this->email = $data['email'];
     }
 
     /**
@@ -32,6 +34,6 @@ class DeliveryMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Recepcion')->view('mail.delivery_mail');
+        return $this->subject('BIENVENIDO A BISCAR')->view('mail.delivery_usuarioAgregado');
     }
 }

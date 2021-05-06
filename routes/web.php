@@ -51,14 +51,105 @@ Route::middleware('auth.usuario')->group( function () {
   //   Artisan::call('config:cache');
   // });
 
-  Route::get('email1',function(){
+  Route::get('deliveryRecepcionPedido',function(){
    $correo = 'pcamposgarate@gmail.com';
 
    $data = [
      'nombre' => 'Patricia',
-     'apellido' => 'Campos'
+     'apellido' => 'Campos',
+     'idOrden' => '001',
+     'direccion' => 'Pasaje lagar 865',
+     'tipoEnvio' => 'Envio especial',
+     'precio' => '6.000'
    ];
 
-   return Mailable::DeliveryMail($correo, $data);
+   return Mailable::RecepcionPedido($correo, $data);
  });
 
+ Route::get('deliveryUsuarioAgregado',function(){
+  $correo = 'pcamposgarate@gmail.com';
+
+  $data = [
+    'nombre' => 'Patricia',
+    'apellido' => 'Campos',
+    'email' => 'pcamposgarate@gmail.com'
+  ];
+
+  return Mailable::UsuarioAgregado($correo, $data);
+});
+
+Route::get('deliveryUsuarioRecuperacion',function(){
+  $correo = 'pcamposgarate@gmail.com';
+
+  $data = [
+    'nombre' => 'Patricia',
+    'apellido' => 'Campos',
+    'email' => 'pcamposgarate@gmail.com'
+  ];
+
+  return Mailable::UsuarioRecuperacion($correo, $data);
+});
+
+Route::get('deliveryAsignacionPedido',function(){
+  $correo = 'pcamposgarate@gmail.com';
+
+  $data = [
+    'nombre' => 'Patricia',
+    'apellido' => 'Campos',
+    'idOrden' => '001',
+    'direccion' => 'Pasaje lagar 865',
+    'tipoEnvio' => 'Envio especial',
+    'precio' => '6.000',
+    'email' => 'pcamposgarate@gmail.com'
+  ];
+
+  return Mailable::AsignacionPedido($correo, $data);
+});
+
+Route::get('deliveryPreparacionPedido',function(){
+  $correo = 'pcamposgarate@gmail.com';
+
+  $data = [
+    'nombre' => 'Patricia',
+    'apellido' => 'Campos',
+    'idOrden' => '001',
+    'direccion' => 'Pasaje lagar 865',
+    'tipoEnvio' => 'Envio especial',
+    'precio' => '6.000',
+    'email' => 'pcamposgarate@gmail.com'
+  ];
+
+  return Mailable::PreparacionPedido($correo, $data);
+});
+
+Route::get('deliveryTransitoPedido',function(){
+  $correo = 'pcamposgarate@gmail.com';
+
+  $data = [
+    'nombre' => 'Patricia',
+    'apellido' => 'Campos',
+    'idOrden' => '001',
+    'direccion' => 'Pasaje lagar 865',
+    'tipoEnvio' => 'Envio especial',
+    'precio' => '6.000',
+    'email' => 'pcamposgarate@gmail.com'
+  ];
+
+  return Mailable::TransitoPedido($correo, $data);
+});
+
+Route::get('deliveryEntregaPedido',function(){
+  $correo = 'pcamposgarate@gmail.com';
+
+  $data = [
+    'nombre' => 'Patricia',
+    'apellido' => 'Campos',
+    'idOrden' => '001',
+    'direccion' => 'Pasaje lagar 865',
+    'tipoEnvio' => 'Envio especial',
+    'precio' => '6.000',
+    'email' => 'pcamposgarate@gmail.com'
+  ];
+
+  return Mailable::EntregaPedido($correo, $data);
+});
