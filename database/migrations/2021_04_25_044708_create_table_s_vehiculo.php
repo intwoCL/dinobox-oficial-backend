@@ -21,6 +21,7 @@ class CreateTableSVehiculo extends Migration
             $table->string('marca');
             $table->integer('tipo');
             $table->string('imagen')->nullable();
+            $table->boolean('favorito')->default(false);
             $table->timestamps();
         });
     }

@@ -3,79 +3,20 @@
   <link rel="stylesheet" href="/vendor/datatables-bs4/css/dataTables.bootstrap4.css">
 @endpush
 @section('content')
-<section class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-12">
-        <h1>Usuarios</h1>
-      </div>
-    </div>
-  </div>
-</section>
+@component('components.button._back')
+@slot('body', "Usuarios")
+@endcomponent
 <section class="content">
   <div class="row">
+    @include('admin.usuario._tabs_usuarios')
     <div class="col-md-12">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#"><i class="fa fa-user mr-2"></i> Repartidores</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-user mr-2"></i> </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
       <div class="card">
         <div class="card-header">
-          {{-- <h3 class="card-title">Lista de Usuarios</h3> --}}
-          <a href="{{ route('admin.usuario.indexDelete') }}" class="btn btn-dark float-left btn-sm">
-            Usuarios eliminados
-          </a>
           <a href="{{ route('admin.usuario.create') }}" class="btn btn-success float-right btn-sm">
             Nuevo
           </a>
         </div>
-        <div class="card-body table-responsive">
-          <table id="tableSelect" class="table table-bordered table-hover table-sm text-center">
-            <thead>
-            <tr>
-              <th>Perfil</th>
-              <th>Imagen</th>
-              <th>Usuario</th>
-              <th>Nombre</th>
-              <th>Correo</th>
-            </tr>
-            </thead>
-            <tbody>
-              @foreach ($usuarios as $u)
-              <tr>
-                <td>{!! $u->present()->getPerfil() !!}</td>
-                <td class="align-middle">
-                  <img src="{{ $u->present()->getPhoto() }}" alt="Imagenes de fondo" height="50px" srcset="">
-                </td>
-                <td class="align-middle">
-                  <strong>{{$u->username}}</strong>
-                  <div class="table-links">
-                    <div class="btn-group">
-                      <a href="{{ route('admin.usuario.edit',$u->id) }}" class="ml-2">
-                        <h6>
-                          <span class="badge badge-success">EDITAR</span>
-                        </h6>
-                      </a>
-                    </div>
-                  </div>
-                </td>
-                <td class="align-middle">{{$u->present()->nombre_completo()}}</td>
-                <td class="align-middle">{{$u->correo}}</td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        </div>
+        @include('admin.usuario._table_usuarios')
       </div>
     </div>
   </div>

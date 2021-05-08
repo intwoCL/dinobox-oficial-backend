@@ -87,8 +87,14 @@
         </div>
         <span id="typed"></span>
       </p>
+
+      <div style="width: 100px; height: 100px;">
+        {!! $icon !!}
+      </div>
+
       {{-- <img src="{!! $icon !!}" id="svg" alt="" width="400px" class="py-2"> --}}
-      {!! $icon !!}
+      {{-- <img src="{{ $icon }}" alt="Kiwi standing on oval"> --}}
+      {{-- <object data="{!! $icon !!}" width="300" height="300"> </object> --}}
       {{-- <p class="lead text-muted py-4">
         <em>
 

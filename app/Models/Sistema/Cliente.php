@@ -6,9 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Casts\Json;
-use App\Lib\Permissions;
 
-use App\Models\TomaHora\Especialidad;
 use App\Presenters\Sistema\ClientePresenter;
 use App\Services\ConvertDatetime;
 

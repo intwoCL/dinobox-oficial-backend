@@ -14,9 +14,13 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
   Route::resource('usuario','UsuarioController',['except'=>['show']]);
   Route::get('usuario/eliminados','UsuarioController@indexDelete')->name('usuario.indexDelete');
   Route::put('usuario/password/{id}','UsuarioController@password')->name('usuario.password');
-  Route::post('usuario/vehiculo/{id}','UsuarioController@vehiculoStore')->name('usuario.vehiculo.store');
 
-  Route::get('repartidores','UsuarioController@indexRepartidor')->name('usuario.indexRepartidor');
+
+  Route::get('usuario/{id}/vehiculo','VehiculoController@index')->name('vehiculo.index');
+  Route::post('usuario/{id}/vehiculo','VehiculoController@store')->name('vehiculo.store');
+
+
+  Route::get('repartidores','UsuarioController@indexRepartidor')->name('repartidor.index');
 
   // - {CLIENTE}
   Route::resource('cliente','ClienteController',['except'=>['show']]);

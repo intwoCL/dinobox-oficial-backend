@@ -50,7 +50,7 @@
           </a>
         </li>
         <li class="nav-item {{ open('admin/utils*') }}{{ open('admin/reportes/consulta*') }}">
-          <a href="" class="nav-link">
+          <a href="{{ route('admin.utils.index') }}" class="nav-link">
             <i class="fas fa-th-large nav-icon"></i>
             <p>Utils</p>
           </a>
@@ -61,6 +61,13 @@
           <a href="{{ route('admin.usuario.index') }}" class="nav-link">
             <i class="fas fa-user nav-icon"></i>
             <p>Usuarios</p>
+          </a>
+        </li>
+
+        <li class="nav-item {{ open('admin/repartidor/*') }}">
+          <a href="{{ route('admin.repartidor.index') }}" class="nav-link">
+            <i class="fas fa-user nav-icon"></i>
+            <p>Repartidor</p>
           </a>
         </li>
 

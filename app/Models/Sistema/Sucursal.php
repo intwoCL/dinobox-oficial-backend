@@ -2,8 +2,6 @@
 
 namespace App\Models\Sistema;
 
-use App\Models\Evento\Evento;
-use App\Models\Tutoria\TutorAlumno;
 use Illuminate\Database\Eloquent\Model;
 use App\Presenters\Sistema\SucursalPresenter;
 
