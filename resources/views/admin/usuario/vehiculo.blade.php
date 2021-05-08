@@ -101,6 +101,6 @@
   autoclose: true
   });
 
-  $('[data-toggle="tooltip"]').tooltip();
+
 </script>
 @endpush

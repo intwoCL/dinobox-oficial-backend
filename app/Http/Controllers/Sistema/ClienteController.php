@@ -60,10 +60,7 @@ class ClienteController extends Controller
     public function edit($id) {
       try {
         $c = Cliente::findOrFail($id);
-        $comunas = Comuna::get();
-        $regions = Region::get();
-        $direccion = Direccion::first();
-        return view('admin.cliente.edit',compact('c','comunas','regions','direccion'));
+        return view('admin.cliente.edit',compact('c'));
       } catch (\Throwable $th) {
         return back()->with('info','Error Intente nuevamente.');
       }
@@ -92,28 +89,6 @@ class ClienteController extends Controller
         return back()->with('info','Error Intente nuevamente.');
       }
     }
-
-    public function direccionStore(Request $request, $id){
-      try {
-
-        $cliente = Cliente::findOrFail($id);
-        $direccion = new Direccion();
-        $direccion->id_cliente = $cliente->id;
-        $direccion->calle = $request->input('calle');
-        $direccion->numero = $request->input('numero');
-        $direccion->id_comuna = $request->input('id_comuna');
-        $direccion->dato_adicional = $request->input('dato_adicional');
-        $direccion->telefono = $request->input('telefono');
-
-        $direccion->save();
-  
-        return back()->with('success','Se ha agregado exitosamente.');
-      } catch (\Throwable $th) {
-        return $th;
-        return back()->with('info','Error Intente nuevamente.');
-      }
-    }
-
 
     public function password(Request $request, $id) {
       try {

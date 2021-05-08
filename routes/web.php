@@ -10,13 +10,12 @@ Route::get('/acceso','Auth\AuthUsuarioController@auth')->name('auth.usuario');
 Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
 
 
-
-
 Route::middleware('auth.usuario')->group( function () {
   Route::post('/user/logout','Auth\AuthUsuarioController@logout')->name('auth.user.logout');
-
   Route::get('home','DashboardController@home')->name('home');
 
+
+  Route::resource('ordenes', 'Orden\OrdenController');
 });
 
 // Route::get('routes', function () {

@@ -25,10 +25,10 @@ class UsuarioController extends Controller
 
   public function index(){
     $this->policy->index();
+
     $usuarios = Usuario::getAllEmpleado();
     return view('admin.usuario.index', compact('usuarios'));
   }
-
 
   public function indexRepartidor(){
     $this->policy->index();

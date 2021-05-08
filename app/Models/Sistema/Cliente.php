@@ -27,6 +27,10 @@ class Cliente extends Authenticatable
     'permisos' => Json::class,
   ];
 
+  public function direcciones(){
+    return $this->hasMany(Direccion::class,'id_cliente');
+  }
+
   public function present(){
     return new ClientePresenter($this);
   }

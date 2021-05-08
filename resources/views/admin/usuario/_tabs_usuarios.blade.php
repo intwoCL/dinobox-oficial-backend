@@ -1,8 +1,10 @@
-@php
-  function activeTab($url){ return request()->is($url) ? 'active' : '';}
-@endphp
 <div class="col-md-12 pb-3">
   <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="{{ route('admin.usuario.create') }}">
+        <i class="fa fa-user-plus mr-2"></i> Nuevo Usuario
+      </a>
+    </li>
     <li class="nav-item">
       <a class="nav-link {{ activeTab("admin/repartidores") }}" href="{{ route('admin.repartidor.index') }}">
         <i class="fas fa-truck mr-2"></i> Repartidores

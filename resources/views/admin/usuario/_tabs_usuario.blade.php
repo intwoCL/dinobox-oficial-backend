@@ -1,6 +1,3 @@
-@php
-  function activeTab($url){ return request()->is($url) ? 'active' : '';}
-@endphp
 <div class="col-md-12 pb-3">
   <ul class="nav nav-tabs">
     <li class="nav-item">

@@ -11,11 +11,11 @@
     @include('admin.usuario._tabs_usuarios')
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header">
+        {{-- <div class="card-header">
           <a href="{{ route('admin.usuario.create') }}" class="btn btn-success float-right btn-sm">
             Nuevo
           </a>
-        </div>
+        </div> --}}
         @include('admin.usuario._table_usuarios')
       </div>
     </div>
