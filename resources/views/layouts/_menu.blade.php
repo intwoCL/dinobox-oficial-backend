@@ -30,7 +30,7 @@
         <li class="nav-header">Gestión</li>
 
         <li class="nav-item {{ open('admin/departamento*') }}">
-          <a href="" class="nav-link">
+          <a href="{{ route('ordenes.create') }}" class="nav-link">
             <i class="fas fa-boxes nav-icon"></i>
             <p>Orden</p>
           </a>

@@ -16,6 +16,9 @@ Route::middleware('auth.usuario')->group( function () {
 
 
   Route::resource('ordenes', 'Orden\OrdenController');
+
+  //  {API}
+  Route::post('api/v0/clientes', 'Api\V0\ClienteController@show')->name('api.v0.cliente.show');
 });
 
 // Route::get('routes', function () {

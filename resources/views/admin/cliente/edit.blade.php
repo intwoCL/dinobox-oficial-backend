@@ -14,7 +14,7 @@
     <div class="row">
       @include('admin.cliente._tabs_cliente')
       <div class="col-md-6">
-        <div class="card card-{{ $c->activo ? 'success' : 'danger' }}">
+        <div class="card">
           <div class="card-header">
             <h3 class="card-title">Actualizar Cliente</h3>
           </div>
@@ -98,7 +98,7 @@
           </form>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-3">
         <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title">Actualizar contraseña</h3>
@@ -109,7 +109,7 @@
             <div class="card-body">
               <div class="form-group row">
                 <label for="inputUsername" class="col-sm-12 col-form-label">Contraseña <small>(123123)</small></label>
-                <div class="col-sm-10">
+                <div class="col-sm-12">
                   <input type="password" class="form-control {{ $errors->has('password_2') ? 'is-invalid' : '' }}" value="123123" name="password_2" id="password_2" autocomplete="off" placeholder="*********" required>
                   {!! $errors->first('password_2', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
@@ -118,9 +118,9 @@
 
             <div class="card-footer">
               <button type="submit" class="btn btn-success float-right">Guardar</button>
-              <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
+              {{-- <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
                 <strong>MODO MAIN</strong>
-              </button>
+              </button> --}}
             </div>
           </form>
         </div>

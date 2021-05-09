@@ -65,8 +65,8 @@
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between py-2">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <i class="fa fa-video mr-2"></i>
-        <strong>Edugestion.cl</strong>
+        <i class="fa fa-people-carry mr-2"></i>
+        <strong>Delivery.cl</strong>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

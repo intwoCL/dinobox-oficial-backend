@@ -13,9 +13,9 @@
       @include('admin.cliente._tabs_cliente')
       <div class="col-md-6">
         <div class="card">
-          <div class="card-header">
-            @include('admin.cliente._table_direcciones')
-          </div>
+          {{-- <div class="card-header">
+          </div> --}}
+          @include('admin.cliente._table_direcciones')
         </div>
       </div>
       <div class="col-md-6">

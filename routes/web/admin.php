@@ -41,10 +41,6 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
 });
 
 
-//  API
-// Route::middleware('auth.usuario')->group( function () {
-//   Route::post('api/v1/consultas/query', 'Api\v1\ApiQueryController@query')->name('api.v1.consultas.query');
-// });
 
 
 // MODE MAIN

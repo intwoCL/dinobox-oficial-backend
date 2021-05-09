@@ -8,7 +8,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link {{ activeTab("admin/cliente/$c->id/direccion") }}" href="{{ route('admin.cliente.direccion.index', $c->id) }}">
-        <i class="fas fa-car mr-2"></i>
+        <i class="fas fa-map-marked mr-2"></i>
         Direcciones
       </a>
     </li>

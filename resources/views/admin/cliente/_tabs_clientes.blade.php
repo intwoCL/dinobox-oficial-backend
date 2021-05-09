@@ -8,13 +8,13 @@
     </li>
     <li class="nav-item">
       <a class="nav-link {{ activeTab("admin/cliente") }}" href="{{ route('admin.cliente.index') }}">
-        <i class="fas fa-car mr-2"></i>
+        <i class="fas fa-users mr-2"></i>
         Clientes
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link {{ activeTab("admin/cliente/eliminados") }}" href="{{ route('admin.cliente.indexDelete') }}">
-        <i class="fas fa-car mr-2"></i>
+        <i class="fas fa-users-slash mr-2"></i>
         Eliminados
       </a>
     </li>
