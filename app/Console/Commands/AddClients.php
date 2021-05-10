@@ -46,13 +46,13 @@ class AddClients extends Command
       $faker = Fake::create();
       $pass = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92";
 
-      for ($i=0; $i < 1000 ; $i++) {
+      for ($i=0; $i < 100 ; $i++) {
         $c = new Cliente();
         $run = 100000010+$i;
         $c->run = $run;
         $c->password = $pass;
         $c->nombre = $faker->firstName;
-        $c->apellido = $faker->lastName;                                  ;
+        $c->apellido = $faker->lastName;
         $c->correo = $faker->unique()->safeEmail;
         $c->save();
 
@@ -60,7 +60,7 @@ class AddClients extends Command
         $d->id_cliente = $c->id;
         $d->id_comuna = 1005;
         $d->calle = $faker->streetName;
-        $d->numero = $faker->buildingNumber                      ;
+        $d->numero = $faker->buildingNumber;
         $d->save();
       }
       $this->info("Done!");
