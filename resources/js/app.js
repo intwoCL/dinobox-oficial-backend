@@ -13,8 +13,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-// Vue.component('card', require('./components/Card.vue').default);
-// Vue.component('pokemon', require('./components/Pokemon.vue').default);
+Vue.component('modal-clientes', require('./components/ModalClientes.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

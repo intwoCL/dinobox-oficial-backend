@@ -9,9 +9,13 @@ use Illuminate\Http\Request;
 
 class SistemaController extends Controller
 {
-  public function index() {
+  public function index(){
+    return view('admin.sistema.index');
+  }
+
+  public function show() {
     $sistema = Sistema::first();
-    return view('admin.sistema.index',compact('sistema'));
+    return view('admin.sistema.edit',compact('sistema'));
   }
 
   public function update(Request $request) {

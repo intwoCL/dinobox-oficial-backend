@@ -4,12 +4,11 @@
 @endpush
 @section('content')
 @component('components.button._back')
-@slot('route', route('admin.usuario.index'))
-@slot('color', 'secondary')
 @slot('body', "Usuarios eliminados")
 @endcomponent
 <section class="content">
   <div class="row">
+    @include('admin.usuario._tabs_usuarios')
     <div class="col-md-12">
       <div class="card">
         <div class="card-body table-responsive">

@@ -27,46 +27,48 @@
           </a>
         </li>
 
-        <li class="nav-header">Administración</li>
+        <li class="nav-header">Gestión</li>
 
         <li class="nav-item {{ open('admin/departamento*') }}">
-          <a href="" class="nav-link">
+          <a href="{{ route('ordenes.create') }}" class="nav-link">
             <i class="fas fa-boxes nav-icon"></i>
             <p>Orden</p>
           </a>
         </li>
 
-        <li class="nav-item {{ open('admin/departamento*') }}">
+        {{-- <li class="nav-item {{ open('admin/departamento*') }}">
           <a href="" class="nav-link">
             <i class="fas fa-chart-bar nav-icon"></i>
             <p>Reportes</p>
           </a>
-        </li>
+        </li> --}}
+
+        <li class="nav-header">Administración</li>
 
         <li class="nav-item {{ open('admin/sistema*') }}">
-          <a href="" class="nav-link">
+          <a href="{{ route('admin.sistema.index') }}" class="nav-link">
             <i class="fas fa-cogs nav-icon"></i>
             <p>Configuración</p>
           </a>
         </li>
-        <li class="nav-item {{ open('admin/utils*') }}{{ open('admin/reportes/consulta*') }}">
-          <a href="" class="nav-link">
-            <i class="fas fa-th-large nav-icon"></i>
-            <p>Utils</p>
+
+        <li class="nav-item {{ open('admin/usuario') }}{{ open('admin/usuario/*') }}">
+          <a href="{{ route('admin.usuario.index') }}" class="nav-link">
+            <i class="fas fa-user-circle nav-icon"></i>
+            <p>Usuarios</p>
           </a>
         </li>
 
-        <li class="nav-header">Usuarios</li>
-        <li class="nav-item {{ open('admin/usuario') }}{{ open('admin/usuario/*') }}">
-          <a href="{{ route('admin.usuario.index') }}" class="nav-link">
-            <i class="fas fa-user nav-icon"></i>
-            <p>Usuarios</p>
+        <li class="nav-item {{ open('admin/repartidores') }}">
+          <a href="{{ route('admin.repartidor.index') }}" class="nav-link">
+            <i class="fas fa-people-carry nav-icon"></i>
+            <p>Repartidor</p>
           </a>
         </li>
 
         <li class="nav-item {{ open('admin/cliente') }}{{ open('admin/cliente/*') }}">
           <a href="{{ route('admin.cliente.index') }}" class="nav-link">
-            <i class="fas fa-id-card nav-icon"></i>
+            <i class="fas fa-users nav-icon"></i>
             <p>Clientes</p>
           </a>
         </li>

@@ -13,17 +13,20 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
   // - {USUARIO}
   Route::resource('usuario','UsuarioController',['except'=>['show']]);
   Route::get('usuario/eliminados','UsuarioController@indexDelete')->name('usuario.indexDelete');
-  Route::put('usuario/password/{id}','UsuarioController@password')->name('usuario.password');
-  Route::post('usuario/vehiculo/{id}','UsuarioController@vehiculoStore')->name('usuario.vehiculo.store');
+  Route::put('usuario/{id}/password','UsuarioController@password')->name('usuario.password');
+  Route::get('usuario/{id}/vehiculo','VehiculoController@index')->name('vehiculo.index');
+  Route::post('usuario/{id}/vehiculo','VehiculoController@store')->name('vehiculo.store');
+  Route::get('repartidores','UsuarioController@indexRepartidor')->name('repartidor.index');
 
   // - {CLIENTE}
   Route::resource('cliente','ClienteController',['except'=>['show']]);
-  Route::get('cliente/eliminados','ClienteController@indexDelete')->name('cliente.indexDelete');
-  Route::put('cliente/password/{id}','ClienteController@password')->name('cliente.password');
-  Route::post('cliente/direccion/{id}','ClienteController@direccionStore')->name('cliente.direccion.store');
+  Route::get('clientes/eliminados','ClienteController@indexDelete')->name('cliente.indexDelete');
+  Route::put('cliente/{id}/password','ClienteController@password')->name('cliente.password');
+  Route::get('cliente/{id}/direccion','DireccionController@index')->name('cliente.direccion.index');
+  Route::post('cliente/{id}/direccion','DireccionController@store')->name('cliente.direccion.store');
 
 
-  // - {Reportes}
+  // - {REPORTES}
   Route::prefix('reportes')->group( function () {
     Route::get('consulta','ConsultasController@index')->name('reportes.consulta.index');
     Route::post('consulta','ConsultasController@store')->name('reportes.consulta.store');
@@ -31,20 +34,13 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
     Route::put('consulta/{id}','ConsultasController@update')->name('reportes.consulta.update');
   });
 
+  // - {SISTEMA}
+  Route::get('sistema','SistemaController@index')->name('sistema.index');
+  Route::get('sistema/edit','SistemaController@show')->name('sistema.show');
 
-  // Utils
-  Route::get('utils','UtilsController@index')->name('utils.index');
-  Route::get('utils/import/alumnos','UtilsController@importAlumnos')->name('utils.import.alumnos');
-  Route::post('utils/import/alumnos','UtilsController@importAlumnosStore')->name('utils.import.alumnos');
-  Route::get('utils/sistema','SistemaController@index')->name('sistema');
-  Route::put('utils/sistema','SistemaController@update')->name('sistema');
 });
 
 
-//  API
-// Route::middleware('auth.usuario')->group( function () {
-//   Route::post('api/v1/consultas/query', 'Api\v1\ApiQueryController@query')->name('api.v1.consultas.query');
-// });
 
 
 // MODE MAIN

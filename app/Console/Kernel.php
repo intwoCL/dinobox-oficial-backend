@@ -13,6 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
+      Commands\AddClients::class,
+
       // Commands\CreateAdmin::class,
       // Commands\CreateAdminCustomer::class,
       // Commands\ImportDatabase::class,

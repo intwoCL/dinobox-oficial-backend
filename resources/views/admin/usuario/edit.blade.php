@@ -15,8 +15,9 @@
 <section class="content">
   <div class="container-fluid">
     <div class="row">
+      @include('admin.usuario._tabs_usuario')
       <div class="col-md-6">
-        <div class="card card-{{ $u->activo ? 'success' : 'danger' }}">
+        <div class="card">
           <div class="card-header">
             <h3 class="card-title">Actualizar Usuario</h3>
           </div>
@@ -116,7 +117,7 @@
           </form>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-3">
         <div class="card card-primary">
           <div class="card-header">
             <h3 class="card-title">Actualizar contraseña</h3>
@@ -136,65 +137,9 @@
             <div class="card-footer">
               <button type="submit" class="btn btn-success float-right">Guardar</button>
 
-              <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
+              {{-- <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
                 <strong>MODO MAIN</strong>
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <div class="card card-primary">
-          <div class="card-header">
-            <h3 class="card-title">Vehículo</h3>
-          </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.usuario.vehiculo.store',$u->id) }}">
-            @csrf
-            <div class="card-body">
-              <div class="form-group row">
-                <label for="inputUsername" class="col-sm-2 col-form-label">Patente </label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control {{ $errors->has('patente') ? 'is-invalid' : '' }}" value="" name="patente" id="patente" autocomplete="off" placeholder="Ingrese patente" required>
-                  {!! $errors->first('patente', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="inputUsername" class="col-sm-2 col-form-label">Modelo </label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control {{ $errors->has('modelo') ? 'is-invalid' : '' }}" value="" name="modelo" id="modelo" autocomplete="off" placeholder="Ingrese modelo" required>
-                  {!! $errors->first('modelo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="inputUsername" class="col-sm-2 col-form-label">Marca </label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control {{ $errors->has('marca') ? 'is-invalid' : '' }}" value="" name="marca" id="marca" autocomplete="off" placeholder="Ingrese marca" required>
-                  {!! $errors->first('marca', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
-                </div>
-              </div>
-              <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Tipo Vehículo</label>
-                <div class="col-sm-10">
-                  <select name="tipo" id="select1" class="form-control {{ $errors->has('tipo') ? 'is_invalid' : '' }}" required>
-                    @foreach ($tipos as $key=> $value)
-                      <option value="{{ $key }}">{{ $value }}</option>
-                    @endforeach
-                  </select>
-                  {!! $errors->first('tipo','<div class="invalid-feedback">:message</div>') !!}
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
-                <div class="input-group">
-                  <input type="file" name="image" accept="image/*" onchange="preview(this)" />
-                  <br>
-                </div>
-              </div>
-              <div class="form-group center-text">
-                <div id="preview"></div>
-              </div>
-            </div>
-            <div class="card-footer">
-              <button type="submit" class="btn btn-success float-right">Guardar</button>
+              </button> --}}
             </div>
           </form>
         </div>

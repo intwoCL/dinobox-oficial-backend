@@ -22,12 +22,15 @@ class DatabaseSeeder extends Seeder
       's_sistema',
       's_usuario',
       's_cliente',
+      's_direccion',
     ]);
 
     Artisan::call('cities:import');
 
     $this->call(SistemaSeeder::class);
     $this->call(UserSeeder::class);
+
+    Artisan::call('create:client');
   }
 
 

@@ -6,9 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Casts\Json;
-use App\Lib\Permissions;
 
-use App\Models\TomaHora\Especialidad;
 use App\Presenters\Sistema\ClientePresenter;
 use App\Services\ConvertDatetime;
 
@@ -29,6 +27,14 @@ class Cliente extends Authenticatable
     'permisos' => Json::class,
   ];
 
+  public function direcciones(){
+    return $this->hasMany(Direccion::class,'id_cliente');
+  }
+
+  public function scopeLikeColumn($query, $column, $value) {
+    return $query->where($column, 'LIKE', "%$value%")->where('activo',true)->get();
+  }
+
   public function present(){
     return new ClientePresenter($this);
   }
@@ -48,5 +54,24 @@ class Cliente extends Authenticatable
 
   public function isHappy(){
     return $this->birthdate ? (new ConvertDatetime($this->birthdate))->isToday() : false;
+  }
+
+  public function raw_direcciones(){
+    $raw = array();
+    foreach ($this->direcciones as $d) {
+      array_push($raw, $d->raw_info());
+    }
+    return $raw;
+  }
+
+  public function raw_info(){
+    return [
+      'id' => $this->id,
+      'rut' => $this->run,
+      'nombres' => $this->present()->nombre_completo(),
+      'correo' => $this->correo,
+      'foto' => $this->present()->getPhoto(),
+      'direcciones' => $this->raw_direcciones(),
+    ];
   }
 }
