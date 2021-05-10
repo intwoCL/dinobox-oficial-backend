@@ -21,4 +21,8 @@ class UsuarioPolicy extends PolicyModel
     }
     return $this->abort();
   }
+
+  public function indexRepartidor(){
+    return $this->index();
+  }
 }

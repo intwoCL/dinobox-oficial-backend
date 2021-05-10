@@ -31,7 +31,7 @@ class UsuarioController extends Controller
   }
 
   public function indexRepartidor(){
-    $this->policy->index();
+    $this->policy->indexRepartidor();
 
     $usuarios = Usuario::getAllRepartidor();
     return view('admin.usuario.index', compact('usuarios'));
