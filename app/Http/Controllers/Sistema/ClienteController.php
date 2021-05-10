@@ -66,7 +66,7 @@ class ClienteController extends Controller
     }
   }
 
-  public function update(ClientUpdateRequest $request, $id) {
+  public function update(Request $request, $id) {
     try {
       $cliente = Cliente::findOrFail($id);
       $cliente->nombre = $request->input('nombre');
