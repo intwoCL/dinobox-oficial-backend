@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
       's_usuario',
       's_cliente',
       's_direccion',
+      'or_orden',
     ]);
 
     Artisan::call('cities:import');
@@ -31,6 +32,8 @@ class DatabaseSeeder extends Seeder
     $this->call(UserSeeder::class);
 
     Artisan::call('create:client');
+
+    $this->call(OrdenSeeder::class);
   }
 
 
