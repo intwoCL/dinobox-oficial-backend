@@ -15,11 +15,7 @@ class CreateTableOrOrden extends Migration
     {
         Schema::create('or_orden', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_cliente')->nullable();
-            $table->date('fecha_emision');
-            // $table->double('precio')->default(0);
-            // $table->integer('estado')->default(1);
-            // $table->boolean('activo')->default(true);
+            
             $table->timestamps();
         });
     }
