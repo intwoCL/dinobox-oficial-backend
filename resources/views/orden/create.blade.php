@@ -13,14 +13,14 @@
 @component('components.button._back')
   {{-- @slot('route', route('tomadehora.agenda.index',$e->codigo)) --}}
   {{-- @slot('color', 'dark') --}}
-  @slot('body', "Agendar hora al alumno")
+  @slot('body', "Generar Orden")
 @endcomponent
 <section class="content">
   <div class="row">
     <div class="col-md-6">
       <div class="card card-dark">
         <div class="card-header">
-            <h3 class="card-title">Agendar hora al alumno</h3>
+            <h3 class="card-title">Generar Orden</h3>
         </div>
         <div class="card-body">
           <div class="input-group">
@@ -48,19 +48,23 @@
           <input type="hidden" name="run" value="" id="id_run" required>
           <input type="hidden" name="tipo_usuario" value="1" id="tipo_usuario" required>
           <div class="card-body py-0">
-            <div class="form-group row">
+
+            {{-- <div class="form-group row">
               <label class="col-sm-4 col-form-label">Canal</label>
               <div class="input-group col-sm-8">
-                <select class="form-control" name="canal" required>
+                <select class="form-control" name="canal" required> --}}
+
                   {{-- @foreach ($canales as $key => $value ) --}}
                     {{-- <option value="{{ $key }}">{{ $value }}</option> --}}
                   {{-- @endforeach --}}
-                </select>
+
+                {{-- </select>
               </div>
-            </div>
+            </div> --}}
+
 
             <div class="form-group row" id="data_1">
-              <label for="fecha" class="col-sm-4 col-form-label">Fecha</label>
+              <label for="fecha" class="col-sm-4 col-form-label">Fecha de emisión</label>
               <div class="input-group date col-sm-8">
                 <span class="input-group-addon btn btn-info"><i class="fa fa-calendar"></i></span>
                 <input type="text" class="form-control" readonly name="fecha_agenda" id="fecha_agenda" required value="{{ $fecha }}">
@@ -69,6 +73,85 @@
                 {!! $errors->first('fecha', '<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
               </div>
             </div>
+            <div class="form-group row">
+              <label for="inputnombre" class="col-sm-2 col-form-label">Nombre del Remitente</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ old('nombre') }}" placeholder="Nombre" required>
+                {!! $errors->first('nombre', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+              </div>
+              <div class="col-sm-5">
+                <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ old('apellido') }}" placeholder="Apellido">
+                {!! $errors->first('apellido', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail" class="col-sm-2 col-form-label">Email del Remitente</label>
+              <div class="col-sm-10">
+                <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ old('correo') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();">
+                {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="nameEvento" class="col-form-label col-sm-2">Teléfono del Remitente</label>
+              <div class="input-group col-sm-10">
+                  <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Ingrese su teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos">
+              </div>
+            </div>
+
+
+
+            <div class="form-group row">
+              <label for="inputnombre" class="col-sm-2 col-form-label">Calle</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control {{ $errors->has('calle') ? 'is-invalid' : '' }}" name="calle" id="calle" autocomplete="off" value="{{ old('calle') }}" placeholder="Calle" required>
+                {!! $errors->first('calle', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+              </div>
+              <div class="col-sm-5">
+                <input type="text" class="form-control {{ $errors->has('numero') ? 'is-invalid' : '' }}" name="numero" id="numero" autocomplete="off" value="{{ old('numero') }}" placeholder="Número">
+                {!! $errors->first('numero', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Región</label>
+              <div class="col-sm-10">
+                <select class="custom-select" id="select_region" name="region" onChange="CargarComunas()">
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Comuna</label>
+              <div class="col-sm-10">
+                <select class="custom-select {{ $errors->has('id_comuna') ? 'is-invalid' : '' }}" name='id_comuna' id="select_comuna">
+                </select>
+              </div>
+              {!! $errors->first('id_comuna', ' <small id="inputPassword" class="form-text text-danger">:message</small>') !!}
+            </div>
+
+
+            <div class="form-group row">
+              <label for="inputnombre" class="col-sm-2 col-form-label">Nombre del Destinatario</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ old('nombre') }}" placeholder="Nombre" required>
+                {!! $errors->first('nombre', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+              </div>
+              <div class="col-sm-5">
+                <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ old('apellido') }}" placeholder="Apellido">
+                {!! $errors->first('apellido', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+              </div>
+            </div>
+            <div class="form-group row" id="data_1">
+              <label for="fecha" class="col-sm-4 col-form-label">Fecha de entrega</label>
+              <div class="input-group date col-sm-8">
+                <span class="input-group-addon btn btn-info"><i class="fa fa-calendar"></i></span>
+                <input type="text" class="form-control" readonly name="fecha_agenda" id="fecha_agenda" required value="{{ $fecha }}">
+              </div>
+              <div class="col-sm-12">
+                {!! $errors->first('fecha', '<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
+              </div>
+            </div>
+
+
+
             {{-- <div class="form-group row">
               <label for="hora" class="col-sm-4 col-form-label">Hora</label>
               <div class="input-group col-sm-8">
@@ -85,7 +168,7 @@
             </div> --}}
 
             <div class="form-group">
-              <label for="comentario" class="col-form-label">Comentario de Entrada</label>
+              <label for="comentario" class="col-form-label">Comentario o mensaje de entrega</label>
               <textarea class="form-control  {{ $errors->has('descripcion') ? 'is-invalid' : '' }}" rows="3" name="comentario_entrada" id="comentario_entrada" placeholder="..." maxlength="255" onkeyup="countChars(this,255);">{{ old('descripcion') }}</textarea>
               {!! $errors->first('descripcion', '<small class="form-text text-danger">:message</small>') !!}
               <p id="limitC"></p>
