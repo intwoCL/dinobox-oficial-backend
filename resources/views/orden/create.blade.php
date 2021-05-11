@@ -4,15 +4,15 @@
   $hora = date('H:i');
 @endphp
 @extends('layouts.app')
-@section('title', "Atención Alumno - Edugestion")
+@section('title', "Ordenes - Edugestion")
 @push('stylesheet')
   <link rel="stylesheet" href="/vendor/clockpicker/css/bootstrap-clockpicker.min.css">
   <link rel="stylesheet" href="/vendor/datepicker2/css/bootstrap-datepicker3.css">
 @endpush
 @section('content')
 @component('components.button._back')
-  {{-- @slot('route', route('tomadehora.agenda.index',$e->codigo)) --}}
-  {{-- @slot('color', 'dark') --}}
+  @slot('route', route('ordenes.index'))
+  @slot('color', 'dark')
   @slot('body', "Generar Orden")
 @endcomponent
 <section class="content">
@@ -22,26 +22,7 @@
         <div class="card-header">
             <h3 class="card-title">Generar Orden</h3>
         </div>
-        <div class="card-body">
-          <div class="input-group">
-            <label class="col-sm-4 col-form-label">Rut </label>
-            <input type="text" class="form-control" id="rut" name="rut" placeholder="Ingrese el Rut Alumno..."
-              required maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
-            <span class="input-group-append">
-              <button type="button" id="sendRut" name="opcion" autofocus value="buscar" onclick="buscarAlumnos()" class="btn btn-success" onkeypress="pulsar(event)">Buscar</button>
-
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFind">
-                <i class="fa fa-search"></i>
-              </button>
-            </span>
-            <p class="col-md-12">
-              <small id="error" class="text-danger"></small>
-              <small id="success" class="text-success"></small>
-            </p>
-          </div>
-        </div>
-
-        <form class="form-horizontal form-submit" action="" method="POST">
+        <form class="form-horizontal form-submit" action="{{ route('ordenes.store') }}" method="POST">
           @csrf
           <input type="hidden" name="id_alumno" value="" id="id_alumno">
           <input type="hidden" name="id_usuario_general" value="" id="id_usuario_general">
@@ -61,13 +42,30 @@
                 {{-- </select>
               </div>
             </div> --}}
-
+            <div class="card-body">
+              <div class="input-group">
+                <label class="col-sm-4 col-form-label">Rut del Remitente</label>
+                <input type="text" class="form-control" id="rut" name="rut_remitente" placeholder="Ingrese el Rut Alumno..."
+                  required maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
+                <span class="input-group-append">
+                  <button type="button" id="sendRut" name="opcion" autofocus value="buscar" onclick="buscarAlumnos()" class="btn btn-success" onkeypress="pulsar(event)">Buscar</button>
+    
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFind">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+                <p class="col-md-12">
+                  <small id="error" class="text-danger"></small>
+                  <small id="success" class="text-success"></small>
+                </p>
+              </div>
+            </div>
 
             <div class="form-group row" id="data_1">
               <label for="fecha" class="col-sm-4 col-form-label">Fecha de emisión</label>
               <div class="input-group date col-sm-8">
                 <span class="input-group-addon btn btn-info"><i class="fa fa-calendar"></i></span>
-                <input type="text" class="form-control" readonly name="fecha_agenda" id="fecha_agenda" required value="{{ $fecha }}">
+                <input type="text" class="form-control" readonly name="fecha_emision" id="fecha_agenda" required value="{{ $fecha }}">
               </div>
               <div class="col-sm-12">
                 {!! $errors->first('fecha', '<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
@@ -76,81 +74,96 @@
             <div class="form-group row">
               <label for="inputnombre" class="col-sm-2 col-form-label">Nombre del Remitente</label>
               <div class="col-sm-5">
-                <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ old('nombre') }}" placeholder="Nombre" required>
+                <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre_remitente" id="nombre" autocomplete="off" value="{{ old('nombre') }}" placeholder="Nombre" required>
                 {!! $errors->first('nombre', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
               <div class="col-sm-5">
-                <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ old('apellido') }}" placeholder="Apellido">
+                <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido_remitente" id="apellido" autocomplete="off" value="{{ old('apellido') }}" placeholder="Apellido">
                 {!! $errors->first('apellido', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
             </div>
             <div class="form-group row">
               <label for="inputEmail" class="col-sm-2 col-form-label">Email del Remitente</label>
               <div class="col-sm-10">
-                <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ old('correo') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();">
+                <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="email_remitente" id="email" value="{{ old('correo') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();">
                 {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
             </div>
             <div class="form-group row">
               <label for="nameEvento" class="col-form-label col-sm-2">Teléfono del Remitente</label>
               <div class="input-group col-sm-10">
-                  <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Ingrese su teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos">
+                  <input type="tel" class="form-control" name="telefono_remitente" id="telefono" autocomplete="off" maxlength="9" placeholder="Ingrese su teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos">
               </div>
             </div>
 
 
 
             <div class="form-group row">
-              <label for="inputnombre" class="col-sm-2 col-form-label">Calle</label>
+              <label for="inputnombre" class="col-sm-2 col-form-label">Dirección del Remitente</label>
               <div class="col-sm-5">
-                <input type="text" class="form-control {{ $errors->has('calle') ? 'is-invalid' : '' }}" name="calle" id="calle" autocomplete="off" value="{{ old('calle') }}" placeholder="Calle" required>
+                <input type="text" class="form-control {{ $errors->has('calle') ? 'is-invalid' : '' }}" name="calle_remitente" id="calle" autocomplete="off" value="{{ old('calle') }}" placeholder="Calle" required>
                 {!! $errors->first('calle', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
               <div class="col-sm-5">
-                <input type="text" class="form-control {{ $errors->has('numero') ? 'is-invalid' : '' }}" name="numero" id="numero" autocomplete="off" value="{{ old('numero') }}" placeholder="Número">
+                <input type="text" class="form-control {{ $errors->has('numero') ? 'is-invalid' : '' }}" name="numero_remitente" id="numero" autocomplete="off" value="{{ old('numero') }}" placeholder="Número">
                 {!! $errors->first('numero', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
             </div>
-            <div class="form-group row">
+            {{-- <div class="form-group row">
               <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Región</label>
               <div class="col-sm-10">
                 <select class="custom-select" id="select_region" name="region" onChange="CargarComunas()">
                 </select>
               </div>
-            </div>
-            <div class="form-group row">
+            </div> --}}
+            {{-- <div class="form-group row">
               <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Comuna</label>
               <div class="col-sm-10">
                 <select class="custom-select {{ $errors->has('id_comuna') ? 'is-invalid' : '' }}" name='id_comuna' id="select_comuna">
                 </select>
               </div>
               {!! $errors->first('id_comuna', ' <small id="inputPassword" class="form-text text-danger">:message</small>') !!}
-            </div>
+            </div> --}}
 
-
+            <hr>
             <div class="form-group row">
               <label for="inputnombre" class="col-sm-2 col-form-label">Nombre del Destinatario</label>
               <div class="col-sm-5">
-                <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ old('nombre') }}" placeholder="Nombre" required>
+                <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre_destinatario" id="nombre" autocomplete="off" value="{{ old('nombre') }}" placeholder="Nombre" required>
                 {!! $errors->first('nombre', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
               <div class="col-sm-5">
-                <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ old('apellido') }}" placeholder="Apellido">
+                <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido_destinatario" id="apellido" autocomplete="off" value="{{ old('apellido') }}" placeholder="Apellido">
                 {!! $errors->first('apellido', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputnombre" class="col-sm-2 col-form-label">Dirección del Destinatario</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control {{ $errors->has('calle') ? 'is-invalid' : '' }}" name="calle_destinatario" id="calle" autocomplete="off" value="{{ old('calle') }}" placeholder="Calle" required>
+                {!! $errors->first('calle', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+              </div>
+              <div class="col-sm-5">
+                <input type="text" class="form-control {{ $errors->has('numero') ? 'is-invalid' : '' }}" name="numero_destinatario" id="numero" autocomplete="off" value="{{ old('numero') }}" placeholder="Número">
+                {!! $errors->first('numero', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
             </div>
             <div class="form-group row" id="data_1">
               <label for="fecha" class="col-sm-4 col-form-label">Fecha de entrega</label>
               <div class="input-group date col-sm-8">
                 <span class="input-group-addon btn btn-info"><i class="fa fa-calendar"></i></span>
-                <input type="text" class="form-control" readonly name="fecha_agenda" id="fecha_agenda" required value="{{ $fecha }}">
+                <input type="text" class="form-control" readonly name="fecha_entrega" id="fecha_agenda" required value="{{ $fecha }}">
               </div>
               <div class="col-sm-12">
                 {!! $errors->first('fecha', '<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
               </div>
             </div>
-
-
+            <div class="form-group row">
+              <label for="nameEvento" class="col-form-label col-sm-2">Precio de Envió</label>
+              <div class="input-group col-sm-10">
+                  <input type="number" class="form-control" name="precio_envio" id="precio" autocomplete="off" maxlength="9" placeholder="Ingrese su precio">
+              </div>
+            </div>
 
             {{-- <div class="form-group row">
               <label for="hora" class="col-sm-4 col-form-label">Hora</label>
@@ -168,8 +181,8 @@
             </div> --}}
 
             <div class="form-group">
-              <label for="comentario" class="col-form-label">Comentario o mensaje de entrega</label>
-              <textarea class="form-control  {{ $errors->has('descripcion') ? 'is-invalid' : '' }}" rows="3" name="comentario_entrada" id="comentario_entrada" placeholder="..." maxlength="255" onkeyup="countChars(this,255);">{{ old('descripcion') }}</textarea>
+              <label for="comentario" class="col-form-label">Comentario o Mensaje de entrega</label>
+              <textarea class="form-control  {{ $errors->has('descripcion') ? 'is-invalid' : '' }}" rows="3" name="mensaje" id="comentario_entrada" placeholder="..." maxlength="255" onkeyup="countChars(this,255);">{{ old('descripcion') }}</textarea>
               {!! $errors->first('descripcion', '<small class="form-text text-danger">:message</small>') !!}
               <p id="limitC"></p>
             </div>
@@ -268,6 +281,49 @@
   function clearForm(){
     document.getElementById('id_cliente').value = "";
     document.getElementById('id_direccion').value = "";
+  }
+</script>
+<script>
+  var comunas = [
+    @foreach ($comunas as $c)
+      {'name':'{{ $c->nombre }}','id':'{{ $c->id }}','id_region':'{{ $c->id_region}}'},
+    @endforeach
+  ];
+  var regiones = [
+    @foreach ($regions as $r)
+      {'name':'{{ $r->nombre }}','id_region':'{{ $r->id }}'},
+    @endforeach
+  ];
+
+  CargarRegiones('select_region')
+  CargarComunas();
+
+  function CargarRegiones(selectId){
+    var select = $('#'+selectId);
+    select.find('option').remove();
+    $.each(regiones, function(key,value) {
+        select.append('<option value=' + value.id_region + '>' + value.name + '</option>');
+    });
+  }
+  function CargarComunas(){
+    var select = $('#select_comuna');
+    select.find('option').remove();
+
+    var id_r = document.getElementById("select_region").value;
+    var coms = comunas.filter( c => c.id_region==id_r);
+
+    $.each(coms, function(key,value) {
+        select.append('<option value=' + value.id + '>' + value.name + '</option>');
+    });
+  }
+  function CargarComunasEdit(){
+    var select = $('#select_comuna_edit');
+    select.find('option').remove();
+    var id_r = document.getElementById("select_region_edit").value;
+    var coms = comunas.filter( c => c.id_region==id_r);
+    $.each(coms, function(key,value) {
+        select.append('<option value=' + value.id + '>' + value.nombre + '</option>');
+    });
   }
 </script>
 @endpush

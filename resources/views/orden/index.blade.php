@@ -4,11 +4,11 @@
 @endpush
 @section('content')
 @component('components.button._back')
-@slot('body', "Usuarios")
+@slot('body', "Ordenes")
 @endcomponent
 <section class="content">
   <div class="row">
-    {{-- @include('admin.usuario._tabs_usuarios') --}}
+    @include('orden._tabs_orden')
     <div class="col-md-12">
       <div class="card">
         @include('orden._table_ordenes')
