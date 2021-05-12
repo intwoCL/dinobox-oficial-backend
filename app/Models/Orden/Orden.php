@@ -25,8 +25,8 @@ class Orden extends Model
     5 => 'Recepción de despacho',
     6 => 'Asignación de despacho',
     7 => 'En camino a despacho',
-    8 => 'Entragado',
-    100 => 'error',
+    8 => 'Entregado',
+    100 => 'Error',
   ];
 
   public function getFecha(){
