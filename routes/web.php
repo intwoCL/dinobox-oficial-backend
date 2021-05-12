@@ -16,7 +16,7 @@ Route::middleware('auth.usuario')->group( function () {
   Route::get('home','DashboardController@home')->name('home');
 
   // REPARTIDOR
-  Route::get('repartidor/home','DashboardController@repartidor')->name('repartidor.home');
+  Route::get('repartidor/home','Web\Repartidor\RepartidorController@index')->name('repartidor.home');
 
 
   Route::resource('orden', 'Orden\OrdenController');

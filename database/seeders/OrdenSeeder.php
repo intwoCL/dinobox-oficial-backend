@@ -33,7 +33,5 @@ class OrdenSeeder extends Seeder
 
         $o->save();
       }
-
-
     }
 }
