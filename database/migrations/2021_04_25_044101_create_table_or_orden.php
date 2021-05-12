@@ -21,7 +21,7 @@ class CreateTableOrOrden extends Migration
             $table->date('fecha_entrega');
 
             $table->integer('id_usuario')->nullable();
-            $table->integer('id_cliente');
+            $table->integer('id_cliente')->nullable();
 
             // Datos Remitente
             $table->string('remitente_nombre')->nullable();
