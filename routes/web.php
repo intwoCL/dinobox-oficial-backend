@@ -15,7 +15,9 @@ Route::middleware('auth.usuario')->group( function () {
   Route::get('home','DashboardController@home')->name('home');
 
 
-  Route::resource('ordenes', 'Orden\OrdenController');
+  Route::resource('orden', 'Orden\OrdenController');
+  Route::get('ordenes/pendientes', 'Orden\OrdenController@indexPendientes')->name('ordenes.index.pendientes');
+  Route::get('ordenes/asignados/{fecha}', 'Orden\OrdenController@indexAsignados')->name('ordenes.index.asignados');
 
   //  {API}
   Route::post('api/v0/clientes', 'Api\V0\ClienteController@show')->name('api.v0.cliente.show');

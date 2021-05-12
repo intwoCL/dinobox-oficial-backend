@@ -8,9 +8,18 @@ use App\Models\Sistema\Cliente;
 
 class OrdenController extends Controller
 {
-  public function index() {
-    $ordenes = Orden::get();
+  public function indexPendientes() {
+    $ordenes = Orden::getPendientes();
     return view('orden.index', compact('ordenes'));
+  }
+
+  public function indexAsignados($fecha) {
+    try {
+      $ordenes = Orden::getAsignados($fecha);
+      return view('orden.index', compact('ordenes'));
+    } catch (\Throwable $th) {
+      return back()->with('danger','error intente nuevamente');
+    }
   }
 
   public function create() {

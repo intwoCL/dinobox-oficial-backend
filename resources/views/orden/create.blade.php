@@ -11,8 +11,8 @@
 @endpush
 @section('content')
 @component('components.button._back')
-  {{-- @slot('route', route('tomadehora.agenda.index',$e->codigo)) --}}
-  {{-- @slot('color', 'dark') --}}
+  @slot('route', route('ordenes.index'))
+  @slot('color', 'dark')
   @slot('body', "Agendar hora al alumno")
 @endcomponent
 <section class="content">

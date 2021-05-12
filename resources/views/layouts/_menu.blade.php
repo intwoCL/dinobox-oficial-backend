@@ -29,8 +29,8 @@
 
         <li class="nav-header">Gestión</li>
 
-        <li class="nav-item {{ open('admin/departamento*') }}">
-          <a href="{{ route('ordenes.index') }}" class="nav-link">
+        <li class="nav-item {{ open('orden*') }}">
+          <a href="{{ route('ordenes.index.pendientes') }}" class="nav-link">
             <i class="fas fa-boxes nav-icon"></i>
             <p>Orden</p>
           </a>

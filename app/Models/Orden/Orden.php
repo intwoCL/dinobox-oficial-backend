@@ -18,17 +18,30 @@ class Orden extends Model
   ];
 
   const ESTADO_GENERAL = [
-    1 => 'Asginación de retiro',
-    2 => 'En transito a retiro',
-    3 => 'Recepcionado',
-    4 => 'Recepción de despacho',
-    5 => 'Asignación de despacho',
-    6 => 'En camino a despacho',
-    7 => 'Entragado',
+    1 => 'Pendiente',
+    2 => 'Asginación de retiro',
+    3 => 'En transito a retiro',
+    4 => 'Recepcionado',
+    5 => 'Recepción de despacho',
+    6 => 'Asignación de despacho',
+    7 => 'En camino a despacho',
+    8 => 'Entragado',
     100 => 'error',
   ];
 
   public function getFecha(){
     return new ConvertDatetime($this->fecha_entrega);
+  }
+
+  public function getEstado(){
+    return self::ESTADO_GENERAL($this->estado);
+  }
+
+  public function scopeGetPendientes($query){
+    return $query->where('activo',1)->where('estado',1)->get();
+  }
+
+  public function scopeGetAsignados($query, $fecha){
+    return $query->where('activo',1)->where('estado','<>',1)->where('fecha_entrega',$fecha)->get();
   }
 }
