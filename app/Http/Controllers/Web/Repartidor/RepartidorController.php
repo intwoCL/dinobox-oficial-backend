@@ -10,9 +10,7 @@ class RepartidorController extends Controller
   public function index(){
 
     $today = date('Y-m-d');
-    $ordenes = OrdenRepartidor::where('id_usuario',current_user()->id)->with(['orden'])->get()->where('fecha_entrega',$today);
-
-    return $ordenes;
+    $ordenes = OrdenRepartidor::where('id_repartidor',current_user()->id)->with(['orden'])->get()->where('orden.fecha_entrega',$today);
 
     return view('web.repartidor.index',compact('ordenes'));
   }

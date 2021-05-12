@@ -3,8 +3,13 @@
 
 @endpush
 @section('content')
+@component('components.button._back')
+  {{-- @slot('route', route('admin.cliente.index'))
+  @slot('color', 'secondary') --}}
+  @slot('body', 'Pedidos')
+@endcomponent
 
-<ol class="list-group list-group-numbered">
+{{-- <ol class="list-group list-group-numbered">
   <li class="list-group-item d-flex justify-content-between align-items-start">
     <div class="ms-2 me-auto">
       <div class="fw-bold">Subheading</div>
@@ -26,7 +31,7 @@
     </div>
     <span class="badge bg-primary rounded-pill">14</span>
   </li>
-</ol>
+</ol> --}}
 
 <div class="list-group">
   @foreach ($ordenes as $or)
