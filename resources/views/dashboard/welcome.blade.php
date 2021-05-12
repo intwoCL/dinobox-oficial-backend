@@ -88,9 +88,8 @@
         <span id="typed"></span>
       </p>
 
-      <div style="width: 100px; height: 100px;">
-        {!! $icon !!}
-      </div>
+
+      <img src="{{ $icon }}" width="100%" height="200px" alt="">
 
       {{-- <img src="{!! $icon !!}" id="svg" alt="" width="400px" class="py-2"> --}}
       {{-- <img src="{{ $icon }}" alt="Kiwi standing on oval"> --}}

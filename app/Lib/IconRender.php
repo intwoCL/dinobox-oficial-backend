@@ -17,11 +17,19 @@ class IconRender {
     return $this->new_color ? $this->changeColor() : $this->getIcons();
   }
 
+  public function getIMGBase64() {
+    return $this->new_color ? $this->convertToBase64($this->changeColor()) : $this->getIcons();
+  }
+
   private function getIcons() {
     return $this->icons->getIcons()[$this->name];
   }
 
   private function changeColor() {
     return str_replace($this->base_color, $this->new_color, $this->getIcons());
+  }
+
+  private function convertToBase64($img) {
+    return "data:image/svg+xml;base64," . base64_encode($img);
   }
 }

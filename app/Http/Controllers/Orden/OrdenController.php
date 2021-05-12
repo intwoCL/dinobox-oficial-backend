@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Orden;
 use App\Http\Controllers\Controller;
 use App\Models\Orden\Orden;
 use App\Models\Sistema\Cliente;
+use App\Models\Sistema\Usuario;
 
 class OrdenController extends Controller
 {
   public function indexPendientes() {
     $ordenes = Orden::getPendientes();
-    return view('orden.index', compact('ordenes'));
+    $repartidores = Usuario::getAllRepartidor();
+    return view('orden.index', compact('ordenes','repartidores'));
   }
 
   public function indexAsignados($fecha) {

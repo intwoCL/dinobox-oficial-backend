@@ -16,6 +16,9 @@
     </div>
   </div>
 </section>
+
+
+@include('orden._modal_vincular')
 @endsection
 @push('javascript')
 <script src="/vendor/datatables/jquery.dataTables.js"></script>
@@ -24,6 +27,16 @@
 <script>
   $(function () {
     $("#tableSelect").DataTable();
+
+    $('#assignModal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      var modal = $(this);
+      var id = button.data('alumno');
+      var url = "123123";
+      modal.find('.modal-title').text('¿Desea asignar el alumno?');
+      modal.find('.modal-body input').val(id);
+      modal.find('#formAssign').attr('action',url);
+    });
   });
 </script>
 @endpush

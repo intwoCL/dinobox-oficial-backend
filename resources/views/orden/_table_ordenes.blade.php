@@ -20,7 +20,14 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><button type="button" class="btn btn-outline-success btn-sm">Asignar</button></td>
+        <td>
+          <button type="button" class="btn btn-outline-success btn-sm"
+          data-toggle="modal"
+          data-target="#assignModal"
+          data-alumno="123">
+          Asignar
+        </button>
+        </td>
       </tr>
       @endforeach
     </tbody>
