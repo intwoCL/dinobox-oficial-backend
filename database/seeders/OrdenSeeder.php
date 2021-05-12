@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Faker\Factory as Fake;
 
 use App\Models\Orden\Orden;
+use App\Models\Orden\OrdenRepartidor;
 use Illuminate\Database\Seeder;
 
 class OrdenSeeder extends Seeder
@@ -33,5 +34,17 @@ class OrdenSeeder extends Seeder
 
         $o->save();
       }
+
+      for ($i=1; $i < 5; $i++) {
+        $r = new OrdenRepartidor();
+
+        $r->id_usuario = 1;
+        $r->id_repartidor = 4;
+        $r->id_orden = $i;
+
+        $r->save();
+      }
+
+
     }
 }
