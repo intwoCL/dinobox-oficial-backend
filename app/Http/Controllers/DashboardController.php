@@ -18,4 +18,7 @@ class DashboardController extends Controller
     return view('dashboard.welcome',compact('icon'));
   }
 
+  public function repartidor(){
+    return view('web.repartidor.index');
+  }
 }
