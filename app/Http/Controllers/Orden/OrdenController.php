@@ -7,6 +7,8 @@ use App\Models\Orden\Orden;
 use App\Models\Sistema\Cliente;
 use App\Models\Sistema\Usuario;
 use Illuminate\Http\Request;
+use App\Models\Sistema\Region;
+use App\Models\Sistema\Comuna;
 
 class OrdenController extends Controller
 {
@@ -28,7 +30,9 @@ class OrdenController extends Controller
   public function create() {
 
     // return $clientes;
-    return view('orden.create');
+    $comunas = Comuna::get();
+    $regions = Region::get();
+    return view('orden.create', compact('comunas','regions'));
   }
 
   private function findCode() {
@@ -47,12 +51,21 @@ class OrdenController extends Controller
       $orden->codigo = $this->findCode();
       $orden->id_usuario = current_user()->id;
       $orden->fecha_entrega = date_format(date_create($request->input('fecha_entrega')),'Y-m-d');
-      $orden->remitente_nombre = $request->input('nombre_remitente') . ' ' . $request->input('apellido_remitente');
-      $orden->remitente_direccion = $request->input('calle_remitente') . ' ' . $request->input('numero_remitente');
-      $orden->email_remitente = $request->input('email_remitente');
-      $orden->telefono_remitente = $request->input('telefono_remitente');
-      $orden->destinatario_nombre = $request->input('nombre_destinatario') . ' ' . $request->input('apellido_destinatario');
-      $orden->destinatario_direccion = $request->input('calle_destinatario') . ' ' . $request->input('numero_destinatario');
+
+      //Datos Remitente
+      $orden->remitente_nombre = $request->input('remitente_nombre');
+      $orden->remitente_direccion = $request->input('remitente_direccion');
+      $orden->remitente_email = $request->input('remitente_email');
+      $orden->remitente_telefono = $request->input('remitente_telefono');
+      $orden->remitente_id_comuna = $request->input('remitente_id_comuna');
+
+      //Datos Destinatario
+      $orden->destinatario_nombre = $request->input('destinatario_nombre');
+      $orden->destinatario_direccion = $request->input('destinatario_direccion');
+      $orden->destinatario_email = $request->input('destinatario_email');
+      $orden->destinatario_telefono = $request->input('destinatario_telefono');
+      $orden->destinatario_id_comuna = $request->input('destinatario_id_comuna');
+
       $orden->mensaje = $request->input('mensaje');
       $orden->precio = $request->input('precio');
   

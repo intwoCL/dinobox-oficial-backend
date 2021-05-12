@@ -21,14 +21,21 @@ class CreateTableOrOrden extends Migration
             $table->date('fecha_entrega');
 
             $table->integer('id_usuario')->nullable();
+            $table->integer('id_cliente');
+
             // Datos Remitente
             $table->string('remitente_nombre')->nullable();
             $table->string('remitente_direccion')->nullable();
-            $table->string('email_remitente')->nullable();
-            $table->string('telefono_remitente')->nullable();
+            $table->string('remitente_email')->nullable();
+            $table->string('remitente_telefono')->nullable();
+            $table->foreignId('remitente_id_comuna')->references('id')->on('s_comuna');
+
             // Datos Destinatario
             $table->string('destinatario_nombre')->nullable();
             $table->string('destinatario_direccion')->nullable();
+            $table->string('destinatario_email')->nullable();
+            $table->string('destinatario_telefono')->nullable();
+            $table->foreignId('destinatario_id_comuna')->references('id')->on('s_comuna');
             $table->string('mensaje')->nullable();
 
             $table->string('foto1')->nullable();
