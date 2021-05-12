@@ -2,13 +2,13 @@
   <ul class="nav nav-tabs">
     <li class="nav-item">
       <a class="nav-link {{ activeTab("orden/edit") }}" href="{{ route('ordenes.create')  }}">
-        <i class="fas fa-user-plus mr-2"></i>
-        Nuevo
+        <i class="fas fa-box-open mr-2"></i></i>
+        Nueva Orden
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link {{ activeTab("orden/cliente") }}" href="{{ route('ordenes.index') }}">
-        <i class="fas fa-users mr-2"></i>
+        <i class="fas fa-box mr-2"></i></i>
         Orden
       </a>
     </li>

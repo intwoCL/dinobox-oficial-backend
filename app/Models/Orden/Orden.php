@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Casts\Json;
 use App\Services\ConvertDatetime;
+use App\Services\Currency;
 
 class Orden extends Model
 {
@@ -30,5 +31,13 @@ class Orden extends Model
 
   public function getFecha(){
     return new ConvertDatetime($this->fecha_entrega);
+  }
+
+  public function getFechaEmision(){
+    return new ConvertDateTime($this->fecha_emision);
+  }
+
+  public function getPrecioEnvio(){
+    return (new Currency($this->precio_envio))->money();
   }
 }

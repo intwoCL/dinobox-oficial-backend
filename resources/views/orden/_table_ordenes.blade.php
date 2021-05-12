@@ -2,25 +2,37 @@
   <table id="tableSelect" class="table table-bordered table-hover table-sm text-center">
     <thead>
     <tr>
-      <th>Perfil</th>
-      <th>Imagen</th>
-      <th>Usuario</th>
-      <th>Nombre</th>
-      <th>Correo</th>
+      <th>Fecha Emisión</th>
+      <th>Rut Remiente</th>
+      <th>Nombre Remitente</th>
+      <th>Dirección Remitente</th>
+      <th>Nombre Destinatario</th>
+      <th>Dirección Destinatario</th>
+      <th>Fecha Entrega</th>
+      <th>Precio Envió</th>
     </tr>
     </thead>
     <tbody>
       @foreach ($ordenes as $o)
       <tr>
+        <td>{{ $o->getFechaEmision()->getDate() }}</td>
+        <td class="align-middle">
+          {{ $o->rut_remitente }}
+        </td>
+        <td class="align-middle">
+          {{ $o->nombre_remitente }}
+        </td>
+        <td class="align-middle">
+          {{ $o->direccion_remitente }}
+        </td>
+        <td class="align-middle">
+          {{ $o->nombre_destinatario }}
+        </td>
+        <td class="align-middle">
+          {{ $o->direccion_remitente }}
+        </td>
         <td>{{ $o->getFecha()->getDate() }}</td>
-        <td class="align-middle">
-          {{-- <img src="{{ $u->present()->getPhoto() }}" alt="Imagenes de fondo" height="50px" srcset=""> --}}
-        </td>
-        <td class="align-middle">
-          {{-- <strong>{{$u->username}}</strong> --}}
-        </td>
-        {{-- <td class="align-middle">{{$u->present()->nombre_completo()}}</td> --}}
-        {{-- <td class="align-middle">{{$u->correo}}</td> --}}
+        <td>${{ $o->getPrecioEnvio() }}</td>
       </tr>
       @endforeach
     </tbody>
