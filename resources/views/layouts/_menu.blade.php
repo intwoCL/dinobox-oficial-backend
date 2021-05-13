@@ -27,49 +27,11 @@
           </a>
         </li>
 
-        <li class="nav-header">Administración</li>
-
-        <li class="nav-item {{ open('admin/departamento*') }}">
-          <a href="" class="nav-link">
-            <i class="fas fa-boxes nav-icon"></i>
-            <p>Orden</p>
-          </a>
-        </li>
-
-        <li class="nav-item {{ open('admin/departamento*') }}">
-          <a href="" class="nav-link">
-            <i class="fas fa-chart-bar nav-icon"></i>
-            <p>Reportes</p>
-          </a>
-        </li>
-
-        <li class="nav-item {{ open('admin/sistema*') }}">
-          <a href="" class="nav-link">
-            <i class="fas fa-cogs nav-icon"></i>
-            <p>Configuración</p>
-          </a>
-        </li>
-        <li class="nav-item {{ open('admin/utils*') }}{{ open('admin/reportes/consulta*') }}">
-          <a href="" class="nav-link">
-            <i class="fas fa-th-large nav-icon"></i>
-            <p>Utils</p>
-          </a>
-        </li>
-
-        <li class="nav-header">Usuarios</li>
-        <li class="nav-item {{ open('admin/usuario') }}{{ open('admin/usuario/*') }}">
-          <a href="{{ route('admin.usuario.index') }}" class="nav-link">
-            <i class="fas fa-user nav-icon"></i>
-            <p>Usuarios</p>
-          </a>
-        </li>
-
-        <li class="nav-item {{ open('admin/cliente') }}{{ open('admin/cliente/*') }}">
-          <a href="{{ route('admin.cliente.index') }}" class="nav-link">
-            <i class="fas fa-id-card nav-icon"></i>
-            <p>Clientes</p>
-          </a>
-        </li>
+        @if (current_user()->repartidor())
+          @include('layouts._menu_repartidor')
+        @else
+          @include('layouts._menu_admin')
+        @endif
       </ul>
     </nav>
   </div>

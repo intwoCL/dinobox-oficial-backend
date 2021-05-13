@@ -6,9 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Casts\Json;
-use App\Lib\Permissions;
 
-use App\Models\TomaHora\Especialidad;
 use App\Presenters\Sistema\UsuarioPresenter;
 use App\Services\ConvertDatetime;
 
@@ -39,6 +37,10 @@ class Usuario extends Authenticatable
     return $this->hasOne(SucursalUsuario::class,'id_usuario');
   }
 
+  public function vehiculos(){
+    return $this->hasMany(Vehiculo::class,'id_usuario');
+  }
+
   // public function sucursalesUsuario(){
   //   return $this->hasMany(SucursalUsuario::class,'id_usuario')->with('sucursal');
   // }
@@ -55,16 +57,20 @@ class Usuario extends Authenticatable
     return new ConvertDatetime($this->last_session);
   }
 
-  public function is_gestor(){
+  public function gestor(){
     return $this->rol() === 1;
   }
 
-  public function is_empleado(){
+  public function empleado(){
     return $this->rol() === 2;
   }
 
-  public function is_repartidor(){
+  public function repartidor(){
     return $this->rol() === 3;
+  }
+
+  public function is_admin(){
+    return $this->admin;
   }
 
   public function rol() {
@@ -78,5 +84,25 @@ class Usuario extends Authenticatable
 
   public function isHappy(){
     return $this->birthdate ? (new ConvertDatetime($this->birthdate))->isToday() : false;
+  }
+
+  public function scopeGetAllRol($query,$rol){
+    return $query->where('activo',true)
+                ->where('bloqueado',false)
+                ->with('sucursalUsuario')
+                ->get()
+                ->where('sucursalUsuario.rol',$rol);
+  }
+
+  public function scopeGetAllGestor(){
+    return $this->getAllRol(1);
+  }
+
+  public function scopeGetAllEmpleado(){
+    return $this->getAllRol(2);
+  }
+
+  public function scopeGetAllRepartidor(){
+    return $this->getAllRol(3);
   }
 }

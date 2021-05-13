@@ -32,7 +32,7 @@ class ConvertDatetime
   }
 
   public function isToday(){
-    return date('d-m-Y') == $this->getDate();
+    return date('d-m') == $this->getDateTimeFormat('d-m');
   }
 
   public function getDateTimeFormat($format){

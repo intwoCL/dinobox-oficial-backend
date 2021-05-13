@@ -14,11 +14,27 @@ use App\Models\Sistema\SucursalUsuario;
 use App\Models\Sistema\Vehiculo;
 use App\Services\ImportImage;
 use App\Services\SaveImage;
+use App\Services\Policies\Sistema\UsuarioPolicy;
 
 class UsuarioController extends Controller
 {
+  private $policy;
+
+  public function __construct() {
+    $this->policy = new UsuarioPolicy();
+  }
+
   public function index(){
-    $usuarios = Usuario::where('activo',true)->get();
+    $this->policy->index();
+
+    $usuarios = Usuario::getAllEmpleado();
+    return view('admin.usuario.index', compact('usuarios'));
+  }
+
+  public function indexRepartidor(){
+    $this->policy->indexRepartidor();
+
+    $usuarios = Usuario::getAllRepartidor();
     return view('admin.usuario.index', compact('usuarios'));
   }
 
@@ -45,9 +61,8 @@ class UsuarioController extends Controller
 
       if(!empty($request->file('image'))) {
         $filename = time();
-        $folder = 'pablo';
-
-        $user->imagen = SaveImage::save($request, 'image', $filename, $folder);
+        $folder = 'public/photo_usuarios';
+        $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
       }
 
       $user->save();
@@ -68,10 +83,9 @@ class UsuarioController extends Controller
 
   public function edit($id){
     try {
-      $tipos = Vehiculo::STATE;
       $roles = Permissions::ROLES;
       $u = Usuario::findOrFail($id);
-      return view('admin.usuario.edit',compact('u','roles','tipos'));
+      return view('admin.usuario.edit',compact('u','roles'));
     } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
     }

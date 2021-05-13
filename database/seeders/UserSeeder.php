@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
       $u->apellido = "uno";
       $u->correo = "admin@intwo.cl";
       $u->admin = true;
-      $u->run = "19791763k";      
+      $u->run = "19791763k";
       $u->save();
 
       $su = new SucursalUsuario();
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
       $u->nombre = "gestor";
       $u->apellido = "uno";
       $u->correo = "gestor@intwo.cl";
-      $u->run = "204657830";  
+      $u->run = "204657830";
       $u->save();
 
       $su = new SucursalUsuario();
@@ -57,7 +57,7 @@ class UserSeeder extends Seeder
       $u->nombre = "empleado";
       $u->apellido = "uno";
       $u->correo = "empleado@intwo.cl";
-      $u->run = "10469537K";  
+      $u->run = "10469537K";
       $u->save();
 
       $su = new SucursalUsuario();
@@ -72,7 +72,7 @@ class UserSeeder extends Seeder
       $u->nombre = "repartidor 1";
       $u->apellido = "uno";
       $u->correo = "repartidor1@intwo.cl";
-      $u->run = "178307632";  
+      $u->run = "178307632";
       $u->save();
 
       $su = new SucursalUsuario();

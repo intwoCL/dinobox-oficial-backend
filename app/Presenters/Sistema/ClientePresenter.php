@@ -5,7 +5,7 @@ use App\Presenters\Presenter;
 use App\Services\Imagen;
 
 class ClientePresenter extends Presenter{
-  
+
   private $folderImg = 'photo_clientes';
   private $imgDefault = "/dist/img/img-default-user.jpg";
 

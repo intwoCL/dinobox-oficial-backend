@@ -23,7 +23,7 @@
               <div class="form-group row">
                 <label for="f1" class="col-form-label col-sm-2">Rut</label>
                 <div class="input-group col-sm-10">
-                  <input type="text" class="form-control" name="run" placeholder=""
+                  <input type="text" class="form-control" name="run" placeholder="Ej: 19222888K"
                     required="" maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
                   <small id="error" class="text-danger"></small>
                 </div>

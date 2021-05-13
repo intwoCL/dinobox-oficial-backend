@@ -3,7 +3,7 @@
 @component('components.button._back')
   @slot('route', route('admin.cliente.index'))
   @slot('color', 'secondary')
-  @slot('body', 'Cliente - Create')
+  @slot('body', 'Agregar cliente')
 @endcomponent
 @push('stylesheet')
   <link rel="stylesheet" href="/vendor/clockpicker/css/bootstrap-clockpicker.min.css">
@@ -14,16 +14,16 @@
     <div class="row">
       <div class="col-md-6">
         <div class="card card-dark">
-          <div class="card-header">
+          {{-- <div class="card-header">
             <h3 class="card-title">Nuevo Cliente</h3>
-          </div>
+          </div> --}}
           <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.cliente.store') }}"  enctype="multipart/form-data">
             @csrf
             <div class="card-body">
               <div class="form-group row">
                 <label for="f1" class="col-form-label col-sm-2">Rut</label>
                 <div class="input-group col-sm-10">
-                  <input type="text" class="form-control" name="run" placeholder=""
+                  <input type="text" class="form-control" name="run" placeholder="Ej: 19222888K"
                     required="" maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
                   <small id="error" class="text-danger"></small>
                 </div>
@@ -63,7 +63,7 @@
                 <label for="fecha" class="col-sm-4 col-form-label">Fecha Nacimiento</label>
                 <div class="input-group date col-sm-8">
                   <span class="input-group-addon btn btn-info btn-sm"><i class="fa fa-calendar"></i></span>
-                  <input type="text" class="form-control" readonly name="birthdate" required value="{{ old('birthdate') }}">
+                  <input type="text" class="form-control" readonly name="birthdate" required value="{{ old('birthdate') ?? date('d-m-Y') }}">
                 </div>
                 <div class="col-sm-12">
                   {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger">:message</small>') !!}

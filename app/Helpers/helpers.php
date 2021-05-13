@@ -14,6 +14,11 @@ function helper_random_string_number($longitud) {
   return $key;
 }
 
+
+function activeTab($url) {
+  return request()->is($url) ? 'active' : '';
+}
+
 /**
 * Random string por su longitud
 *

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comuna extends Model
 {
   use HasFactory;
-  
+
   protected $table = 's_comuna';
 
   public function region(){
