@@ -9,6 +9,7 @@ use App\Models\Sistema\Usuario;
 use Illuminate\Http\Request;
 use App\Models\Sistema\Region;
 use App\Models\Sistema\Comuna;
+use App\Http\Requests\OrdenCreateRequest;
 
 class OrdenController extends Controller
 {
@@ -47,9 +48,11 @@ class OrdenController extends Controller
 
   public function store(Request $request) {
     try {
+
       $orden = new Orden();
       $orden->codigo = $this->findCode();
       $orden->id_usuario = current_user()->id;
+      $orden->id_cliente = $request->input('id_cliente');
       $orden->fecha_entrega = date_format(date_create($request->input('fecha_entrega')),'Y-m-d');
 
       //Datos Remitente
@@ -66,14 +69,14 @@ class OrdenController extends Controller
       $orden->destinatario_telefono = $request->input('destinatario_telefono');
       $orden->destinatario_id_comuna = $request->input('destinatario_id_comuna');
 
-      $orden->mensaje = $request->input('mensaje');
+      $orden->mensaje = $request->input('mensaje',null);
       $orden->precio = $request->input('precio');
   
       $orden->save();
 
       return redirect()->route('ordenes.index.pendientes')->with('success','Se ha creado correctamente');
     } catch (\Throwable $th) {
-      //throw $th;
+      // return $th;
       return back()->with('info','Error intente nuevamente');
     }
   }

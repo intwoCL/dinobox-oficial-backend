@@ -2,24 +2,32 @@
   <table id="tableSelect" class="table table-bordered table-hover table-sm">
     <thead>
     <tr>
-      <th>COD</th>
-      <th>Fecha</th>
-      <th>Tipo</th>
-      <th>Valor</th>
-      <th>Comuna emitente</th>
-      <th>Comuna destino</th>
-      <th></th>
+      <th>Código</th>
+      <th>Fecha Emisión</th>
+      <th>Fecha Entrega</th>
+      <th>Remitente</th>
+      <th>Destinatario</th>
+      <th>Dirección Origen</th>
+      <th>Dirección Destino</th>
+      <th>Comuna Origen</th>
+      <th>Comuna Destino</th>
+      <th>Precio</th>
+      <th>Asignación</th>
     </tr>
     </thead>
     <tbody>
       @foreach ($ordenes as $o)
       <tr>
         <td><a href="">{{ $o->codigo }}</a></td>
+        <td>{{ $o->getFechaEmision()->getDate() }}</td>
         <td>{{ $o->getFecha()->getDate() }}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{ $o->remitente_nombre }}</td>
+        <td>{{ $o->destinatario_nombre }}</td>
+        <td>{{ $o->remitente_direccion }}</td>
+        <td>{{ $o->destinatario_direccion }}</td>
+        <td>{{ $o->remitenteComuna->nombre }}</td>
+        <td>{{ $o->destinatarioComuna->nombre }}</td>
+        <td>$ {{ $o->getPrecio() }}</td>
         <td>
           <button type="button" class="btn btn-outline-success btn-sm"
           data-toggle="modal"

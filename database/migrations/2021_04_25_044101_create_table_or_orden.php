@@ -28,16 +28,17 @@ class CreateTableOrOrden extends Migration
             $table->string('remitente_direccion')->nullable();
             $table->string('remitente_email')->nullable();
             $table->string('remitente_telefono')->nullable();
-            $table->integer('remitente_id_comuna')->nullable();
+            $table->foreignId('remitente_id_comuna')->references('id')->on('s_comuna');
 
             // Datos Destinatario
             $table->string('destinatario_nombre')->nullable();
             $table->string('destinatario_direccion')->nullable();
             $table->string('destinatario_email')->nullable();
             $table->string('destinatario_telefono')->nullable();
-            $table->integer('destinatario_id_comuna')->nullable();
+            $table->foreignId('destinatario_id_comuna')->references('id')->on('s_comuna');
             $table->string('mensaje')->nullable();
 
+            //Datos Orden
             $table->string('foto1')->nullable();
             $table->string('foto2')->nullable();
             $table->json('config')->nullable();

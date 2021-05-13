@@ -26,14 +26,14 @@
           <h6><strong>Datos Remitente:</strong></h6>
           <br>
           <div class="input-group">
-            <label class="col-sm-4 col-form-label">Encontrar usuario</label>
-            <input type="text" class="form-control" id="rut" name="rut" placeholder=""
-              required maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
+            {{-- <label class="col-sm-4 col-form-label"></label> --}}
+            {{-- <input type="text" class="form-control" id="rut" name="rut" placeholder=""
+              required maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)"> --}}
             <span class="input-group-append">
-              <button type="button" id="sendRut" name="opcion" autofocus value="buscar" onclick="buscarAlumnos()" class="btn btn-success" onkeypress="pulsar(event)">Buscar</button>
+              {{-- <button type="button" id="sendRut" name="opcion" autofocus value="buscar" onclick="buscarAlumnos()" class="btn btn-success" onkeypress="pulsar(event)">Buscar</button> --}}
 
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFind">
-                <i class="fa fa-search"></i>
+                <i class="fa fa-search"> Encontrar usuario</i>
               </button>
             </span>
             <p class="col-md-12">
@@ -62,8 +62,8 @@
             <div class="form-group row">
               <div class="form-group col-md-12">
                 <label for="inputEmail4">Nombre</label>
-                <input type="text" class="form-control {{ $errors->has('nombre_remitente') ? 'is-invalid' : '' }}" name="nombre_remitente" id="nombre_remitente" autocomplete="off" value="{{ old('nombre_remitente') }}" placeholder="Nombre" required>
-                {!! $errors->first('nombre_remitente', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                <input type="text" class="form-control {{ $errors->has('remitente_nombre') ? 'is-invalid' : '' }}" name="remitente_nombre" id="remitente_nombre" autocomplete="off" value="{{ old('remitente_nombre') }}" placeholder="Nombre" required>
+                {!! $errors->first('remitente_nombre', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
               {{-- <div class="form-group col-md-6">
                 <label for="inputEmail4">Apellido Remitente</label>
@@ -108,7 +108,7 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Teléfono</label>
-                <input type="tel" class="form-control" name="remitente_telefono" id="remitente_telefono" autocomplete="off" maxlength="9" placeholder="Ingrese teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos">
+                <input type="tel" class="form-control" name="remitente_telefono" id="remitente_telefono" autocomplete="off" maxlength="9" placeholder="Ingrese teléfono aqui...">
               </div>
             </div>
 
@@ -159,17 +159,17 @@
             <div class="form-group row">
               <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Región</label>
               <div class="col-sm-10">
-                <select class="custom-select" id="select_region2" name="region" onChange="CargarComunas()">
+                <select class="custom-select" id="select_region2" name="region" onChange="CargarComunas2()">
                 </select>
               </div>
             </div>
             <div class="form-group row">
               <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Comuna</label>
               <div class="col-sm-10">
-                <select class="custom-select {{ $errors->has('remitente_id_comuna') ? 'is-invalid' : '' }}" name='remitente_id_comuna' id="select_comuna2">
+                <select class="custom-select {{ $errors->has('destinatario_id_comuna') ? 'is-invalid' : '' }}" name='destinatario_id_comuna' id="select_comuna2">
                 </select>
               </div>
-              {!! $errors->first('remitente_id_comuna', ' <small id="inputPassword" class="form-text text-danger">:message</small>') !!}
+              {!! $errors->first('destinatario_id_comuna', ' <small id="inputPassword" class="form-text text-danger">:message</small>') !!}
             </div>
 
             <div class="form-group row">
@@ -179,13 +179,13 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Teléfono</label>
-                <input type="tel" class="form-control" name="destinatario_telefono" id="destinatario_telefono" autocomplete="off" maxlength="9" placeholder="Ingrese teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos">
+                <input type="tel" class="form-control" name="destinatario_telefono" id="destinatario_telefono" autocomplete="off" maxlength="9" placeholder="Ingrese teléfono aqui...">
               </div>
             </div>
 
             <div class="form-group">
               <label for="inputAddress">Precio</label>
-              <input type="tel" class="form-control" name="precio" id="precio" autocomplete="off" maxlength="9" placeholder="0">
+              <input type="tel" class="form-control" name="precio" id="precio" autocomplete="off" maxlength="9" placeholder="0" required>
             </div>
 
             <div class="form-group">
@@ -277,7 +277,7 @@
     console.log('direccion',direccion);
     // clearForm();
 
-    document.getElementById('nombre_remitente').value = cliente.nombres;
+    document.getElementById('remitente_nombre').value = cliente.nombres;
     document.getElementById('id_cliente').value = cliente.id;
     // document.getElementById('id_direccion').value = user.correo;
 
@@ -294,6 +294,7 @@
   }
 </script>
 <script>
+  //Mejor sección con Vue
   var comunas = [
     @foreach ($comunas as $c)
       {'name':'{{ $c->nombre }}','id':'{{ $c->id }}','id_region':'{{ $c->id_region}}'},
@@ -304,9 +305,11 @@
       {'name':'{{ $r->nombre }}','id_region':'{{ $r->id }}'},
     @endforeach
   ];
+  
   //Remitente
   CargarRegiones('select_region')
   CargarComunas();
+
   //Destinatario
   CargarRegiones2('select_region2')
   CargarComunas2();
