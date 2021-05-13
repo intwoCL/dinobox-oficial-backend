@@ -18,6 +18,10 @@ Route::middleware('auth.usuario')->group( function () {
   // REPARTIDOR
   Route::get('repartidor/home','Web\Repartidor\RepartidorController@index')->name('repartidor.home');
 
+  Route::get('repartidor/orden/{codigo}','Web\Repartidor\RepartidorController@ordenShow')->name('repartidor.ordenShow');
+  Route::put('repartidor/orden/{codigo}','Web\Repartidor\RepartidorController@ordenUpdate')->name('repartidor.ordenUpdate');
+
+
 
   Route::resource('orden', 'Orden\OrdenController');
   Route::get('ordenes/pendientes', 'Orden\OrdenController@indexPendientes')->name('ordenes.index.pendientes');
