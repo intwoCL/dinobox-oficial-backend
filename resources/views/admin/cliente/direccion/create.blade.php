@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
 @push('stylesheet')
+<style>
+  .dropdown-toggle::after {
+      display: none;
+  }
+</style>
 @endpush
 @component('components.button._back')
   @slot('route', route('admin.cliente.index'))
@@ -12,6 +17,8 @@
     <div class="row">
       @include('admin.cliente._tabs_cliente')
       <div class="col-md-6">
+
+
         <div class="card">
           {{-- <div class="card-header">
           </div> --}}
