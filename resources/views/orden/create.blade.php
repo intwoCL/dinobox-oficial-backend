@@ -24,7 +24,6 @@
         </div>
         <div class="card-body">
           <h6><strong>Datos Remitente:</strong></h6>
-          <br>
           <div class="input-group">
             {{-- <label class="col-sm-4 col-form-label"></label> --}}
             {{-- <input type="text" class="form-control" id="rut" name="rut" placeholder=""
@@ -33,7 +32,7 @@
               {{-- <button type="button" id="sendRut" name="opcion" autofocus value="buscar" onclick="buscarAlumnos()" class="btn btn-success" onkeypress="pulsar(event)">Buscar</button> --}}
 
               <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalFind">
-                <i class="fa fa-search"> Encontrar usuario</i>
+                <i class="fa fa-search"></i> Encontrar usuario
               </button>
             </span>
             <p class="col-md-12">
@@ -63,7 +62,7 @@
               <div class="form-group col-md-12">
                 <label for="inputEmail4">Nombre</label>
                 <input type="text" class="form-control {{ $errors->has('remitente_nombre') ? 'is-invalid' : '' }}" name="remitente_nombre" id="remitente_nombre" autocomplete="off" value="{{ old('remitente_nombre') }}" placeholder="Nombre" required>
-                {!! $errors->first('remitente_nombre', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                {!! $errors->first('remitente_nombre', '<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
               {{-- <div class="form-group col-md-6">
                 <label for="inputEmail4">Apellido Remitente</label>
@@ -76,7 +75,7 @@
               <div class="form-group col-md-12">
                 <label for="inputEmail4">Dirección</label>
                 <input type="text" class="form-control {{ $errors->has('remitente_direccion') ? 'is-invalid' : '' }}" name="remitente_direccion" id="remitente_direccion" autocomplete="off" value="{{ old('remitente_direccion') }}" placeholder="Dirección" required>
-                {!! $errors->first('remitente_direccion', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                {!! $errors->first('remitente_direccion', '<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
               {{-- <div class="form-group col-md-6">
                 <label for="inputEmail4">Numero Remitente</label>
@@ -98,17 +97,19 @@
                 <select class="custom-select {{ $errors->has('remitente_id_comuna') ? 'is-invalid' : '' }}" name='remitente_id_comuna' id="select_comuna">
                 </select>
               </div>
-              {!! $errors->first('remitente_id_comuna', ' <small id="inputPassword" class="form-text text-danger">:message</small>') !!}
+              {!! $errors->first('remitente_id_comuna', '<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
             </div>
 
             <div class="form-group row">
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Correo</label>
-                <input type="mail" class="form-control {{ $errors->has('remitente_email') ? 'is-invalid' : '' }}" name="remitente_email" id="email" value="{{ old('remitente_email') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();">
+                <input type="mail" class="form-control {{ $errors->has('remitente_email') ? 'is-invalid' : '' }}" name="remitente_email" id="remitente_email" value="{{ old('remitente_email') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
+                {!! $errors->first('remitente_email', '<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
               </div>
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Teléfono</label>
-                <input type="tel" class="form-control" name="remitente_telefono" id="remitente_telefono" autocomplete="off" maxlength="9" placeholder="Ingrese teléfono aqui...">
+                <input type="tel" class="form-control" name="remitente_telefono" id="remitente_telefono" autocomplete="off" maxlength="9" placeholder="Ingrese teléfono aqui..." required>
+                {!! $errors->first('remitente_telefono', '<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
               </div>
             </div>
 
@@ -175,17 +176,19 @@
             <div class="form-group row">
               <div class="form-group col-md-6">
                 <label for="inputEmail4">Correo</label>
-                <input type="mail" class="form-control {{ $errors->has('destinatario_email') ? 'is-invalid' : '' }}" name="destinatario_email" id="email" value="{{ old('destinatario_email') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();">
+                <input type="mail" class="form-control {{ $errors->has('destinatario_email') ? 'is-invalid' : '' }}" name="destinatario_email" id="destinatario_email" value="{{ old('destinatario_email') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Teléfono</label>
-                <input type="tel" class="form-control" name="destinatario_telefono" id="destinatario_telefono" autocomplete="off" maxlength="9" placeholder="Ingrese teléfono aqui...">
+                <input type="tel" class="form-control" name="destinatario_telefono" id="destinatario_telefono" autocomplete="off" maxlength="9" placeholder="Ingrese teléfono aqui..." required>
               </div>
             </div>
 
             <div class="form-group">
               <label for="inputAddress">Precio</label>
               <input type="tel" class="form-control" name="precio" id="precio" autocomplete="off" maxlength="9" placeholder="0" required>
+              {!! $errors->first('precio', '<small class="form-text text-danger">:message</small>') !!}
+              <p id="limitC"></p>
             </div>
 
             <div class="form-group">
@@ -279,7 +282,10 @@
 
     document.getElementById('remitente_nombre').value = cliente.nombres;
     document.getElementById('id_cliente').value = cliente.id;
-    // document.getElementById('id_direccion').value = user.correo;
+    document.getElementById('remitente_direccion').value = direccion.calle + ' ' + direccion.numero;
+    document.getElementById('remitente_email').value = cliente.correo;
+    document.getElementById("select_region").value = direccion.id_region;
+    CargarComunaR(direccion.id_comuna);
 
     // document.getElementById('success').innerHTML = "Encontrado.";
 
@@ -294,7 +300,7 @@
   }
 </script>
 <script>
-  //Mejor sección con Vue
+  //Mejorar sección con Vue
   var comunas = [
     @foreach ($comunas as $c)
       {'name':'{{ $c->nombre }}','id':'{{ $c->id }}','id_region':'{{ $c->id_region}}'},
@@ -322,6 +328,23 @@
         select.append('<option value=' + value.id_region + '>' + value.name + '</option>');
     });
   }
+
+  function CargarComunaR(id){
+    var select = $('#select_comuna');
+    select.find('option').remove();
+
+    var id_r = document.getElementById("select_region").value;
+    var coms = comunas.filter( c => c.id_region==id_r);
+
+    $.each(coms, function(key,value) {
+        if (value.id == id) {
+          select.append('<option selected value=' + value.id + '>' + value.name + '</option>');
+        } else {
+          select.append('<option value=' + value.id + '>' + value.name + '</option>');
+        }
+    });
+  }
+
   function CargarComunas(){
     var select = $('#select_comuna');
     select.find('option').remove();

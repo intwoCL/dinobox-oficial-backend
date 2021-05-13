@@ -123,10 +123,10 @@
               </tr>
               </thead>
               <tbody>
-                <tr v-for="comuna in cliente.direcciones" :key="comuna.id">
-                  <td>{{ comuna.nombre }}</td>
+                <tr v-for="direccion in cliente.direcciones" :key="direccion.id">
+                  <td>{{ direccion.direccion }}</td>
                   <td>
-                    <button class="btn btn-success btn-xs" v-on:click="select(cliente, comuna)">
+                    <button class="btn btn-success btn-xs" v-on:click="select(cliente, direccion)">
                       SELECCIONAR
                     </button>
                   </td>

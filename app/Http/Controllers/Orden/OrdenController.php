@@ -46,7 +46,7 @@ class OrdenController extends Controller
     }
   }
 
-  public function store(Request $request) {
+  public function store(OrdenCreateRequest $request) {
     try {
 
       $orden = new Orden();
