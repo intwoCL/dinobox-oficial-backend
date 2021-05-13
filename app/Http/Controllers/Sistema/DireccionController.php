@@ -15,7 +15,7 @@ class DireccionController extends Controller
     $comunas = Comuna::get();
     $regions = Region::get();
     $c = Cliente::with('direcciones')->findOrFail($id_cliente);
-    return view('admin.cliente.direccion',compact('c','comunas','regions'));
+    return view('admin.cliente.direccion.index',compact('c','comunas','regions'));
   }
 
   public function store(Request $request, $id){
@@ -35,4 +35,12 @@ class DireccionController extends Controller
       return back()->with('info','Error Intente nuevamente.');
     }
   }
+
+  public function create($id_cliente){
+    $comunas = Comuna::get();
+    $regions = Region::get();
+    $c = Cliente::with('direcciones')->findOrFail($id_cliente);
+    return view('admin.cliente.direccion.create',compact('c','comunas','regions'));
+  }
+
 }

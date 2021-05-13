@@ -50,10 +50,13 @@ class OrdenSeeder extends Seeder
         $r->id_usuario = 1;
         $r->id_repartidor = 4;
         $r->id_orden = $i;
+        
+        $o = Orden::find($i);
+        $o->estado = 2;
 
+        $o->update();
         $r->save();
       }
-
 
     }
 }

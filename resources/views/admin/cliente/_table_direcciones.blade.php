@@ -2,7 +2,7 @@
   <table id="tableSelect" class="table table-bordered table-hover table-sm text-center">
     <thead>
     <tr>
-      <th>Dirreción</th>
+      <th>Dirreciones</th>
       <th></th>
     </tr>
     </thead>

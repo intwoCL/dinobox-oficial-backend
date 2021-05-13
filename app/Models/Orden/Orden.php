@@ -28,6 +28,7 @@ class Orden extends Model
     6 => 'Asignación de despacho',
     7 => 'En camino a despacho',
     8 => 'Entregado',
+    50 => 'Cancelado',
     100 => 'Error',
   ];
 
@@ -40,7 +41,7 @@ class Orden extends Model
   }
 
   public function getEstado(){
-    return self::ESTADO_GENERAL($this->estado);
+    return self::ESTADO_GENERAL[$this->estado];
   }
 
   public function scopeGetPendientes($query){
