@@ -1,8 +1,6 @@
 <?php
 
-use App\Services\Mailable;
 use Illuminate\Support\Facades\Route;
-
 
 Route::get('/','DashboardController@index')->name('root');
 
