@@ -8,13 +8,32 @@ use App\Http\Controllers\Controller;
 use App\Models\Sistema\Usuario;
 
 use App\Http\Requests\UsuarioCreateRequest as UserCreateRequest;
+use App\Http\Requests\UsuarioUpdateRequest as UserUpdateRequest;
 use App\Lib\Permissions;
+use App\Models\Sistema\SucursalUsuario;
+use App\Models\Sistema\Vehiculo;
 use App\Services\ImportImage;
+use App\Services\Policies\Sistema\UsuarioPolicy;
 
 class UsuarioController extends Controller
 {
+  private $policy;
+
+  public function __construct() {
+    $this->policy = new UsuarioPolicy();
+  }
+
   public function index(){
-    $usuarios = Usuario::where('activo',true)->get();
+    $this->policy->index();
+
+    $usuarios = Usuario::getAllEmpleado();
+    return view('admin.usuario.index', compact('usuarios'));
+  }
+
+  public function indexRepartidor(){
+    $this->policy->indexRepartidor();
+
+    $usuarios = Usuario::getAllRepartidor();
     return view('admin.usuario.index', compact('usuarios'));
   }
 
@@ -36,6 +55,8 @@ class UsuarioController extends Controller
       $user->correo = $request->input('correo');
       $user->username = $request->input('username');
       $user->password = hash('sha256', $request->input('password'));
+      $user->run = $request->input('run');
+      $user->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
       if(!empty($request->file('image'))){
         $filename = time();
@@ -43,32 +64,40 @@ class UsuarioController extends Controller
         $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
       }
 
-      // agregar aca el rol
-      
-
       $user->save();
+
+      //Agregar rol
+      $su = new SucursalUsuario();
+      $su->id_sucursal = 1;
+      $su->id_usuario = $user->id;
+      $su->rol = $request->input('rol');
+      $su->save();
+
       return redirect()->route('admin.usuario.index')->with('success','Se ha creado correctamente.');
     } catch (\Throwable $th) {
+      return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
 
   public function edit($id){
     try {
+      $roles = Permissions::ROLES;
       $u = Usuario::findOrFail($id);
-      return view('admin.usuario.edit',compact('u'));
+      return view('admin.usuario.edit',compact('u','roles'));
     } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
     }
   }
 
-  public function update(Request $request, $id){
+  public function update(UserUpdateRequest $request, $id){
     try {
       $user = Usuario::findOrFail($id);
       $user->nombre = $request->input('nombre');
       $user->apellido = $request->input('apellido');
       $user->correo = $request->input('correo');
       $user->username = $request->input('username');
+      $user->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
       if(!empty($request->file('image'))){
         $filename = time();
@@ -76,7 +105,10 @@ class UsuarioController extends Controller
         $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
       }
 
-      // Actualizar el rol
+      //Actualizar el rol
+      $rol = $user->sucursalUsuario;
+      $rol->rol = $request->input('rol');
+      $rol->update();
 
       $user->update();
       return back()->with('success','Se ha actualizado.');

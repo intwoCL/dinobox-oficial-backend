@@ -4,8 +4,8 @@ namespace App\Presenters\Sistema;
 use App\Presenters\Presenter;
 use App\Services\Imagen;
 
-class SistemaPresenter extends Presenter
-{
+class SistemaPresenter extends Presenter{
+  
   private $folderImg = 'photo_sistema';
   private $imgFondo = "/dist/img/checkmate.jpg";
   private $imgLogo = "/dist/img/img-default-user.jpg";

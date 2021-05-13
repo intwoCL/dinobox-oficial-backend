@@ -4,23 +4,21 @@
 @endpush
 @section('content')
 @component('components.button._back')
-@slot('route', route('admin.index'))
-@slot('color', 'secondary')
-@slot('body', "Clientes eliminados")
+@slot('body', "Usuarios eliminados")
 @endcomponent
 <section class="content">
   <div class="row">
+    @include('admin.usuario._tabs_usuarios')
     <div class="col-md-12">
       <div class="card">
         <div class="card-body table-responsive">
           <table id="tableSelect" class="table table-bordered table-hover table-sm text-center">
             <thead>
             <tr>
-              <th></th>
+              <th>Foto</th>
               <th>Username</th>
               <th>Nombre</th>
               <th>Correo</th>
-              <th>Permitir Alumno</th>
             </tr>
             </thead>
             <tbody>
@@ -43,7 +41,7 @@
                 </td>
                 <td class="align-middle">{{$u->present()->nombre_completo()}}</td>
                 <td class="align-middle">{{$u->correo}}</td>
-                <td class="align-middle">{!! $u->present()->getPermisoStatusHTML() !!}</td>
+                {{-- <td class="align-middle">{!! $u->present()->getPermisoStatusHTML() !!}</td> --}}
               </tr>
               @endforeach
             </tbody>

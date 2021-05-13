@@ -30,6 +30,11 @@ class AuthUsuarioController extends Controller
         Auth::guard('usuario')->loginUsingId($u->id);
 
         // UserSession::getInstance();
+
+        if ($u->repartidor()) {
+          return redirect()->route('repartidor.home');
+        }
+
         return redirect()->route('home');
       } else {
         return back()->with('info','Error. Intente nuevamente.');
