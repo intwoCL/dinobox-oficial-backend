@@ -21,6 +21,8 @@ class CreateTableSDireccion extends Migration
             $table->string('numero');
             $table->string('dato_adicional',300)->nullable();
             $table->string('telefono')->nullable();
+            $table->double('lat')->nullable();
+            $table->double('lng')->nullable();
             $table->boolean('favorito')->default(false);
             $table->timestamps();
         });

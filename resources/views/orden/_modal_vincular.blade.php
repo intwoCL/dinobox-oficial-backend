@@ -13,9 +13,26 @@
           <input type="hidden" class="form-control" id="id_modal" name="id">
 
           @foreach ($repartidores as $r)
-          <p>{{ $r->present()->nombre_completo() }}</p>
-          <button type="submit" class="btn btn-success btn-sm">Asignar</button>
-
+          <table id="tableSelect" class="table table-bordered table-hover table-sm">
+            <thead>
+            <tr>
+              <th>COD</th>
+              <th>Fecha</th>
+            </tr>
+            </thead>
+            <tbody>
+              @foreach ($ordenes as $o)
+              <tr>
+                <td>
+                  <button type="submit" class="btn btn-success btn-sm">Asignar</button>
+                </td>
+                <td>
+                  <p>{{ $r->present()->nombre_completo() }}</p>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
           @endforeach
         </div>
         <div class="modal-footer">

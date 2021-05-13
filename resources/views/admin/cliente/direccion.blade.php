@@ -16,6 +16,7 @@
           {{-- <div class="card-header">
           </div> --}}
           @include('admin.cliente._table_direcciones')
+          @include('admin.cliente._map')
         </div>
       </div>
       <div class="col-md-6">

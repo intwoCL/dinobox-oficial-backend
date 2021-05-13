@@ -61,6 +61,8 @@ class AddClients extends Command
         $d->id_comuna = 1005;
         $d->calle = $faker->streetName;
         $d->numero = $faker->buildingNumber;
+        $d->lat = $faker->latitude(-32,-34);
+        $d->lng = $faker->longitude(-70,-71);
         $d->save();
       }
       $this->info("Done!");
