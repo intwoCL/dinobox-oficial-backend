@@ -13,6 +13,7 @@ use App\Lib\Permissions;
 use App\Models\Sistema\SucursalUsuario;
 use App\Models\Sistema\Vehiculo;
 use App\Services\ImportImage;
+use App\Services\SaveImage;
 use App\Services\Policies\Sistema\UsuarioPolicy;
 
 class UsuarioController extends Controller
@@ -58,7 +59,7 @@ class UsuarioController extends Controller
       $user->run = $request->input('run');
       $user->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
-      if(!empty($request->file('image'))){
+      if(!empty($request->file('image'))) {
         $filename = time();
         $folder = 'public/photo_usuarios';
         $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
@@ -123,8 +124,35 @@ class UsuarioController extends Controller
       $user = Usuario::findOrFail($id);
       $user->password = hash('sha256', $request->input('password_2'));
       $user->update();
+
       // TODO: Falta agregar envio de correo
+
       return back()->with('success','Se ha actualizado.');
+    } catch (\Throwable $th) {
+      return back()->with('info','Error Intente nuevamente.');
+    }
+  }
+
+
+  public function vehiculoStore(Request $request, $id){
+    try {
+      $user = Usuario::findOrFail($id);
+      $vehiculo = new Vehiculo();
+      $vehiculo->id_usuario = $user->id;
+      $vehiculo->patente = $request->input('patente');
+      $vehiculo->modelo = $request->input('modelo');
+      $vehiculo->marca = $request->input('marca');
+      $vehiculo->tipo = $request->input('tipo');
+
+      if(!empty($request->file('image'))){
+        $filename = time();
+        $folder = 'public/photo_vehiculos';
+        $vehiculo->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      }
+
+      $vehiculo->save();
+
+      return back()->with('success','Se ha agregado exitosamente.');
     } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
     }
