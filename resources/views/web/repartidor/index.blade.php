@@ -35,7 +35,7 @@
 
 <div class="list-group">
   @foreach ($ordenes as $or)
-  <a href="#" class="list-group-item list-group-item-action">
+  <a href="{{ route('repartidor.ordenShow',$or->orden->codigo) }}" class="list-group-item list-group-item-action">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">{{ $or->orden->codigo }}</h5>
       {{-- <h5 class="mb-1">{{ $or->orden->getFecha()->getDate() }}</h5> --}}

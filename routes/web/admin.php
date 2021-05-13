@@ -24,6 +24,7 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
   Route::put('cliente/{id}/password','ClienteController@password')->name('cliente.password');
   Route::get('cliente/{id}/direccion','DireccionController@index')->name('cliente.direccion.index');
   Route::post('cliente/{id}/direccion','DireccionController@store')->name('cliente.direccion.store');
+  Route::get('cliente/{id}/direccion/create','DireccionController@create')->name('cliente.direccion.create');
 
 
   // - {REPORTES}

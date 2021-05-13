@@ -19,13 +19,14 @@ class Orden extends Model
 
   const ESTADO_GENERAL = [
     1 => 'Pendiente',
-    2 => 'Asginación de retiro',
+    2 => 'Asignación de retiro',
     3 => 'En transito a retiro',
     4 => 'Recepcionado',
     5 => 'Recepción de despacho',
     6 => 'Asignación de despacho',
     7 => 'En camino a despacho',
     8 => 'Entregado',
+    50 => 'Cancelado',
     100 => 'Error',
   ];
 
@@ -34,7 +35,7 @@ class Orden extends Model
   }
 
   public function getEstado(){
-    return self::ESTADO_GENERAL($this->estado);
+    return self::ESTADO_GENERAL[$this->estado];
   }
 
   public function scopeGetPendientes($query){

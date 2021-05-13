@@ -35,9 +35,9 @@
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form> --}}
-    <form class="form-inline my-2 my-lg-0 mr-4" method="GET" action="{{ route('auth.usuario') }}">
+    <div class="form-inline my-2 my-lg-0 mr-4">
       {{-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> --}}
-      <button class="btn btn-primary btn-xs my-2 my-sm-0" type="submit">Iniciar sesión</button>
-    </form>
+      <a href="{{ route('auth.usuario') }}" class="btn btn-primary btn-sm my-2 my-sm-0">Iniciar sesión</a>
+    </div>
   </div>
 </nav>

@@ -15,6 +15,7 @@ class DashboardController extends Controller
 
   public function home(){
     $icon = (new IconRender('encomienda_3','rgb(131,58,180)'))->getIMGBase64();
+
     return view('dashboard.welcome',compact('icon'));
   }
 

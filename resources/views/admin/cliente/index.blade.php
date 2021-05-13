@@ -11,7 +11,7 @@
     @include('admin.cliente._tabs_clientes')
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header">
+        {{-- <div class="card-header"> --}}
           {{-- <h3 class="card-title">Lista de Usuarios</h3> --}}
           {{-- <a href="{{ route('admin.cliente.indexDelete') }}" class="btn btn-dark float-left btn-sm">
             Clientes eliminados
@@ -21,7 +21,7 @@
             Nuevo
           </a> --}}
           {{-- @endif --}}
-        </div>
+        {{-- </div> --}}
         @include('admin.cliente._table_clientes')
       </div>
     </div>
