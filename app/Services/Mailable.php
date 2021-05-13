@@ -20,85 +20,85 @@ class Mailable
   // Mail::to($email)->cc([$email,$email])->bcc($email)->queue($mail);
   // Mail::to($email)->queue($mail);
 
-  public static function RecepcionPedido($correo, $data = []){
+  public static function RecepcionPedido($email, $data = []){
     try {
       $mail = new RecepcionPedido($data);
-   
-      return $mail; 
+      Mail::to($email)->queue($mail);
+      return $mail;
 
     } catch (\Throwable $th) {
-      return $th; 
+      return $th;
     }
   }
 
-  public static function UsuarioAgregado($correo, $data = []){
+  public static function UsuarioAgregado($email, $data = []){
     try {
       $mail = new UsuarioAgregado($data);
-
-      return $mail; 
+      Mail::to($email)->queue($mail);
+      return $mail;
 
     } catch (\Throwable $th) {
-      return $th; 
+      return $th;
     }
 
   }
 
-  public static function UsuarioRecuperacion($correo, $data = []){
+  public static function UsuarioRecuperacion($email, $data = []){
     try {
       $mail = new UsuarioRecuperacion($data);
-
-      return $mail; 
+      Mail::to($email)->queue($mail);
+      return $mail;
 
     } catch (\Throwable $th) {
-      return $th; 
+      return $th;
     }
 
   }
 
-  public static function AsignacionPedido($correo, $data = []){
+  public static function AsignacionPedido($email, $data = []){
     try {
       $mail = new AsignacionPedido($data);
-
-      return $mail; 
+      Mail::to($email)->queue($mail);
+      return $mail;
 
     } catch (\Throwable $th) {
-      return $th; 
+      return $th;
     }
 
   }
 
-  public static function PreparacionPedido($correo, $data = []){
+  public static function PreparacionPedido($email, $data = []){
     try {
       $mail = new PreparacionPedido($data);
-
-      return $mail; 
+      Mail::to($email)->queue($mail);
+      return $mail;
 
     } catch (\Throwable $th) {
-      return $th; 
+      return $th;
     }
 
   }
 
-  public static function TransitoPedido($correo, $data = []){
+  public static function TransitoPedido($email, $data = []){
     try {
       $mail = new TransitoPedido($data);
-
-      return $mail; 
+      Mail::to($email)->queue($mail);
+      return $mail;
 
     } catch (\Throwable $th) {
-      return $th; 
+      return $th;
     }
 
   }
 
-  public static function EntregaPedido($correo, $data = []){
+  public static function EntregaPedido($email, $data = []){
     try {
       $mail = new EntregaPedido($data);
-
-      return $mail; 
+      Mail::to($email)->queue($mail);
+      return $mail;
 
     } catch (\Throwable $th) {
-      return $th; 
+      return $th;
     }
 
   }

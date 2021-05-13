@@ -120,18 +120,6 @@ class ClienteController extends Controller
     }
   }
 
-  public function password(Request $request, $id) {
-    try {
-      $cliente = Cliente::findOrFail($id);
-      $cliente->password = hash('sha256', $request->input('password_2'));
-      $cliente->update();
-      // TODO: Falta agregar envio de correo
-      return back()->with('success','Se ha actualizado.');
-    } catch (\Throwable $th) {
-      return back()->with('info','Error Intente nuevamente.');
-    }
-  }
-
   public function destroy(Request $request, $id) {
     try {
       $cliente = Cliente::findOrFail($request->input('id_usuario'));

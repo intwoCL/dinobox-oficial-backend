@@ -41,7 +41,7 @@ Route::middleware('auth.usuario')->group( function () {
 
 
   Route::get('deliveryRecepcionPedido',function(){
-    $correo = 'pcamposgarate@gmail.com';
+    $email = 'benja.mora.torres@gmail.com';
 
     $data = [
       'nombre' => 'Patricia',
@@ -52,93 +52,93 @@ Route::middleware('auth.usuario')->group( function () {
       'precio' => '6.000'
     ];
 
-    return Mailable::RecepcionPedido($correo, $data);
+    return Mailable::RecepcionPedido($email, $data);
   });
 
   Route::get('deliveryUsuarioAgregado',function(){
-   $correo = 'pcamposgarate@gmail.com';
+    $email = 'benja.mora.torres@gmail.com';
 
-   $data = [
-     'nombre' => 'Patricia',
-     'apellido' => 'Campos',
-     'email' => 'pcamposgarate@gmail.com'
-   ];
+    $data = [
+      'nombre' => 'Patricia',
+      'apellido' => 'Campos',
+      'email' => 'pcamposgarate@gmail.com'
+    ];
 
-   return Mailable::UsuarioAgregado($correo, $data);
- });
+    return Mailable::UsuarioAgregado($email, $data);
+  });
 
- Route::get('deliveryUsuarioRecuperacion',function(){
-   $correo = 'pcamposgarate@gmail.com';
+  Route::get('deliveryUsuarioRecuperacion',function(){
+    $email = 'benja.mora.torres@gmail.com';
 
-   $data = [
-     'nombre' => 'Patricia',
-     'apellido' => 'Campos',
-     'email' => 'pcamposgarate@gmail.com'
-   ];
+    $data = [
+      'nombre' => 'Patricia',
+      'apellido' => 'Campos',
+      'email' => 'pcamposgarate@gmail.com'
+    ];
 
-   return Mailable::UsuarioRecuperacion($correo, $data);
- });
+    return Mailable::UsuarioRecuperacion($email, $data);
+  });
 
- Route::get('deliveryAsignacionPedido',function(){
-   $correo = 'pcamposgarate@gmail.com';
+  Route::get('deliveryAsignacionPedido',function(){
+    $email = 'benja.mora.torres@gmail.com';
 
-   $data = [
-     'nombre' => 'Patricia',
-     'apellido' => 'Campos',
-     'idOrden' => '001',
-     'direccion' => 'Pasaje lagar 865',
-     'tipoEnvio' => 'Envio especial',
-     'precio' => '6.000',
-     'email' => 'pcamposgarate@gmail.com'
-   ];
+    $data = [
+      'nombre' => 'Patricia',
+      'apellido' => 'Campos',
+      'idOrden' => '001',
+      'direccion' => 'Pasaje lagar 865',
+      'tipoEnvio' => 'Envio especial',
+      'precio' => '6.000',
+      'email' => 'pcamposgarate@gmail.com'
+    ];
 
-   return Mailable::AsignacionPedido($correo, $data);
- });
+    return Mailable::AsignacionPedido($email, $data);
+  });
 
- Route::get('deliveryPreparacionPedido',function(){
-   $correo = 'pcamposgarate@gmail.com';
+  Route::get('deliveryPreparacionPedido',function(){
+    $email = 'benja.mora.torres@gmail.com';
 
-   $data = [
-     'nombre' => 'Patricia',
-     'apellido' => 'Campos',
-     'idOrden' => '001',
-     'direccion' => 'Pasaje lagar 865',
-     'tipoEnvio' => 'Envio especial',
-     'precio' => '6.000',
-     'email' => 'pcamposgarate@gmail.com'
-   ];
+    $data = [
+      'nombre' => 'Patricia',
+      'apellido' => 'Campos',
+      'idOrden' => '001',
+      'direccion' => 'Pasaje lagar 865',
+      'tipoEnvio' => 'Envio especial',
+      'precio' => '6.000',
+      'email' => 'pcamposgarate@gmail.com'
+    ];
 
-   return Mailable::PreparacionPedido($correo, $data);
- });
+    return Mailable::PreparacionPedido($email, $data);
+  });
 
- Route::get('deliveryTransitoPedido',function(){
-   $correo = 'pcamposgarate@gmail.com';
+  Route::get('deliveryTransitoPedido',function(){
+    $email = 'benja.mora.torres@gmail.com';
 
-   $data = [
-     'nombre' => 'Patricia',
-     'apellido' => 'Campos',
-     'idOrden' => '001',
-     'direccion' => 'Pasaje lagar 865',
-     'tipoEnvio' => 'Envio especial',
-     'precio' => '6.000',
-     'email' => 'pcamposgarate@gmail.com'
-   ];
+    $data = [
+      'nombre' => 'Patricia',
+      'apellido' => 'Campos',
+      'idOrden' => '001',
+      'direccion' => 'Pasaje lagar 865',
+      'tipoEnvio' => 'Envio especial',
+      'precio' => '6.000',
+      'email' => 'pcamposgarate@gmail.com'
+    ];
 
-   return Mailable::TransitoPedido($correo, $data);
- });
+    return Mailable::TransitoPedido($email, $data);
+  });
 
- Route::get('deliveryEntregaPedido',function(){
-   $correo = 'pcamposgarate@gmail.com';
+  Route::get('deliveryEntregaPedido',function(){
+    $email = 'benja.mora.torres@gmail.com';
 
-   $data = [
-     'nombre' => 'Patricia',
-     'apellido' => 'Campos',
-     'idOrden' => '001',
-     'direccion' => 'Pasaje lagar 865',
-     'tipoEnvio' => 'Envio especial',
-     'precio' => '6.000',
-     'email' => 'pcamposgarate@gmail.com'
-   ];
+    $data = [
+      'nombre' => 'Patricia',
+      'apellido' => 'Campos',
+      'idOrden' => '001',
+      'direccion' => 'Pasaje lagar 865',
+      'tipoEnvio' => 'Envio especial',
+      'precio' => '6.000',
+      'email' => 'pcamposgarate@gmail.com'
+    ];
 
-   return Mailable::EntregaPedido($correo, $data);
- });
+    return Mailable::EntregaPedido($email, $data);
+  });
