@@ -82,6 +82,10 @@ class ClienteController extends Controller
       }
 
       $cliente->update();
+
+      return back()->with('success','Se ha actualizado.');
+    } catch (\Throwable $th) {
+      return back()->with('info','Error Intente nuevamente.');
     }
   }
 
