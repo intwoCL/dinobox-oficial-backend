@@ -62,7 +62,7 @@ class UsuarioController extends Controller
       if(!empty($request->file('image'))) {
         $filename = time();
         $folder = 'public/photo_usuarios';
-        $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+        $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
       }
 
       $user->save();

@@ -60,11 +60,7 @@ class ClienteController extends Controller
   public function edit($id) {
     try {
       $c = Cliente::findOrFail($id);
-      $comunas = Comuna::get();
-      $regions = Region::get();
-      $direccion = Direccion::first();
-
-      return view('admin.cliente.edit',compact('c','comunas','regions','direccion'));
+      return view('admin.cliente.edit',compact('c'));
     } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
     }
