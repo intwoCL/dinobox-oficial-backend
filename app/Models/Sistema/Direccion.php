@@ -32,11 +32,13 @@ class Direccion extends Model
   public function raw_info(){
     return [
       'id' => $this->id,
-      'nombre' => $this->getDireccion(),
-      'direccion' => $this->calle,
+      'direccion' => $this->getDireccion(),
+      'calle' => $this->calle,
       'numero' => $this->numero,
       'comuna' => $this->comuna->nombre,
       'region' => $this->comuna->region->nombre,
+      'id_comuna' => $this->id_comuna,
+      'id_region' => $this->comuna->id_region,
     ];
   }
 }

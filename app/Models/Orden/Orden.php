@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Casts\Json;
 use App\Services\ConvertDatetime;
+use App\Services\Currency;
+use App\Models\Sistema\Comuna;
 
 class Orden extends Model
 {
@@ -34,6 +36,10 @@ class Orden extends Model
     return new ConvertDatetime($this->fecha_entrega);
   }
 
+  public function getFechaEmision(){
+    return new ConvertDatetime($this->created_at);
+  }
+
   public function getEstado(){
     return self::ESTADO_GENERAL[$this->estado];
   }
@@ -45,4 +51,17 @@ class Orden extends Model
   public function scopeGetAsignados($query, $fecha){
     return $query->where('activo',1)->where('estado','<>',1)->where('fecha_entrega',$fecha)->get();
   }
+
+  public function getPrecio(){
+    return (new Currency($this->precio))->money();
+  }
+
+  public function remitenteComuna(){
+    return $this->belongsTo(Comuna::class,'remitente_id_comuna');
+  }
+
+  public function destinatarioComuna(){
+    return $this->belongsTo(Comuna::class,'destinatario_id_comuna');
+  }
+
 }

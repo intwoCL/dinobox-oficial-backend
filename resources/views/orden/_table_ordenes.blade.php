@@ -2,12 +2,13 @@
   <table id="tableSelect" class="table table-bordered table-hover table-sm">
     <thead>
     <tr>
-      <th>COD</th>
-      <th>Fecha</th>
-      <th>Tipo</th>
-      <th>Valor</th>
-      <th>Comuna emitente</th>
-      <th>Comuna destino</th>
+      <th>Código</th>
+      <th>Fecha Entrega</th>
+      <th>Dirección Origen</th>
+      <th>Dirección Destino</th>
+      <th>Comuna Origen</th>
+      <th>Comuna Destino</th>
+      <th>Precio</th>
       <th></th>
     </tr>
     </thead>
@@ -16,12 +17,13 @@
       <tr>
         <td><a href="">{{ $o->codigo }}</a></td>
         <td>{{ $o->getFecha()->getDate() }}</td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{ $o->remitente_direccion }}</td>
+        <td>{{ $o->destinatario_direccion }}</td>
+        <td>{{ $o->remitenteComuna->nombre }}</td>
+        <td>{{ $o->destinatarioComuna->nombre }}</td>
+        <td>$ {{ $o->getPrecio() }}</td>
         <td>
-          <button type="button" class="btn btn-outline-success btn-sm"
+          <button type="button" class="btn btn-outline-success btn-xs"
           data-toggle="modal"
           data-target="#assignModal"
           data-alumno="123">
