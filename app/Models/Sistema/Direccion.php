@@ -15,8 +15,8 @@ class Direccion extends Model
     return $this->belongsTo(Comuna::class,'id_comuna');
   }
 
-  public function usuario(){
-    return $this->belongsTo(User::class,'id_usuario');
+  public function cliente(){
+    return $this->belongsTo(Cliente::class,'id_cliente');
   }
 
   public function getDireccion(){

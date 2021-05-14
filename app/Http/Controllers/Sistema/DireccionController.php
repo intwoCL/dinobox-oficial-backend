@@ -12,7 +12,7 @@ use App\Models\Sistema\Region;
 class DireccionController extends Controller
 {
   public function index($id_cliente){
-    $comunas = Comuna::get();
+    $comunas = Comuna::orderBy('nombre')->get();
     $regions = Region::get();
     $c = Cliente::with('direcciones')->findOrFail($id_cliente);
     return view('admin.cliente.direccion.index',compact('c','comunas','regions'));
@@ -37,10 +37,18 @@ class DireccionController extends Controller
   }
 
   public function create($id_cliente){
-    $comunas = Comuna::get();
+    $comunas = Comuna::orderBy('nombre')->get();
     $regions = Region::get();
     $c = Cliente::with('direcciones')->findOrFail($id_cliente);
     return view('admin.cliente.direccion.create',compact('c','comunas','regions'));
   }
 
+
+  public function edit($id_direccion){
+    $d = Direccion::with(['cliente'])->find($id_direccion);
+    $c = $d->cliente;
+    $comunas = Comuna::orderBy('nombre')->get();
+    $regions = Region::get();
+    return view('admin.cliente.direccion.edit',compact('c','d','comunas','regions'));
+  }
 }

@@ -8,14 +8,13 @@
 </style>
 @endpush
 @component('components.button._back')
-  @slot('route', route('admin.cliente.index'))
+  @slot('route', route('admin.cliente.direccion.index', $c->id))
   @slot('color', 'secondary')
   @slot('body', "Dirección Cliente <strong>".$c->present()->nombre_completo()."</strong>")
 @endcomponent
 <section class="content">
   <div class="container-fluid">
     <div class="row">
-      @include('admin.cliente._tabs_cliente')
       <div class="col-md-6">
         <div class="card card-primary">
           <div class="card-header">

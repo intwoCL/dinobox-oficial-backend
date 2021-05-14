@@ -6,13 +6,22 @@
         Editar
       </a>
     </li>
-    {{-- <li class="nav-item">
+    <li class="nav-item">
       <a class="nav-link {{ activeTab("admin/cliente/$c->id/direccion") }}" href="{{ route('admin.cliente.direccion.index', $c->id) }}">
         <i class="fas fa-map-marked mr-2"></i>
         Direcciones
       </a>
-    </li> --}}
+    </li>
+    @if (activeTab("admin/cliente/$c->id/direccion*"))
     <li class="nav-item">
+      <a class="nav-link {{ activeTab("admin/cliente/$c->id/direccion/create") }}" href="{{ route('admin.cliente.direccion.create', $c->id) }}">
+        <i class="fas fa-plus mr-2"></i>
+        Nueva dirección
+      </a>
+    </li>
+    @endif
+
+    {{-- <li class="nav-item">
       <div class="btn-group dropright nav-link {{ activeTab("admin/cliente/$c->id/direccion*") }}">
         <span type="button" class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-map-marked mr-2"></i>
@@ -27,6 +36,6 @@
           </a>
         </div>
       </div>
-    </li>
+    </li> --}}
   </ul>
 </div>
