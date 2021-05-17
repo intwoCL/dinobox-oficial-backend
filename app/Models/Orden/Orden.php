@@ -32,6 +32,12 @@ class Orden extends Model
     100 => 'Error',
   ];
 
+  const TIPO_ENVIO = [
+    10 => ['Envios Express','',true],
+    20 => ['Envíos Tradicionales','',true],
+    30 => ['Envíos Especiales','',true],
+  ];
+
   public function getFecha(){
     return new ConvertDatetime($this->fecha_entrega);
   }

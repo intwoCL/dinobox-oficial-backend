@@ -29,22 +29,13 @@ class OrdenController extends Controller
   }
 
   public function create() {
-
-    // return $clientes;
-    $comunas = Comuna::get();
+    $comunas = Comuna::orderBy('nombre')->get();
+    $tiposEnvios = Orden::TIPO_ENVIO;
+    // $regions = Region::orderBy('nombre')->get();
     $regions = Region::get();
-    return view('orden.create', compact('comunas','regions'));
+    return view('orden.create', compact('comunas','regions','tiposEnvios'));
   }
 
-  private function findCode() {
-    try {
-      $code = helper_random_integer(12);
-      Orden::where('codigo',$code)->firstOrFail();
-      return $this->code();
-    } catch (\Throwable $th) {
-      return $code;
-    }
-  }
 
   public function store(OrdenCreateRequest $request) {
     try {
@@ -52,7 +43,9 @@ class OrdenController extends Controller
       $orden = new Orden();
       $orden->codigo = $this->findCode();
       $orden->id_usuario = current_user()->id;
-      $orden->id_cliente = $request->input('id_cliente');
+
+      $orden->id_cliente = $request->input('id_cliente',null);
+
       $orden->fecha_entrega = date_format(date_create($request->input('fecha_entrega')),'Y-m-d');
 
       //Datos Remitente
@@ -71,13 +64,24 @@ class OrdenController extends Controller
 
       $orden->mensaje = $request->input('mensaje',null);
       $orden->precio = $request->input('precio');
-  
+
       $orden->save();
 
       return redirect()->route('ordenes.index.pendientes')->with('success','Se ha creado correctamente');
     } catch (\Throwable $th) {
       // return $th;
       return back()->with('info','Error intente nuevamente');
+    }
+  }
+
+  // PRIVATE
+  private function findCode() {
+    try {
+      $code = helper_random_integer(12);
+      Orden::where('codigo',$code)->firstOrFail();
+      return $this->code();
+    } catch (\Throwable $th) {
+      return $code;
     }
   }
 }

@@ -55,6 +55,7 @@
                     <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Ingrese su teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos" value="{{ $c->telefono }}">
                 </div>
               </div>
+
               <div class="form-group row" id="data_1">
                 <label for="fecha" class="col-sm-4 col-form-label">Fecha Nacimiento</label>
                 <div class="input-group date col-sm-8">
@@ -65,6 +66,26 @@
                   {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
                 </div>
               </div>
+
+              <div class="form-group row">
+                <label for="fecha" class="col-sm-4 col-form-label">Sexo<small class="text-danger">*</small></label>
+                <div class="input-group date col-sm-8">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="sexo" {{ $c->sexo==1 ? 'checked' : '' }} value="1">
+                      Hombre
+                    </label>
+                  </div>
+                  <div class="form-check ml-2">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="sexo" {{ $c->sexo==2 ? 'checked' : '' }} value="2">
+                      Mujer
+                    </label>
+                  </div>
+                </div>
+                {!! $errors->first('sexo','<small class="form-text text-danger text-center">:message</small>') !!}
+              </div>
+
               <div class="form-group">
                 <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
                 <div class="input-group">

@@ -25,6 +25,7 @@ class CreateTableSCliente extends Migration
             $table->string('imagen')->nullable();
             $table->date('birthdate')->nullable();
             $table->integer('id_usuario_creador')->nullable();
+            $table->integer('sexo')->nullable();
             $table->json('config')->nullable();
             $table->json('integrations')->nullable();
             $table->boolean('verificado')->default(false);

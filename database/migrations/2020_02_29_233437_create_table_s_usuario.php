@@ -15,6 +15,7 @@ class CreateTableSUsuario extends Migration
     {
         Schema::create('s_usuario', function (Blueprint $table) {
             $table->id();
+            // $table->string('run');
             $table->string('username')->unique();
             $table->string('password');
             $table->string('nombre');
@@ -23,6 +24,7 @@ class CreateTableSUsuario extends Migration
             $table->string('imagen')->nullable();
             $table->string('config_theme')->default('default');
             $table->string('integrations')->nullable();
+            $table->integer('sexo')->nullable();
             $table->json('config')->nullable();
             $table->date('birthdate')->nullable();
             $table->datetime('last_session')->nullable();

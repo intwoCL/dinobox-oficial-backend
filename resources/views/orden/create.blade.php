@@ -150,11 +150,25 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="inputAddress">Precio</label>
-              <input type="tel" class="form-control" name="precio" id="precio" autocomplete="off" maxlength="9" placeholder="0" required>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Precio</label>
+              <div class="input-group col-sm-10">
+                <input type="tel" class="form-control" name="precio" id="precio" autocomplete="off" maxlength="9" placeholder="0" required>
+              </div>
               {!! $errors->first('precio', '<small class="form-text text-danger">:message</small>') !!}
               <p id="limitC"></p>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Tipo de envio</label>
+              <div class="input-group col-sm-10">
+                <select class="custom-select" id="tipo_envio" name="tipo_envio">
+                  @foreach ($tiposEnvios as $key => $value)
+                  @continue(!$value[2])
+                  <option value="{{ $key }}">{{ $value[0] }}</option>
+                  @endforeach
+                </select>
+              </div>
             </div>
 
             <div class="form-group">

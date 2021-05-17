@@ -25,9 +25,8 @@ class ClienteController extends Controller
   }
 
   public function create() {
-    $comunas = Comuna::get();
-    $regions = Region::get();
-    return view('admin.cliente.create', compact('comunas','regions'));
+    $sexo_options = Cliente::SEXO_OPTIONS;
+    return view('admin.cliente.create', compact('sexo_options'));
   }
 
   public function store(ClientCreateRequest $request) {
@@ -39,6 +38,7 @@ class ClienteController extends Controller
       $cliente->correo = $request->input('correo');
       $cliente->password = hash('sha256', $request->input('password'));
       $cliente->telefono = $request->input('telefono');
+      $cliente->sexo = $request->input('sexo');
       $cliente->id_usuario_creador = current_user()->id;
       $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
@@ -74,6 +74,7 @@ class ClienteController extends Controller
       $cliente->correo = $request->input('correo');
       $cliente->telefono = $request->input('telefono');
       $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
+      $cliente->sexo = $request->input('sexo');
 
       if(!empty($request->file('image'))){
         $filename = time();
