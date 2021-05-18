@@ -132,4 +132,11 @@ class ClienteController extends Controller
       return back()->with('info','Error Intente nuevamente.');
     }
   }
+
+  public function profile(){
+    $c = current_admin();
+    return view('web.cliente.perfil',compact('c'));
+  }
+
+
 }

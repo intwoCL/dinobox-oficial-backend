@@ -7,6 +7,10 @@ Route::middleware('auth.usuario')->namespace('Sistema')->group( function () {
   Route::post('settings/profile','ConfiguracionController@profileStore')->name('settings.profile');
   Route::post('settings/profile/password','ConfiguracionController@password')->name('settings.profile.password');
   Route::post('settings/profile/theme','ConfiguracionController@theme')->name('settings.profile.theme');
+  //Perfil Cliente
+  Route::get('profile/cliente', 'ClienteController@profile')->name('profile.cliente');
+  Route::put('profile/cliente', 'ClienteController@updateProfile')->name('profile.cliente');
+  Route::post('profile/cliente/password'. 'ClienteController@passwordProfile')->name('profile.cliente.password');
 });
 
 Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('admin.')->group( function () {
