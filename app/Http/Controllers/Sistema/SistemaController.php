@@ -32,6 +32,15 @@ class SistemaController extends Controller
       $filename = time();
       $sistema->imagen_logo = ImportImage::save($request, 'image2', $filename, $folder);
     }
+
+    $data = [
+      'primary_color' => $request->input('primary_color',Sistema::COLOR_BASE),
+      'primary_color_text' => $request->input('primary_color_text',Sistema::COLOR_TEXT_BASE),
+      'login_oscuro' => $request->input('login_oscuro',false),
+    ];
+
+    $sistema->config = $data;
+
     $sistema->update();
     return back()->with('success','Se ha actualizado.');
   }

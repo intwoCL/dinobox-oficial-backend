@@ -29,7 +29,7 @@
                   <div class="card-header">
                     <h3 class="card-title">Actualizar Usuario</h3>
                   </div>
-                  <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.sistema') }}" enctype="multipart/form-data">
+                  <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.sistema.update') }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="card-body">
@@ -39,12 +39,14 @@
                           <input type="text" class="form-control" value="{{ $sistema->titulo }}" name="titulo" placeholder="...." required>
                         </div>
                       </div>
+
                       <div class="form-group row">
                         <label class="col-form-label col-sm-4">Imagen Fondo <small>(Opcional)</small></label>
                         <div class="col-sm-8">
                           <img src="{{ $sistema->present()->getImagenFondo() }}" class='Responsive image img-thumbnail'  width='200px' height='200px' alt="">
                         </div>
                       </div>
+
                       <div class="form-group row">
                         <div class="col-sm-12 text-center">
                           <input type="file" name="image" accept="image/*" onchange="preview(this)" />
@@ -53,12 +55,14 @@
                           <div id="preview"></div>
                         </div>
                       </div>
+
                       <div class="form-group row">
                         <label class="col-form-label col-sm-4">Imagen Logo <small>(Opcional)</small></label>
                         <div class="col-sm-8">
                           <img src="{{ $sistema->present()->getImagenLogo() }}" class='Responsive image img-thumbnail'  width='200px' height='200px' alt="">
                         </div>
                       </div>
+
                       <div class="form-group row">
                         <div class="col-sm-12 text-center">
                           <input type="file" name="image2" accept="image/*" onchange="preview2(this)" />
@@ -67,6 +71,30 @@
                           <div id="preview2"></div>
                         </div>
                       </div>
+
+                      <div class="form-group row">
+                        <label for="formGroupExampleInput" class="col-sm-4 col-form-label">Login oscuro</label>
+                        <div class="col-sm-8">
+                          <select class="form-control" name="login_oscuro" required>
+                            <option {{ $sistema->getLoginOscuro() ? 'selected' : '' }} value="1">Activado</option>
+                            <option {{ !$sistema->getLoginOscuro() ? 'selected' : '' }} value="0">Desactivado</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-sm-5" for="hf-rut">Color de fondo</small></label>
+                        <div class="col-sm-7">
+                          <input type="text" id="colorpicker" class="form-control" name="primary_color" value="{{ $sistema->getPrimaryColor() }}" required/>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-5" for="hf-rut">Color de texto</small></label>
+                        <div class="col-sm-7">
+                          <input type="text" id="colorpicker2" class="form-control" name="primary_color_text" value="{{ $sistema->getPrimaryColorText() }}" required>
+                        </div>
+                      </div>
+
                     </div>
                     <div class="card-footer">
                       <button type="submit" class="btn btn-success float-right">Guardar</button>
@@ -126,4 +154,8 @@
 @push('javascript')
 <script src="/dist/js/preview.js"></script>
 <script src="/vendor/intwo/preview2.js"></script>
+<script>
+  $("#colorpicker").spectrum({ type: "text" });
+  $("#colorpicker2").spectrum({ type: "text" });
+</script>
 @endpush

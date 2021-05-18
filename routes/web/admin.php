@@ -43,6 +43,7 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
   // - {SISTEMA}
   Route::get('sistema','SistemaController@index')->name('sistema.index');
   Route::get('sistema/edit','SistemaController@show')->name('sistema.show');
+  Route::put('sistema/edit','SistemaController@update')->name('sistema.update');
 
 });
 
