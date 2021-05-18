@@ -27,14 +27,14 @@ class OrdenSeeder extends Seeder
 
         $o->remitente_nombre = $faker->firstName;
         $o->remitente_direccion = $faker->streetName . " " . $faker->buildingNumber;
-        $o->remitente_email = $faker->firstName."@mail.com";
+        $o->remitente_correo = $faker->firstName."@mail.com";
         $o->remitente_telefono = "600800900";
         $o->remitente_id_comuna = 1039;
 
         $o->destinatario_nombre = $faker->firstName;
         $o->destinatario_direccion = $faker->streetName . " " . $faker->buildingNumber;
         $o->destinatario_direccion = $faker->numberBetween(4000,9999);
-        $o->destinatario_email = $faker->firstName."@mail.com";
+        $o->destinatario_correo = $faker->firstName."@mail.com";
         $o->destinatario_telefono = "133131132";
         $o->destinatario_id_comuna = 1033;
         $o->mensaje = "Hola, feliz cumpleaños";
