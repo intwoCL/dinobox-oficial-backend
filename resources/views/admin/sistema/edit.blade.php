@@ -1,14 +1,9 @@
 @extends('layouts.app')
 @section('content')
-<section class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-12">
-        <h1>Ajuste del Sistema</h1>
-      </div>
-    </div>
-  </div>
-</section>
+@component('components.button._back')
+  @slot('route', route('admin.sistema.index'))
+  @slot('body', "Ajuste del sistema")
+@endcomponent
 <section class="content">
   <div class="container-fluid">
     <div class="row">
@@ -18,7 +13,7 @@
             <a class="nav-link active border border-primary border-bottom" id="pills-user-tab" data-toggle="pill" href="#pills-user" role="tab" aria-controls="pills-user" aria-selected="true">Mi configuración</a>
           </li>
           <li class="nav-item mr-2">
-            <a class="nav-link border border-primary border-bottom" id="pills-password-tab" data-toggle="pill" href="#pills-password" role="tab" aria-controls="pills-password" aria-selected="false">Colores</a>
+            <a class="nav-link border border-primary border-bottom" id="pills-password-tab" data-toggle="pill" href="#pills-password" role="tab" aria-controls="pills-password" aria-selected="false">Inicio de sesión</a>
           </li>
         </ul>
         <div class="tab-content" id="pills-tabContent">

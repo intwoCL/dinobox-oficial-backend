@@ -50,12 +50,18 @@ class CreateTableOrOrden extends Migration
             // Extras con integraciones
             $table->json('config')->nullable();
 
-            //Datos recepcion
-            $table->string('recepcion_rut')->nullable();
-            $table->string('recepcion_nombre')->nullable();
+            // Recepcion de remitente
+            $table->boolean('receptor_remitente')->default(false);
+            $table->string('recepcion_remitente_rut')->nullable();
+            $table->string('recepcion_remitente_nombre')->nullable();
+            $table->string('recepcion_remitente_imagen')->nullable();
 
-            $table->string('imagen1')->nullable();
-            $table->string('imagen2')->nullable();
+            //Datos recepcion destinatario
+            $table->boolean('receptor_destinatario')->default(false);
+            $table->string('recepcion_destinatario_rut')->nullable();
+            $table->string('recepcion_destinatario_nombre')->nullable();
+            $table->string('recepcion_destinatario_imagen')->nullable();
+
 
 
             $table->integer('accion')->default(1);
