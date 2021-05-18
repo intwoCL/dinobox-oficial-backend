@@ -49,16 +49,19 @@ class OrdenController extends Controller
       $orden->fecha_entrega = date_format(date_create($request->input('fecha_entrega')),'Y-m-d');
 
       //Datos Remitente
+      $orden->remitente_rut = $request->input('remitente_rut');
       $orden->remitente_nombre = $request->input('remitente_nombre');
       $orden->remitente_direccion = $request->input('remitente_direccion');
-      $orden->remitente_email = $request->input('remitente_email');
+      $orden->remitente_numero = $request->input('remitente_numero');
+      $orden->remitente_correo = $request->input('remitente_correo');
       $orden->remitente_telefono = $request->input('remitente_telefono');
       $orden->remitente_id_comuna = $request->input('remitente_id_comuna');
 
       //Datos Destinatario
       $orden->destinatario_nombre = $request->input('destinatario_nombre');
       $orden->destinatario_direccion = $request->input('destinatario_direccion');
-      $orden->destinatario_email = $request->input('destinatario_email');
+      $orden->destinatario_numero = $request->input('destinatario_numero');
+      $orden->destinatario_correo = $request->input('destinatario_correo');
       $orden->destinatario_telefono = $request->input('destinatario_telefono');
       $orden->destinatario_id_comuna = $request->input('destinatario_id_comuna');
 

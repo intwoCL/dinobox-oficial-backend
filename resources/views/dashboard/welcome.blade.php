@@ -43,7 +43,7 @@
 @endpush
 @section('content')
 <header>
-  <div class="collapse tutorial-youtube" id="navbarHeader">
+  {{-- <div class="collapse tutorial-youtube" id="navbarHeader">
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
@@ -61,16 +61,16 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <div class="navbar navbar-dark bg-dark shadow-sm">
-    <div class="container d-flex justify-content-between py-2">
+    <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        <i class="fa fa-people-carry mr-2"></i>
-        <strong>Delivery.cl</strong>
+        {{-- <i class="fa fa-people-carry mr-2"></i> --}}
+        {{-- <strong>Delivery.cl</strong> --}}
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+      {{-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> --}}
     </div>
   </div>
 </header>
@@ -82,14 +82,14 @@
       {{-- <h3>{{ current_user()->isHappy() ? "FELIZ CUMPLEAÑOS" : ''}}</h3> --}}
       <p>
         <div id="typed-strings">
-          <p>Creando soluciones <strong>sencillas</strong>.</p>
+          <p>Sistema de genstion </p>
           <p>Gestionado en un solo lugar.</p>
         </div>
         <span id="typed"></span>
       </p>
 
 
-      <img src="{{ $icon }}" width="100%" height="200px" alt="">
+      <img src="{{ $icon }}" width="100%" height="300px" alt="">
 
       {{-- <img src="{!! $icon !!}" id="svg" alt="" width="400px" class="py-2"> --}}
       {{-- <img src="{{ $icon }}" alt="Kiwi standing on oval"> --}}

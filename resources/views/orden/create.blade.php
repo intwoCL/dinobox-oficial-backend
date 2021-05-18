@@ -32,7 +32,7 @@
             <h5><strong>Datos Remitente:</strong></h5>
             {{-- <strong>Datos remitente</strong> --}}
 
-            <div class="form-group row" id="data_1">
+            {{-- <div class="form-group row" id="data_1">
               <label for="fecha" class="col-sm-2 col-form-label">Fecha Entrega</label>
               <div class="input-group date col-sm-5">
                 <span class="input-group-addon btn btn-info"><i class="fa fa-calendar"></i></span>
@@ -41,10 +41,20 @@
               <div class="col-sm-12">
                 {!! $errors->first('fecha_entrega','<small class="form-text text-danger">:message</small>') !!}
               </div>
+            </div> --}}
+
+            <div class="form-group row">
+              <label for="fecha" class="col-sm-3 col-form-label">Fecha Entrega<small class="text-danger">*</small></label>
+              <div class="input-group date col-sm-5">
+                <input type="date" class="form-control" name="fecha_entrega" id="fecha_entrega" required value="{{ $fecha }}">
+              </div>
+              <div class="col-sm-12">
+                {!! $errors->first('fecha_entrega','<small class="form-text text-danger">:message</small>') !!}
+              </div>
             </div>
 
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Nombre(s)</label>
+              <label class="col-sm-2 col-form-label">Nombre(s)<small class="text-danger">*</small></label>
               <div class="input-group col-sm-10">
                 <input type="text" class="form-control {{ $errors->has('remitente_nombre') ? 'is-invalid' : '' }}" aria-label="Recipient's username" name="remitente_nombre" id="remitente_nombre" autocomplete="off" value="{{ old('remitente_nombre') }}" aria-describedby="button-addon2" placeholder="Nombre" required>
 
@@ -62,14 +72,14 @@
 
             <div class="form-group row">
               <div class="form-group col-md-6">
-                <label class=" col-form-label">Región</label>
+                <label class=" col-form-label">Región<small class="text-danger">*</small></label>
                 <div class="input-group">
                   <select class="custom-select" id="select_region" name="region" onChange="CargarComunas()">
                   </select>
                 </div>
               </div>
               <div class="form-group col-md-6">
-                <label for="" class="col-form-label">Comuna</label>
+                <label for="" class="col-form-label">Comuna<small class="text-danger">*</small></label>
                 <div class="input-group">
                   <select class="custom-select {{ $errors->has('remitente_id_comuna') ? 'is-invalid' : '' }}" name='remitente_id_comuna' id="select_comuna">
                   </select>
@@ -79,21 +89,26 @@
             </div>
 
             <div class="form-group row">
-              <div class="form-group col-md-12">
-                <label>Dirección</label>
+              <div class="col-md-6">
+                <label>Dirección<small class="text-danger">*</small></label>
                 <input type="text" class="form-control {{ $errors->has('remitente_direccion') ? 'is-invalid' : '' }}" name="remitente_direccion" id="remitente_direccion" autocomplete="off" value="{{ old('remitente_direccion') }}" placeholder="Dirección" required>
                 {!! $errors->first('remitente_direccion','<small class="form-text text-danger text-center">:message</small>') !!}
+              </div>
+              <div class="col-md-6">
+                <label>Número<small class="text-danger">*</small></label>
+                <input type="text" class="form-control {{ $errors->has('remitente_numero') ? 'is-invalid' : '' }}" name="remitente_numero" id="remitente_numero" autocomplete="off" value="{{ old('remitente_numero') }}" placeholder="1234" required>
+                {!! $errors->first('remitente_numero','<small class="form-text text-danger text-center">:message</small>') !!}
               </div>
             </div>
 
             <div class="form-group row">
-              <div class="form-group col-md-6">
-                <label>Correo</label>
-                <input type="mail" class="form-control {{ $errors->has('remitente_email') ? 'is-invalid' : '' }}" name="remitente_email" id="remitente_email" value="{{ old('remitente_email') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
-                {!! $errors->first('remitente_email', '<small class="form-text text-danger">:message</small>') !!}
+              <div class="col-md-6">
+                <label>Correo<small class="text-danger">*</small></label>
+                <input type="mail" class="form-control {{ $errors->has('remitente_correo') ? 'is-invalid' : '' }}" name="remitente_correo" id="remitente_correo" value="{{ old('remitente_correo') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
+                {!! $errors->first('remitente_correo', '<small class="form-text text-danger">:message</small>') !!}
               </div>
-              <div class="form-group col-md-6">
-                <label>Teléfono</label>
+              <div class="col-md-6">
+                <label>Teléfono<small class="text-danger">*</small></label>
                 <input type="tel" class="form-control" name="remitente_telefono" id="remitente_telefono" autocomplete="off" maxlength="9" placeholder="Ingrese teléfono aqui..." value="{{ old('remitente_telefono') }}" required>
                 {!! $errors->first('remitente_telefono','<small class="form-text text-danger">:message</small>') !!}
               </div>
@@ -104,7 +119,7 @@
             <br>
 
             <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Nombre(s)</label>
+              <label class="col-sm-2 col-form-label">Nombre(s)<small class="text-danger">*</small></label>
               <div class="input-group col-sm-10">
                 <input type="text" class="form-control {{ $errors->has('destinatario_nombre') ? 'is-invalid' : '' }}" name="destinatario_nombre" id="destinatario_nombre" autocomplete="off" value="{{ old('destinatario_nombre') }}" placeholder="Nombre" required>
               </div>
@@ -115,14 +130,14 @@
 
             <div class="form-group row">
               <div class="form-group col-md-6">
-                <label class=" col-form-label">Región</label>
+                <label class=" col-form-label">Región<small class="text-danger">*</small></label>
                 <div class="input-group">
                   <select class="custom-select" id="select_region2" name="region" onChange="CargarComunas2()">
                   </select>
                 </div>
               </div>
               <div class="form-group col-md-6">
-                <label for="" class="col-form-label">Comuna</label>
+                <label for="" class="col-form-label">Comuna<small class="text-danger">*</small></label>
                 <div class="input-group">
                   <select class="custom-select {{ $errors->has('destinatario_id_comuna') ? 'is-invalid' : '' }}" name='destinatario_id_comuna' id="select_comuna2">
                   </select>
@@ -132,20 +147,25 @@
             </div>
 
             <div class="form-group row">
-              <div class="form-group col-md-12">
-                <label>Dirección</label>
+              <div class="col-md-6">
+                <label>Dirección<small class="text-danger">*</small></label>
                 <input type="text" class="form-control {{ $errors->has('destinatario_direccion') ? 'is-invalid' : '' }}" name="destinatario_direccion" id="destinatario_direccion" autocomplete="off" value="{{ old('destinatario_direccion') }}" placeholder="Dirección" required>
                 {!! $errors->first('destinatario_direccion','<small class="form-text text-danger text-center">:message</small>') !!}
+              </div>
+              <div class="col-md-6">
+                <label>Número/piso<small class="text-danger">*</small></label>
+                <input type="text" class="form-control {{ $errors->has('destinatario_numero') ? 'is-invalid' : '' }}" name="destinatario_numero" id="destinatario_numero" autocomplete="off" value="{{ old('destinatario_numero') }}" placeholder="1234" required>
+                {!! $errors->first('destinatario_numero','<small class="form-text text-danger text-center">:message</small>') !!}
               </div>
             </div>
 
             <div class="form-group row">
               <div class="form-group col-md-6">
-                <label for="inputEmail4">Correo</label>
-                <input type="mail" class="form-control {{ $errors->has('destinatario_email') ? 'is-invalid' : '' }}" name="destinatario_email" id="destinatario_email" value="{{ old('destinatario_email') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
+                <label for="inputEmail4">Correo<small class="text-danger">*</small></label>
+                <input type="mail" class="form-control {{ $errors->has('destinatario_correo') ? 'is-invalid' : '' }}" name="destinatario_correo" id="destinatario_correo" value="{{ old('destinatario_correo') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
               </div>
               <div class="form-group col-md-6">
-                <label for="inputPassword4">Teléfono</label>
+                <label for="inputPassword4">Teléfono<small class="text-danger">*</small></label>
                 <input type="tel" class="form-control" name="destinatario_telefono" id="destinatario_telefono" autocomplete="off" maxlength="9" placeholder="Ingrese teléfono aqui..." required>
               </div>
             </div>
@@ -262,10 +282,12 @@
 
     document.getElementById('remitente_nombre').value = cliente.nombres;
     document.getElementById('id_cliente').value = cliente.id;
-    document.getElementById('remitente_direccion').value = direccion.calle + ' ' + direccion.numero;
-    document.getElementById('remitente_email').value = cliente.correo;
-    document.getElementById("select_region").value = direccion.id_region;
-    CargarComunaR(direccion.id_comuna);
+    if (direccion) {
+      document.getElementById('remitente_direccion').value = direccion.calle + ' ' + direccion.numero;
+      document.getElementById('remitente_correo').value = cliente.correo;
+      document.getElementById("select_region").value = direccion.id_region;
+      CargarComunaR(direccion.id_comuna);
+    }
 
     // document.getElementById('success').innerHTML = "Encontrado.";
 

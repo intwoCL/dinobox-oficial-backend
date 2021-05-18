@@ -24,17 +24,20 @@ class OrdenCreateRequest extends FormRequest
     public function rules()
     {
         return [
+          'remitente_rut' => 'required|min:10|max:15',
           'remitente_nombre' => 'required|min:10|max:150',
-          'remitente_direccion' => 'required|min:10|max:150',
-          'remitente_email'=> 'required|min:10|max:150|email',
+          'remitente_direccion' => 'required|min:10|max:300',
+          'remitente_numero' => 'required|min:1|max:30',
+          'remitente_correo'=> 'required|min:5|max:150|email',
           'remitente_telefono' => 'required|min:4|max:9',
-          'remitente_id_comuna' => 'required',
+          'remitente_id_comuna' => 'required|exists:s_comuna,id',
           'destinatario_nombre' => 'required|min:10|max:150',
-          'destinatario_direccion' => 'required|min:10|max|150',
-          'destinatario_email' => 'required|min:10|max:150|email',
+          'destinatario_direccion' => 'required|min:10|max:300',
+          'destinatario_numero' => 'required|min:1|max:30',
+          'destinatario_correo' => 'required|min:5|max:150|email',
           'destinatario_telefono' => 'required|min:4|max:10',
-          'destinatario_id_comuna' => 'required',
-          'precio' => 'required|min:4|max:10'
+          'destinatario_id_comuna' => 'required|exists:s_comuna,id',
+          'precio' => 'required|numeric|min:1|max:10'
         ];
     }
 }

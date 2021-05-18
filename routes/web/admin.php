@@ -44,6 +44,7 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
   Route::get('sistema','SistemaController@index')->name('sistema.index');
   Route::get('sistema/edit','SistemaController@show')->name('sistema.show');
   Route::put('sistema/edit','SistemaController@update')->name('sistema.update');
+  Route::put('sistema/updateLogin','SistemaController@updateLogin')->name('sistema.updateLogin');
 
 });
 

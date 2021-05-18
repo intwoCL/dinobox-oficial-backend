@@ -1,6 +1,20 @@
 <?php
 namespace App\Lib;
 
+// undraw_on_the_way
+// undraw_order_delivered
+// undraw_takeout_boxes
+// undraw_drone_delivery
+// undraw_operating
+// undraw_team_page
+// undraw_delivery
+// undraw_deliveries
+// undraw_two_factor
+// undraw_work
+// undraw_work_time
+// undraw_work_together
+// undraw_workers
+
 class IconRender {
   private $name;
   private $icons;
