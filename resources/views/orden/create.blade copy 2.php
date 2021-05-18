@@ -18,17 +18,17 @@
 <section class="content">
   <div class="row">
     <div class="col-md-6">
-      <div class="card">
-
-
+      <div class="card card-dark">
+        <div class="card-header">
+            <h3 class="card-title">Orden</h3>
+        </div>
+        @foreach ($errors->all() as $error)
+        <span class="badge badge-primary">{{ $error }}</span>
+        @endforeach
         <form class="form-horizontal form-submit" action="{{ route('orden.store') }}" method="POST">
           @csrf
           <input type="hidden" name="id_cliente" value="" id="id_cliente" required>
-
-
-
           <div class="card-body">
-
             <h5><strong>Datos Remitente:</strong></h5>
             {{-- <strong>Datos remitente</strong> --}}
 
