@@ -14,6 +14,7 @@ namespace App\Lib;
 // undraw_work_time
 // undraw_work_together
 // undraw_workers
+// delivery_app
 
 class IconRender {
   private $name;
