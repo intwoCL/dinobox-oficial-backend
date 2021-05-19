@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\Sistema\Cliente;
 use App\Services\ImportImage;
 use App\Http\Requests\ClienteCreateRequest as ClientCreateRequest;
-use App\Http\Requests\ClienteUpdateRequest as ClientUpdateRequest;
+use App\Http\Requests\ClienteLoginRequest;
+use App\Http\Requests\PasswordClienteRequest;
 use App\Models\Sistema\Region;
 use App\Models\Sistema\Comuna;
 use App\Models\Sistema\Direccion;
 use App\Models\Sistema\Sistema;
+use Auth;
 
 class ClienteController extends Controller
 {
@@ -138,7 +140,7 @@ class ClienteController extends Controller
   //Registro Usuario
   public function register() {
     $sistema = Sistema::first();
-    return view('web.cliente.register',compact('sistema'));
+    return view('web.cliente.home.register',compact('sistema'));
   }
 
   public function registerStore(Request $request) {
@@ -167,10 +169,37 @@ class ClienteController extends Controller
     }
   }
 
+  //Login Cliente
+  public function auth() {
+    // close_sessions();
 
-  //Perfil Cliente
+    $sistema = Sistema::first();
+    return view('web.cliente.home.login',compact('sistema'));
+  }
+
+  public function login(ClienteLoginRequest $request) {
+    try {
+      $c = Cliente::findByCorreo($request->correo)->firstOrFail();
+      $pass =  hash('sha256', $request->password);
+
+      if($c->password == $pass) {
+        Auth::guard('cliente')->loginUsingId($c->id);
+
+        return redirect()->route('profile.cliente');
+
+      } else {
+        return back()->with('info','Error. Intente nuevamente.');
+      }
+    } catch (\Throwable $th) {
+      return $th;
+      return back()->with('info','Error. Intente nuevamente.');
+    }
+  }
+
+    //Perfil Cliente
   public function profile() {
-    return view('web.cliente.perfil');
+    $cliente = current_admin();
+    return view('web.cliente.home.perfil',compact('cliente'));
   }
 
   public function profileUpdate(Request $request) {
@@ -180,7 +209,7 @@ class ClienteController extends Controller
       $cliente->apellido = $request->input('apellido');
       $cliente->correo = $request->input('correo');
       $cliente->telefono = $request->input('telefono');
-      $cliente->birdthdate = date_format(date_create($request->input('birdthdate')),'Y-m-d');
+      $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
       $cliente->sexo = $request->input('sexo');
 
       if(!empty($request->file('image'))) {
@@ -189,13 +218,37 @@ class ClienteController extends Controller
         $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
       }
       
-      $cliente->user->update();
+      $cliente->update();
 
       return back()->with('success','Se ha actualizado');
     } catch (\Throwable $th) {
-      //throw $th;
+      // return $th;
       return back()->with('info','Error intente nuevamente');
     }
   }
+
+  public function passwordUpdate(Request $request){
+    try {
+      $cliente = current_admin();
+      $actual_password = hash('sha256', $request->input('password_actual'));
+      $new_password = hash('sha256', $request->input('password_nueva'));
+      
+      if($actual_password == $cliente->password) {
+        if($cliente->password != $new_password) {
+          $cliente->password = $new_password;
+          $cliente->update();
+
+          return back()->with('success', 'Se ha actualizado');
+        } else {
+          return back()->with('info', 'Error las contraseñas son iguales');
+        }
+      } else {
+        return back()->with('info', 'Error intente nuevamente');
+      }
+    } catch (\Throwable $th) {
+      return $th;
+    }
+  }
+
 
 }

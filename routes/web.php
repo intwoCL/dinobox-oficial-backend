@@ -10,8 +10,11 @@ Route::get('/register', 'Sistema\ClienteController@register')->name('cliente.reg
 Route::post('/register', 'Sistema\ClienteController@registerStore')->name('cliente.register.store');
 //Perfil Cliente
 Route::get('/profile/cliente', 'Sistema\ClienteController@profile')->name('profile.cliente');
-Route::put('/profile/cliente', 'Sistema\ClienteController@updateProfile')->name('profile.cliente');
-Route::post('/profile/cliente/password'. 'Sistema\ClienteController@passwordProfile')->name('profile.cliente.password');
+Route::put('/profile/cliente', 'Sistema\ClienteController@profileUpdate')->name('profile.cliente');
+Route::put('/profile/cliente/password', 'Sistema\ClienteController@passwordUpdate')->name('profile.cliente.password');
+//Login Cliente
+Route::get('/login', 'Sistema\ClienteController@auth')->name('cliente.login');
+Route::post('/login', 'Sistema\ClienteController@login')->name('cliente.login');
 
 
 Route::middleware('auth.usuario')->group( function () {

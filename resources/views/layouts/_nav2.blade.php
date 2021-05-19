@@ -39,5 +39,9 @@
       {{-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> --}}
       <a href="{{ route('auth.usuario') }}" class="btn btn-primary btn-sm my-2 my-sm-0">Iniciar sesión</a>
     </div>
+    <div class="form-inline my-2 my-lg-0 mr-4">
+      {{-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> --}}
+      <a href="{{ route('cliente.login') }}" class="btn btn-primary btn-sm my-2 my-sm-0">Login cliente</a>
+    </div>
   </div>
 </nav>

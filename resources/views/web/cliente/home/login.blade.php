@@ -80,15 +80,15 @@
               <img src="{{ $sistema->present()->getImagenLogo() }}" height="100" alt="" class="logo">
             </div>
             <h2 class="login-title text-center {{ $sistema->getLoginOscuro() ? 'text-white' : '' }}">Acceso</h2>
-            <form action="{{ route('auth.usuario') }}" method="POST" class="form-prevent">
+            <form action="{{ route('cliente.login') }}" method="POST" class="form-prevent">
               @csrf
               <div class="form-group">
-                <label for="username" class="sr-only">Username</label>
-                <input type="text" name="username" id="username" autofocus class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" placeholder="Usuario" value="{{ old('username') }}" required>
-                {!! $errors->first('username', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                <label for="correo" class="sr-only">Correo</label>
+                <input type="text" name="correo" id="correo" autofocus class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" placeholder="Correo" value="{{ old('correo') }}" required>
+                {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
               <div class="form-group mb-3">
-                <label for="password" class="sr-only">Password</label>
+                <label for="password" class="sr-only">Contraseña</label>
                 <input type="password" name="password" autocomplete="off" id="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Contraseña" required>
                 {!! $errors->first('password', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
@@ -103,6 +103,7 @@
                   INICIAR
                 </button>
               </div>
+              <a href="{{ route('cliente.register') }}"><small>¿Aún no te has registrado? Hazlo ahora</small></a>
             </form>
             @if (helper_integration_gmail())
             <div class="social-auth-links text-center mb-3">

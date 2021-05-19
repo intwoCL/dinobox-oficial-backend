@@ -104,11 +104,11 @@
               </div>
               <div class="form-group row">
                 <label for="inputEmail" class="col-sm-0 col-form-label">Correo</label>
-                <div class="col-sm-6">
+                <div class="col-sm-10">
                   <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ old('correo') }}" placeholder="example@correo.cl" onkeyup="javascript:this.value=this.value.toLowerCase();" autocomplete="new-email">
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                   <input type="password" name="password" autocomplete="new-password" id="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Contraseña" required>
                   {!! $errors->first('password', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>

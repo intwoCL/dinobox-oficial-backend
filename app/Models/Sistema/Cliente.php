@@ -44,8 +44,8 @@ class Cliente extends Authenticatable
     return new ClientePresenter($this);
   }
 
-  public function scopefindByUsername($query, $username){
-    return $query->where('username',$username)->where('activo',true);
+  public function scopefindByCorreo($query, $correo){
+    return $query->where('correo',$correo)->where('activo',true);
   }
 
   public function getLastSession(){
