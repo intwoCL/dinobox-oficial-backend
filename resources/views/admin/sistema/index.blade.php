@@ -3,30 +3,25 @@
 
 @endpush
 @section('content')
-<section class="content-header">
-  <div class="container-fluid">
-    <div class="row mb-2">
-      <div class="col-sm-12">
-        <h1>Sistema</h1>
-      </div>
-    </div>
-  </div>
-</section>
+@component('components.button._back')
+  @slot('body', "Configuracion del sistema")
+@endcomponent
 <section class="content py-2">
   <div class="row">
     <div class="col-md-4">
       <div class="card">
         <div class="card-header">
-          <h5 class="card-title">Usuarios</h5>
+          <h5 class="card-title">Configuración</h5>
         </div>
         <div class="card-body p-0">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
               <a href="{{ route('admin.sistema.show') }}" class="nav-link">
-                <i class="fas fa-user-graduate text-primary mr-2"></i> UPDATE
+                <i class="fas fa-cog text-primary mr-2"></i>
+                Ajuste del sistema
               </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a href="" class="nav-link">
                 <i class="fas fa-user-graduate text-primary mr-2"></i>
               </a>
@@ -45,13 +40,13 @@
               <a href="" class="nav-link">
                 <i class="fas fa-user-graduate text-primary mr-2"></i>
               </a>
-            </li>
+            </li> --}}
           </ul>
         </div>
       </div>
 
     </div>
-    <div class="col-md-4">
+    {{-- <div class="col-md-4">
       <div class="card">
         <div class="card-header">
           <h5 class="card-title">Reportes</h5>
@@ -81,7 +76,7 @@
           </ul>
         </div>
       </div>
-    </div>
+    </div> --}}
   </div>
 </section>
 

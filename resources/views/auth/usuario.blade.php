@@ -42,6 +42,13 @@
       background-color: transparent;
       color: #f0004f;
     }
+
+    .btn-primary {
+      color: {{ $sistema->getPrimaryColorText() }}  !important;
+      background-color: {{ $sistema->getPrimaryColor() }} !important;
+      border-color: {{ $sistema->getPrimaryColor() }} !important;
+      box-shadow: none;
+    }
     .spinner {
       display: none;
     }
@@ -49,7 +56,7 @@
   <link rel="stylesheet" href="/dist/css/login.css">
   @stack('stylesheet')
 </head>
-<body>
+<body class="{{ $sistema->getLoginOscuro() ? 'bg-dark' : '' }}">
   <main>
     <div class="container-fluid">
       <div class="row">
@@ -72,7 +79,7 @@
             <div class="col-md-12 text-center d-md-none d-lg-block">
               <img src="{{ $sistema->present()->getImagenLogo() }}" height="100" alt="" class="logo">
             </div>
-            <h2 class="login-title text-center">Acceso</h2>
+            <h2 class="login-title text-center {{ $sistema->getLoginOscuro() ? 'text-white' : '' }}">Acceso</h2>
             <form action="{{ route('auth.usuario') }}" method="POST" class="form-prevent">
               @csrf
               <div class="form-group">
@@ -96,6 +103,7 @@
                   INICIAR
                 </button>
               </div>
+              <a href="{{ route('cliente.register') }}"><small>¿Aún no te has registrado? Hazlo ahora</small></a>
             </form>
             @if (helper_integration_gmail())
             <div class="social-auth-links text-center mb-3">

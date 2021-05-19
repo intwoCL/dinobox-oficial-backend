@@ -58,6 +58,7 @@ class UserSeeder extends Seeder
       $u->apellido = "uno";
       $u->correo = "empleado@intwo.cl";
       $u->run = "10469537K";
+      $u->sexo = 1;
       $u->save();
 
       $su = new SucursalUsuario();
@@ -73,6 +74,7 @@ class UserSeeder extends Seeder
       $u->apellido = "uno";
       $u->correo = "repartidor1@intwo.cl";
       $u->run = "178307632";
+      $u->sexo = 2;
       $u->save();
 
       $su = new SucursalUsuario();

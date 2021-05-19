@@ -15,18 +15,19 @@ class CreateTableSCliente extends Migration
     {
         Schema::create('s_cliente', function (Blueprint $table) {
             $table->id();
-            $table->string('uid')->unique()->nullable();
-            $table->string('run')->unique();
+            $table->string('run');
+            $table->string('correo')->unique();
             $table->string('password');
             $table->string('nombre');
             $table->string('apellido');
-            $table->string('correo')->unique();
             $table->string('telefono')->nullable();
             $table->string('imagen')->nullable();
             $table->date('birthdate')->nullable();
             $table->integer('id_usuario_creador')->nullable();
+            $table->integer('sexo')->nullable();
             $table->json('config')->nullable();
             $table->json('integrations')->nullable();
+            $table->string('codigo_verificacion')->nullable();
             $table->boolean('verificado')->default(false);
             $table->datetime('last_session')->nullable();
             $table->boolean('activo')->default(true);

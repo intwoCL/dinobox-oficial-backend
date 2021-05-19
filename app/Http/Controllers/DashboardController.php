@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Lib\IconRender;
 use App\Lib\Icons;
 use App\Models\Sistema\DepartamentoUsuario;
+use App\Models\Sistema\Sistema;
 
 class DashboardController extends Controller
 {
@@ -14,7 +15,10 @@ class DashboardController extends Controller
   }
 
   public function home(){
-    $icon = (new IconRender('encomienda_3','rgb(131,58,180)'))->getIMGBase64();
+    $sistema = Sistema::first();
+    $icon = (new IconRender('delivery_app',$sistema->getSistemaColor()))->getIMGBase64();
+
+    // $icon = (new IconRender('undraw_workers','rgb(131,58,180)'))->getIMGBase64();
 
     return view('dashboard.welcome',compact('icon'));
   }

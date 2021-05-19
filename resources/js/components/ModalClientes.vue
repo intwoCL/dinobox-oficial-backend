@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h6>Búsqueda personalizada</h6>
+          <h6>Búsqueda avanzada</h6>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -78,7 +78,6 @@
                 <th>RUT</th>
                 <th>NOMBRE</th>
                 <th>EMAIL</th>
-                <th>TTIPO USUARIO</th>
                 <th></th>
               </tr>
               </thead>
@@ -91,8 +90,8 @@
                     <!-- <button class="btn btn-success btn-xs" v-on:click="select(cliente, 'cliente')">
                       SELECCIONAR
                     </button> -->
-                    <button type="button" class="btn btn-primary btn-xs"  v-on:click="selectClient(cliente)"  data-toggle="modal" data-target="#modalComuna">
-                      <i class="fa fa-search"></i>
+                    <button type="button" class="btn btn-primary btn-xs" v-on:click="selectClient(cliente)"  data-toggle="modal" data-target="#modalComuna">
+                      <i class="fa fa-map-marker-alt"></i>
                     </button>
                   </td>
                 </tr>
@@ -108,13 +107,17 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalAccionLabel">USUARIO</h5>
+          <h5 class="modal-title" id="modalAccionLabel">Direcciones de {{ cliente.nombres }}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <div class="input-group table-responsive" v-show="clientes.length > 0" style="height: 400px;">
+            <button class="btn btn-primary" v-on:click="select(cliente)">
+              <i class="fas fa-times-circle mr-2"></i>
+              Otra dirección
+            </button>
+            <div class="table-responsive pt-2" v-show="clientes.length > 0" style="height: 400px;">
             <table id="tableSelect" class="table table-bordered table-hover table-sm text-center table-head-fixed">
               <thead>
               <tr>
@@ -126,10 +129,13 @@
                 <tr v-for="direccion in cliente.direcciones" :key="direccion.id">
                   <td>{{ direccion.direccion }}</td>
                   <td>
-                    <button class="btn btn-success btn-xs" v-on:click="select(cliente, direccion)">
+                    <button class="btn btn-primary btn-xs" v-on:click="select(cliente, direccion)">
                       SELECCIONAR
                     </button>
                   </td>
+                </tr>
+                <tr v-if="cliente.direcciones.length == 0">
+                  <td colspan="2">Sin direcciones</td>
                 </tr>
               </tbody>
             </table>
@@ -182,11 +188,12 @@
               option: this.optionKey,
               ...this.data
             }).then(response => {
-              console.log(response.data);
               if (response.data.status != 402) {
+                this.isError = false;
                 this.clientes = [];
                 this.clientes = response.data.clientes;
               }else{
+                this.clear();
                 this.isError = true;
               }
             }).catch(e => {
@@ -197,7 +204,7 @@
       selectClient(cliente) {
         this.cliente = cliente;
       },
-      select(cliente, comuna){
+      select(cliente, comuna = null){
         this.clear();
 
         //crear funcion que retornara el usuario seleccionado

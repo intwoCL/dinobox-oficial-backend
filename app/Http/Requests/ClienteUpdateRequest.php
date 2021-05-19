@@ -28,6 +28,7 @@ class ClienteUpdateRequest extends FormRequest
           'apellido' => 'required|min:2|max:100',
           'correo' => 'required|min:4|max:100|email',
           'telefono' => 'required|min:4|max:9',
+          'sexo' => 'required|min:1|max:2',
         ];
     }
 }

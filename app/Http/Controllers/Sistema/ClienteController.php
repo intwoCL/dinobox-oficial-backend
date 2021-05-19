@@ -11,6 +11,7 @@ use App\Http\Requests\ClienteUpdateRequest as ClientUpdateRequest;
 use App\Models\Sistema\Region;
 use App\Models\Sistema\Comuna;
 use App\Models\Sistema\Direccion;
+use App\Models\Sistema\Sistema;
 
 class ClienteController extends Controller
 {
@@ -25,9 +26,8 @@ class ClienteController extends Controller
   }
 
   public function create() {
-    $comunas = Comuna::get();
-    $regions = Region::get();
-    return view('admin.cliente.create', compact('comunas','regions'));
+    $sexo_options = Cliente::SEXO_OPTIONS;
+    return view('admin.cliente.create', compact('sexo_options'));
   }
 
   public function store(ClientCreateRequest $request) {
@@ -39,6 +39,7 @@ class ClienteController extends Controller
       $cliente->correo = $request->input('correo');
       $cliente->password = hash('sha256', $request->input('password'));
       $cliente->telefono = $request->input('telefono');
+      $cliente->sexo = $request->input('sexo');
       $cliente->id_usuario_creador = current_user()->id;
       $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
@@ -74,6 +75,7 @@ class ClienteController extends Controller
       $cliente->correo = $request->input('correo');
       $cliente->telefono = $request->input('telefono');
       $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
+      $cliente->sexo = $request->input('sexo');
 
       if(!empty($request->file('image'))){
         $filename = time();
@@ -131,4 +133,69 @@ class ClienteController extends Controller
       return back()->with('info','Error Intente nuevamente.');
     }
   }
+
+
+  //Registro Usuario
+  public function register() {
+    $sistema = Sistema::first();
+    return view('web.cliente.register',compact('sistema'));
+  }
+
+  public function registerStore(Request $request) {
+    try {
+      $cliente = new Cliente();
+      $cliente->run = $request->input('run');
+      $cliente->nombre = $request->input('nombre');
+      $cliente->apellido = $request->input('apellido');
+      $cliente->correo = $request->input('correo');
+      $cliente->password = hash('sha256', $request->input('password'));
+      $cliente->telefono = $request->input('telefono');
+      $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
+
+      if(!empty($request->file('image'))){
+        $filename = time();
+        $folder = 'public/photo_clientes';
+        $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      }
+
+      $cliente->save();
+      
+      return redirect()->route('profile.cliente')->with('success,','Se ha creado exitosamente');
+    } catch (\Throwable $th) {
+      return $th;
+      // return back()->with('info','Error Intente nuevamente.');
+    }
+  }
+
+
+  //Perfil Cliente
+  public function profile() {
+    return view('web.cliente.perfil');
+  }
+
+  public function profileUpdate(Request $request) {
+    try {
+      $cliente = current_admin();
+      $cliente->nombre = $request->input('nombre');
+      $cliente->apellido = $request->input('apellido');
+      $cliente->correo = $request->input('correo');
+      $cliente->telefono = $request->input('telefono');
+      $cliente->birdthdate = date_format(date_create($request->input('birdthdate')),'Y-m-d');
+      $cliente->sexo = $request->input('sexo');
+
+      if(!empty($request->file('image'))) {
+        $filename = time();
+        $folder = 'public/photo_clientes';
+        $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      }
+      
+      $cliente->user->update();
+
+      return back()->with('success','Se ha actualizado');
+    } catch (\Throwable $th) {
+      //throw $th;
+      return back()->with('info','Error intente nuevamente');
+    }
+  }
+
 }

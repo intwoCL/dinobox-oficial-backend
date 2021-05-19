@@ -27,11 +27,7 @@
           </a>
         </li>
 
-        @if (current_user()->repartidor())
-          @include('layouts._menu_repartidor')
-        @else
-          @include('layouts._menu_admin')
-        @endif
+        @include('layouts._menu_admin')
       </ul>
     </nav>
   </div>

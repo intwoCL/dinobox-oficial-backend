@@ -9,6 +9,11 @@
     </div>
   </div>
 </section>
+@component('components.button._back')
+  @slot('route', route('admin.cliente.index'))
+  @slot('color', 'secondary')
+  @slot('body', "Editar Cliente <strong>".$c->present()->nombre_completo()."</strong>")
+@endcomponent
 <section class="content">
   <div class="container-fluid">
     <div class="row">
@@ -41,7 +46,7 @@
               <div class="form-group row">
                 <label for="inputEmail" class="col-sm-2 col-form-label">Correo</label>
                 <div class="col-sm-10">
-                  <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ $u->correo }}" placeholder="Email" required>
+                  <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ $u->correo }}" placeholder="example@correo.cl" required>
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>

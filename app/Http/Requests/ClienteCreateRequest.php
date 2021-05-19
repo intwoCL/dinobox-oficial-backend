@@ -29,6 +29,7 @@ class ClienteCreateRequest extends FormRequest
           'password' => 'required|min:4|max:100',
           'correo' => 'required|min:4|max:100|email|unique:s_usuario,correo',
           'telefono' => 'required|min:4|max:9',
+          'sexo' => 'required|min:1|max:2',
         ];
     }
 }

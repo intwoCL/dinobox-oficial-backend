@@ -24,30 +24,48 @@ class CreateTableOrOrden extends Migration
             $table->integer('id_cliente')->nullable();
 
             // Datos Remitente
+            $table->string('remitente_rut')->nullable();
             $table->string('remitente_nombre')->nullable();
             $table->string('remitente_direccion')->nullable();
-            $table->string('remitente_email')->nullable();
+            $table->string('remitente_numero')->nullable();
+            $table->string('remitente_correo')->nullable();
             $table->string('remitente_telefono')->nullable();
             $table->foreignId('remitente_id_comuna')->references('id')->on('s_comuna');
 
             // Datos Destinatario
             $table->string('destinatario_nombre')->nullable();
             $table->string('destinatario_direccion')->nullable();
-            $table->string('destinatario_email')->nullable();
+            $table->string('destinatario_numero')->nullable();
+            $table->string('destinatario_correo')->nullable();
             $table->string('destinatario_telefono')->nullable();
             $table->foreignId('destinatario_id_comuna')->references('id')->on('s_comuna');
             $table->string('mensaje')->nullable();
 
-            //Datos Orden
-            $table->string('foto1')->nullable();
-            $table->string('foto2')->nullable();
+            // Datos Orden
+            $table->double('valor_estimado')->default(0);
+
+            // Configuracion de orden
+            $table->double('precio')->default(0);
+
+            // Extras con integraciones
             $table->json('config')->nullable();
+
+            // Recepcion de remitente
+            $table->boolean('receptor_remitente')->default(false);
+            $table->string('recepcion_remitente_rut')->nullable();
+            $table->string('recepcion_remitente_nombre')->nullable();
+            $table->string('recepcion_remitente_imagen')->nullable();
+
+            //Datos recepcion destinatario
+            $table->boolean('receptor_destinatario')->default(false);
+            $table->string('recepcion_destinatario_rut')->nullable();
+            $table->string('recepcion_destinatario_nombre')->nullable();
+            $table->string('recepcion_destinatario_imagen')->nullable();
+
+
 
             $table->integer('accion')->default(1);
             $table->integer('accion_actual')->default(1);
-
-            $table->double('precio')->default(0);
-
             $table->integer('estado')->default(1);
             $table->boolean('activo')->default(true);
             $table->timestamps();

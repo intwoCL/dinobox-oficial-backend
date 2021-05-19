@@ -19,6 +19,11 @@ class Usuario extends Authenticatable
 
   protected $guard = 'usuario';
 
+  const SEXO_OPTIONS = [
+    1 => 'Hombre',
+    2 => 'Mujer',
+  ];
+
   protected $hidden = [
     'password',
   ];
