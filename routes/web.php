@@ -6,6 +6,7 @@ Route::get('/','DashboardController@index')->name('root');
 
 Route::get('/acceso','Auth\AuthUsuarioController@auth')->name('auth.usuario');
 Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
+//Registro usuario
 Route::get('/register', 'Sistema\ClienteController@register')->name('cliente.register');
 Route::post('/register', 'Sistema\ClienteController@registerStore')->name('cliente.register.store');
 //Perfil Cliente
@@ -15,6 +16,7 @@ Route::put('/profile/cliente/password', 'Sistema\ClienteController@passwordUpdat
 //Login Cliente
 Route::get('/login', 'Sistema\ClienteController@auth')->name('cliente.login');
 Route::post('/login', 'Sistema\ClienteController@login')->name('cliente.login');
+Route::post('/cliente/logout','Sistema\ClienteController@logout')->name('cliente.logout');
 
 
 Route::middleware('auth.usuario')->group( function () {

@@ -161,17 +161,17 @@ class ClienteController extends Controller
       }
 
       $cliente->save();
-
-      return redirect()->route('profile.cliente')->with('success,','Se ha creado exitosamente');
+      
+      return redirect()->route('root')->with('success,','Se ha creado exitosamente');
     } catch (\Throwable $th) {
-      return $th;
-      // return back()->with('info','Error Intente nuevamente.');
+      // return $th;
+      return back()->with('info','Error Intente nuevamente.');
     }
   }
 
   //Login Cliente
   public function auth() {
-    // close_sessions();
+    close_sessions();
 
     $sistema = Sistema::first();
     return view('web.cliente.home.login',compact('sistema'));
@@ -252,5 +252,9 @@ class ClienteController extends Controller
     }
   }
 
+  public function logout() {
+    close_sessions();
+    return redirect()->route('root');
+  }
 
 }
