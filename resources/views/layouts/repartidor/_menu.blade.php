@@ -27,7 +27,7 @@
           </a>
         </li>
 
-        @include('layouts._menu_admin')
+        @include('layouts.repartidor._menu_repartidor')
       </ul>
     </nav>
   </div>

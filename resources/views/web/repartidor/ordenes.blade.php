@@ -1,11 +1,11 @@
-@extends('layouts.repartidor.app')
+@extends('web.repartidor.app')
 @push('stylesheet')
 
 @endpush
 @section('content')
 @component('components.button._back')
   @slot('route', route('repartidor.home'))
-  @slot('color', 'secondary') 
+  @slot('color', 'secondary')
   @slot('body', 'Pedidos')
 @endcomponent
 <section class="content">
@@ -16,7 +16,7 @@
           <h5 class="mt-0">{{ $ordenRepartidor->orden->codigo }}</h5>
           {{ $ordenRepartidor->orden->remitente_nombre }}
           {{ $ordenRepartidor->orden->remitente_direccion }}
-          {{ $ordenRepartidor->orden->getEstado() }} 
+          {{ $ordenRepartidor->orden->getEstado() }}
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
 
       @method("PUT")
       @csrf
-      
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="submit" class="btn btn-primary">Guardar</button>
