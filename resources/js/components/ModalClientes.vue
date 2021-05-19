@@ -113,7 +113,7 @@
           </button>
         </div>
         <div class="modal-body">
-            <button class="btn btn-primary" v-on:click="select(cliente)">
+            <button class="btn btn-primary" v-on:click="select(cliente, null)">
               <i class="fas fa-times-circle mr-2"></i>
               Otra dirección
             </button>
@@ -204,11 +204,11 @@
       selectClient(cliente) {
         this.cliente = cliente;
       },
-      select(cliente, comuna = null){
+      select(cliente, comuna){
+        userHandler(cliente, comuna);
         this.clear();
 
         //crear funcion que retornara el usuario seleccionado
-        userHandler(cliente, comuna);
       }
     }
   }

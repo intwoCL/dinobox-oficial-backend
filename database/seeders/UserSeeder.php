@@ -84,7 +84,6 @@ class UserSeeder extends Seeder
       $su->save();
 
       $c = new Cliente();
-      $c->uid = "INTWO2000001";
       $c->run = "10000000";
       $c->password = $password;
       $c->nombre = "nombre";

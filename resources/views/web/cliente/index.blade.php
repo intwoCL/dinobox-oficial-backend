@@ -1,55 +1,44 @@
 @extends('web.cliente.app')
 @push('stylesheet')
-
+<style>
+    .intro-section {
+      background-image: url("dist/img/dinobox-fondo.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 500px;
+      /* padding: 75px 95px; */
+      /* min-height: 100vh; */
+      display: -webkit-box;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      flex-direction: column;
+      color: #ffffff;
+    }
+</style>
 @endpush
 @section('content')
 @include('layouts._nav2')
 
-{{-- <div class="nav-scroller bg-white shadow-sm">
-  <nav class="nav nav-underline">
-    <a class="nav-link active" href="#">Dashboard</a>
-    <a class="nav-link" href="#">
-      Friends
-      <span class="badge badge-pill bg-light align-text-bottom">27</span>
-    </a>
-    <a class="nav-link" href="#">Explore</a>
-    <a class="nav-link" href="#">Suggestions</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
-  </nav>
-</div> --}}
-
-{{-- <div class="position-relative overflow-hidden text-center bg-light my-2">
-  <div class="col-md-5 p-lg-5 mx-auto">
-    <p class="lead font-weight-normal ">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple's marketing pages.</p>
-  </div>
-</div> --}}
-
-{{-- <div class="position-relative overflow-hidden text-center bg-light my-2">
-  <p class="lead font-weight-normal ">And an even wittier subheading to boot. Jumpstart your marketing efforts with this example based on Apple's marketing pages.</p>
-</div> --}}
-
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+<div class="position-relative overflow-hidden p-3 text-center intro-section">
   <div class="col-md-5 p-lg-5 mx-auto my-5">
-    {{-- <h1 class="display-4 font-weight-normal">Busca tu orden</h1> --}}
-    <p class="lead font-weight-normal">Busca tu orden</p>
+    <h1 class="display-4 font-weight-normal">Busca tu orden</h1>
+    {{-- <p class="lead font-weight-normal">Busca tu orden</p> --}}
     {{-- <a class="btn btn-outline-secondary" href="#">Coming soon</a> --}}
 
     <form class="my-2">
       <div class="input-group">
         <input class="form-control form-control-lg" autofocus type="text" placeholder="Ingresar código de seguimiento" aria-label="Search">
         <div class="input-group-append">
-          <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+          <button class="btn btn-danger" type="button"><i class="fa fa-search"></i></button>
         </div>
       </div>
     </form>
   </div>
 
-  <div class="product-device box-shadow d-none d-md-block"></div>
-  <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+  {{-- <div class="product-device box-shadow d-none d-md-block"></div> --}}
+  {{-- <div class="product-device product-device-2 box-shadow d-none d-md-block"></div> --}}
 </div>
 
 <div class="container marketing">

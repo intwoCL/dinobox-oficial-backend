@@ -16,7 +16,7 @@ class SistemaSeeder extends Seeder
     public function run()
     {
       $s = new Sistema();
-      $s->titulo = "Edugestion";
+      $s->titulo = "Dinobox";
       $s->save();
 
       $s = new Sucursal();

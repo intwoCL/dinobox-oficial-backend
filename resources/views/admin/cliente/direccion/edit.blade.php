@@ -20,9 +20,9 @@
           <div class="card-header">
             <h3 class="card-title">Direcciones</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.cliente.direccion.store',$c->id) }}">
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.cliente.direccion.update',$c->id) }}">
             @csrf
-
+            @method('PUT')
             <div class="card-body">
               <div class="form-group row">
                 <label for="inputnombre" class="col-sm-2 col-form-label">Calle</label>

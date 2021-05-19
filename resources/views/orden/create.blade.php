@@ -48,52 +48,6 @@
 <script src="/dist/js/validate-run.js"></script>
 <script src="/vendor/intwo/countChars.js"></script>
 
-<script>
-  let showTipoUsuario = document.getElementById("showTipoUsuario");
-  let showCarrera = document.getElementById("showCarrera");
-  let showJornada =  document.getElementById("showJornada");
-
-  let btnAtender = document.getElementById("btnAtender");
-  let btnAgregar =  document.getElementById("btnAgregar");
-
-  // Enter en rut
-  var input = document.getElementById("rut");
-  input.addEventListener("keyup", function (event) {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      document.getElementById("sendRut").click();
-    }
-  });
-
-  // Buscar Alumno
-  function buscarAlumnos() {
-    const url2 = "";
-    var rut = document.getElementById('rut').value;
-    document.getElementById('error').innerHTML = "";
-    document.getElementById('success').innerHTML = "";
-
-    axios
-      .post(url2,{rut}).then(response=> {
-        let result = response.data;
-        if (result.status == 200) {
-          let alumno = result.alumno;
-          userHandler(alumno, "alumno");
-        }else{
-          document.getElementById('error').innerHTML = "Alumno no Encontrado.";
-          clearForm();
-        }
-      }).catch(er=>{
-        document.getElementById('error').innerHTML = "El Sistema no Responde.";
-      });
-  }
-
-  function pulsar(e) {
-    if (e.keyCode === 13 && !e.shiftKey) {
-      e.preventDefault();
-      buscarAlumnos();
-    }
-  }
-</script>
 <script src="/vendor/clockpicker/js/bootstrap-clockpicker.min.js"></script>
 <script src="/vendor/datepicker2/js/bootstrap-datepicker.min.js"></script>
 <script src="/vendor/datepicker2/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
@@ -113,19 +67,21 @@
     // clearForm();
 
     document.getElementById('remitente_nombre').value = cliente.nombres;
+    document.getElementById('remitente_telefono').value = cliente.telefono;
     document.getElementById('id_cliente').value = cliente.id;
-    if (direccion) {
-      document.getElementById('remitente_direccion').value = direccion.calle + ' ' + direccion.numero;
+    if (direccion != null) {
+      document.getElementById('remitente_direccion').value = direccion.calle;
+      document.getElementById('remitente_numero').value = direccion.numero;
       document.getElementById('remitente_correo').value = cliente.correo;
       document.getElementById("select_region").value = direccion.id_region;
+
       CargarComunaR(direccion.id_comuna);
     } else {
       document.getElementById('remitente_direccion').value = '';
+      document.getElementById('remitente_numero').value = '';
       document.getElementById('remitente_correo').value = '';
-      document.getElementById("select_region").value = '';
+      document.getElementById("select_region").value = 1000;
     }
-
-    // document.getElementById('success').innerHTML = "Encontrado.";
 
     $('#modalComuna').modal('hide');
     $('#modalFind').modal('hide');

@@ -30,6 +30,8 @@ class CreateTableOrOrden extends Migration
             $table->string('remitente_numero')->nullable();
             $table->string('remitente_correo')->nullable();
             $table->string('remitente_telefono')->nullable();
+            $table->double('remitente_lat')->nullable();
+            $table->double('remitente_lng')->nullable();
             $table->foreignId('remitente_id_comuna')->references('id')->on('s_comuna');
 
             // Datos Destinatario
@@ -38,7 +40,10 @@ class CreateTableOrOrden extends Migration
             $table->string('destinatario_numero')->nullable();
             $table->string('destinatario_correo')->nullable();
             $table->string('destinatario_telefono')->nullable();
+            $table->double('destinatario_lat')->nullable();
+            $table->double('destinatario_lng')->nullable();
             $table->foreignId('destinatario_id_comuna')->references('id')->on('s_comuna');
+
             $table->string('mensaje')->nullable();
 
             // Datos Orden

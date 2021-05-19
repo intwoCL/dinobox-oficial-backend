@@ -1,19 +1,16 @@
 <div class="col-md-6">
   <div class="card">
 
-
     <form class="form-horizontal form-submit" action="{{ route('orden.store') }}" method="POST">
       @csrf
       <input type="hidden" name="id_cliente" value="" id="id_cliente" required>
-
-
 
       <div class="card-body">
         <div class="alert alert-dark" role="alert">
           Datos remitente
         </div>
 
-        <h5><strong>Datos Remitente:</strong></h5>
+        {{-- <h5><strong>Datos Remitente:</strong></h5> --}}
         {{-- <strong>Datos remitente</strong> --}}
 
         <div class="form-group row" id="data_1">
@@ -98,9 +95,10 @@
           </div>
         </div>
 
-        <hr>
-        <h6><strong>Datos Destinatario:</strong></h6>
-        <br>
+        <div class="alert alert-dark" role="alert">
+          <strong>Datos Destinatario:</strong>
+        </div>
+
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Nombre(s)<small class="text-danger">*</small></label>
@@ -160,7 +158,6 @@
             <input type="tel" class="form-control" name="precio" id="precio" autocomplete="off" maxlength="9" placeholder="0" required>
           </div>
           {!! $errors->first('precio', '<small class="form-text text-danger">:message</small>') !!}
-          <p id="limitC"></p>
         </div>
 
         <div class="form-group row">

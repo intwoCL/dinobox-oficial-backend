@@ -7,8 +7,8 @@ use App\Services\Imagen;
 class SistemaPresenter extends Presenter{
 
   private $folderImg = 'photo_sistema';
-  private $imgFondo = "/dist/img/travel.jpg";
-  private $imgLogo = "/dist/img/img-default-user.jpg";
+  private $imgFondo = "/dist/img/dinobox-fondo.png";
+  private $imgLogo = "/dist/img/dinobox-icon1.png";
 
   public function getImagenFondo(){
     return (new Imagen($this->model->imagen_fondo, $this->folderImg, $this->imgFondo))->call();

@@ -75,6 +75,7 @@ class Cliente extends Authenticatable
       'rut' => $this->run,
       'nombres' => $this->present()->nombre_completo(),
       'correo' => $this->correo,
+      'telefono' => $this->telefono,
       'foto' => $this->present()->getPhoto(),
       'direcciones' => $this->raw_direcciones(),
     ];

@@ -30,7 +30,8 @@ class DireccionController extends Controller
       $direccion->telefono = $request->input('telefono');
       $direccion->save();
 
-      return back()->with('success','Se ha agregado exitosamente.');
+      // return back()->with('success','Se ha agregado exitosamente.');
+      return redirect()->route('admin.cliente.direccion.index', $cliente->id)->with('success','Se ha agregado exitosamente.');
     } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
     }

@@ -17,46 +17,46 @@ class OrdenSeeder extends Seeder
      */
     public function run()
     {
-      $faker = Fake::create();
+      // $faker = Fake::create();
 
-      for ($i=2000; $i < 2010; $i++) {
-        $o = new Orden();
-        $o->codigo = $i . $faker->postcode;
-        $o->codigo_transaccion = 123456789010;
-        $o->fecha_entrega = date('Y-m-d');
+      // for ($i=2000; $i < 2010; $i++) {
+      //   $o = new Orden();
+      //   $o->codigo = $i . $faker->postcode;
+      //   $o->codigo_transaccion = 123456789010;
+      //   $o->fecha_entrega = date('Y-m-d');
 
-        $o->remitente_nombre = $faker->firstName;
-        $o->remitente_direccion = $faker->streetName . " " . $faker->buildingNumber;
-        $o->remitente_correo = $faker->firstName."@mail.com";
-        $o->remitente_telefono = "600800900";
-        $o->remitente_id_comuna = 1039;
+      //   $o->remitente_nombre = $faker->firstName;
+      //   $o->remitente_direccion = $faker->streetName . " " . $faker->buildingNumber;
+      //   $o->remitente_correo = $faker->firstName."@mail.com";
+      //   $o->remitente_telefono = "600800900";
+      //   $o->remitente_id_comuna = 1039;
 
-        $o->destinatario_nombre = $faker->firstName;
-        $o->destinatario_direccion = $faker->streetName . " " . $faker->buildingNumber;
-        $o->destinatario_direccion = $faker->numberBetween(4000,9999);
-        $o->destinatario_correo = $faker->firstName."@mail.com";
-        $o->destinatario_telefono = "133131132";
-        $o->destinatario_id_comuna = 1033;
-        $o->mensaje = "Hola, feliz cumpleaños";
+      //   $o->destinatario_nombre = $faker->firstName;
+      //   $o->destinatario_direccion = $faker->streetName . " " . $faker->buildingNumber;
+      //   $o->destinatario_direccion = $faker->numberBetween(4000,9999);
+      //   $o->destinatario_correo = $faker->firstName."@mail.com";
+      //   $o->destinatario_telefono = "133131132";
+      //   $o->destinatario_id_comuna = 1033;
+      //   $o->mensaje = "Hola, feliz cumpleaños";
 
-        $o->precio = 3500;
+      //   $o->precio = 3500;
 
-        $o->save();
-      }
+      //   $o->save();
+      // }
 
-      for ($i=1; $i < 5; $i++) {
-        $r = new OrdenRepartidor();
+      // for ($i=1; $i < 5; $i++) {
+      //   $r = new OrdenRepartidor();
 
-        $r->id_usuario = 1;
-        $r->id_repartidor = 4;
-        $r->id_orden = $i;
-        
-        $o = Orden::find($i);
-        $o->estado = 2;
+      //   $r->id_usuario = 1;
+      //   $r->id_repartidor = 4;
+      //   $r->id_orden = $i;
 
-        $o->update();
-        $r->save();
-      }
+      //   $o = Orden::find($i);
+      //   $o->estado = 2;
+
+      //   $o->update();
+      //   $r->save();
+      // }
 
     }
 }
