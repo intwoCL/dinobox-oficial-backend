@@ -161,7 +161,7 @@ class ClienteController extends Controller
       }
 
       $cliente->save();
-      
+
       return redirect()->route('profile.cliente')->with('success,','Se ha creado exitosamente');
     } catch (\Throwable $th) {
       return $th;
@@ -198,8 +198,10 @@ class ClienteController extends Controller
 
     //Perfil Cliente
   public function profile() {
+    $comunas = Comuna::orderBy('nombre')->get();
+    $regions = Region::get();
     $cliente = current_admin();
-    return view('web.cliente.home.perfil',compact('cliente'));
+    return view('web.cliente.home.perfil',compact('cliente','comunas','regions'));
   }
 
   public function profileUpdate(Request $request) {
@@ -217,7 +219,7 @@ class ClienteController extends Controller
         $folder = 'public/photo_clientes';
         $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
       }
-      
+
       $cliente->update();
 
       return back()->with('success','Se ha actualizado');
@@ -232,7 +234,7 @@ class ClienteController extends Controller
       $cliente = current_admin();
       $actual_password = hash('sha256', $request->input('password_actual'));
       $new_password = hash('sha256', $request->input('password_nueva'));
-      
+
       if($actual_password == $cliente->password) {
         if($cliente->password != $new_password) {
           $cliente->password = $new_password;
