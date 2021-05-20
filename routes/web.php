@@ -19,14 +19,15 @@ Route::get('/profile/direcciones', 'Web\Cliente\ClienteController@direcciones')-
 
 //Historial
 Route::get('/profile/historial', 'Web\Cliente\ClienteController@historial')->name('profile.historial');
-
 Route::put('/profile/cliente', 'Web\Cliente\ClienteController@profileUpdate')->name('profile.cliente');
-Route::put('/profile/cliente/password', 'Web\Cliente\ClienteController@passwordUpdate')->name('profile.cliente.password');
+
+Route::get('/profile/password', 'Web\Cliente\ClienteController@passwordIndex')->name('profile.password');
+Route::put('/profile/password', 'Web\Cliente\ClienteController@passwordUpdate')->name('profile.password');
 
 //Login Cliente
 Route::get('/login', 'Web\Cliente\ClienteController@auth')->name('cliente.login');
 Route::post('/login', 'Web\Cliente\ClienteController@login')->name('cliente.login');
-Route::post('/cliente/logout','Web\Cliente\ClienteController@logout')->name('cliente.logout');
+Route::post('/logout','Web\Cliente\ClienteController@logout')->name('cliente.logout');
 
 
 Route::middleware('auth.usuario')->group( function () {

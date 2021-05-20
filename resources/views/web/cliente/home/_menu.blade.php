@@ -20,6 +20,13 @@
         </a>
       </li>
       <li class="nav-item">
+        <a href="{{ route('profile.password') }}" class="nav-link">
+          <div class="fas fa-lock mr-2"></div>
+          Contraseña
+          {{-- <span class="float-right badge bg-success">12</span> --}}
+        </a>
+      </li>
+      <li class="nav-item">
         <a href="{{ route('profile.direcciones') }}" class="nav-link">
           <i class="fas fa-home mr-2"></i>
           Direcciones
@@ -33,8 +40,14 @@
           {{-- <span class="float-right badge bg-success">12</span> --}}
         </a>
       </li>
+      <br>
       <li class="nav-item">
-        
+        <form action="{{ route('cliente.logout') }}" method="POST">
+          @csrf
+          <button type="submit" class="btn btn-danger btn-sm">
+            Cerrar sesión            
+          </button>
+        </form>
       </li>
     </ul>
   </div>

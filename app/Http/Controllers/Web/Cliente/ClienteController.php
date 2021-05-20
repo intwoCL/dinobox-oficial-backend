@@ -70,6 +70,12 @@ class ClienteController extends Controller
 
 
     //Actualizar contraseña
+    public function passwordIndex(){
+      $cliente = current_client();
+      return view('web.cliente.home.password', compact('cliente'));;
+    }
+
+
     public function passwordUpdate(Request $request){
       try {
         $cliente = current_client();
@@ -156,7 +162,6 @@ class ClienteController extends Controller
         return back()->with('info','Error. Intente nuevamente.');
       }
     }
-
 
     //Cerrar Sesión
     public function logout() {

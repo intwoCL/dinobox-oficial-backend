@@ -19,7 +19,6 @@
 </form> --}}
 
 <div class="col-md-4">
-
   <div class="card shadow-sm text-center">
     <div class="card-header">
       <a href="{{ route('admin.cliente.direccion.edit', current_client()->direcciones->first()->id) }}">

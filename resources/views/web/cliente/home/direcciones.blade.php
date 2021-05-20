@@ -20,6 +20,7 @@
     </div>
     <div class="col-md-8">
       <h4 class="mb-3">Mis direcciones</h4>
+      <button type="button" class="btn btn-success btn-sm">Crear</button>
       @include('web.cliente.home._form')
     </div>
   </div>
