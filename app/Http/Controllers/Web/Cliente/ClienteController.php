@@ -34,6 +34,7 @@ class ClienteController extends Controller
       return view('web.cliente.home.direcciones',compact('cliente','comunas','regions'));
     }
 
+
     public function historial() {
       // $comunas = Comuna::orderBy('nombre')->get();
       // $regions = Region::get();
@@ -53,11 +54,11 @@ class ClienteController extends Controller
         $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
         $cliente->sexo = $request->input('sexo');
 
-        if(!empty($request->file('image'))) {
-          $filename = time();
-          $folder = 'public/photo_clientes';
-          $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
-        }
+        // if(!empty($request->file('image'))) {
+        //   $filename = time();
+        //   $folder = 'public/photo_clientes';
+        //   $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+        // }
 
         $cliente->update();
 
@@ -87,7 +88,7 @@ class ClienteController extends Controller
             $cliente->password = $new_password;
             $cliente->update();
 
-            return back()->with('success', 'Se ha actualizado');
+            return back()->with('success', 'Contraseña actualizada');
           } else {
             return back()->with('info', 'Error las contraseñas son iguales');
           }

@@ -53,11 +53,11 @@
   </div>
 </div>
 
-<form class="card p-2">
+{{-- <form class="card p-2">
   <div class="input-group">
     <input type="text" class="form-control" placeholder="Promo code">
     <div class="input-group-append">
       <button type="submit" class="btn btn-secondary">Redeem</button>
     </div>
   </div>
-</form>
+</form> --}}

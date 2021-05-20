@@ -67,7 +67,6 @@
             <h1 class="intro-title">{{ $sistema->titulo ?? '' }}</h1>
           </div>
           <div class="intro-content-wrapper">
-            {{-- <h1 class="intro-title">Sistema Edugestión Academica</h1> --}}
             <p class="intro-text"></p>
           </div>
           <div class="intro-section-footer">

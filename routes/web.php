@@ -9,11 +9,12 @@ Route::get('/acceso','Auth\AuthUsuarioController@auth')->name('auth.usuario');
 Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
 
 //Registro usuario
-Route::get('/register', 'Sistema\ClienteController@register')->name('cliente.register');
-Route::post('/register', 'Sistema\ClienteController@registerStore')->name('cliente.register.store');
+Route::get('/register', 'Web\Cliente\ClienteController@register')->name('cliente.register');
+Route::post('/register', 'Web\Cliente\ClienteController@registerStore')->name('cliente.register.store');
 
 //Perfil Cliente
 Route::get('/profile/cliente', 'Web\Cliente\ClienteController@cliente')->name('profile.cliente');
+Route::put('/profile/cliente', 'Web\Cliente\ClienteController@profileUpdate')->name('profile.cliente');
 
 //Direcciones
 Route::get('/profile/direcciones', 'Web\Cliente\ClienteController@direcciones')->name('profile.direcciones');
@@ -21,10 +22,9 @@ Route::post('/profile/direcciones', 'Web\Cliente\ClienteController@direccionStor
 
 //Historial
 Route::get('/profile/historial', 'Web\Cliente\ClienteController@historial')->name('profile.historial');
-Route::put('/profile/cliente', 'Web\Cliente\ClienteController@profileUpdate')->name('profile.cliente');
 
 Route::get('/profile/password', 'Web\Cliente\ClienteController@passwordIndex')->name('profile.password');
-Route::put('/profile/password', 'Web\Cliente\ClienteController@passwordUpdate')->name('profile.password');
+Route::post('/profile/password', 'Web\Cliente\ClienteController@passwordUpdate')->name('profile.password.update');
 
 //Login Cliente
 Route::get('/login', 'Web\Cliente\ClienteController@auth')->name('cliente.login');
