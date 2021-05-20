@@ -25,6 +25,7 @@
             @csrf
 
             <div class="card-body">
+
               <div class="form-group row">
                 <label for="inputnombre" class="col-sm-2 col-form-label">Calle</label>
                 <div class="col-sm-5">
@@ -36,6 +37,7 @@
                   {!! $errors->first('numero', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
+
               <div class="form-group row">
                 <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Región</label>
                 <div class="col-sm-10">
@@ -43,6 +45,7 @@
                   </select>
                 </div>
               </div>
+
               <div class="form-group row">
                 <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Comuna</label>
                 <div class="col-sm-10">
@@ -51,6 +54,7 @@
                 </div>
                 {!! $errors->first('id_comuna', ' <small id="inputPassword" class="form-text text-danger">:message</small>') !!}
               </div>
+
               <div class="form-group row">
                 <label for="nameEvento" class="col-form-label col-sm-2">Datos adicionales</label>
                 <div class="input-group col-sm-10">
@@ -58,12 +62,14 @@
                   {!! $errors->first('dato_adicional','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
+
               <div class="form-group row">
                 <label for="nameEvento" class="col-form-label col-sm-2">Teléfono</label>
                 <div class="input-group col-sm-10">
                   <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Ingrese su teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos">
                 </div>
               </div>
+
             </div>
             <div class="card-footer">
               <button type="submit" class="btn btn-success float-right">Guardar</button>

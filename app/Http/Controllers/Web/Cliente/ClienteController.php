@@ -28,10 +28,10 @@ class ClienteController extends Controller
 
 
     public function direcciones() {
-      // $comunas = Comuna::orderBy('nombre')->get();
-      // $regions = Region::get();
+      $comunas = Comuna::orderBy('nombre')->get();
+      $regions = Region::get();
       $cliente = current_client();
-      return view('web.cliente.home.direcciones',compact('cliente'));
+      return view('web.cliente.home.direcciones',compact('cliente','comunas','regions'));
     }
 
     public function historial() {
@@ -105,7 +105,7 @@ class ClienteController extends Controller
       $sistema = Sistema::first();
       return view('web.cliente.home.register',compact('sistema'));
     }
-  
+
 
     public function registerStore(Request $request) {
       try {
@@ -117,15 +117,15 @@ class ClienteController extends Controller
         $cliente->password = hash('sha256', $request->input('password'));
         $cliente->telefono = $request->input('telefono');
         $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
-  
+
         if(!empty($request->file('image'))){
           $filename = time();
           $folder = 'public/photo_clientes';
           $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
         }
-  
+
         $cliente->save();
-  
+
         return redirect()->route('root')->with('success,','Se ha creado exitosamente');
       } catch (\Throwable $th) {
         // return $th;
@@ -142,7 +142,7 @@ class ClienteController extends Controller
       return view('web.cliente.home.login',compact('sistema'));
     }
 
-    
+
     //Iniciar Sesión
     public function login(ClienteLoginRequest $request) {
       try {
@@ -167,6 +167,27 @@ class ClienteController extends Controller
     public function logout() {
       close_sessions();
       return redirect()->route('root');
+    }
+
+    //Direcciones
+    public function direccionStore(Request $request){
+      try {
+        $cliente = current_client();
+        $direccion = new Direccion();
+        $direccion->id_cliente = $cliente->id;
+        $direccion->calle = $request->input('calle');
+        $direccion->numero = $request->input('numero');
+        $direccion->id_comuna = $request->input('id_comuna');
+        $direccion->dato_adicional = $request->input('dato_adicional');
+        $direccion->telefono = $request->input('telefono');
+        $direccion->favorito = $request->has('favorito');
+        $direccion->save();
+
+        return back()->with('success','Se ha agregado exitosamente.');
+      } catch (\Throwable $th) {
+        return $th;
+        return back()->with('info','Error Intente nuevamente.');
+      }
     }
 
 }

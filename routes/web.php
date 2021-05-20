@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Row;
 
 Route::get('/','DashboardController@index')->name('root');
 
@@ -16,6 +17,7 @@ Route::get('/profile/cliente', 'Web\Cliente\ClienteController@cliente')->name('p
 
 //Direcciones
 Route::get('/profile/direcciones', 'Web\Cliente\ClienteController@direcciones')->name('profile.direcciones');
+Route::post('/profile/direcciones', 'Web\Cliente\ClienteController@direccionStore')->name('profile.direcciones');
 
 //Historial
 Route::get('/profile/historial', 'Web\Cliente\ClienteController@historial')->name('profile.historial');
