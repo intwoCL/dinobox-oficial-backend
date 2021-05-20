@@ -23,7 +23,10 @@
 <script src="/vendor/intwo/datatables-es.js"></script>
 <script>
   $(function () {
-    $("#tableSelect").DataTable();
+    $("#tableSelect").DataTable({
+      stateSave: true,
+    });
+
   });
 </script>
 @endpush

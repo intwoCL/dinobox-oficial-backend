@@ -9,8 +9,12 @@ Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
 //Registro usuario
 Route::get('/register', 'Sistema\ClienteController@register')->name('cliente.register');
 Route::post('/register', 'Sistema\ClienteController@registerStore')->name('cliente.register.store');
+
 //Perfil Cliente
-Route::get('/profile/cliente', 'Sistema\ClienteController@profile')->name('profile.cliente');
+Route::get('/profile/cliente', 'Web\Cliente\ClienteController@cliente')->name('profile.cliente');
+Route::get('/profile/direcciones', 'Web\Cliente\ClienteController@direcciones')->name('profile.direcciones');
+
+
 Route::put('/profile/cliente', 'Sistema\ClienteController@profileUpdate')->name('profile.cliente');
 Route::put('/profile/cliente/password', 'Sistema\ClienteController@passwordUpdate')->name('profile.cliente.password');
 //Login Cliente

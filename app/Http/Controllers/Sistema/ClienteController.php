@@ -161,7 +161,7 @@ class ClienteController extends Controller
       }
 
       $cliente->save();
-      
+
       return redirect()->route('root')->with('success,','Se ha creado exitosamente');
     } catch (\Throwable $th) {
       // return $th;
@@ -196,17 +196,9 @@ class ClienteController extends Controller
     }
   }
 
-    //Perfil Cliente
-  public function profile() {
-    $comunas = Comuna::orderBy('nombre')->get();
-    $regions = Region::get();
-    $cliente = current_admin();
-    return view('web.cliente.home.perfil',compact('cliente','comunas','regions'));
-  }
-
   public function profileUpdate(Request $request) {
     try {
-      $cliente = current_admin();
+      $cliente = current_client();
       $cliente->nombre = $request->input('nombre');
       $cliente->apellido = $request->input('apellido');
       $cliente->correo = $request->input('correo');
@@ -231,7 +223,7 @@ class ClienteController extends Controller
 
   public function passwordUpdate(Request $request){
     try {
-      $cliente = current_admin();
+      $cliente = current_client();
       $actual_password = hash('sha256', $request->input('password_actual'));
       $new_password = hash('sha256', $request->input('password_nueva'));
 
