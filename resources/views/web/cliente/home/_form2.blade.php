@@ -1,20 +1,39 @@
 <form>
   <div class="form-group row">
+    <div class="col-md-8">
+      <label for="run">Run</label>
+      <input type="text" class="form-control form-control-border" id="run" placeholder="Ej: 19222888K">
+    </div>
+  </div>
+  <div class="form-group row">
     <div class="col-md-6">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+      <label for="nombre">Nombre</label>
+      <input type="text" class="form-control form-control-border" id="nombre" placeholder="Nombre">
     </div>
     <div class="col-md-6">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control form-control-border" id="exampleInputEmail1" placeholder="Enter email">
+      <label for="apellido">Apellido</label>
+      <input type="text" class="form-control form-control-border" id="apellido" placeholder="Apellido">
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label for="correo">Correo</label>
+      <input type="mail" class="form-control form-control-border" id="correo" placeholder="example@correo.cl">
+    </div>
+    <div class="col-md-6">
+      <label for="telefono">Teléfono</label>
+      <input type="password" class="form-control form-control-border" id="telefono" placeholder="Ej: 977374733">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="fecha" class="col-sm-3 col-form-label">Fecha Nacimiento</label>
+    <div class="input-group date col-sm-8">
+      <span class="input-group-addon btn btn-info btn-sm"><i class="fa fa-calendar"></i></span>
+      <input type="text" class="form-control" readonly name="birthdate" required value="{{ old('birthdate') ?? date('d-m-Y') }}">
     </div>
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Guardar</button>
   </div>
 </form>
 

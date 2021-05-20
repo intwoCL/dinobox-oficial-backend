@@ -6,21 +6,27 @@ Route::get('/','DashboardController@index')->name('root');
 
 Route::get('/acceso','Auth\AuthUsuarioController@auth')->name('auth.usuario');
 Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
+
 //Registro usuario
 Route::get('/register', 'Sistema\ClienteController@register')->name('cliente.register');
 Route::post('/register', 'Sistema\ClienteController@registerStore')->name('cliente.register.store');
 
 //Perfil Cliente
 Route::get('/profile/cliente', 'Web\Cliente\ClienteController@cliente')->name('profile.cliente');
+
+//Direcciones
 Route::get('/profile/direcciones', 'Web\Cliente\ClienteController@direcciones')->name('profile.direcciones');
 
+//Historial
+Route::get('/profile/historial', 'Web\Cliente\ClienteController@historial')->name('profile.historial');
 
-Route::put('/profile/cliente', 'Sistema\ClienteController@profileUpdate')->name('profile.cliente');
-Route::put('/profile/cliente/password', 'Sistema\ClienteController@passwordUpdate')->name('profile.cliente.password');
+Route::put('/profile/cliente', 'Web\Cliente\ClienteController@profileUpdate')->name('profile.cliente');
+Route::put('/profile/cliente/password', 'Web\Cliente\ClienteController@passwordUpdate')->name('profile.cliente.password');
+
 //Login Cliente
-Route::get('/login', 'Sistema\ClienteController@auth')->name('cliente.login');
-Route::post('/login', 'Sistema\ClienteController@login')->name('cliente.login');
-Route::post('/cliente/logout','Sistema\ClienteController@logout')->name('cliente.logout');
+Route::get('/login', 'Web\Cliente\ClienteController@auth')->name('cliente.login');
+Route::post('/login', 'Web\Cliente\ClienteController@login')->name('cliente.login');
+Route::post('/cliente/logout','Web\Cliente\ClienteController@logout')->name('cliente.logout');
 
 
 Route::middleware('auth.usuario')->group( function () {
