@@ -14,7 +14,7 @@ class ClientePolicy extends PolicyModel {
   }
 
   public function direccionesIndex($direccion, $cliente) {
-    if($direccion->id_cliente != $cliente->id){
+    if($direccion->id_cliente == $cliente->id){
       return true;
     }
     return $this->abort();
