@@ -4,7 +4,7 @@
     <tr>
       <th>Perfil</th>
       <th>Imagen</th>
-      <th>Usuario</th>
+      {{-- <th>Usuario</th> --}}
       <th>Nombre</th>
       <th>Correo</th>
     </tr>
@@ -12,12 +12,12 @@
     <tbody>
       @foreach ($usuarios as $u)
       <tr>
-        <td>{!! $u->present()->getPerfil() !!}</td>
+        <td class="align-middle">{!! $u->present()->getPerfil() !!}</td>
         <td class="align-middle">
           <img src="{{ $u->present()->getPhoto() }}" alt="Imagenes de fondo" height="50px" srcset="">
         </td>
         <td class="align-middle">
-          <strong>{{$u->username}}</strong>
+          <strong>{{$u->present()->nombre_completo() }}</strong>
           <div class="table-links">
             <div class="btn-group">
               <a href="{{ route('admin.usuario.edit',$u->id) }}" class="ml-2">
@@ -28,7 +28,7 @@
             </div>
           </div>
         </td>
-        <td class="align-middle">{{$u->present()->nombre_completo()}}</td>
+        {{-- <td class="align-middle">{{$u->present()->nombre_completo()}}</td> --}}
         <td class="align-middle">{{$u->correo}}</td>
       </tr>
       @endforeach

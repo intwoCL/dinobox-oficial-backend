@@ -38,6 +38,11 @@ class Orden extends Model
     30 => ['Envíos Especiales','',true],
   ];
 
+  const LUGAR_RECEPCION = [
+    10 => ['','',true],
+    20 => ['Local','',true],
+  ];
+
   public function getFecha(){
     return new ConvertDatetime($this->fecha_entrega);
   }

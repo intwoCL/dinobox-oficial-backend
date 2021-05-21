@@ -99,15 +99,23 @@ class Usuario extends Authenticatable
                 ->where('sucursalUsuario.rol',$rol);
   }
 
+  public function scopeGetAllRolDistinc($query,$rol){
+    return $query->where('activo',true)
+                ->where('bloqueado',false)
+                ->with('sucursalUsuario')
+                ->get()
+                ->where('sucursalUsuario.rol',$rol);
+  }
+
   public function scopeGetAllGestor(){
     return $this->getAllRol(1);
   }
 
-  public function scopeGetAllEmpleado(){
+  public function scopeGetAllEmpleados(){
     return $this->getAllRol(2);
   }
 
-  public function scopeGetAllRepartidor(){
+  public function scopeGetAllRepartidores(){
     return $this->getAllRol(3);
   }
 }

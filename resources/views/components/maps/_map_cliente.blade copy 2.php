@@ -38,23 +38,25 @@ font-family: Montserrat;
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
 
-
       var map = new mapboxgl.Map({
           container: 'map',
           style: 'mapbox://styles/mapbox/streets-v11',
           center: [longitude, latitude],
           zoom: 13
       });
+
       map.addControl(new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken
+          accessToken: mapboxgl.accessToken,
+          mapboxgl: mapboxgl
       }));
+
       map.addControl(new mapboxgl.NavigationControl());
       // map.addControl(new mapboxgl.FullscreenControl());
       map.addControl(new mapboxgl.GeolocateControl({
-          positionOptions: {
-              enableHighAccuracy: true
-          },
-          trackUserLocation: true
+        positionOptions: {
+          enableHighAccuracy: true
+        },
+        trackUserLocation: true
       }));
       // map.on('mousemove', function (e) {
       //     document.getElementById('coordenadas').innerHTML =

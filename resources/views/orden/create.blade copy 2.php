@@ -8,6 +8,21 @@
 @push('stylesheet')
   <link rel="stylesheet" href="/vendor/clockpicker/css/bootstrap-clockpicker.min.css">
   <link rel="stylesheet" href="/vendor/datepicker2/css/bootstrap-datepicker3.css">
+  <style>
+    .circlen {
+      border-radius: 0.8em;
+      -moz-border-radius: 0.8em;
+      -webkit-border-radius: 0.8em;
+      color: #ffffff;
+      display: inline-block;
+      font-weight: bold;
+      line-height: 1.6em;
+      margin-right: 15px;
+      text-align: center;
+      width: 1.6em;
+    }
+
+  </style>
 @endpush
 @section('content')
 @component('components.button._back')
@@ -15,17 +30,14 @@
   @slot('color', 'dark')
   @slot('body', "Generar Orden")
 @endcomponent
+
+
 <section class="content">
   <div class="row">
     @include('orden._form2')
     <div class="col-md-6">
-      @include('components.maps._map_cliente')
+      @include('components.maps._map3')
     </div>
-    {{-- <div class="col-md-6">
-      <div class="d-none d-lg-block">
-        <img width="100%" style="pointer-events: none;" src="{!! $icon !!}" alt="">
-      </div>
-    </div> --}}
   </div>
 </section>
 <modal-clientes
@@ -55,22 +67,12 @@
     // clearForm();
 
     document.getElementById('remitente_nombre').value = cliente.nombres;
-    document.getElementById('remitente_nombre').setAttribute('readonly', true);
-
     document.getElementById('remitente_telefono').value = cliente.telefono;
-    // document.getElementById('remitente_telefono').setAttribute('readonly', true);
-
-    // document.getElementById('id_cliente_rawr').value = cliente.id;
-    // document.getElementById('text_cliente_rawr').value = "Se ha seleccionando el cliente";
-
+    document.getElementById('id_cliente').value = cliente.id;
     if (direccion != null) {
-      document.getElementById('id_direccion_rawr').value = cliente.id;
-
       document.getElementById('remitente_direccion').value = direccion.calle;
       document.getElementById('remitente_numero').value = direccion.numero;
       document.getElementById('remitente_correo').value = cliente.correo;
-      document.getElementById('remitente_correo').setAttribute('readonly', true);
-
       document.getElementById("select_region").value = direccion.id_region;
 
       CargarComunaR(direccion.id_comuna);

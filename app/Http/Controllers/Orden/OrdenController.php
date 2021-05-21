@@ -10,13 +10,18 @@ use Illuminate\Http\Request;
 use App\Models\Sistema\Region;
 use App\Models\Sistema\Comuna;
 use App\Http\Requests\OrdenCreateRequest;
+use App\Lib\IconRender;
+use App\Models\Sistema\Sistema;
+use App\Services\IconServices;
 
 class OrdenController extends Controller
 {
   public function indexPendientes() {
     $ordenes = Orden::getPendientes();
-    $repartidores = Usuario::getAllRepartidor();
-    return view('orden.index', compact('ordenes','repartidores'));
+    $repartidores = Usuario::getAllRepartidores();
+
+    $icon = (new IconRender('delivery_app', Sistema::first()->getSistemaColor()))->getIMGBase64();
+    return view('orden.index', compact('ordenes','repartidores','icon'));
   }
 
   public function indexAsignados($fecha) {
@@ -32,8 +37,11 @@ class OrdenController extends Controller
     $comunas = Comuna::orderBy('nombre')->get();
     $tiposEnvios = Orden::TIPO_ENVIO;
     // $regions = Region::orderBy('nombre')->get();
+
+    // $icon = (new IconRender('undraw_drone_delivery', Sistema::first()->getSistemaColor()))->getIMGBase64();
+    $icon = (new IconServices())->getImagen();
     $regions = Region::get();
-    return view('orden.create', compact('comunas','regions','tiposEnvios'));
+    return view('orden.create', compact('comunas','regions','tiposEnvios','icon'));
   }
 
 

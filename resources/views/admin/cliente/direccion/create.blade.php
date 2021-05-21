@@ -72,9 +72,9 @@
         </div>
       </div>
 
-      {{-- <div class="col-md-6">
-        @include('components.maps._map_cliente')
-      </div> --}}
+      <div class="col-md-6">
+        {{-- @include('components.maps._map_cliente') --}}
+      </div>
     </div>
   </div>
 </section>

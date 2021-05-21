@@ -16,7 +16,7 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
   Route::put('usuario/{id}/password','UsuarioController@password')->name('usuario.password');
   Route::get('usuario/{id}/vehiculo','VehiculoController@index')->name('vehiculo.index');
   Route::post('usuario/{id}/vehiculo','VehiculoController@store')->name('vehiculo.store');
-  Route::get('repartidores','UsuarioController@indexRepartidor')->name('repartidor.index');
+  Route::get('repartidores','UsuarioController@indexRepartidores')->name('repartidor.index');
 
   // - {CLIENTE}
   Route::resource('cliente','ClienteController',['except'=>['show']]);

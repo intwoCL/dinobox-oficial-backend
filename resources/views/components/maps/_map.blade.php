@@ -25,6 +25,7 @@
 @push('javascript')
 <script>
 
+  mapboxgl.accessToken = 'pk.eyJ1IjoiYmVtdG9ycmVzIiwiYSI6ImNqY3dvdGlmZjBnNm8yeW5zNTMzemZxaW0ifQ.EHISAJYq1EioCIzBw-wHfw';
 
 
     var mymap = L.map('mimapa').setView([-33.448890, -70.669265], 18);

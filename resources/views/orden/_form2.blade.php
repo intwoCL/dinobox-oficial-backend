@@ -7,7 +7,7 @@
 
       <div class="card-body">
         <div class="alert alert-dark" role="alert">
-          Datos remitente
+          <strong>Datos remitente</strong>
         </div>
 
         {{-- <h5><strong>Datos Remitente:</strong></h5> --}}
@@ -49,6 +49,10 @@
             <small id="error" class="text-danger"></small>
             <small id="success" class="text-success"></small>
           </span>
+
+          <div class="col-sm-12 text-center pt-2">
+            <h5><span class="badge badge-primary">Se ha seleccionado al cliente #001</span></h5>
+          </div>
         </div>
 
         <div class="form-group row">
@@ -95,8 +99,8 @@
           </div>
         </div>
 
-        <div class="alert alert-dark" role="alert">
-          <strong>Datos Destinatario:</strong>
+        <div class="alert alert-info" role="alert">
+          <strong>Datos destinatario</strong>
         </div>
 
 
@@ -152,12 +156,19 @@
           </div>
         </div>
 
+        <div class="alert alert-dark" role="alert">
+          <strong></strong>
+        </div>
+
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Precio</label>
+          <label class="col-sm-2 col-form-label">Lugar de recepción</label>
           <div class="input-group col-sm-10">
-            <input type="tel" class="form-control" name="precio" id="precio" autocomplete="off" maxlength="9" placeholder="0" required>
+            <select class="custom-select" id="tipo_envio" name="tipo_envio">
+              @foreach ($tiposEnvios as $key => $value)
+              <option value="{{ $key }}">{{ $value[0] }}</option>
+              @endforeach
+            </select>
           </div>
-          {!! $errors->first('precio', '<small class="form-text text-danger">:message</small>') !!}
         </div>
 
         <div class="form-group row">
@@ -170,6 +181,14 @@
               @endforeach
             </select>
           </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Precio<small class="text-danger">*</small></label>
+          <div class="input-group col-sm-10">
+            <input type="tel" class="form-control" name="precio" id="precio" autocomplete="off" maxlength="9" placeholder="0" required>
+          </div>
+          {!! $errors->first('precio', '<small class="form-text text-danger">:message</small>') !!}
         </div>
 
         <div class="form-group">

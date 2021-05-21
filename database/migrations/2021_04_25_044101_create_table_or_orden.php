@@ -15,6 +15,9 @@ class CreateTableOrOrden extends Migration
     {
         Schema::create('or_orden', function (Blueprint $table) {
             $table->id();
+
+            // CONFIG
+            $table->foreignId('id_sucursal')->references('id')->on('s_sucursal');
             $table->string('codigo')->unique();
             $table->string('codigo_transaccion')->nullable();
 
