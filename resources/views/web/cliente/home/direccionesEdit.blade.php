@@ -1,4 +1,5 @@
 @extends('web.cliente.app')
+@section('content')
 @push('stylesheet')
   <style>
     body {
@@ -6,7 +7,6 @@
     }
   </style>
 @endpush
-@section('content')
 
 @include('web.cliente.partials._nav')
 
@@ -16,34 +16,22 @@
       @include('web.cliente.partials._menu')
     </div>
     <div class="col-md-8">
-      <h4 class="mb-3">
-        Mis direcciones
-      </h4>
-      
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card shadow text-center" style="height: 150px;">
-            <div class="card-body">
-              <div class="pt-4" data-toggle="modal" data-target="#addProduct" type="button">
-                <i class="fas fa-plus fa-2x"></i>
-                <p class="card-text"><strong>Nueva dirección</strong></p>
-              </div>
-            </div>
-          </div>
+      @component('components.button._back2')
+        @slot('route', route('profile.direcciones'))
+        @slot('color', 'secondary')
+        @slot('body', 'Editar dirección')
+      @endcomponent
+      <div class="card">
+        <div class="card-body">
+          @include('web.cliente.partials._direccionEdit')
         </div>
-        @foreach (current_client()->direcciones as $d)
-      
-        @include('web.cliente.partials._form')
-  
-        @endforeach
       </div>
     </div>
   </div>
 
   @include('web.cliente.partials._footer')
-  
+
 </div>
-@include('web.cliente.partials._modal_add_direction')
 @endsection
 @push('javascript')
 <script>
@@ -60,7 +48,9 @@
   
   //Modal Create
   CargarRegiones('select_region')
-  CargarComunas();
+  // CargarComunas();
+  document.getElementById("select_region").value = {{ $d->comuna->id_region}};
+  CargarComunaR({{ $d->id_comuna }});
 
   //Create
   function CargarRegiones(selectId){
@@ -79,7 +69,7 @@
     var coms = comunas.filter( c => c.id_region==id_r);
 
     $.each(coms, function(key,value) {
-      select.append('<option value=' + value.id + '>' + value.name + '</option>');
+        select.append('<option value=' + value.id + '>' + value.name + '</option>');
     });
   }
 
@@ -89,12 +79,12 @@
     var id_r = document.getElementById("select_region").value;
     var coms = comunas.filter( c => c.id_region==id_r);
     $.each(coms, function(key,value) {
-      if (value.id == id) {
-        select.append('<option selected value=' + value.id + '>' + value.name + '</option>');
+        if (value.id == id) {
+          select.append('<option selected value=' + value.id + '>' + value.name + '</option>');
         } else {
           select.append('<option value=' + value.id + '>' + value.name + '</option>');
         }
-      });
+    });
   }
 </script>
 @endpush

@@ -20,8 +20,6 @@ class ClienteController extends Controller
 
     //Perfil Cliente
     public function cliente() {
-      // $comunas = Comuna::orderBy('nombre')->get();
-      // $regions = Region::get();
       $cliente = current_client();
       return view('web.cliente.home.cliente',compact('cliente'));
     }
@@ -46,7 +44,7 @@ class ClienteController extends Controller
     //Actualizar Datos
     public function profileUpdate(Request $request) {
       try {
-        $cliente = current_client();
+        $cliente = Cliente::find(current_client()->id);
         $cliente->nombre = $request->input('nombre');
         $cliente->apellido = $request->input('apellido');
         $cliente->correo = $request->input('correo');
@@ -77,9 +75,9 @@ class ClienteController extends Controller
     }
 
 
-    public function passwordUpdate(Request $request){
+    public function passwordUpdate(PasswordClienteRequest $request){
       try {
-        $cliente = current_client();
+        $cliente = Cliente::find(current_client()->id);
         $actual_password = hash('sha256', $request->input('password_actual'));
         $new_password = hash('sha256', $request->input('password_nueva'));
 
@@ -171,11 +169,21 @@ class ClienteController extends Controller
     }
 
     //Direcciones
+
+    //Index
+    public function direccionesIndex($id){
+      $cliente = current_client();
+      $comunas = Comuna::orderBy('nombre')->get();
+      $regions = Region::get();
+      $d = Direccion::where('id_cliente',$cliente->id)->findOrFail($id);
+      return view('web.cliente.home.direccionesEdit',compact('cliente','comunas','regions','d'));
+    }
+
+    //Crear dirección
     public function direccionStore(Request $request){
       try {
-        $cliente = current_client();
         $direccion = new Direccion();
-        $direccion->id_cliente = $cliente->id;
+        $direccion->id_cliente = current_client()->id;
         $direccion->calle = $request->input('calle');
         $direccion->numero = $request->input('numero');
         $direccion->id_comuna = $request->input('id_comuna');
@@ -191,11 +199,11 @@ class ClienteController extends Controller
       }
     }
 
-    public function direccionUpdate(Request $request){
+    //Actualizar dirección
+    public function direccionUpdate(Request $request, $id){
       try {
         $cliente = current_client();
-        $direccion = new Direccion();
-        $direccion->id_cliente = $cliente->id;
+        $direccion = Direccion::where('id_cliente',$cliente->id)->findOrFail($id);
         $direccion->calle = $request->input('calle');
         $direccion->numero = $request->input('numero');
         $direccion->id_comuna = $request->input('id_comuna');

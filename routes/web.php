@@ -18,6 +18,9 @@ Route::put('/profile/cliente', 'Web\Cliente\ClienteController@profileUpdate')->n
 
 //Direcciones
 Route::get('/profile/direcciones', 'Web\Cliente\ClienteController@direcciones')->name('profile.direcciones');
+Route::get('/profile/direcciones/{id}', 'Web\Cliente\ClienteController@direccionesIndex')->name('profile.direcciones.edit');
+Route::put('/profile/direcciones/{id}', 'Web\Cliente\ClienteController@direccionUpdate')->name('profile.direcciones.update');
+
 Route::post('/profile/direcciones', 'Web\Cliente\ClienteController@direccionStore')->name('profile.direcciones');
 
 //Historial

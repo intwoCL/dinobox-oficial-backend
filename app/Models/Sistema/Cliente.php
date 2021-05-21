@@ -33,7 +33,7 @@ class Cliente extends Authenticatable
   ];
 
   public function direcciones(){
-    return $this->hasMany(Direccion::class,'id_cliente');
+    return $this->hasMany(Direccion::class,'id_cliente')->orderBy('favorito','desc');
   }
 
   public function scopeLikeColumn($query, $column, $value) {
