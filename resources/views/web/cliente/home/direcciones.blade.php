@@ -28,7 +28,7 @@
       @include('web.cliente.partials._modal_add_direction')
 
       @foreach (current_client()->direcciones as $d)
-      
+
       @include('web.cliente.partials._form')
 
       @endforeach
@@ -37,7 +37,7 @@
   </div>
 
   @include('web.cliente.partials._footer')
-  
+
 </div>
 @endsection
 @push('javascript')

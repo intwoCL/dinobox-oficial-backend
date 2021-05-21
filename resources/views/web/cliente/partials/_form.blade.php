@@ -7,7 +7,7 @@
         @if ($d->favorito)
           <i class="fas fa-star"></i>
         @else
-            
+
         @endif
       </a>
     </div>
@@ -15,6 +15,12 @@
       <p class="card-text">{{ $d->getDireccion() }}</p>
     </div>
     <div class="card-footer">
+      <button class="btn btn-sm btn-primary"
+        data-toggle="modal"
+        data-target="#editProduct"
+        >Editar
+      </button>
+      @include('web.cliente.partials._modal_edit_direction')
     </div>
   </div>
 </div>

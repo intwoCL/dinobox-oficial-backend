@@ -1,8 +1,8 @@
-<div class="modal fade" id="addProduct">
+<div class="modal fade" id="editProduct">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title"><strong>Agregar Dirección</strong></h4>
+        <h4 class="modal-title"><strong>Editar Dirección</strong></h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

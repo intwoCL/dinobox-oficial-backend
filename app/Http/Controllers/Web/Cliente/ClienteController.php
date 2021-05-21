@@ -191,4 +191,24 @@ class ClienteController extends Controller
       }
     }
 
+    public function direccionUpdate(Request $request){
+      try {
+        $cliente = current_client();
+        $direccion = new Direccion();
+        $direccion->id_cliente = $cliente->id;
+        $direccion->calle = $request->input('calle');
+        $direccion->numero = $request->input('numero');
+        $direccion->id_comuna = $request->input('id_comuna');
+        $direccion->dato_adicional = $request->input('dato_adicional');
+        $direccion->telefono = $request->input('telefono');
+        $direccion->favorito = $request->has('favorito');
+        $direccion->update();
+
+        return back()->with('success','Se ha actualizado exitosamente.');
+      } catch (\Throwable $th) {
+        return $th;
+        return back()->with('info','Error Intente nuevamente.');
+      }
+    }
+
 }
