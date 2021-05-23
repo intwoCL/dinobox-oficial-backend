@@ -35,29 +35,30 @@ class OrdenController extends Controller
 
   public function create() {
     $comunas = Comuna::orderBy('nombre')->get();
-    $tiposEnvios = Orden::TIPO_ENVIO;
+    $servicios = Orden::SERVICIOS;
+    $categorias = Orden::CATEGORIAS;
     // $regions = Region::orderBy('nombre')->get();
 
     // $icon = (new IconRender('undraw_drone_delivery', Sistema::first()->getSistemaColor()))->getIMGBase64();
     $icon = (new IconServices())->getImagen();
     $regions = Region::get();
-    return view('orden.create', compact('comunas','regions','tiposEnvios','icon'));
+    return view('orden.create', compact('comunas','regions','icon','categorias','servicios'));
   }
 
 
+  // public function store(Request $request) {
   public function store(OrdenCreateRequest $request) {
     try {
-
       $orden = new Orden();
       $orden->codigo = $this->findCode();
       $orden->id_usuario = current_user()->id;
-
-      $orden->id_cliente = $request->input('id_cliente',null);
-
+      $orden->id_sucursal = 1;
+      $orden->id_cliente = $request->input('id_cliente_rawr',null);
+      $orden->id_direccion = $request->input('id_direccion_rawr',null);
       $orden->fecha_entrega = date_format(date_create($request->input('fecha_entrega')),'Y-m-d');
 
-      //Datos Remitente
-      $orden->remitente_rut = $request->input('remitente_rut');
+      // Datos Remitente
+      // $orden->remitente_rut = $request->input('remitente_rut');
       $orden->remitente_nombre = $request->input('remitente_nombre');
       $orden->remitente_direccion = $request->input('remitente_direccion');
       $orden->remitente_numero = $request->input('remitente_numero');
@@ -65,7 +66,7 @@ class OrdenController extends Controller
       $orden->remitente_telefono = $request->input('remitente_telefono');
       $orden->remitente_id_comuna = $request->input('remitente_id_comuna');
 
-      //Datos Destinatario
+      // Datos Destinatario
       $orden->destinatario_nombre = $request->input('destinatario_nombre');
       $orden->destinatario_direccion = $request->input('destinatario_direccion');
       $orden->destinatario_numero = $request->input('destinatario_numero');
@@ -73,14 +74,21 @@ class OrdenController extends Controller
       $orden->destinatario_telefono = $request->input('destinatario_telefono');
       $orden->destinatario_id_comuna = $request->input('destinatario_id_comuna');
 
+      // DATOS
+      $orden->servicio = $request->input('servicio');
+      $orden->categoria = $request->input('categoria');
       $orden->mensaje = $request->input('mensaje',null);
       $orden->precio = $request->input('precio');
 
       $orden->save();
 
-      return redirect()->route('ordenes.index.pendientes')->with('success','Se ha creado correctamente');
+      // return $orden->codigo;
+
+      return redirect()->route('ordenes.index.pendientes')
+                      ->with('success','Se ha creado correctamente')
+                      ->with('codigo',$orden->codigo);
     } catch (\Throwable $th) {
-      // return $th;
+      return $th;
       return back()->with('info','Error intente nuevamente');
     }
   }
@@ -88,9 +96,9 @@ class OrdenController extends Controller
   // PRIVATE
   private function findCode() {
     try {
-      $code = helper_random_integer(12);
+      $code = helper_random_integer(12); //123456789012
       Orden::where('codigo',$code)->firstOrFail();
-      return $this->code();
+      return $this->findCode();
     } catch (\Throwable $th) {
       return $code;
     }

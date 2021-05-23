@@ -17,6 +17,7 @@
   </div>
 </section>
 
+{{-- <h1>{{ session('codigo') }}</h1> --}}
 
 @include('orden._modal_vincular')
 @endsection
@@ -27,6 +28,7 @@
 <script>
   $(function () {
     $("#tableSelect").DataTable();
+    $("#tableUsuario").DataTable();
 
     $('#assignModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget);

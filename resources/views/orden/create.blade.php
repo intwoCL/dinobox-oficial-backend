@@ -18,9 +18,9 @@
 <section class="content">
   <div class="row">
     @include('orden._form2')
-    <div class="col-md-6">
+    {{-- <div class="col-md-6">
       @include('components.maps._map_cliente')
-    </div>
+    </div> --}}
     {{-- <div class="col-md-6">
       <div class="d-none d-lg-block">
         <img width="100%" style="pointer-events: none;" src="{!! $icon !!}" alt="">
@@ -40,14 +40,20 @@
 <script src="/vendor/datepicker2/js/bootstrap-datepicker.min.js"></script>
 <script src="/vendor/datepicker2/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>
 <script type="text/javascript">
-  $('.clockpicker').clockpicker();
-  $('#data_1 .input-group.date').datepicker({
-    language: "es",
-    format: 'dd-mm-yyyy',
-    orientation: "bottom",
-    showButtonPanel: true,
-    autoclose: true
+  $(function () {
+
+    $('.clockpicker').clockpicker();
+    $('#data_1 .input-group.date').datepicker({
+      language: "es",
+      format: 'dd-mm-yyyy',
+      orientation: "bottom",
+      showButtonPanel: true,
+      autoclose: true
+    });
+    $('[data-toggle="tooltip"]').tooltip();
   });
+
+  document.getElementById("text_cliente_rawr").style.display = "none";
 
   function userHandler(cliente, direccion){
     console.log('cliente',cliente);
@@ -56,25 +62,29 @@
 
     document.getElementById('remitente_nombre').value = cliente.nombres;
     document.getElementById('remitente_nombre').setAttribute('readonly', true);
+    document.getElementById('remitente_correo').value = cliente.coreo;
 
     document.getElementById('remitente_telefono').value = cliente.telefono;
     // document.getElementById('remitente_telefono').setAttribute('readonly', true);
 
-    // document.getElementById('id_cliente_rawr').value = cliente.id;
-    // document.getElementById('text_cliente_rawr').value = "Se ha seleccionando el cliente";
+    document.getElementById('text_c_r').innerHTML = cliente.id;
+    document.getElementById("text_cliente_rawr").style.display = "block";
+    document.getElementById('id_cliente_rawr').value = cliente.id;
 
     if (direccion != null) {
-      document.getElementById('id_direccion_rawr').value = cliente.id;
+      document.getElementById('id_direccion_rawr').value = direccion.id;
 
       document.getElementById('remitente_direccion').value = direccion.calle;
       document.getElementById('remitente_numero').value = direccion.numero;
       document.getElementById('remitente_correo').value = cliente.correo;
-      document.getElementById('remitente_correo').setAttribute('readonly', true);
+      // document.getElementById('remitente_correo').setAttribute('readonly', true);
 
       document.getElementById("select_region").value = direccion.id_region;
 
       CargarComunaR(direccion.id_comuna);
     } else {
+      // document.getElementById("text_cliente_rawr").style.display = "none";
+      document.getElementById('id_cliente_rawr').value = '';
       document.getElementById('remitente_direccion').value = '';
       document.getElementById('remitente_numero').value = '';
       document.getElementById('remitente_correo').value = '';
@@ -105,11 +115,11 @@
   ];
 
   //Remitente
-  CargarRegiones('select_region')
+  CargarRegiones('select_region');
   CargarComunas();
 
   //Destinatario
-  CargarRegiones2('select_region2')
+  CargarRegiones2('select_region2');
   CargarComunas2();
 
   //Remitente
@@ -157,6 +167,7 @@
         select.append('<option value=' + value.id_region + '>' + value.name + '</option>');
     });
   }
+
   function CargarComunas2(){
     var select = $('#select_comuna2');
     select.find('option').remove();
@@ -166,16 +177,6 @@
 
     $.each(coms, function(key,value) {
         select.append('<option value=' + value.id + '>' + value.name + '</option>');
-    });
-  }
-
-  function CargarComunasEdit(){
-    var select = $('#select_comuna_edit');
-    select.find('option').remove();
-    var id_r = document.getElementById("select_region_edit").value;
-    var coms = comunas.filter( c => c.id_region==id_r);
-    $.each(coms, function(key,value) {
-        select.append('<option value=' + value.id + '>' + value.nombre + '</option>');
     });
   }
 </script>

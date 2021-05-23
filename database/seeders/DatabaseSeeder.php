@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
       's_cliente',
       's_direccion',
       'or_orden',
+      's_grupo',
+      's_company',
     ]);
 
     Artisan::call('cities:import');

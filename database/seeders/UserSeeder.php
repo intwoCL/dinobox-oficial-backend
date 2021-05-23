@@ -7,6 +7,8 @@ use App\Models\Sistema\SucursalUsuario;
 use App\Models\Sistema\Usuario;
 use Illuminate\Database\Seeder;
 
+use Faker\Factory as Fake;
+
 class UserSeeder extends Seeder
 {
     /**
@@ -17,6 +19,7 @@ class UserSeeder extends Seeder
     public function run()
     {
       // Tabla de usuario
+      $faker = Fake::create();
 
       $password  = hash('sha256', '123456');
 
@@ -67,21 +70,25 @@ class UserSeeder extends Seeder
       $su->rol = 2;
       $su->save();
 
-      $u = new Usuario();
-      $u->username = "repartidor1";
-      $u->password = $password;
-      $u->nombre = "repartidor 1";
-      $u->apellido = "uno";
-      $u->correo = "repartidor1@intwo.cl";
-      $u->run = "178307632";
-      $u->sexo = 2;
-      $u->save();
+      for ($i=1; $i < 100; $i++) {
+        $u = new Usuario();
+        $u->username = "repartidor$i";
+        $u->password = $password;
+        $u->nombre = $faker->firstName;
+        $u->apellido = "uno";
+        $u->correo = "$u->nombre1"."$i@intwo.cl";
+        $u->run = "178307632$i";
+        $u->sexo = 2;
+        $u->id_company = 1;
+        $u->id_grupo = 1;
+        $u->save();
 
-      $su = new SucursalUsuario();
-      $su->id_sucursal = 1;
-      $su->id_usuario = $u->id;
-      $su->rol = 3;
-      $su->save();
+        $su = new SucursalUsuario();
+        $su->id_sucursal = 1;
+        $su->id_usuario = $u->id;
+        $su->rol = 3;
+        $su->save();
+      }
 
       $c = new Cliente();
       $c->run = "10000000";

@@ -3,7 +3,8 @@
 
     <form class="form-horizontal form-submit" action="{{ route('orden.store') }}" method="POST">
       @csrf
-      <input type="hidden" name="id_cliente" value="" id="id_cliente" required>
+      <input type="hidden" name="id_cliente_rawr" id="id_cliente_rawr" required>
+      <input type="hidden" name="id_direccion_rawr" id="id_direccion_rawr" required>
 
       <div class="card-body">
         <div class="alert alert-dark" role="alert">
@@ -37,9 +38,9 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Nombre(s)<small class="text-danger">*</small></label>
           <div class="input-group col-sm-10">
-            <input type="text" class="form-control {{ $errors->has('remitente_nombre') ? 'is-invalid' : '' }}" aria-label="Recipient's username" name="remitente_nombre" id="remitente_nombre" autocomplete="off" value="{{ old('remitente_nombre') }}" aria-describedby="button-addon2" placeholder="Nombre" required>
+            <input type="text" class="form-control {{ $errors->has('remitente_nombre') ? 'is-invalid' : '' }}" name="remitente_nombre" id="remitente_nombre" autocomplete="off" value="{{ old('remitente_nombre') }}" placeholder="Nombre" required>
 
-            <div class="input-group-append">
+            <div class="input-group-append" data-toggle="tooltip" data-placement="top" title="Búsqueda avanzada">
               <button class="btn btn-primary" type="button" id="button-addon2" data-toggle="modal" data-target="#modalFind">
                 <i class="fa fa-search"></i>
               </button>
@@ -50,8 +51,13 @@
             <small id="success" class="text-success"></small>
           </span>
 
-          <div class="col-sm-12 text-center pt-2">
-            <h5><span class="badge badge-primary">Se ha seleccionado al cliente #001</span></h5>
+          <div class="col-sm-12 text-center pt-2" id="text_cliente_rawr" style="display: none;">
+            <h5>
+              <span class="badge badge-primary">
+                <i class="fa fa-user mr-2"></i>
+                Se ha seleccionado al cliente #<span id="text_c_r"></span>
+              </span>
+            </h5>
           </div>
         </div>
 
@@ -80,8 +86,8 @@
             {!! $errors->first('remitente_direccion','<small class="form-text text-danger text-center">:message</small>') !!}
           </div>
           <div class="col-md-6">
-            <label>Número<small class="text-danger">*</small></label>
-            <input type="text" class="form-control {{ $errors->has('remitente_numero') ? 'is-invalid' : '' }}" name="remitente_numero" id="remitente_numero" autocomplete="off" value="{{ old('remitente_numero') }}" placeholder="1234" required>
+            <label>Número/piso</label>
+            <input type="text" class="form-control {{ $errors->has('remitente_numero') ? 'is-invalid' : '' }}" name="remitente_numero" id="remitente_numero" autocomplete="off" value="{{ old('remitente_numero') }}" placeholder="1234">
             {!! $errors->first('remitente_numero','<small class="form-text text-danger text-center">:message</small>') !!}
           </div>
         </div>
@@ -94,7 +100,7 @@
           </div>
           <div class="col-md-6">
             <label>Teléfono<small class="text-danger">*</small></label>
-            <input type="tel" class="form-control" name="remitente_telefono" id="remitente_telefono" autocomplete="off" maxlength="9" placeholder="Ingrese teléfono aqui..." value="{{ old('remitente_telefono') }}" required>
+            <input type="tel" class="form-control" name="remitente_telefono" id="remitente_telefono" autocomplete="off" pattern="[0-9]{9}" maxlength="9" placeholder="Ingrese teléfono aqui..." value="{{ old('remitente_telefono') }}" required>
             {!! $errors->first('remitente_telefono','<small class="form-text text-danger">:message</small>') !!}
           </div>
         </div>
@@ -139,8 +145,8 @@
             {!! $errors->first('destinatario_direccion','<small class="form-text text-danger text-center">:message</small>') !!}
           </div>
           <div class="col-md-6">
-            <label>Número/piso<small class="text-danger">*</small></label>
-            <input type="text" class="form-control {{ $errors->has('destinatario_numero') ? 'is-invalid' : '' }}" name="destinatario_numero" id="destinatario_numero" autocomplete="off" value="{{ old('destinatario_numero') }}" placeholder="1234" required>
+            <label>Número/piso</label>
+            <input type="text" class="form-control {{ $errors->has('destinatario_numero') ? 'is-invalid' : '' }}" name="destinatario_numero" id="destinatario_numero" autocomplete="off" value="{{ old('destinatario_numero') }}" placeholder="1234">
             {!! $errors->first('destinatario_numero','<small class="form-text text-danger text-center">:message</small>') !!}
           </div>
         </div>
@@ -152,7 +158,7 @@
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">Teléfono<small class="text-danger">*</small></label>
-            <input type="tel" class="form-control" name="destinatario_telefono" id="destinatario_telefono" autocomplete="off" maxlength="9" placeholder="Ingrese teléfono aqui..." required>
+            <input type="tel" class="form-control" name="destinatario_telefono" id="destinatario_telefono" autocomplete="off" maxlength="9" pattern="[0-9]{9}" placeholder="Ingrese teléfono aqui..." value="{{ old('destinatario_telefono') }}" required>
           </div>
         </div>
 
@@ -161,10 +167,11 @@
         </div>
 
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Lugar de recepción</label>
+          <label class="col-sm-2 col-form-label">Categoría</label>
           <div class="input-group col-sm-10">
-            <select class="custom-select" id="tipo_envio" name="tipo_envio">
-              @foreach ($tiposEnvios as $key => $value)
+            <select class="custom-select" id="categoria" name="categoria">
+              @foreach ($categorias as $key => $value)
+              @continue(!$value[1])
               <option value="{{ $key }}">{{ $value[0] }}</option>
               @endforeach
             </select>
@@ -172,12 +179,12 @@
         </div>
 
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Tipo de envio</label>
+          <label class="col-sm-2 col-form-label">Servicios</label>
           <div class="input-group col-sm-10">
-            <select class="custom-select" id="tipo_envio" name="tipo_envio">
-              @foreach ($tiposEnvios as $key => $value)
-              @continue(!$value[2])
-              <option value="{{ $key }}">{{ $value[0] }}</option>
+            <select class="custom-select" id="servicio" name="servicio">
+              @foreach ($servicios as $key2 => $value2)
+              @continue(!$value2[2])
+              <option value="{{ $key2 }}">{{ $value2[0] }}</option>
               @endforeach
             </select>
           </div>
@@ -186,7 +193,12 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">Precio<small class="text-danger">*</small></label>
           <div class="input-group col-sm-10">
-            <input type="tel" class="form-control" name="precio" id="precio" autocomplete="off" maxlength="9" placeholder="0" required>
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="fas fa-dollar-sign"></i>
+              </span>
+            </div>
+            <input type="numeric" class="form-control" name="precio" id="precio" autocomplete="off" maxlength="9" placeholder="0" value="{{ old('precio') }}" required>
           </div>
           {!! $errors->first('precio', '<small class="form-text text-danger">:message</small>') !!}
         </div>

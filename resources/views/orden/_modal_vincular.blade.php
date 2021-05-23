@@ -11,29 +11,26 @@
         @csrf
         <div class="modal-body">
           <input type="hidden" class="form-control" id="id_modal" name="id">
-
-          @foreach ($repartidores as $r)
-          <table id="tableSelect" class="table table-bordered table-hover table-sm">
+          <table id="tableUsuario" class="table table-bordered table-hover table-sm">
             <thead>
-            <tr>
-              <th>COD</th>
-              <th>Fecha</th>
-            </tr>
+              <tr>
+                <th>COD</th>
+                <th>Fecha</th>
+              </tr>
             </thead>
             <tbody>
-              @foreach ($ordenes as $o)
+              @foreach ($repartidores as $r)
               <tr>
                 <td>
-                  <button type="submit" class="btn btn-success btn-sm">Asignar</button>
+                  <p>{{ $r->present()->nombre_completo() }}</p>
                 </td>
                 <td>
-                  <p>{{ $r->present()->nombre_completo() }}</p>
+                  <button type="submit" class="btn btn-success btn-sm">Asignar</button>
                 </td>
               </tr>
               @endforeach
             </tbody>
           </table>
-          @endforeach
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
