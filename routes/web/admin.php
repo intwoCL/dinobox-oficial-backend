@@ -12,16 +12,18 @@ Route::middleware('auth.usuario')->namespace('Sistema')->group( function () {
 Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('admin.')->group( function () {
   // - {USUARIO}
   Route::resource('usuario','UsuarioController',['except'=>['show']]);
+  Route::get('usuario/{id}','UsuarioController@show')->name('usuario.show');
   Route::get('usuario/eliminados','UsuarioController@indexDelete')->name('usuario.indexDelete');
   Route::put('usuario/{id}/password','UsuarioController@password')->name('usuario.password');
   Route::get('usuario/{id}/vehiculo','VehiculoController@index')->name('vehiculo.index');
   Route::post('usuario/{id}/vehiculo','VehiculoController@store')->name('vehiculo.store');
-  Route::get('repartidores','UsuarioController@indexRepartidor')->name('repartidor.index');
+  Route::get('repartidores','UsuarioController@indexRepartidores')->name('repartidor.index');
 
   // - {CLIENTE}
   Route::resource('cliente','ClienteController',['except'=>['show']]);
   Route::get('clientes/eliminados','ClienteController@indexDelete')->name('cliente.indexDelete');
   Route::put('cliente/{id}/password','ClienteController@password')->name('cliente.password');
+  Route::get('cliente/{id}','ClienteController@show')->name('cliente.show');
   Route::get('cliente/{id}/direccion','DireccionController@index')->name('cliente.direccion.index');
   Route::post('cliente/{id}/direccion','DireccionController@store')->name('cliente.direccion.store');
   Route::get('cliente/{id}/direccion/create','DireccionController@create')->name('cliente.direccion.create');

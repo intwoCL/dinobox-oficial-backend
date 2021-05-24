@@ -1,9 +1,21 @@
 @push('stylesheet')
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
 
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
-<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
-<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
+<!-- Load the `mapbox-gl-geocoder` plugin. -->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css" type="text/css">
+
+<!-- Promise polyfill script is required -->
+<!-- to use Mapbox GL Geocoder in IE 11. -->
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+
 <style>
   body { margin:0; padding:0; }
   #map { position:absolute; top:0; bottom:0; width:100%;}
@@ -26,7 +38,6 @@ font-family: Montserrat;
 @endpush
 
 <div id='map'></div>
-<pre id='coordenadas'></pre>
 
 @push('javascript')
 <script>
@@ -38,38 +49,75 @@ font-family: Montserrat;
       var latitude = position.coords.latitude;
       var longitude = position.coords.longitude;
 
-
-      var map = new mapboxgl.Map({
-          container: 'map',
-          style: 'mapbox://styles/mapbox/streets-v11',
-          center: [longitude, latitude],
-          zoom: 13
-      });
-      map.addControl(new MapboxGeocoder({
-          accessToken: mapboxgl.accessToken
-      }));
-      map.addControl(new mapboxgl.NavigationControl());
-      // map.addControl(new mapboxgl.FullscreenControl());
-      map.addControl(new mapboxgl.GeolocateControl({
-          positionOptions: {
-              enableHighAccuracy: true
-          },
-          trackUserLocation: true
-      }));
-      // map.on('mousemove', function (e) {
-      //     document.getElementById('coordenadas').innerHTML =
-      //         JSON.stringify(e.lngLat);
+      // var map = new mapboxgl.Map({
+      //     container: 'map',
+      //     style: 'mapbox://styles/mapbox/streets-v11',
+      //     center: [longitude, latitude],
+      //     zoom: 13
       // });
 
-      marker = new mapboxgl.Marker();
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v11',
+          center: [longitude, latitude],
+        // center: [-79.4512, 43.6568],
+        zoom: 13
+        });
 
-      function add_marker (event) {
-          var coordinates = event.lngLat;
-          console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
-          marker.setLngLat(coordinates).addTo(map);
-        }
+        // Add the control to the map.
+        // map.addControl(
+        //   new MapboxGeocoder({
+        //     accessToken: mapboxgl.accessToken,
+        //     mapboxgl: mapboxgl
+        //   })
 
-      map.on('click', add_marker.bind(this));
+
+        // );
+
+        // map.addControl(new mapboxgl.GeolocateControl({
+        //   positionOptions: {
+        //       enableHighAccuracy: true
+        //   },
+        //   trackUserLocation: true
+        // }));
+
+        // function forwardGeocoder(query) {
+        //   console.log('Hola',query);
+
+        //   var matchingFeatures = [];
+        //   for (var i = 0; i < customData.features.length; i++) {
+        //   var feature = customData.features[i];
+        //   // Handle queries with different capitalization
+        //   // than the source data by calling toLowerCase().
+        //   if (
+        //     feature.properties.title
+        //     .toLowerCase()
+        //     .search(query.toLowerCase()) !== -1
+        //   ) {
+        //     // Add a tree emoji as a prefix for custom
+        //     // data results using carmen geojson format:
+        //     // https://github.com/mapbox/carmen/blob/master/carmen-geojson.md
+        //     feature['place_name'] = '🌲 ' + feature.properties.title;
+        //     feature['center'] = feature.geometry.coordinates;
+        //     feature['place_type'] = ['park'];
+        //     matchingFeatures.push(feature);
+        //     }
+        //   }
+        //   return matchingFeatures;
+        // }
+
+
+        var geocoder = new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          marker: {
+          color: 'orange'
+        },
+          mapboxgl: mapboxgl,
+          localGeocoder: forwardGeocoder,
+        });
+
+        map.addControl(geocoder);
+
     });
   }
   else{

@@ -27,14 +27,14 @@ class UsuarioController extends Controller
   public function index(){
     $this->policy->index();
 
-    $usuarios = Usuario::getAllEmpleado();
+    $usuarios = Usuario::getAllEmpleados();
     return view('admin.usuario.index', compact('usuarios'));
   }
 
-  public function indexRepartidor(){
-    $this->policy->indexRepartidor();
+  public function indexRepartidores(){
+    $this->policy->indexRepartidores();
 
-    $usuarios = Usuario::getAllRepartidor();
+    $usuarios = Usuario::getAllRepartidores();
     return view('admin.usuario.index', compact('usuarios'));
   }
 
@@ -77,6 +77,15 @@ class UsuarioController extends Controller
       return redirect()->route('admin.usuario.index')->with('success','Se ha creado correctamente.');
     } catch (\Throwable $th) {
       return $th;
+      return back()->with('info','Error Intente nuevamente.');
+    }
+  }
+
+  public function show($id){
+    try {
+      $u = Usuario::findOrFail($id);
+      return view('admin.usuario.show',compact('u'));
+    } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
     }
   }

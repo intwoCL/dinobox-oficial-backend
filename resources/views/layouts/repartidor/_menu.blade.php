@@ -15,13 +15,13 @@
         <img src="{{ $img }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="{{ route('settings.profile') }}" class="d-block">{{ $name }}</a>
+        <a href="{{ route('repartidor.me') }}" class="d-block">{{ $name }}</a>
       </div>
     </div>
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item {{ open('home*') }}">
-          <a href="{{ route('home') }}" class="nav-link">
+          <a href="{{ route('repartidor.home') }}" class="nav-link">
             <i class="nav-icon fa fa-home"></i>
             <p>Inicio</p>
           </a>

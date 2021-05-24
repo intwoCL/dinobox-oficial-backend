@@ -17,6 +17,7 @@
   </div>
 </section>
 
+{{-- <h1>{{ session('codigo') }}</h1> --}}
 
 @include('orden._modal_vincular')
 @endsection
@@ -26,16 +27,26 @@
 <script src="/vendor/intwo/datatables-es.js"></script>
 <script>
   $(function () {
+    var codigo_global = "";
     $("#tableSelect").DataTable();
+    $("#tableUsuario").DataTable();
 
     $('#assignModal').on('show.bs.modal', function (event) {
       var button = $(event.relatedTarget);
       var modal = $(this);
-      var id = button.data('alumno');
-      var url = "123123";
-      modal.find('.modal-title').text('¿Desea asignar el alumno?');
-      modal.find('.modal-body input').val(id);
-      modal.find('#formAssign').attr('action',url);
+      var codigo = button.data('codigo');
+      codigo_global = codigo;
+    });
+
+    $('#assignModalConfirmacion').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      var modal = $(this);
+      var repartidor = button.data('repartidor');
+      var nombre = button.data('nombre');
+      var mensaje = "<p> Seleccionar a <strong>" + nombre + "</strong> a la orden <strong>" + codigo_global + "</strong></p>";
+      modal.find('#modal_text_content').html(mensaje);
+      modal.find('#repartidor_modal').val(repartidor);
+      modal.find('#codigo_modal').val(codigo_global);
     });
   });
 </script>

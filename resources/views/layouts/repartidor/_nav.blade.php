@@ -12,14 +12,17 @@
   </ul>
   <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown">
-      <a class="nav-link bg-primary" data-toggle="dropdown" href="#">
+      <div class="mr-2" data-toggle="dropdown" type="button">
+        <i class="fas fa-user-circle fa-2x text-primary mr-2"></i>
+      </div>
+      {{-- <a class="nav-link bg-primary" data-toggle="dropdown" href="#">
         <i class="far fa-tool"></i> Configuración
-      </a>
+      </a> --}}
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         {{-- <span class="dropdown-item dropdown-header">15 Notifications</span> --}}
         <div class="dropdown-divider"></div>
-        <a href="{{ route('settings.profile') }}" class="dropdown-item">
-          <i class="fas fa-user mr-2"></i> Perfil
+        <a href="{{ route('repartidor.me') }}" class="dropdown-item">
+          <i class="fas fa-user mr-2"></i> Mi perfil
           {{-- <span class="float-right text-muted text-sm">3 mins</span> --}}
         </a>
           {{-- <a href="{{ route('tutorial.index') }}" class="dropdown-item">

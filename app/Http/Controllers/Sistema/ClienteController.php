@@ -69,6 +69,15 @@ class ClienteController extends Controller
     }
   }
 
+  public function show($id) {
+    try {
+      $c = Cliente::findOrFail($id);
+      return view('admin.cliente.show',compact('c'));
+    } catch (\Throwable $th) {
+      return back()->with('info','Error Intente nuevamente.');
+    }
+  }
+
   public function update(Request $request, $id) {
     try {
       $cliente = Cliente::findOrFail($id);
@@ -135,4 +144,5 @@ class ClienteController extends Controller
       return back()->with('info','Error Intente nuevamente.');
     }
   }
+
 }

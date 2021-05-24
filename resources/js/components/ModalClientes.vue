@@ -127,7 +127,10 @@
               </thead>
               <tbody>
                 <tr v-for="direccion in cliente.direcciones" :key="direccion.id">
-                  <td>{{ direccion.direccion }}</td>
+                  <td>
+                    <i class="fas fa-star text-warning mr-2" v-if="direccion.favorito"></i>
+                    {{ direccion.direccion }}
+                    </td>
                   <td>
                     <button class="btn btn-primary btn-xs" v-on:click="select(cliente, direccion)">
                       SELECCIONAR
@@ -189,6 +192,7 @@
               ...this.data
             }).then(response => {
               if (response.data.status != 402) {
+                console.log('a',response);
                 this.isError = false;
                 this.clientes = [];
                 this.clientes = response.data.clientes;

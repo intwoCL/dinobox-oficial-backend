@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>@yield('title', 'Administrador - Edugestion')</title>
-  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="shortcut icon" href="dist/img/dinobox-icon2.svg" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <style>

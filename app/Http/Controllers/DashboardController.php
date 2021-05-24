@@ -17,7 +17,6 @@ class DashboardController extends Controller
   public function home(){
     $sistema = Sistema::first();
     $icon = (new IconRender('delivery_app',$sistema->getSistemaColor()))->getIMGBase64();
-
     // $icon = (new IconRender('undraw_workers','rgb(131,58,180)'))->getIMGBase64();
 
     return view('dashboard.welcome',compact('icon'));

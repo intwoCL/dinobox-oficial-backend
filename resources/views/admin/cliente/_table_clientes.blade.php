@@ -23,9 +23,9 @@
           {{-- @if ($permiso_editar) --}}
           <div class="table-links">
             <div class="btn-group">
-              <a href="{{ route('admin.cliente.edit',$c->id) }}" class="ml-2">
+              <a href="{{ route('admin.cliente.show',$c->id) }}" class="ml-2">
                 <h6>
-                  <span class="badge badge-success">EDITAR</span>
+                  <span class="badge badge-success">INGRESAR</span>
                 </h6>
               </a>
             </div>

@@ -19,6 +19,10 @@ function activeTab($url) {
   return request()->is($url) ? 'active' : '';
 }
 
+function activeBarMenu($url) {
+  return request()->is($url) ? 'fa-2x' : '';
+}
+
 /**
 * Random string por su longitud
 *
