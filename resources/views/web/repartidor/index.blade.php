@@ -1,55 +1,37 @@
-@extends('layouts.repartidor.app')
+@extends('web.repartidor.app')
 @push('stylesheet')
 
 @endpush
 @section('content')
 @component('components.button._back')
-  {{-- @slot('route', route('admin.cliente.index'))
-  @slot('color', 'secondary') --}}
-  @slot('body', 'Pedidos')
+  @slot('body', 'Ordenes de hoy')
 @endcomponent
+<section class="content">
+  <div class="container">
+    <div class="row pb-3">
+      @foreach ($ordenes as $or)
+      <div class="col-md-12">
+        <a href="{{ route('repartidor.ordenShow',$or->orden->codigo) }}" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ $or->orden->codigo }}</h5>
+            {{-- <h5 class="mb-1">{{ $or->orden->getFecha()->getDate() }}</h5> --}}
+            <small class="text-muted">{{ $or->orden->getFecha()->getDate() }}</small>
+          </div>
+          <p class="mb-1">
 
-{{-- <ol class="list-group list-group-numbered">
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Subheading</div>
-      Cras justo odio
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus corporis, odit suscipit error ipsam nisi blanditiis dolorem, neque quos repudiandae, cumque iste libero. Aspernatur omnis ad dignissimos nostrum quo incidunt!
+          </p>
+          {{-- <small class="text-muted">And some muted small print.</small> --}}
+          <small class="text-muted">{{ $or->orden->getEstado() }}</small>
+        </a>
+      </div>
+      @endforeach
     </div>
-    <span class="badge bg-primary rounded-pill">14</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span class="badge bg-primary rounded-pill">14</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span class="badge bg-primary rounded-pill">14</span>
-  </li>
-</ol> --}}
-
-<div class="list-group">
-  @foreach ($ordenes as $or)
-  <a href="{{ route('repartidor.ordenShow',$or->orden->codigo) }}" class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{ $or->orden->codigo }}</h5>
-      {{-- <h5 class="mb-1">{{ $or->orden->getFecha()->getDate() }}</h5> --}}
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Some placeholder content in a paragraph.</p>
-    <small class="text-muted">And some muted small print.</small>
-  </a>
-  @endforeach
-</div>
-
+  </div>
+</section>
 @endsection
 @push('extra')
-@include('layouts._bar_menu')
+@include('layouts.repartidor._bar_menu')
 @endpush
 @push('javascript')
 

@@ -87,4 +87,12 @@ class Orden extends Model
   public function destinatarioComuna() {
     return $this->belongsTo(Comuna::class,'destinatario_id_comuna');
   }
+
+  public function getRemitenteDireccion() {
+    return $this->remitente_direccion . " " . $this->remitente_numero;
+  }
+
+  public function getDestinatarioDireccion() {
+    return $this->destinatario_direccion . " " . $this->destinatario_numero;
+  }
 }

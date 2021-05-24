@@ -7,6 +7,12 @@ Route::middleware('auth.usuario')->group( function () {
   Route::get('repartidor/orden/{codigo}','Web\Repartidor\RepartidorController@ordenShow')->name('repartidor.ordenShow');
   Route::put('repartidor/orden/{codigo}','Web\Repartidor\RepartidorController@ordenUpdate')->name('repartidor.ordenUpdate');
 
+  Route::get('repartidor/me','Web\Repartidor\RepartidorController@me')->name('repartidor.me');
+  Route::get('repartidor/profile','Web\Repartidor\RepartidorController@profile')->name('repartidor.profile');
+  Route::put('repartidor/profile','Web\Repartidor\RepartidorController@profileUpdate')->name('repartidor.profile.update');
+  Route::put('repartidor/profile/password','Web\Repartidor\RepartidorController@profilePasswordUpdate')->name('repartidor.profile.password');
+  Route::put('repartidor/profile/theme','Web\Repartidor\RepartidorController@profileThemeUpdate')->name('repartidor.profile.theme');
+
 
 
 });

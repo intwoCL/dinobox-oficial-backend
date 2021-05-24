@@ -104,7 +104,8 @@ class OrdenController extends Controller
   public function show($codigo) {
     $orden = Orden::where('codigo',$codigo)->where('activo',true)->with(['repartidores','cliente'])->firstOrFail();
     // $repartidor = $orden->repartidores->first()->usuario;
-    $repartidor = (count($orden->repartidores) > 0) ?  $orden->repartidores->first()->usuario : null;
+    // return $orden->repartidores->first()->repartidor;
+    $repartidor = (count($orden->repartidores) > 0) ?  $orden->repartidores->first()->repartidor : null;
 
     // return $orden->repartidores;
     return view('orden.show', compact('orden','repartidor'));
@@ -112,7 +113,7 @@ class OrdenController extends Controller
 
   public function seguimiento($codigo) {
     $orden = Orden::where('codigo',$codigo)->where('activo',true)->with(['repartidores','cliente'])->firstOrFail();
-    $repartidor = (count($orden->repartidores) > 0) ?  $orden->repartidores->first()->usuario : null;
+    $repartidor = (count($orden->repartidores) > 0) ?  $orden->repartidores->first()->repartidor : null;
     // return $orden->repartidores;
     return view('orden.seguimiento', compact('orden','repartidor'));
   }

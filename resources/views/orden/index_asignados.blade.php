@@ -15,7 +15,7 @@
         <div class="card-header">
           <div class="row">
             <div class="col-md-3">
-              <form action="{{ route('ordenes.getDateFecha') }}" method="POST">
+              <form class="form-submit" action="{{ route('ordenes.getDateFecha') }}" method="POST">
                 @csrf
                 <label for="fecha" class="col-form-label">Buscar ordenes por fecha</label>
                 <div class="input-group input-group-sm">

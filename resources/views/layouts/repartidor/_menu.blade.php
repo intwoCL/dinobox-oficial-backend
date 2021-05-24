@@ -15,7 +15,7 @@
         <img src="{{ $img }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="{{ route('settings.profile') }}" class="d-block">{{ $name }}</a>
+        <a href="{{  route('repartidor.me') }}" class="d-block">{{ $name }}</a>
       </div>
     </div>
     <nav class="mt-2">

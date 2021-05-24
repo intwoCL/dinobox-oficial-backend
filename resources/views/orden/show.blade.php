@@ -46,6 +46,15 @@
             @endif
           </div>
         </div>
+        <div class="card">
+          <div class="card-body box-profile">
+            <div class="title m-b-md">
+              {!! QrCode::geo(37.822214, -122.481769) !!}
+              <img  width="100%" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(300)->generate($orden->codigo)) !!} ">
+            </div>
+            <p>Código de orden</p>
+          </div>
+        </div>
 {{--
         <div class="card card-primary">
           <div class="card-header">
