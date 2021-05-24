@@ -18,8 +18,6 @@ class CreateTableOrOrdenRepartidor extends Migration
             // $table->foreignId('id_usuario')->references('id')->on('s_usuario');
             $table->foreignId('id_repartidor')->references('id')->on('s_usuario');
             $table->foreignId('id_orden')->references('id')->on('or_orden');
-
-//             $table->integer('valor_estimado')->default(0);
   
             $table->integer('posicion_retiro')->nullable();
             $table->integer('posicion_despacho')->nullable();
