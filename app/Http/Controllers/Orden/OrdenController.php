@@ -27,7 +27,16 @@ class OrdenController extends Controller
   public function indexAsignados($fecha) {
     try {
       $ordenes = Orden::getAsignados($fecha);
-      return view('orden.index', compact('ordenes'));
+      return view('orden.index_asignados', compact('ordenes'));
+    } catch (\Throwable $th) {
+      return back()->with('danger','error intente nuevamente');
+    }
+  }
+
+  public function getDateFecha(Request $request) {
+    try {
+      $fecha = date_format(date_create($request->input('fecha')),'Y-m-d');
+      return redirect()->route('ordenes.index.asignados',$fecha);
     } catch (\Throwable $th) {
       return back()->with('danger','error intente nuevamente');
     }
@@ -81,17 +90,21 @@ class OrdenController extends Controller
       $orden->precio = $request->input('precio');
 
       $orden->save();
-
-      // return $orden->codigo;
-
       return redirect()->route('ordenes.index.pendientes')
                       ->with('success','Se ha creado correctamente')
                       ->with('codigo',$orden->codigo);
     } catch (\Throwable $th) {
-      return $th;
+      // return $th;
       return back()->with('info','Error intente nuevamente');
     }
   }
+
+  public function show($codigo) {
+    $orden = Orden::where('codigo',$codigo)->where('activo',true)->firstOrFail();
+    // return $orden;
+    return view('orden.show', compact('orden'));
+  }
+
 
   // PRIVATE
   private function findCode() {

@@ -10,8 +10,25 @@
   <div class="row">
     @include('orden._tabs_ordenes')
     <div class="col-md-12">
+
       <div class="card">
-        @include('orden._table_ordenes')
+        <div class="card-header">
+          <div class="row">
+            {{-- <h3 class="card-title">Different Styles</h3> --}}
+            <div class="col-md-3">
+              <form action="{{ route('ordenes.getDateFecha') }}" method="POST">
+                @csrf
+                <div class="input-group input-group-sm">
+                  <input type="date" name="fecha" class="form-control">
+                  <span class="input-group-append">
+                    <button type="submit" class="btn btn-info btn-flat">IR</button>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        @include('orden._table_ordenes_asignadas')
       </div>
     </div>
   </div>

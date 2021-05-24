@@ -22,7 +22,7 @@ class OrdenSeeder extends Seeder
       for ($i=2000; $i < 2010; $i++) {
         $o = new Orden();
         // $o->codigo_transaccion = 123456789010;
-        $o->codigo = $i . $faker->isbn10;
+        $o->codigo = $faker->numberBetween(1000000000,999999999) . $i;
         $o->id_sucursal = 1;
         $o->id_usuario = 1;
 
@@ -31,14 +31,14 @@ class OrdenSeeder extends Seeder
         // $o->id_cliente = 1;
         $o->remitente_nombre = $faker->firstName;
         $o->remitente_direccion = $faker->streetName;
-        $o->remitente_numero = $faker->numberBetween(1000,9999);;
+        $o->remitente_numero = $faker->numberBetween(1000,9999);
         $o->remitente_correo = $faker->firstName."@mail.com";
         $o->remitente_telefono = "600800900";
         $o->remitente_id_comuna = 1039;
 
         $o->destinatario_nombre = $faker->firstName;
         $o->destinatario_direccion = $faker->streetName;
-        $o->destinatario_numero = $faker->numberBetween(1000,9999);;
+        $o->destinatario_numero = $faker->numberBetween(1000,9999);
         $o->destinatario_correo = $faker->firstName."@mail.com";
         $o->destinatario_telefono = "133131132";
         $o->destinatario_id_comuna = 1033;
@@ -46,7 +46,7 @@ class OrdenSeeder extends Seeder
         $o->mensaje = "Hola, feliz cumpleaños";
         $o->servicio = 10;
         $o->categoria = 10;
-        $o->precio = 3500;
+        $o->precio = $faker->numberBetween(1000,10000);;
         $o->save();
       }
 

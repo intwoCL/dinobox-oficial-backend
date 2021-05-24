@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
       $u->username = "admin1";
       $u->password = $password;
       $u->nombre = "admin 1";
-      $u->apellido = "uno";
+      $u->apellido = $faker->lastName;
       $u->correo = "admin@intwo.cl";
       $u->admin = true;
       $u->run = "19791763k";
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
       $u->username = "gestor";
       $u->password = $password;
       $u->nombre = "gestor";
-      $u->apellido = "uno";
+      $u->apellido = $faker->lastName;
       $u->correo = "gestor@intwo.cl";
       $u->run = "204657830";
       $u->save();
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
       $u->username = "empleado";
       $u->password = $password;
       $u->nombre = "empleado";
-      $u->apellido = "uno";
+      $u->apellido = $faker->lastName;
       $u->correo = "empleado@intwo.cl";
       $u->run = "10469537K";
       $u->sexo = 1;
@@ -75,9 +75,9 @@ class UserSeeder extends Seeder
         $u->username = "repartidor$i";
         $u->password = $password;
         $u->nombre = $faker->firstName;
-        $u->apellido = "uno";
-        $u->correo = "$u->nombre1"."$i@intwo.cl";
-        $u->run = "178307632$i";
+        $u->apellido = $faker->lastName;
+        $u->correo = "$u->apellido"."$i@intwo.cl";
+        $u->run = "123123123$i";
         $u->sexo = 2;
         $u->id_company = 1;
         $u->id_grupo = 1;
@@ -93,8 +93,8 @@ class UserSeeder extends Seeder
       $c = new Cliente();
       $c->run = "10000000";
       $c->password = $password;
-      $c->nombre = "nombre";
-      $c->apellido = "apellido";
+      $c->nombre = $faker->firstName;
+      $c->apellido = $faker->lastName;
       $c->correo = "cliente@intwo.cl";
       $c->save();
     }
