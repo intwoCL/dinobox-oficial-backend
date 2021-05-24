@@ -5,7 +5,7 @@
         <i class="fas fa-map-marker-alt mr-2"></i>
         {{ $d->comuna->nombre }}
         @if ($d->favorito)
-          <i class="fas fa-star"></i>
+          <i class="fas fa-star text-warning"></i>
         @endif
       </a>
     </div>
