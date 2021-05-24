@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Row;
 
 Route::get('/','DashboardController@index')->name('root');
-
+//Accceso Administrador
 Route::get('/acceso','Auth\AuthUsuarioController@auth')->name('auth.usuario');
 Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
 
@@ -20,12 +20,12 @@ Route::put('/profile/cliente', 'Web\Cliente\ClienteController@profileUpdate')->n
 Route::get('/profile/direcciones', 'Web\Cliente\ClienteController@direcciones')->name('profile.direcciones');
 Route::get('/profile/direcciones/{id}', 'Web\Cliente\ClienteController@direccionesIndex')->name('profile.direcciones.edit');
 Route::put('/profile/direcciones/{id}', 'Web\Cliente\ClienteController@direccionUpdate')->name('profile.direcciones.update');
-
 Route::post('/profile/direcciones', 'Web\Cliente\ClienteController@direccionStore')->name('profile.direcciones');
 
 //Historial
 Route::get('/profile/historial', 'Web\Cliente\ClienteController@historial')->name('profile.historial');
 
+//Contraseña
 Route::get('/profile/password', 'Web\Cliente\ClienteController@passwordIndex')->name('profile.password');
 Route::post('/profile/password', 'Web\Cliente\ClienteController@passwordUpdate')->name('profile.password.update');
 
@@ -33,6 +33,8 @@ Route::post('/profile/password', 'Web\Cliente\ClienteController@passwordUpdate')
 Route::get('/login', 'Web\Cliente\ClienteController@auth')->name('cliente.login');
 Route::post('/login', 'Web\Cliente\ClienteController@login')->name('cliente.login');
 Route::post('/logout','Web\Cliente\ClienteController@logout')->name('cliente.logout');
+
+//Seguimiento de la orden
 
 
 Route::middleware('auth.usuario')->group( function () {
