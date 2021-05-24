@@ -20,9 +20,9 @@
           <strong>{{$u->present()->nombre_completo() }}</strong>
           <div class="table-links">
             <div class="btn-group">
-              <a href="{{ route('admin.usuario.edit',$u->id) }}" class="ml-2">
+              <a href="{{ route('admin.usuario.show',$u->id) }}" class="ml-2">
                 <h6>
-                  <span class="badge badge-success">EDITAR</span>
+                  <span class="badge badge-success">INGRESAR</span>
                 </h6>
               </a>
             </div>

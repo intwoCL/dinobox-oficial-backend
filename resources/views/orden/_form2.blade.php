@@ -8,6 +8,7 @@
 
       <div class="card-body">
         <div class="alert alert-dark" role="alert">
+          <i class="fa fa-user-circle mr-2"></i>
           <strong>Datos remitente</strong>
         </div>
 
@@ -106,6 +107,7 @@
         </div>
 
         <div class="alert alert-info" role="alert">
+          <i class="fa fa-user-circle mr-2"></i>
           <strong>Datos destinatario</strong>
         </div>
 
@@ -162,8 +164,9 @@
           </div>
         </div>
 
-        <div class="alert alert-dark" role="alert">
-          <strong></strong>
+        <div class="alert alert-success" role="alert">
+          <i class="fa fa-box-open mr-2"></i>
+          <strong>Datos orden</strong>
         </div>
 
         <div class="form-group row">

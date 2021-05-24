@@ -81,6 +81,15 @@ class UsuarioController extends Controller
     }
   }
 
+  public function show($id){
+    try {
+      $u = Usuario::findOrFail($id);
+      return view('admin.usuario.show',compact('u'));
+    } catch (\Throwable $th) {
+      return back()->with('info','Error Intente nuevamente.');
+    }
+  }
+
   public function edit($id){
     try {
       $roles = Permissions::ROLES;

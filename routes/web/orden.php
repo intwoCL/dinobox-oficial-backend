@@ -9,9 +9,9 @@ Route::middleware('auth.usuario')->group( function () {
   Route::post('ordenes/asignados', 'Orden\OrdenController@getDateFecha')->name('ordenes.getDateFecha');
 
 
-
   Route::post('orden_repartidor', 'Orden\OrdenRepartidorController@store')->name('orden.repartidor.store');
   Route::post('orden/{codigo}', 'Orden\OrdenController@show')->name('orden.show');
+  Route::get('orden/{codigo}/seguimiento', 'Orden\OrdenController@seguimiento')->name('orden.seguimiento');
 
 
 });

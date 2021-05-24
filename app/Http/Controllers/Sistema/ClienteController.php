@@ -67,6 +67,15 @@ class ClienteController extends Controller
     }
   }
 
+  public function show($id) {
+    try {
+      $c = Cliente::findOrFail($id);
+      return view('admin.cliente.show',compact('c'));
+    } catch (\Throwable $th) {
+      return back()->with('info','Error Intente nuevamente.');
+    }
+  }
+
   public function update(Request $request, $id) {
     try {
       $cliente = Cliente::findOrFail($id);
@@ -159,7 +168,7 @@ class ClienteController extends Controller
       }
 
       $cliente->save();
-      
+
       return redirect()->route('profile.cliente')->with('success,','Se ha creado exitosamente');
     } catch (\Throwable $th) {
       return $th;
@@ -188,7 +197,7 @@ class ClienteController extends Controller
         $folder = 'public/photo_clientes';
         $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
       }
-      
+
       $cliente->user->update();
 
       return back()->with('success','Se ha actualizado');

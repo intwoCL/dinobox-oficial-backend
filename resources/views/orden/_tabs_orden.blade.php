@@ -7,13 +7,15 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="{{ route('orden.create') }}">
-        <i class="fa fa-route mr-2"></i> Seguimiento
+      <a class="nav-link {{ activeTab("orden/$orden->codigo/seguimiento") }}" href="{{ route('orden.seguimiento',$orden->codigo) }}">
+        <i class="fa fa-route mr-2"></i>
+        Seguimiento
       </a>
     </li>
     {{-- <li class="nav-item">
       <a class="nav-link {{ activeTab("ordenes/asignados*") }}" href="{{ route('ordenes.index.asignados', date('Y-m-d')) }}">
-        <i class="fas fa-box mr-2"></i> Asignados
+        <i class="fas fa-edit mr-2"></i>
+        Editar
       </a>
     </li> --}}
   </ul>

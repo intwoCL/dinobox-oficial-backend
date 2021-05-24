@@ -14,19 +14,24 @@
       <div class="card">
         <div class="card-header">
           <div class="row">
-            {{-- <h3 class="card-title">Different Styles</h3> --}}
             <div class="col-md-3">
               <form action="{{ route('ordenes.getDateFecha') }}" method="POST">
                 @csrf
+                <label for="fecha" class="col-form-label">Buscar ordenes por fecha</label>
                 <div class="input-group input-group-sm">
-                  <input type="date" name="fecha" class="form-control">
+                  <input type="date" name="fecha" class="form-control" value="{{ date('Y-m-d') }}">
                   <span class="input-group-append">
-                    <button type="submit" class="btn btn-info btn-flat">IR</button>
+                    <button type="submit" class="btn btn-info btn-flat">BUSCAR</button>
                   </span>
                 </div>
               </form>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Ordenes <strong>{{ $fecha }}</strong></div>
         </div>
         @include('orden._table_ordenes_asignadas')
       </div>

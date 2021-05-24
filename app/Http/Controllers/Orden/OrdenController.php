@@ -12,6 +12,7 @@ use App\Models\Sistema\Comuna;
 use App\Http\Requests\OrdenCreateRequest;
 use App\Lib\IconRender;
 use App\Models\Sistema\Sistema;
+use App\Services\ConvertDatetime;
 use App\Services\IconServices;
 
 class OrdenController extends Controller
@@ -27,7 +28,8 @@ class OrdenController extends Controller
   public function indexAsignados($fecha) {
     try {
       $ordenes = Orden::getAsignados($fecha);
-      return view('orden.index_asignados', compact('ordenes'));
+      $fecha = (new ConvertDatetime($fecha))->getDate();
+      return view('orden.index_asignados', compact('ordenes','fecha'));
     } catch (\Throwable $th) {
       return back()->with('danger','error intente nuevamente');
     }
@@ -100,11 +102,20 @@ class OrdenController extends Controller
   }
 
   public function show($codigo) {
-    $orden = Orden::where('codigo',$codigo)->where('activo',true)->firstOrFail();
-    // return $orden;
-    return view('orden.show', compact('orden'));
+    $orden = Orden::where('codigo',$codigo)->where('activo',true)->with(['repartidores','cliente'])->firstOrFail();
+    // $repartidor = $orden->repartidores->first()->usuario;
+    $repartidor = (count($orden->repartidores) > 0) ?  $orden->repartidores->first()->usuario : null;
+
+    // return $orden->repartidores;
+    return view('orden.show', compact('orden','repartidor'));
   }
 
+  public function seguimiento($codigo) {
+    $orden = Orden::where('codigo',$codigo)->where('activo',true)->with(['repartidores','cliente'])->firstOrFail();
+    $repartidor = (count($orden->repartidores) > 0) ?  $orden->repartidores->first()->usuario : null;
+    // return $orden->repartidores;
+    return view('orden.seguimiento', compact('orden','repartidor'));
+  }
 
   // PRIVATE
   private function findCode() {

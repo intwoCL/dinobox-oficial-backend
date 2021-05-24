@@ -6,20 +6,15 @@
 @component('components.button._back')
   @slot('route', route('ordenes.index.pendientes'))
   {{-- @slot('color', 'dark') --}}
-  @slot('body', "Orden $orden->codigo")
+  @slot('body', "Orden $orden->codigo seguimiento")
 @endcomponent
-
 <section class="content">
   @include('orden._tabs_orden')
   <div class="container-fluid py-2">
     <div class="row">
       <div class="col-md-3">
         <div class="card">
-          <div class="card-header">
-            <div class="card-title">Repartidor asignado</div>
-          </div>
           <div class="card-body box-profile">
-            @if (!empty($repartidor))
             <div class="text-center">
               <img class="profile-user-img img-fluid img-circle" src="{{ $repartidor->present()->getPhoto() }}" alt="{{ $repartidor->present()->nombre_completo() }}">
             </div>
@@ -29,7 +24,7 @@
             <p class="text-muted text-center">Repartidor</p>
 
             <ul class="list-group list-group-unbordered mb-3">
-              {{-- <li class="list-group-item">
+              <li class="list-group-item">
                 <b>Followers</b> <a class="float-right">1,322</a>
               </li>
               <li class="list-group-item">
@@ -37,13 +32,10 @@
               </li>
               <li class="list-group-item">
                 <b>Friends</b> <a class="float-right">13,287</a>
-              </li> --}}
+              </li>
             </ul>
 
-            <a href="#" class="btn btn-primary btn-block"><b>Ver suguimiento</b></a>
-            @else
-            <h5>No asignado</h5>
-            @endif
+            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
           </div>
         </div>
 {{--

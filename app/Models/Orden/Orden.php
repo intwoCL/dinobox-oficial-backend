@@ -8,6 +8,7 @@ use App\Casts\Json;
 use App\Services\ConvertDatetime;
 use App\Services\Currency;
 use App\Models\Sistema\Comuna;
+use App\Models\Sistema\Usuario;
 
 class Orden extends Model
 {
@@ -43,36 +44,47 @@ class Orden extends Model
     20 => ['Local',true],
   ];
 
-  public function getFecha(){
+  public function getFecha() {
     return new ConvertDatetime($this->fecha_entrega);
   }
 
-  public function getFechaEmision(){
+  public function cliente() {
+    return $this->belongsTo(Usuario::class,'id_cliente');
+  }
+
+  public function usuario() {
+    return $this->belongsTo(Usuario::class,'id_usuario');
+  }
+
+  public function repartidores(){
+    return $this->hasMany(OrdenRepartidor::class,'id_orden');
+  }
+
+  public function getFechaEmision() {
     return new ConvertDatetime($this->created_at);
   }
 
-  public function getEstado(){
+  public function getEstado() {
     return self::ESTADO_GENERAL[$this->estado];
   }
 
-  public function scopeGetPendientes($query){
+  public function scopeGetPendientes($query) {
     return $query->where('activo',true)->where('estado',10)->with(['remitenteComuna','destinatarioComuna'])->get();
   }
 
-  public function scopeGetAsignados($query, $fecha){
+  public function scopeGetAsignados($query, $fecha) {
     return $query->where('activo',true)->where('estado','<>',10)->where('fecha_entrega',$fecha)->get();
   }
 
-  public function getPrecio(){
+  public function getPrecio() {
     return (new Currency($this->precio))->money();
   }
 
-  public function remitenteComuna(){
+  public function remitenteComuna() {
     return $this->belongsTo(Comuna::class,'remitente_id_comuna');
   }
 
-  public function destinatarioComuna(){
+  public function destinatarioComuna() {
     return $this->belongsTo(Comuna::class,'destinatario_id_comuna');
   }
-
 }
