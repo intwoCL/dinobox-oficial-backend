@@ -149,11 +149,13 @@ class ClienteController extends Controller {
   }
 
   //Registro Usuario
+  //Index
   public function register() {
     $sistema = Sistema::first();
     return view('web.cliente.home.register',compact('sistema'));
   }
 
+  //Viste Create
   public function registerStore(Request $request) {
     try {
       $cliente = new Cliente();
@@ -173,13 +175,12 @@ class ClienteController extends Controller {
 
       $cliente->save();
 
-      return redirect()->route('root')->with('success,','Se ha creado exitosamente');
+      return redirect()->route('cliente.register.aviso')->with('success,','Se ha creado exitosamente');
     } catch (\Throwable $th) {
       // return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
-
 
   //Login Cliente
   public function auth() {
@@ -213,6 +214,10 @@ class ClienteController extends Controller {
   public function logout() {
     close_sessions();
     return redirect()->route('root');
+  }
+
+  public function avisoRegistro() {
+    return view('web.cliente.home.avisoRegistro');
   }
 
 }

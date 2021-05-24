@@ -52,6 +52,7 @@
     .spinner {
       display: none;
     }
+
   </style>
   <link rel="stylesheet" href="/dist/css/login.css">
   @stack('stylesheet')
@@ -102,7 +103,7 @@
                   INICIAR
                 </button>
               </div>
-              <a href="{{ route('cliente.register') }}"><small>¿Aún no te has registrado? Hazlo ahora</small></a>
+              <a class="d-flex justify-content-center" href="{{ route('cliente.register') }}"><small>¿Aún no te has registrado? Hazlo ahora</small></a>
             </form>
             @if (helper_integration_gmail())
             <div class="social-auth-links text-center mb-3">
