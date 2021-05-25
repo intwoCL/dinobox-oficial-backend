@@ -13,10 +13,10 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
   // - {USUARIO}
   Route::resource('usuario','UsuarioController',['except'=>['show']]);
   Route::get('usuario/{id}','UsuarioController@show')->name('usuario.show');
-  Route::get('usuario/eliminados','UsuarioController@indexDelete')->name('usuario.indexDelete');
   Route::put('usuario/{id}/password','UsuarioController@password')->name('usuario.password');
   Route::get('usuario/{id}/vehiculo','VehiculoController@index')->name('vehiculo.index');
   Route::post('usuario/{id}/vehiculo','VehiculoController@store')->name('vehiculo.store');
+  Route::get('usuarios/eliminados','UsuarioController@indexDelete')->name('usuario.indexDelete');
   Route::get('repartidores','UsuarioController@indexRepartidores')->name('repartidor.index');
 
   // - {CLIENTE}

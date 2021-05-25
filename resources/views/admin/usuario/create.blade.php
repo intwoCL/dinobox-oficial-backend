@@ -24,8 +24,9 @@
                 <label for="f1" class="col-form-label col-sm-2">Rut<small class="text-danger">*</small></label>
                 <div class="input-group col-sm-10">
                   <input type="text" class="form-control" name="run" placeholder="Ej: 19222888K"
-                    required="" maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
+                    required="" maxlength="9" min="8" value="{{ old('run') }}" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
                   <small id="error" class="text-danger"></small>
+                  {!! $errors->first('run','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
@@ -76,7 +77,7 @@
                   <input type="file" name="image" accept="image/*" onchange="preview(this)" />
                   <br>
                 </div>
-              </div> 
+              </div>
               <div class="form-group center-text">
                 <div id="preview"></div>
               </div>--}}
