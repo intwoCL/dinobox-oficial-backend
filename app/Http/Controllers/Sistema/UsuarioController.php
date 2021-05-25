@@ -109,11 +109,11 @@ class UsuarioController extends Controller
       $user->username = $request->input('username');
       $user->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
-      if(!empty($request->file('image'))){
-        $filename = time();
-        $folder = 'public/photo_usuarios';
-        $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
-      }
+      // if(!empty($request->file('image'))){
+      //   $filename = time();
+      //   $folder = 'public/photo_usuarios';
+      //   $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      // }
 
       //Actualizar el rol
       $rol = $user->sucursalUsuario;

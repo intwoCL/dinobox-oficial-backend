@@ -27,7 +27,7 @@ class ClienteCreateRequest extends FormRequest
           'run' => 'required|regex:/^\d{7,8}[0-9K]{1}$/',
           'nombre' => 'required|min:2|max:60',
           'apellido' => 'required|min:2|max:60',
-          'password' => 'required|min:4|max:10|regex:/\s/',
+          'password' => 'required|min:4|max:8',
           'correo' => 'required|min:4|max:60|email|unique:s_cliente,correo',
           'telefono' => 'required|min:4|max:9',
           'bithdate' => 'required|date_format:d-m-Y',
