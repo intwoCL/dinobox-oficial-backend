@@ -36,6 +36,9 @@ Route::post('/login', 'Web\Cliente\ClienteController@login')->name('cliente.logi
 Route::post('/logout','Web\Cliente\ClienteController@logout')->name('cliente.logout');
 
 //Seguimiento de la orden
+Route::post('orden_seguimiento', 'Web\DashboardController@buscarCodigo')->name('dashboard.orden.buscarCodigo');
+Route::get('orden_seguimiento/{codigo}', 'Web\DashboardController@ordenSeguimiento')->name('dashboard.orden.seguimiento');
+
 
 
 Route::middleware('auth.usuario')->group( function () {

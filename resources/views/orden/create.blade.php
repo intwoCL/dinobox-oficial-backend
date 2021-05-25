@@ -18,9 +18,9 @@
 <section class="content">
   <div class="row">
     @include('orden._form2')
-    {{-- <div class="col-md-6">
-      @include('components.maps._map_cliente')
-    </div> --}}
+    <div class="col-md-6">
+      {{-- @include('components.maps._map') --}}
+    </div>
     {{-- <div class="col-md-6">
       <div class="d-none d-lg-block">
         <img width="100%" style="pointer-events: none;" src="{!! $icon !!}" alt="">

@@ -27,11 +27,14 @@
     {{-- <p class="lead font-weight-normal">Busca tu orden</p> --}}
     {{-- <a class="btn btn-outline-secondary" href="#">Coming soon</a> --}}
 
-    <form class="my-2">
+    <form class="my-2" action="{{ route('dashboard.orden.buscarCodigo') }}" method="POST">
+      @csrf
       <div class="input-group">
-        <input class="form-control form-control-lg" autofocus type="text" placeholder="Ingresar código de seguimiento" aria-label="Search">
+        <input type="text" class="form-control form-control-lg" name="codigo" autofocus placeholder="Ingresar código de seguimiento" aria-label="Search" required>
         <div class="input-group-append">
-          <button class="btn btn-danger" type="button"><i class="fa fa-search"></i></button>
+          <button class="btn btn-danger" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
         </div>
       </div>
     </form>
