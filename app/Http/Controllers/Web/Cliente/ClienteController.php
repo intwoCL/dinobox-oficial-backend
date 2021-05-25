@@ -9,6 +9,7 @@ use App\Services\ImportImage;
 use App\Http\Requests\ClienteCreateRequest as ClientCreateRequest;
 use App\Http\Requests\ClienteLoginRequest;
 use App\Http\Requests\PasswordClienteRequest;
+use App\Models\Orden\Orden;
 use App\Models\Sistema\Region;
 use App\Models\Sistema\Comuna;
 use App\Models\Sistema\Direccion;
@@ -144,8 +145,9 @@ class ClienteController extends Controller {
   //Historial de movimientos
   //Index
   public function historial() {
+    $data=Orden::paginate(3);
     $cliente = current_client();
-    return view('web.cliente.home.historial',compact('cliente'));
+    return view('web.cliente.home.historial',compact('cliente'), ['ordenes'=>$data]);
   }
 
   //Registro Usuario
