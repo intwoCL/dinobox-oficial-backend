@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Casts\Json;
-
+use App\Models\Orden\OrdenRepartidor;
 use App\Presenters\Sistema\UsuarioPresenter;
 use App\Services\ConvertDatetime;
 
@@ -40,6 +40,10 @@ class Usuario extends Authenticatable
   // busca el rol
   public function sucursalUsuario(){
     return $this->hasOne(SucursalUsuario::class,'id_usuario');
+  }
+
+  public function OrdenesRepartidor(){
+    return $this->hasMany(OrdenRepartidor::class,'id_repartidor');
   }
 
   public function vehiculos(){
@@ -99,15 +103,23 @@ class Usuario extends Authenticatable
                 ->where('sucursalUsuario.rol',$rol);
   }
 
+  public function scopeGetAllRolDistinc($query,$rol){
+    return $query->where('activo',true)
+                ->where('bloqueado',false)
+                ->with('sucursalUsuario')
+                ->get()
+                ->where('sucursalUsuario.rol',$rol);
+  }
+
   public function scopeGetAllGestor(){
     return $this->getAllRol(1);
   }
 
-  public function scopeGetAllEmpleado(){
+  public function scopeGetAllEmpleados(){
     return $this->getAllRol(2);
   }
 
-  public function scopeGetAllRepartidor(){
+  public function scopeGetAllRepartidores(){
     return $this->getAllRol(3);
   }
 }

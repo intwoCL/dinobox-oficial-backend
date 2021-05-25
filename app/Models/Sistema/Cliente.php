@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Casts\Json;
-
+use App\Models\Orden\Orden;
 use App\Presenters\Sistema\ClientePresenter;
 use App\Services\ConvertDatetime;
 
@@ -33,7 +33,11 @@ class Cliente extends Authenticatable
   ];
 
   public function direcciones(){
-    return $this->hasMany(Direccion::class,'id_cliente');
+    return $this->hasMany(Direccion::class,'id_cliente')->orderBy('favorito','desc');
+  }
+
+  public function ordenes(){
+    return $this->hasMany(Orden::class,'id_cliente')->where('activo',true);
   }
 
   public function scopeLikeColumn($query, $column, $value) {
@@ -44,9 +48,13 @@ class Cliente extends Authenticatable
     return new ClientePresenter($this);
   }
 
-  public function scopefindByUsername($query, $username){
-    return $query->where('username',$username)->where('activo',true);
+  public function scopefindByCorreo($query, $correo){
+    return $query->where('correo',$correo)->where('activo',true);
   }
+
+  // public function scopefindOrdenDate($query, $date){
+  //   return $query->ordenes->where('fecha_entrega',$date);
+  // }
 
   public function getLastSession(){
     return new ConvertDatetime($this->last_session);

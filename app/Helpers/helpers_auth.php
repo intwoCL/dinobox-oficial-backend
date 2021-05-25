@@ -14,7 +14,7 @@ function is_admin(){
   return current_user()->admin;
 }
 
-function current_admin(){
+function current_client(){
   return auth('cliente')->user();
 }
 

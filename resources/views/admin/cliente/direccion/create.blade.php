@@ -25,6 +25,7 @@
             @csrf
 
             <div class="card-body">
+
               <div class="form-group row">
                 <label for="inputnombre" class="col-sm-2 col-form-label">Calle</label>
                 <div class="col-sm-5">
@@ -61,6 +62,7 @@
                   {!! $errors->first('dato_adicional','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
+
               <div class="form-group row">
                 <label for="nameEvento" class="col-form-label col-sm-2">Teléfono</label>
                 <div class="input-group col-sm-10">
@@ -68,6 +70,7 @@
                   {!! $errors->first('telefono','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
+
             </div>
             <div class="card-footer">
               <button type="submit" class="btn btn-success float-right">Guardar</button>
@@ -76,9 +79,9 @@
         </div>
       </div>
 
-      {{-- <div class="col-md-6">
-        @include('components.maps._map_cliente')
-      </div> --}}
+      <div class="col-md-6">
+        {{-- @include('components.maps._map_cliente') --}}
+      </div>
     </div>
   </div>
 </section>

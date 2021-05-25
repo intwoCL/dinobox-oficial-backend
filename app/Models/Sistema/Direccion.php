@@ -39,6 +39,11 @@ class Direccion extends Model
       'region' => $this->comuna->region->nombre,
       'id_comuna' => $this->id_comuna,
       'id_region' => $this->comuna->id_region,
+      'favorito' => $this->favorito ? true : false,
+      'map' => [
+        'lng' => $this->lng,
+        'lat' => $this->lat,
+      ],
     ];
   }
 }

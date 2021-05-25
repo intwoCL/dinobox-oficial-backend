@@ -1,56 +1,38 @@
-@extends('layouts.repartidor.app')
+@extends('web.repartidor.app')
 @push('stylesheet')
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 @endpush
 @section('content')
-@component('components.button._back')
-  {{-- @slot('route', route('admin.cliente.index'))
-  @slot('color', 'secondary') --}}
-  @slot('body', 'Pedidos')
-@endcomponent
+<header>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        {{-- <i class="fa fa-people-carry mr-2"></i> --}}
+        <strong>Dinobox.cl</strong>
+      </a>
+    </div>
+  </div>
+</header>
 
-{{-- <ol class="list-group list-group-numbered">
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Subheading</div>
-      Cras justo odio
+<main role="main">
+  <section class="my-4 text-center">
+    <div class="container">
+      <h1>Bienvenid@ a Dinobox {{ current_user()->nombre }}</h1>
+      {{-- <h3>{{ current_user()->isHappy() ? "FELIZ CUMPLEAÑOS" : ''}}</h3> --}}
+      <p>
+        <div id="typed-strings">
+          <p>Sistema de gestión </p>
+          <p>Gestionado en un solo lugar.</p>
+        </div>
+        <span id="typed"></span>
+      </p>
+      <img src="{{ $icon }}" width="100%" height="300px" alt="">
+      <p>
+        <a href="{{ route('repartidor.ordenes') }}" class="btn btn-primary btn-block btn-lg my-2">Repartir</a>
+      </p>
     </div>
-    <span class="badge bg-primary rounded-pill">14</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span class="badge bg-primary rounded-pill">14</span>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <div class="fw-bold">Subheading</div>
-      Cras justo odio
-    </div>
-    <span class="badge bg-primary rounded-pill">14</span>
-  </li>
-</ol> --}}
-
-<div class="list-group">
-  @foreach ($ordenes as $or)
-  <a href="{{ route('repartidor.ordenShow',$or->orden->codigo) }}" class="list-group-item list-group-item-action">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{ $or->orden->codigo }}</h5>
-      {{-- <h5 class="mb-1">{{ $or->orden->getFecha()->getDate() }}</h5> --}}
-      <small class="text-muted">3 days ago</small>
-    </div>
-    <p class="mb-1">Some placeholder content in a paragraph.</p>
-    <small class="text-muted">And some muted small print.</small>
-  </a>
-  @endforeach
-</div>
-
+  </section>
+</main>
 @endsection
-@push('extra')
-@include('layouts._bar_menu')
-@endpush
 @push('javascript')
-
 @endpush

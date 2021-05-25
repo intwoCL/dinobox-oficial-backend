@@ -8,6 +8,7 @@ use App\Casts\Json;
 use App\Services\ConvertDatetime;
 use App\Services\Currency;
 use App\Models\Sistema\Comuna;
+use App\Models\Sistema\Usuario;
 
 class Orden extends Model
 {
@@ -20,54 +21,78 @@ class Orden extends Model
   ];
 
   const ESTADO_GENERAL = [
-    1 => 'Pendiente',
-    2 => 'Asignación de retiro',
-    3 => 'En transito a retiro',
-    4 => 'Recepcionado',
-    5 => 'Recepción de despacho',
-    6 => 'Asignación de despacho',
-    7 => 'En camino a despacho',
-    8 => 'Entregado',
-    50 => 'Cancelado',
-    100 => 'Error',
+    10 => 'Pendiente',
+    20 => 'Asignación de retiro',
+    30 => 'En transito a retiro',
+    40 => 'Recepcionado',
+    // 50 => 'Recepción de despacho',
+    60 => 'Asignación de despacho',
+    70 => 'En camino a despacho',
+    80 => 'Entregado',
+    401 => 'Cancelado',
+    404 => 'Error',
   ];
 
-  const TIPO_ENVIO = [
+  const SERVICIOS = [
     10 => ['Envios Express','',true],
     20 => ['Envíos Tradicionales','',true],
     30 => ['Envíos Especiales','',true],
   ];
 
-  public function getFecha(){
+  const CATEGORIAS = [
+    10 => ['Retiro',true],
+    20 => ['Local',true],
+  ];
+
+  public function getFecha() {
     return new ConvertDatetime($this->fecha_entrega);
   }
 
-  public function getFechaEmision(){
+  public function cliente() {
+    return $this->belongsTo(Usuario::class,'id_cliente');
+  }
+
+  public function usuario() {
+    return $this->belongsTo(Usuario::class,'id_usuario');
+  }
+
+  public function repartidores(){
+    return $this->hasMany(OrdenRepartidor::class,'id_orden');
+  }
+
+  public function getFechaEmision() {
     return new ConvertDatetime($this->created_at);
   }
 
-  public function getEstado(){
+  public function getEstado() {
     return self::ESTADO_GENERAL[$this->estado];
   }
 
-  public function scopeGetPendientes($query){
-    return $query->where('activo',1)->where('estado',1)->get();
+  public function scopeGetPendientes($query) {
+    return $query->where('activo',true)->where('estado',10)->with(['remitenteComuna','destinatarioComuna'])->get();
   }
 
-  public function scopeGetAsignados($query, $fecha){
-    return $query->where('activo',1)->where('estado','<>',1)->where('fecha_entrega',$fecha)->get();
+  public function scopeGetAsignados($query, $fecha) {
+    return $query->where('activo',true)->where('estado','<>',10)->where('fecha_entrega',$fecha)->get();
   }
 
-  public function getPrecio(){
+  public function getPrecio() {
     return (new Currency($this->precio))->money();
   }
 
-  public function remitenteComuna(){
+  public function remitenteComuna() {
     return $this->belongsTo(Comuna::class,'remitente_id_comuna');
   }
 
-  public function destinatarioComuna(){
+  public function destinatarioComuna() {
     return $this->belongsTo(Comuna::class,'destinatario_id_comuna');
   }
 
+  public function getRemitenteDireccion() {
+    return $this->remitente_direccion . " " . $this->remitente_numero;
+  }
+
+  public function getDestinatarioDireccion() {
+    return $this->destinatario_direccion . " " . $this->destinatario_numero;
+  }
 }

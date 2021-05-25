@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>@yield('title', 'Evento - Edugestion')</title>
+  <title>@yield('title', 'Delivery - Dinobox')</title>
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-  <link rel="stylesheet" href="/dist/webv1/style.css">
+  {{-- <link rel="stylesheet" href="/dist/webv1/style.css"> --}}
   @stack('stylesheet')
 </head>
-<body>
+
+<body class="text-sm hold-transition">
+  {{-- <body class="dark-mode" class="text-sm hold-transition sidebar-mini layout-fixed layout-footer-fixed"> --}}
   <div id="app">
     @yield('app')
   </div>

@@ -1,17 +1,44 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Row;
 
 Route::get('/','DashboardController@index')->name('root');
-
+//Accceso Administrador
 Route::get('/acceso','Auth\AuthUsuarioController@auth')->name('auth.usuario');
 Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
-Route::get('/register', 'Sistema\ClienteController@register')->name('cliente.register');
-Route::post('/register', 'Sistema\ClienteController@registerStore')->name('cliente.register.store');
+
+//Registro usuario
+Route::get('/register', 'Web\Cliente\ClienteController@register')->name('cliente.register');
+Route::post('/register', 'Web\Cliente\ClienteController@registerStore')->name('cliente.register.store');
+Route::get('/aviso', 'Web\Cliente\ClienteController@avisoRegistro')->name('cliente.register.aviso');
+
 //Perfil Cliente
-Route::get('/profile/cliente', 'Sistema\ClienteController@profile')->name('profile.cliente');
-Route::put('/profile/cliente', 'Sistema\ClienteController@updateProfile')->name('profile.cliente');
-Route::post('/profile/cliente/password'. 'Sistema\ClienteController@passwordProfile')->name('profile.cliente.password');
+Route::get('/profile/cliente', 'Web\Cliente\ClienteController@cliente')->name('profile.cliente');
+Route::put('/profile/cliente', 'Web\Cliente\ClienteController@profileUpdate')->name('profile.cliente');
+
+//Direcciones
+Route::get('/profile/direcciones', 'Web\Cliente\ClienteController@direcciones')->name('profile.direcciones');
+Route::get('/profile/direcciones/{id}', 'Web\Cliente\ClienteController@direccionesIndex')->name('profile.direcciones.edit');
+Route::put('/profile/direcciones/{id}', 'Web\Cliente\ClienteController@direccionUpdate')->name('profile.direcciones.update');
+Route::post('/profile/direcciones', 'Web\Cliente\ClienteController@direccionStore')->name('profile.direcciones');
+
+//Historial
+Route::get('/profile/historial', 'Web\Cliente\ClienteController@historial')->name('profile.historial');
+
+//Contraseña
+Route::get('/profile/password', 'Web\Cliente\ClienteController@passwordIndex')->name('profile.password');
+Route::post('/profile/password', 'Web\Cliente\ClienteController@passwordUpdate')->name('profile.password.update');
+
+//Login Cliente
+Route::get('/login', 'Web\Cliente\ClienteController@auth')->name('cliente.login');
+Route::post('/login', 'Web\Cliente\ClienteController@login')->name('cliente.login');
+Route::post('/logout','Web\Cliente\ClienteController@logout')->name('cliente.logout');
+
+//Seguimiento de la orden
+Route::post('orden_seguimiento', 'Web\DashboardController@buscarCodigo')->name('dashboard.orden.buscarCodigo');
+Route::get('orden_seguimiento/{codigo}', 'Web\DashboardController@ordenSeguimiento')->name('dashboard.orden.seguimiento');
+
 
 
 Route::middleware('auth.usuario')->group( function () {

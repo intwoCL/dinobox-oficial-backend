@@ -83,7 +83,7 @@
             <form action="{{ route('cliente.register.store') }}" method="POST" class="form-prevent">
               @csrf
               <div class="form-group row">
-                <label for="f1" class="col-form-label col-sm-2"></label>
+                <label for="f1" class="col-form-label"></label>
                 <div class="input-group col-sm-12">
                   <input type="text" class="form-control" name="run" placeholder="Run"
                     required="" maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)" value="{{ old('run') }}">
@@ -114,21 +114,11 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="nameEvento" class="col-form-label col-sm-0"></label>
+                <label for="nameEvento" class="col-form-label"></label>
                 <div class="input-group col-sm-12">
                     <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Teléfono" pattern="[0-9]{9}" title="Formato de 9 digitos">
                 </div>
               </div>
-              {{-- <div class="form-group">
-                <label for="username" class="sr-only">Username</label>
-                <input type="text" name="username" id="username" autofocus class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" placeholder="Usuario" value="{{ old('username') }}" required>
-                {!! $errors->first('username', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
-              </div> --}}
-              {{-- <div class="form-group mb-3">
-                <label for="password" class="sr-only">Password</label>
-                <input type="password" name="password" autocomplete="off" id="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Contraseña" required>
-                {!! $errors->first('password', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
-              </div> --}}
               @if (session('info'))
               <div class="form-group text-center">
                 <small class=" text-danger">{{ session('info') }}</small>

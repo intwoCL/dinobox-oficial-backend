@@ -39,9 +39,9 @@
     // map.setLayoutProperty('country-label', 'text-field', ['get','name_es']);
 
 // Create a default Marker and add it to the map.
-    var marker1 = new mapboxgl.Marker()
-    .setLngLat([-33.6315897,-70.7679523])
-    .addTo(map);
+    // var marker1 = new mapboxgl.Marker()
+    // .setLngLat([-33.6315897,-70.7679523])
+    // .addTo(map);
 
     // Create a default Marker, colored black, rotated 45 degrees.
     // var marker2 = new mapboxgl.Marker({ color: 'black', rotation: 45 })

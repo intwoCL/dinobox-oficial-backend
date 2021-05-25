@@ -4,56 +4,34 @@
 @endpush
 @section('content')
 @component('components.button._back')
-  @slot('route', route('repartidor.home'))
-  @slot('color', 'secondary')
-  @slot('body', 'Pedidos')
+  @slot('body', 'Ordenes de hoy')
 @endcomponent
 <section class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="media">
-        <div class="media-body">
-          <h5 class="mt-0">{{ $ordenRepartidor->orden->codigo }}</h5>
-          {{ $ordenRepartidor->orden->remitente_nombre }}
-          {{ $ordenRepartidor->orden->remitente_direccion }}
-          {{ $ordenRepartidor->orden->getEstado() }}
-        </div>
+  <div class="container">
+    <div class="row pb-3">
+      @foreach ($ordenes as $or)
+      <div class="col-md-12">
+        <a href="{{ route('repartidor.ordenShow',$or->orden->codigo) }}" class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{ $or->orden->codigo }}</h5>
+            {{-- <h5 class="mb-1">{{ $or->orden->getFecha()->getDate() }}</h5> --}}
+            <small class="text-muted">{{ $or->orden->getFecha()->getDate() }}</small>
+          </div>
+          <p class="mb-1">
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus corporis, odit suscipit error ipsam nisi blanditiis dolorem, neque quos repudiandae, cumque iste libero. Aspernatur omnis ad dignissimos nostrum quo incidunt!
+          </p>
+          {{-- <small class="text-muted">And some muted small print.</small> --}}
+          <small class="text-muted">{{ $or->orden->getEstado() }}</small>
+        </a>
       </div>
+      @endforeach
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notificarModal">
-      Cambiar estado
-    </button>
   </div>
 </section>
-
-<!-- Modal -->
-<div class="modal fade" id="notificarModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="labelNotificacion">Cambiar en transito a retiro</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="{{route('repartidor.ordenUpdate', $ordenRepartidor->orden->codigo)}}" method="POST">
-
-      @method("PUT")
-      @csrf
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </div>
-    </form>
-    </div>
-  </div>
-</div>
-
-
 @endsection
 @push('extra')
-@include('layouts._bar_menu')
+@include('layouts.repartidor._bar_menu')
 @endpush
 @push('javascript')
 

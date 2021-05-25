@@ -15,7 +15,7 @@
     <tbody>
       @foreach ($ordenes as $o)
       <tr>
-        <td><a href="">{{ $o->codigo }}</a></td>
+        <td><a href="{{ route('orden.show',$o->codigo) }}">{{ $o->codigo }}</a></td>
         <td>{{ $o->getFecha()->getDate() }}</td>
         <td>{{ $o->remitente_direccion }}</td>
         <td>{{ $o->destinatario_direccion }}</td>
@@ -23,11 +23,11 @@
         <td>{{ $o->destinatarioComuna->nombre }}</td>
         <td>$ {{ $o->getPrecio() }}</td>
         <td>
-          <button type="button" class="btn btn-outline-success btn-xs"
+          <button type="button" class="btn btn-outline-primary btn-xs btn-block"
           data-toggle="modal"
           data-target="#assignModal"
-          data-alumno="123">
-          Asignar
+          data-codigo="{{ $o->codigo }}">
+          REPARTIDOR
         </button>
         </td>
       </tr>

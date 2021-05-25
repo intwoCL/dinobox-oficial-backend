@@ -3,8 +3,9 @@
     <div class="card-header">
       <h3 class="card-title">Actualizar contraseña</h3>
     </div>
-    <form class="form-horizontal form-submit" method="POST" action=""  enctype="multipart/form-data">
+    <form class="form-horizontal form-submit" method="POST" action="{{ route('profile.cliente.password') }}"  enctype="multipart/form-data">
       @csrf
+      @method('PUT')
       <div class="card-body">
         <div class="form-group row">
           <label for="inputUsername" class="col-sm-12 col-form-label">Contraseña actual</label>
@@ -21,7 +22,7 @@
           </div>
         </div>
         <div class="form-group row">
-          <label for="inputUsername" class="col-sm-12 col-form-label">Contraseña repetir</label>
+          <label for="inputUsername" class="col-sm-12 col-form-label">Repetir contraseña</label>
           <div class="col-sm-10">
             <input type="password" class="form-control {{ $errors->has('password_nueva_repetir') ? 'is-invalid' : '' }}" name="password_nueva_repetir" id="password_nueva_repetir" autocomplete="off" placeholder="*********" required>
             {!! $errors->first('password_nueva_repetir','<small class="form-text text-danger">:message</small>') !!}

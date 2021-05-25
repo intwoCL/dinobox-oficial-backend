@@ -22,6 +22,8 @@ class CreateTableSUsuario extends Migration
             $table->string('apellido');
             $table->string('correo')->unique();
             $table->string('imagen')->nullable();
+            $table->integer('id_grupo')->nullable();
+            $table->integer('id_company')->nullable();
             $table->string('config_theme')->default('default');
             $table->string('integrations')->nullable();
             $table->integer('sexo')->nullable();
