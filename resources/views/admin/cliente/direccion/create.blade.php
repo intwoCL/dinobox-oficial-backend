@@ -27,19 +27,19 @@
             <div class="card-body">
 
               <div class="form-group row">
-                <label for="inputnombre" class="col-sm-2 col-form-label">Calle</label>
+                <label for="inputnombre" class="col-sm-2 col-form-label">Calle<small class="text-danger">*</small></label>
                 <div class="col-sm-5">
                   <input type="text" class="form-control {{ $errors->has('calle') ? 'is-invalid' : '' }}" name="calle" id="calle" autocomplete="off" value="{{ old('calle') }}" placeholder="Calle" required>
                   {!! $errors->first('calle', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control {{ $errors->has('numero') ? 'is-invalid' : '' }}" name="numero" id="numero" autocomplete="off" value="{{ old('numero') }}" placeholder="Número">
+                  <input type="text" class="form-control {{ $errors->has('numero') ? 'is-invalid' : '' }}" name="numero" id="numero" autocomplete="off" value="{{ old('numero') }}" placeholder="Número" required>
                   {!! $errors->first('numero', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
 
               <div class="form-group row">
-                <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Región</label>
+                <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Región<small class="text-danger">*</small></label>
                 <div class="col-sm-10">
                   <select class="custom-select" id="select_region" name="region" onChange="CargarComunas()">
                   </select>
@@ -47,7 +47,7 @@
               </div>
 
               <div class="form-group row">
-                <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Comuna</label>
+                <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Comuna<small class="text-danger">*</small></label>
                 <div class="col-sm-10">
                   <select class="custom-select {{ $errors->has('id_comuna') ? 'is-invalid' : '' }}" name='id_comuna' id="select_comuna" required>
                   </select>

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Sistema\Cliente;
 use App\Services\ImportImage;
 use App\Http\Requests\ClienteCreateRequest as ClientCreateRequest;
+use App\Http\Requests\ClienteUpdateRequest as ClientUpdateRequest;
 use App\Http\Requests\ClienteLoginRequest;
 use App\Http\Requests\PasswordClienteRequest;
 use App\Models\Sistema\Region;
@@ -87,11 +88,11 @@ class ClienteController extends Controller
       $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
       $cliente->sexo = $request->input('sexo');
 
-      if(!empty($request->file('image'))){
-        $filename = time();
-        $folder = 'public/photo_clientes';
-        $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
-      }
+      // if(!empty($request->file('image'))){
+      //   $filename = time();
+      //   $folder = 'public/photo_clientes';
+      //   $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      // }
 
       $cliente->update();
 
