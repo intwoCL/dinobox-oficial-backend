@@ -40,7 +40,7 @@
               <div class="form-group row">
                 <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Región</label>
                 <div class="col-sm-10">
-                  <select class="custom-select" id="select_region" name="region" onChange="CargarComunas()" required>
+                  <select class="custom-select" id="select_region" name="region" onChange="CargarComunas()">
                   </select>
                 </div>
               </div>

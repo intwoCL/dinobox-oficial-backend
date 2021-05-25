@@ -42,7 +42,7 @@ class ClienteController extends Controller
       $cliente->sexo = $request->input('sexo');
       $cliente->id_usuario_creador = current_user()->id;
       $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
-      
+
       // if(!empty($request->file('image'))){
       //   $filename = time();
       //   $folder = 'public/photo_clientes';
@@ -53,7 +53,6 @@ class ClienteController extends Controller
 
       return redirect()->route('admin.cliente.index')->with('success','Se ha creado correctamente.');
     } catch (\Throwable $th) {
-      return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
@@ -159,7 +158,7 @@ class ClienteController extends Controller
       // }
 
       $cliente->save();
-      
+
       return redirect()->route('profile.cliente')->with('success,','Se ha creado exitosamente');
     } catch (\Throwable $th) {
       return $th;
@@ -188,7 +187,7 @@ class ClienteController extends Controller
       //   $folder = 'public/photo_clientes';
       //   $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
       // }
-      
+
       $cliente->user->update();
 
       return back()->with('success','Se ha actualizado');
