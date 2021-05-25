@@ -57,7 +57,7 @@ class ClienteController extends Controller {
     $cliente = current_client();
     return view('web.cliente.home.password', compact('cliente'));;
   }
-  
+
   //Actualizar Contraseña
   public function passwordUpdate(PasswordClienteRequest $request){
     try {
@@ -120,7 +120,7 @@ class ClienteController extends Controller {
     $regions = Region::get();
     return view('web.cliente.home.direccionesEdit',compact('cliente','comunas','regions','d'));
   }
-  
+
   //Actualizar dirección
   public function direccionUpdate(Request $request, $id){
     try {
@@ -198,8 +198,9 @@ class ClienteController extends Controller {
         return back()->with('info','Error. Intente nuevamente.');
       }
     } catch (\Throwable $th) {
-      return $th;
-      return back()->with('info','Error. Intente nuevamente.');
+      // return $th;
+      // return back()->with('info','Error. Intente nuevamente.');
+      return redirect()->route('cliente.register.noRegistro');
     }
   }
 
@@ -212,5 +213,10 @@ class ClienteController extends Controller {
   public function avisoRegistro() {
     return view('web.cliente.home.avisoRegistro');
   }
+  //no registro
+  public function avisoNoRegistro() {
+    return view('web.cliente.home.avisoNoRegistro');
+  }
+
 
 }
