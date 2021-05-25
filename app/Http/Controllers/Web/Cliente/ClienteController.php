@@ -165,13 +165,6 @@ class ClienteController extends Controller {
       $cliente->correo = $request->input('correo');
       $cliente->password = hash('sha256', $request->input('password'));
       $cliente->telefono = $request->input('telefono');
-      $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
-
-      if(!empty($request->file('image'))){
-        $filename = time();
-        $folder = 'public/photo_clientes';
-        $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
-      }
 
       $cliente->save();
 
