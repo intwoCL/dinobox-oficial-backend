@@ -34,19 +34,20 @@ class UserSession extends Permissions
   private function handle() {
     $permisos = array(
       'admin' => false,
-      'rol'   => [], //gestor, empleado, admin
+      'id_admin' => null,
+      // 'rol'   => [], //gestor, empleado, admin
     );
 
-    current_user()->last_session = (new \DateTime())->format("Y-m-d H:i:s");
-    current_user()->update();
 
 
-    $permisos['admin'] = current_user()->admin;
-    $permisos['rol'] = array(true, true, true);
+    // current_user()->last_session = (new \DateTime())->format("Y-m-d H:i:s");
+    // current_user()->update();
 
-    // foreach (current_user()->sucursalesUsuario as $su) {
-    //   $permisos['rol'] =
-    // }
+
+    // $permisos['admin'] = current_user()->admin;
+    // $permisos['rol'] = array(true, true, true);
+
+
 
 
 
