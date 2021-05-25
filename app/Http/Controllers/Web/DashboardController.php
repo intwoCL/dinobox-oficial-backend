@@ -21,7 +21,8 @@ class DashboardController extends Controller
   public function ordenSeguimiento($codigo) {
     try {
       $orden = Orden::where('codigo',$codigo)->where('activo',true)->firstOrFail();
-      return view('web.cliente.orden_seguimiento',compact('codigo','orden'));
+      $repartidor = $orden->ordenRepartidor->repartidor ?? null;
+      return view('web.cliente.orden_seguimiento',compact('codigo','orden','repartidor'));
     } catch (\Throwable $th) {
       return "Error no ha visto";
     }

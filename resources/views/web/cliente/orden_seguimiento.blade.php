@@ -61,7 +61,8 @@ body {
 }
 
 .track .step.active:before {
-    background: #FF5722
+    /* background: #FF5722 */
+    background:#0F860C;
 }
 
 .track .step::before {
@@ -80,9 +81,9 @@ body {
 
 .track .icon {
     display: inline-block;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
+    width: 60px;
+    height: 60px;
+    line-height: 70px;
     position: relative;
     border-radius: 100%;
     background: #ddd
@@ -123,7 +124,7 @@ body {
 @include('layouts._nav2')
 @include('web.cliente.partials._seguimiento')
 
-@include('web.cliente.partials._indexFooter')
+{{-- @include('web.cliente.partials._indexFooter') --}}
 @endsection
 @push('javascript')
 

@@ -11,6 +11,7 @@ use App\Models\Sistema\Region;
 use App\Models\Sistema\Comuna;
 use App\Http\Requests\OrdenCreateRequest;
 use App\Lib\IconRender;
+use App\Models\Orden\OrdenRepartidor;
 use App\Models\Sistema\Sistema;
 use App\Services\ConvertDatetime;
 use App\Services\IconServices;
@@ -105,9 +106,9 @@ class OrdenController extends Controller
     $orden = Orden::where('codigo',$codigo)->where('activo',true)->with(['repartidores','cliente'])->firstOrFail();
     // $repartidor = $orden->repartidores->first()->usuario;
     // return $orden->repartidores->first()->repartidor;
-    $repartidor = (count($orden->repartidores) > 0) ?  $orden->repartidores->first()->repartidor : null;
-
-    // return $orden->repartidores;
+    //$repartidor = (count($orden->repartidores) > 0) ?  $orden->repartidores->first()->repartidor : null;
+    $repartidor = $orden->ordenRepartidor->repartidor ?? null;
+    //return $orden->repartidores;
     return view('orden.show', compact('orden','repartidor'));
   }
 

@@ -7,34 +7,35 @@
       <h6>Código Orden: {{ $codigo }}</h6>
       <article class="card">
         <div class="card-body row">
-          <div class="col"> <strong>Fecha de Entrega:</strong> <br> 
+          <div class="col"> <strong>Fecha de Entrega:</strong> <br>
             {{ $orden->fecha_entrega }}
           </div>
-          <div class="col"> <strong>Enviador por:</strong> <br>
-          </div>
-          <div class="col"> <strong>Estado:</strong> <br> 
+          {{-- <div class="col"> <strong>Repartidor:</strong> <br>
+            {{$repartidor->present()->nombre_completo()}}
+          </div> --}}
+          <div class="col"> <strong>Estado:</strong> <br>
             {{ $orden->getEstado() }}
           </div>
-          <div class="col"> <strong>Servicio:</strong> <br> 
-            {{ $orden->servicio }}
+          <div class="col"> <strong>Servicio:</strong> <br>
+            {{ $orden->getServicio() }}
           </div>
-          <div class="col"> <strong>Categoría:</strong> <br> 
-            {{ $orden->categoria }}
+          <div class="col"> <strong>Categoría:</strong> <br>
+            {{ $orden->getCategoria() }}
           </div>
         </div>
       </article>
       <div class="track">
-        <div class="step active"> 
-          <span class="icon"> 
-            <i class="fa fa-check"></i> 
-          </span> 
+        <div class="step active">
+          <span class="icon">
+            <i class="fa  fa-2x fa-check-square"></i>
+          </span>
           <span class="text">
             Orden confirmada
           </span>
         </div>
         <div class="step active">
           <span class="icon">
-            <i class="fa fa-user"></i>
+            <i class="fa fa-2x fa-people-carry"></i>
           </span>
           <span class="text">
             Recogida por repartidor
@@ -42,7 +43,7 @@
         </div>
         <div class="step">
           <span class="icon">
-            <i class="fa fa-truck"></i>
+            <i class="fa fa-2x fa-truck"></i>
           </span>
           <span class="text">
             En camino
@@ -50,16 +51,19 @@
         </div>
         <div class="step">
           <span class="icon">
-            <i class="fa fa-box"></i>
+            <i class="fa fa-2x fa-truck-loading"></i>
           </span>
           <span class="text">
             Listo para recoger
           </span>
         </div>
       </div>
-      <hr> 
+
+
+
+      <hr>
       <a href="{{ route('root') }}" class="btn btn-warning" data-abc="true">
-        <i class="fa fa-chevron-left"></i> 
+        <i class="fa fa-chevron-left"></i>
         Volver al inicio
       </a>
     </div>
