@@ -105,13 +105,6 @@
               </div>
               <a class="d-flex justify-content-center" href="{{ route('cliente.register') }}"><small>¿Aún no te has registrado? Hazlo ahora</small></a>
             </form>
-            @if (helper_integration_gmail())
-            <div class="social-auth-links text-center mb-3">
-              <a href="{{ url('auth/google') }}" class="btn btn-block btn-danger">
-                <i class="fab fa-google mr-2"></i> Sign in using Google+
-              </a>
-            </div>
-            @endif
           </div>
         </div>
       </div>
