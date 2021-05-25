@@ -32,32 +32,33 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputnombre" class="col-sm-2 col-form-label">Nombre</label>
+                <label for="inputnombre" class="col-sm-2 col-form-label">Nombre<small class="text-danger">*</small></label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ $c->nombre }}" placeholder="nombre" required>
+                  <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ $c->nombre }}" placeholder="Nombres" required>
                   {!! $errors->first('nombre', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ $c->apellido }}" placeholder="apellido" required>
+                  <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ $c->apellido }}" placeholder="Apellidos" required>
                   {!! $errors->first('apellido', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputEmail" class="col-sm-2 col-form-label">Correo</label>
+                <label for="inputEmail" class="col-sm-2 col-form-label">Correo<small class="text-danger">*</small></label>
                 <div class="col-sm-10">
                   <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ $c->correo }}" autocomplete="off" placeholder="correo@correo.cl" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
-                <label for="nameEvento" class="col-form-label col-sm-2">Teléfono</label>
+                <label for="nameEvento" class="col-form-label col-sm-2">Teléfono<small class="text-danger">*</small></label>
                 <div class="input-group col-sm-10">
                     <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="9XXXXXXXX" pattern="[0-9]{9}" title="Formato de 9 digitos" value="{{ $c->telefono }}" required>
-                </div>
+                    {!! $errors->first('telefono', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                  </div>
               </div>
 
               <div class="form-group row" id="data_1">
-                <label for="fecha" class="col-sm-3 col-form-label">Fecha Nacimiento</label>
+                <label for="fecha" class="col-sm-3 col-form-label">Fecha Nacimiento<small class="text-danger">*</small></label>
                 <div class="input-group date col-sm-9">
                   <span class="input-group-addon btn btn-info btn-sm"><i class="fa fa-calendar"></i></span>
                   <input type="text" class="form-control" readonly name="birthdate" required value="{{ $c->getFechaNacimiento()->getDate() }}">
@@ -129,7 +130,7 @@
             @method('PUT')
             <div class="card-body">
               <div class="form-group row">
-                <label for="inputUsername" class="col-sm-12 col-form-label">Contraseña <small>(123123)</small></label>
+                <label for="inputUsername" class="col-sm-12 col-form-label">Contraseña<small class="text-danger">*</small> <small>(123123)</small></label>
                 <div class="col-sm-12">
                   <input type="password" class="form-control {{ $errors->has('password_2') ? 'is-invalid' : '' }}" value="123123" name="password_2" id="password_2" autocomplete="off" placeholder="*********" required>
                   {!! $errors->first('password_2', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}

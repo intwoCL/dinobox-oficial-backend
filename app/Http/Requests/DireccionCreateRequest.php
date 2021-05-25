@@ -25,7 +25,8 @@ class DireccionCreateRequest extends FormRequest
     {
         return [
           'calle' => 'required|min:2|max:60',
-           'id_comuna' => 'required|min:4|max:60',
+          'numero' => 'required|min:2|max:10',
+          'id_comuna' => 'required|exists:s_comuna,id',
         ];
     }
 }
