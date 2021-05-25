@@ -86,7 +86,7 @@
                 <label for="f1" class="col-form-label col-sm-2"></label>
                 <div class="input-group col-sm-12">
                   <input type="text" class="form-control" name="run" placeholder="Run"
-                    required="" maxlength="9" min="8" autocomplete="new-run" autofocus onkeyup="this.value = validarRut(this.value)" value="{{ old('run') }}">
+                    required="" maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)" value="{{ old('run') }}">
                     {!! $errors->first('run', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                   <small id="error" class="text-danger"></small>
                 </div>
@@ -94,29 +94,29 @@
               <div class="form-group row">
                 <label for="inputnombre" class="col-form-label"></label>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="new-names" value="{{ old('nombre') }}" placeholder="Nombre" required>
+                  <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ old('nombre') }}" placeholder="Nombre" required>
                   {!! $errors->first('nombre', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="new-surnames" value="{{ old('apellido') }}" placeholder="Apellido">
+                  <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ old('apellido') }}" placeholder="Apellido" required>
                   {!! $errors->first('apellido', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputEmail" class="col-sm-0 col-form-label">Correo</label>
                 <div class="col-sm-6">
-                  <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ old('correo') }}" placeholder="example@correo.cl" onkeyup="javascript:this.value=this.value.toLowerCase();" autocomplete="new-email">
+                  <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ old('correo') }}" placeholder="example@example.com" onkeyup="javascript:this.value=this.value.toLowerCase();" autocomplete="off" required>
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
                 <div class="col-sm-6">
-                  <input type="password" name="password" autocomplete="new-password" id="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Contraseña" required>
+                  <input type="password" name="password" autocomplete="off" id="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="" required>
                   {!! $errors->first('password', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
                 <label for="nameEvento" class="col-form-label col-sm-0"></label>
                 <div class="input-group col-sm-12">
-                    <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="new-telehphone" maxlength="9" placeholder="Teléfono" pattern="[0-9]{9}" title="Formato de 9 digitos">
+                    <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Teléfono" pattern="[0-9]{9}" title="Formato de 9 digitos">
                 </div>
               </div>
               {{-- <div class="form-group">

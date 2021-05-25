@@ -42,18 +42,18 @@ class ClienteController extends Controller
       $cliente->sexo = $request->input('sexo');
       $cliente->id_usuario_creador = current_user()->id;
       $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
-
-      if(!empty($request->file('image'))){
-        $filename = time();
-        $folder = 'public/photo_clientes';
-        $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
-      }
+      
+      // if(!empty($request->file('image'))){
+      //   $filename = time();
+      //   $folder = 'public/photo_clientes';
+      //   $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      // }
 
       $cliente->save();
 
       return redirect()->route('admin.cliente.index')->with('success','Se ha creado correctamente.');
     } catch (\Throwable $th) {
-      throw $th;
+      return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
@@ -152,11 +152,11 @@ class ClienteController extends Controller
       $cliente->telefono = $request->input('telefono');
       $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
 
-      if(!empty($request->file('image'))){
-        $filename = time();
-        $folder = 'public/photo_clientes';
-        $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
-      }
+      // if(!empty($request->file('image'))){
+      //   $filename = time();
+      //   $folder = 'public/photo_clientes';
+      //   $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      // }
 
       $cliente->save();
       
@@ -183,11 +183,11 @@ class ClienteController extends Controller
       $cliente->birdthdate = date_format(date_create($request->input('birdthdate')),'Y-m-d');
       $cliente->sexo = $request->input('sexo');
 
-      if(!empty($request->file('image'))) {
-        $filename = time();
-        $folder = 'public/photo_clientes';
-        $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
-      }
+      // if(!empty($request->file('image'))) {
+      //   $filename = time();
+      //   $folder = 'public/photo_clientes';
+      //   $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      // }
       
       $cliente->user->update();
 

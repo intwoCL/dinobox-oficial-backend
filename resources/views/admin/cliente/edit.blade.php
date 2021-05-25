@@ -38,27 +38,27 @@
                   {!! $errors->first('nombre', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ $c->apellido }}" placeholder="apellido">
+                  <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ $c->apellido }}" placeholder="apellido" required>
                   {!! $errors->first('apellido', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputEmail" class="col-sm-2 col-form-label">Correo</label>
                 <div class="col-sm-10">
-                  <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ $c->correo }}" placeholder="example@correo.cl" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
+                  <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ $c->correo }}" autocomplete="off" placeholder="correo@correo.cl" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
                 <label for="nameEvento" class="col-form-label col-sm-2">Teléfono</label>
                 <div class="input-group col-sm-10">
-                    <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Ingrese su teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos" value="{{ $c->telefono }}">
+                    <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="9XXXXXXXX" pattern="[0-9]{9}" title="Formato de 9 digitos" value="{{ $c->telefono }}" required>
                 </div>
               </div>
 
               <div class="form-group row" id="data_1">
-                <label for="fecha" class="col-sm-4 col-form-label">Fecha Nacimiento</label>
-                <div class="input-group date col-sm-8">
+                <label for="fecha" class="col-sm-3 col-form-label">Fecha Nacimiento</label>
+                <div class="input-group date col-sm-9">
                   <span class="input-group-addon btn btn-info btn-sm"><i class="fa fa-calendar"></i></span>
                   <input type="text" class="form-control" readonly name="birthdate" required value="{{ $c->getFechaNacimiento()->getDate() }}">
                 </div>
@@ -68,8 +68,8 @@
               </div>
 
               <div class="form-group row">
-                <label for="fecha" class="col-sm-4 col-form-label">Sexo<small class="text-danger">*</small></label>
-                <div class="input-group date col-sm-8">
+                <label for="fecha" class="col-sm-3 col-form-label">Sexo<small class="text-danger">*</small></label>
+                <div class="input-group date col-sm-9">
                   <div class="form-check">
                     <label class="form-check-label">
                       <input class="form-check-input" type="radio" name="sexo" {{ $c->sexo==1 ? 'checked' : '' }} value="1">
@@ -86,7 +86,7 @@
                 {!! $errors->first('sexo','<small class="form-text text-danger text-center">:message</small>') !!}
               </div>
 
-              <div class="form-group">
+              {{-- <div class="form-group">
                 <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
                 <div class="input-group">
                   <img src="{{ $c->present()->getPhoto() }}"  class='Responsive image img-thumbnail'  width='200px' height='200px' alt="">
@@ -97,7 +97,7 @@
                   <input type="file" name="image" accept="image/*" onchange="preview(this)" />
                   <br>
                 </div>
-              </div>
+              </div> --}}
               <div class="form-group row text-center">
                 <div id="preview"></div>
               </div>
