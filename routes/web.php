@@ -12,6 +12,7 @@ Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
 Route::get('/register', 'Web\Cliente\ClienteController@register')->name('cliente.register');
 Route::post('/register', 'Web\Cliente\ClienteController@registerStore')->name('cliente.register.store');
 Route::get('/aviso', 'Web\Cliente\ClienteController@avisoRegistro')->name('cliente.register.aviso');
+Route::get('/NoRegistrado', 'Web\Cliente\ClienteController@avisoNoRegistro')->name('cliente.register.noRegistro');
 
 //Perfil Cliente
 Route::get('/profile/cliente', 'Web\Cliente\ClienteController@cliente')->name('profile.cliente');

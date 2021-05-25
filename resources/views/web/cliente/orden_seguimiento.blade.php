@@ -1,98 +1,130 @@
 @extends('web.cliente.app')
 @push('stylesheet')
+<style>
 
+body {
+    background-color: #eeeeee;
+    font-family: 'Open Sans', serif
+}
+
+.container {
+    margin-top: 100px;
+    margin-bottom: 50px
+}
+
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.10rem
+}
+
+.card-header:first-child {
+    border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+}
+
+.track {
+    position: relative;
+    background-color: #ddd;
+    height: 7px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 60px;
+    margin-top: 50px
+}
+
+.track .step {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    width: 25%;
+    margin-top: -18px;
+    text-align: center;
+    position: relative
+}
+
+.track .step.active:before {
+    /* background: #FF5722 */
+    background:#0F860C;
+}
+
+.track .step::before {
+    height: 7px;
+    position: absolute;
+    content: "";
+    width: 100%;
+    left: 0;
+    top: 18px
+}
+
+.track .step.active .icon {
+    background: #ee5435;
+    color: #fff
+}
+
+.track .icon {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 70px;
+    position: relative;
+    border-radius: 100%;
+    background: #ddd
+}
+
+.track .step.active .text {
+    font-weight: 400;
+    color: #000
+}
+
+.track .text {
+    display: block;
+    margin-top: 7px
+}
+
+.img-sm {
+    width: 80px;
+    height: 80px;
+    padding: 7px
+}
+
+.btn-warning {
+    color: #ffffff;
+    background-color: #403df5;
+    border-color: #403df5;
+    border-radius: 1px
+}
+
+.btn-warning:hover {
+    color: #ffffff;
+    background-color: #031161;
+    border-color: #031161;
+    border-radius: 1px
+}
+</style>
 @endpush
 @section('content')
+@include('layouts._nav2')
+@include('web.cliente.partials._seguimiento')
 
-<section class="content">
-  <div class="container">
-    <div class="row pb-2">
-      <div class="col-md-12">
-        <div class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{ $orden->codigo }}</h5>
-            {{-- <h5 class="mb-1">{{ $or->orden->getFecha()->getDate() }}</h5> --}}
-            <small class="text-muted">{{ $orden->getFecha()->getDate() }}</small>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              asdasd
-            </div>
-            <div class="col-md-12">
-              <p>
-                <strong>Mensaje:</strong>{{ $orden->mensaje }}
-              </p>
-            </div>
-          </div>
-          {{-- <small class="text-muted">And some muted small print.</small> --}}
-          <h6>
-            <span class="badge badge-primary">{{ $orden->getEstado() }}</span>
-          </h6>
-          {{-- <small></small> --}}
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">
-              <i class="fas fa-house-user mr-2"></i>
-              Retiro
-            </h5>
-            {{-- <small class="text-muted">{{ $orden->getFecha()->getDate() }}</small> --}}
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <p>
-                <strong>Dirección:</strong> {{ $orden->getRemitenteDireccion() }}
-                <br>
-                <strong>Comuna:</strong> {{ $orden->remitenteComuna->nombre }}
-              </p>
-            </div>
-            {{-- <div class="col-md-12">
-              asdasd
-            </div> --}}
-          </div>
-          {{-- <small class="text-muted">And some muted small print.</small> --}}
-          {{-- <small class="text-muted">{{ $orden->getEstado() }}</small> --}}
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">
-              <i class="fas fa-truck mr-2"></i>
-              Despacho
-            </h5>
-            {{-- <h5 class="mb-1">{{ $or->orden->getFecha()->getDate() }}</h5> --}}
-            {{-- <small class="text-muted">{{ $orden->getFecha()->getDate() }}</small> --}}
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <p>
-                <strong>Dirección:</strong> {{ $orden->getDestinatarioDireccion() }}
-                <br>
-                <strong>Comuna:</strong> {{ $orden->destinatarioComuna->nombre }}
-              </p>
-            </div>
-            {{-- <div class="col-md-12">
-              asdasd
-            </div> --}}
-          </div>
-          {{-- <small class="text-muted">{{ $orden->getEstado() }}</small> --}}
-        </div>
-      </div>
-      <div class="col-md-12">
-        <div class="list-group-item list-group-item-action">
-          <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#notificarModal">
-            Cambiar estado
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+{{-- @include('web.cliente.partials._indexFooter') --}}
 @endsection
 @push('javascript')
 

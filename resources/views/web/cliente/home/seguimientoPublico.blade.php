@@ -7,8 +7,8 @@
       background-repeat: no-repeat;
       background-position: center;
       height: 500px;
-      /* padding: 75px 95px; */
-      /* min-height: 100vh; */
+      padding: 75px 95px;
+      min-height: 100vh;
       display: -webkit-box;
       display: flex;
       -webkit-box-orient: vertical;

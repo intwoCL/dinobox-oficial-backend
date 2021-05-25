@@ -5,6 +5,11 @@
     body {
       background-color: #fafaf8;
     }
+
+    .W-5 {
+      display: flex;
+      position: relative;
+    }
   </style>
 @endpush
 @section('content')
@@ -17,7 +22,7 @@
       @include('web.cliente.partials._menu')
     </div>
     <div class="col-md-8">
-      <h4 class="mb-3">Historial de movimientos</h4>
+      <h4 class="mb-3">Ordenes</h4>
       @include('web.cliente.partials._list')
     </div>
   </div>

@@ -36,7 +36,7 @@
       <li class="nav-item">
         <a href="{{ route('profile.historial') }}" class="nav-link">
           <div class="fas fa-history mr-2"></div>
-          Historial de movimientos
+          Ordenes
           {{-- <span class="float-right badge bg-success">12</span> --}}
         </a>
       </li>
