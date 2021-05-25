@@ -24,7 +24,8 @@
                 <label for="f1" class="col-form-label col-sm-2">Rut<small class="text-danger">*</small></label>
                 <div class="input-group col-sm-10">
                   <input type="text" class="form-control" name="run" placeholder="Ej: 19222888K"
-                    required="" maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
+                    required="" value="{{ old('run') }}" maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
+                  {!! $errors->first('run', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                   <small id="error" class="text-danger"></small>
                 </div>
               </div>
@@ -57,8 +58,9 @@
               <div class="form-group row">
                 <label for="nameEvento" class="col-form-label col-sm-2">Teléfono<small class="text-danger">*</small> </label>
                 <div class="input-group col-sm-10">
-                    <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="9XXXXXXXX" pattern="[0-9]{9}" title="Formato de 9 digitos" required>
+                    <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="9XXXXXXXX" value="{{ old('telefono') }}" pattern="[0-9]{9}" title="Formato de 9 digitos" required>
                 </div>
+                {!! $errors->first('telefono', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
 
               <div class="form-group row" id="data_1">

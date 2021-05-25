@@ -55,6 +55,7 @@ class ClienteController extends Controller
 
       return redirect()->route('admin.cliente.index')->with('success','Se ha creado correctamente.');
     } catch (\Throwable $th) {
+      return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
