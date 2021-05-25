@@ -60,7 +60,7 @@
                 <div class="input-group col-sm-10">
                     <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="9XXXXXXXX" value="{{ old('telefono') }}" pattern="[0-9]{9}" title="Formato de 9 digitos" required>
                 </div>
-                {!! $errors->first('telefono', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                {!! $errors->first('telefono', '<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
 
               <div class="form-group row" id="data_1">
