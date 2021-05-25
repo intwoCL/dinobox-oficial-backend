@@ -64,14 +64,7 @@
         <div class="col-sm-8 intro-section d-none d-sm-block">
           <div class="brand-wrapper">
             <img src="{{ $sistema->present()->getImagenLogo() }}" alt="" height="100" class="logo">
-
             <h1 class="intro-title">{{ $sistema->titulo ?? '' }}</h1>
-          </div>
-          <div class="intro-content-wrapper">
-            <p class="intro-text"></p>
-          </div>
-          <div class="intro-section-footer">
-            <p></p>
           </div>
         </div>
         <div class="col-sm-4 form-section">
