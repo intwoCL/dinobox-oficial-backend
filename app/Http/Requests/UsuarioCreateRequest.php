@@ -29,7 +29,7 @@ class UsuarioCreateRequest extends FormRequest
       'apellido' => 'required|min:2|max:60',
       'username' => 'required|min:4|max:60|unique:s_usuario,username',
       'password' => 'required|min:4|max:60',
-      'bithdate' => 'required|date_format:d-m-Y',
+      'birthdate' => 'required|date_format:d-m-Y',
       'correo' => 'required|min:4|max:60|email|unique:s_usuario,correo',
       'rol' => 'required|numeric|between:1,3'
     ];

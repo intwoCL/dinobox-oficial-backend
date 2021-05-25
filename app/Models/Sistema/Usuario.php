@@ -108,7 +108,7 @@ class Usuario extends Authenticatable
                 ->where('bloqueado',false)
                 ->with('sucursalUsuario')
                 ->get()
-                ->where('sucursalUsuario.rol',$rol);
+                ->where('sucursalUsuario.rol','<>',$rol);
   }
 
   public function scopeGetAllGestor(){
@@ -116,7 +116,7 @@ class Usuario extends Authenticatable
   }
 
   public function scopeGetAllEmpleados(){
-    return $this->getAllRol(2);
+    return $this->getAllRolDistinc(3);
   }
 
   public function scopeGetAllRepartidores(){
