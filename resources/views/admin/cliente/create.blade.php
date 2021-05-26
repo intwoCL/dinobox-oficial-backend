@@ -24,46 +24,48 @@
                 <label for="f1" class="col-form-label col-sm-2">Rut<small class="text-danger">*</small></label>
                 <div class="input-group col-sm-10">
                   <input type="text" class="form-control" name="run" placeholder="Ej: 19222888K"
-                    required="" maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
+                    required="" value="{{ old('run') }}" maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
+                  {!! $errors->first('run', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                   <small id="error" class="text-danger"></small>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputnombre" class="col-sm-2 col-form-label">Nombre<small class="text-danger">*</small></label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ old('nombre') }}" placeholder="Nombre" required>
+                  <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ old('nombre') }}" placeholder="Nombres" required>
                   {!! $errors->first('nombre', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ old('apellido') }}" placeholder="Apellido">
+                  <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ old('apellido') }}" placeholder="Apellidos" required>
                   {!! $errors->first('apellido', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputEmail" class="col-sm-2 col-form-label">Correo<small class="text-danger">*</small></label>
                 <div class="col-sm-10">
-                  <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ old('correo') }}" placeholder="example@correo.cl" onkeyup="javascript:this.value=this.value.toLowerCase();">
+                  <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ old('correo') }}" placeholder="correo@correo.cl" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Contraseña<small class="text-danger">*</small> <small>(12345)</small></label>
                 <div class="col-sm-10">
-                  <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" id="password" value="12345" placeholder="Contraseña" required>
+                  <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" id="password" value="12345" placeholder="*****" required>
                   {!! $errors->first('password', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
 
               <div class="form-group row">
-                <label for="nameEvento" class="col-form-label col-sm-2">Teléfono</label>
+                <label for="nameEvento" class="col-form-label col-sm-2">Teléfono<small class="text-danger">*</small> </label>
                 <div class="input-group col-sm-10">
-                    <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Ingrese su teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos">
+                    <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="9XXXXXXXX" value="{{ old('telefono') }}" pattern="[0-9]{9}" title="Formato de 9 digitos" required>
                 </div>
+                {!! $errors->first('telefono', '<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
 
               <div class="form-group row" id="data_1">
-                <label for="fecha" class="col-sm-4 col-form-label">Fecha Nacimiento<small class="text-danger">*</small></label>
-                <div class="input-group date col-sm-8">
+                <label for="fecha" class="col-sm-3 col-form-label">Fecha Nacimiento<small class="text-danger">*</small></label>
+                <div class="input-group date col-sm-9">
                   <span class="input-group-addon btn btn-info btn-sm"><i class="fa fa-calendar"></i></span>
                   <input type="text" class="form-control" readonly name="birthdate" required value="{{ old('birthdate') ?? date('d-m-Y') }}">
                 </div>
@@ -73,11 +75,11 @@
               </div>
 
               <div class="form-group row">
-                <label for="fecha" class="col-sm-4 col-form-label">Sexo<small class="text-danger">*</small></label>
-                <div class="input-group date col-sm-8">
+                <label for="fecha" class="col-sm-3 col-form-label">Sexo<small class="text-danger">*</small></label>
+                <div class="input-group date col-sm-9">
                   <div class="form-check">
                     <label class="form-check-label">
-                      <input class="form-check-input" type="radio" name="sexo" checked value="1">
+                      <input class="form-check-input" type="radio" name="sexo" checked value="2">
                       Hombre
                     </label>
                   </div>
@@ -91,13 +93,14 @@
                 {!! $errors->first('sexo','<small class="form-text text-danger text-center">:message</small>') !!}
               </div>
 
-              <div class="form-group">
-                <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
-                <div class="input-group">
+              {{-- <div class="form-group row">
+                <label for="f1" class="col-form-label col-sm-2">Imagen <small>(Opcional)</small></label>
+                <div class="input-group col-sm-10">
                   <input type="file" name="image" accept="image/*" onchange="preview(this)" />
                   <br>
                 </div>
-              </div>
+                {!! $errors->first('image','<small class="form-text text-danger text-center">:message</small>') !!}
+              </div> --}}
               <div class="form-group center-text">
                 <div id="preview"></div>
               </div>

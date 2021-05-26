@@ -16,9 +16,18 @@
       flex-direction: column;
       color: #ffffff;
     }
+
+    .abs-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
 </style>
 @endpush
 @section('content')
 @include('layouts._nav2')
+@include('web.cliente.partials._buscarCodigo')
+@include('web.cliente.partials._errorCodigo')
     
 @endsection

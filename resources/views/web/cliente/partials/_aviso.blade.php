@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="abs-center">
-    <div class="jumbotron">
+    <div class="jumbotron border border-dark">
       <h1 class="display-4"><strong>Registro exitoso</strong></h1>
       <p class="lead">Tu registro se ha completado con exito</p>
       <hr class="my-4">

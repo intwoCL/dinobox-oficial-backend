@@ -25,7 +25,7 @@
 
           <div class="input-group mb-2" v-show="optionKey == 'run'">
             <label class="col-sm-4 col-form-label">Rut</label>
-            <input type="text" class="form-control" placeholder="Ingrese el Rut Alumno..." maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)" v-model="data.run"  v-on:keyup.enter="findUsers()">
+            <input type="text" class="form-control" placeholder="Ingrese la identificación del usuario" maxlength="9" min="8" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)" v-model="data.run"  v-on:keyup.enter="findUsers()">
             <span class="input-group-append">
               <button type="button" class="btn btn-success" @click="findUsers()">
                 <i class="fa fa-search"></i>
@@ -35,7 +35,7 @@
 
           <div class="input-group mb-2" v-show="optionKey == 'nombre'">
             <label class="col-sm-4 col-form-label">Nombres</label>
-            <input type="text" class="form-control" placeholder="Ingrese nombre..." autocomplete="off" v-model="data.nombre" v-on:keyup.enter="findUsers()">
+            <input type="text" class="form-control" placeholder="Ingrese nombres..." autocomplete="off" v-model="data.nombre" v-on:keyup.enter="findUsers()">
 
             <span class="input-group-append">
               <button type="button" class="btn btn-success" @click="findUsers()">
@@ -46,7 +46,7 @@
 
           <div class="input-group mb-2" v-show="optionKey == 'apellido'">
             <label class="col-sm-4 col-form-label">Apellidos</label>
-            <input type="text" class="form-control" placeholder="Ingrese apellido..." autocomplete="off" v-model="data.apellido" v-on:keyup.enter="findUsers()">
+            <input type="text" class="form-control" placeholder="Ingrese apellidos..." autocomplete="off" v-model="data.apellido" v-on:keyup.enter="findUsers()">
             <span class="input-group-append">
               <button type="button" class="btn btn-success" @click="findUsers()">
                 <i class="fa fa-search"></i>

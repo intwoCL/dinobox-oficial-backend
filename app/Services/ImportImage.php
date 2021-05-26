@@ -8,20 +8,16 @@ use Illuminate\Support\Facades\Storage;
 class ImportImage
 {
   public static function save(Request $request, $inputName = 'image' ,$name = '', $folderSave = 'public/trash'){
-    try {
-      $request->validate([
-        $inputName => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-      ]);
+  
+      // $request->validate([
+      //   $inputName => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      // ]);
 
       $file = $request->file($inputName);
       $filename = $name .'.'. $file->getClientOriginalExtension();
       $file->storeAs($folderSave,$filename);
 
       return $filename;
-    } catch (\Throwable $th) {
-      return $th;
-    }
-
   }
 
   public function saveDisk(Request $request, $inputName = 'image'){

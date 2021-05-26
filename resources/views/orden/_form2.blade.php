@@ -16,8 +16,8 @@
         {{-- <strong>Datos remitente</strong> --}}
 
         <div class="form-group row" id="data_1">
-          <label for="fecha" class="col-sm-4 col-form-label">Fecha Entrega<small class="text-danger">*</small></label>
-          <div class="input-group date col-sm-8">
+          <label for="fecha" class="col-sm-3 col-form-label">Fecha Entrega<small class="text-danger">*</small></label>
+          <div class="input-group date col-sm-9">
             <span class="input-group-addon btn btn-info"><i class="fa fa-calendar"></i></span>
             <input type="text" class="form-control" readonly name="fecha_entrega" id="fecha_entrega" required value="{{ $fecha }}">
           </div>
@@ -37,15 +37,15 @@
         </div> --}}
 
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Nombre(s)<small class="text-danger">*</small></label>
-          <div class="input-group col-sm-10">
-            <input type="text" class="form-control {{ $errors->has('remitente_nombre') ? 'is-invalid' : '' }}" name="remitente_nombre" id="remitente_nombre" autocomplete="off" value="{{ old('remitente_nombre') }}" placeholder="Nombre" required>
-
+          <label class="col-sm-3 col-form-label">Nombre(s)<small class="text-danger">*</small></label>
+          <div class="input-group col-sm-9">
+            <input type="text" class="form-control {{ $errors->has('remitente_nombre') ? 'is-invalid' : '' }}" name="remitente_nombre" id="remitente_nombre" autocomplete="off" value="{{ old('remitente_nombre') }}" placeholder="Nombres" required>
             <div class="input-group-append" data-toggle="tooltip" data-placement="top" title="Búsqueda avanzada">
               <button class="btn btn-primary" type="button" id="button-addon2" data-toggle="modal" data-target="#modalFind">
                 <i class="fa fa-search"></i>
               </button>
             </div>
+            {!! $errors->first('remitente_nombre','<small class="form-text text-danger">:message</small>') !!}
           </div>
           <span class="col-md-12">
             <small id="error" class="text-danger"></small>
@@ -87,7 +87,7 @@
             {!! $errors->first('remitente_direccion','<small class="form-text text-danger text-center">:message</small>') !!}
           </div>
           <div class="col-md-6">
-            <label>Número/piso</label>
+            <label>Número/Piso<small class="text-danger">*</small></label>
             <input type="text" class="form-control {{ $errors->has('remitente_numero') ? 'is-invalid' : '' }}" name="remitente_numero" id="remitente_numero" autocomplete="off" value="{{ old('remitente_numero') }}" placeholder="1234">
             {!! $errors->first('remitente_numero','<small class="form-text text-danger text-center">:message</small>') !!}
           </div>
@@ -96,12 +96,12 @@
         <div class="form-group row">
           <div class="col-md-6">
             <label>Correo<small class="text-danger">*</small></label>
-            <input type="mail" class="form-control {{ $errors->has('remitente_correo') ? 'is-invalid' : '' }}" name="remitente_correo" id="remitente_correo" value="{{ old('remitente_correo') }}" placeholder="example@correo.cl" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
+            <input type="mail" class="form-control {{ $errors->has('remitente_correo') ? 'is-invalid' : '' }}" name="remitente_correo" id="remitente_correo" value="{{ old('remitente_correo') }}" placeholder="correo@correo.cl" autocomplete="off" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
             {!! $errors->first('remitente_correo', '<small class="form-text text-danger">:message</small>') !!}
           </div>
           <div class="col-md-6">
             <label>Teléfono<small class="text-danger">*</small></label>
-            <input type="tel" class="form-control" name="remitente_telefono" id="remitente_telefono" autocomplete="off" pattern="[0-9]{9}" maxlength="9" placeholder="Ingrese teléfono aqui..." value="{{ old('remitente_telefono') }}" required>
+            <input type="tel" class="form-control {{ $errors->has('remitente_telefono') ? 'is-invalid' : '' }}" name="remitente_telefono" id="remitente_telefono" autocomplete="off" pattern="[0-9]{9}" maxlength="9" placeholder="9XXXXXXXX" value="{{ old('remitente_telefono') }}" required>
             {!! $errors->first('remitente_telefono','<small class="form-text text-danger">:message</small>') !!}
           </div>
         </div>
@@ -113,8 +113,8 @@
 
 
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Nombre(s)<small class="text-danger">*</small></label>
-          <div class="input-group col-sm-10">
+          <label class="col-sm-3 col-form-label">Nombre(s)<small class="text-danger">*</small></label>
+          <div class="input-group col-sm-9">
             <input type="text" class="form-control {{ $errors->has('destinatario_nombre') ? 'is-invalid' : '' }}" name="destinatario_nombre" id="destinatario_nombre" autocomplete="off" value="{{ old('destinatario_nombre') }}" placeholder="Nombre" required>
           </div>
           <div class="col-sm-12">
@@ -126,14 +126,14 @@
           <div class="form-group col-md-6">
             <label class=" col-form-label">Región<small class="text-danger">*</small></label>
             <div class="input-group">
-              <select class="custom-select" id="select_region2" name="region" onChange="CargarComunas2()">
+              <select class="custom-select" id="select_region2" name="region" onChange="CargarComunas2()" required>
               </select>
             </div>
           </div>
           <div class="form-group col-md-6">
             <label for="" class="col-form-label">Comuna<small class="text-danger">*</small></label>
             <div class="input-group">
-              <select class="custom-select {{ $errors->has('destinatario_id_comuna') ? 'is-invalid' : '' }}" name='destinatario_id_comuna' id="select_comuna2">
+              <select class="custom-select {{ $errors->has('destinatario_id_comuna') ? 'is-invalid' : '' }}" name='destinatario_id_comuna' id="select_comuna2" required>
               </select>
             </div>
             {!! $errors->first('destinatario_id_comuna','<small class="form-text text-danger">:message</small>') !!}
@@ -147,7 +147,7 @@
             {!! $errors->first('destinatario_direccion','<small class="form-text text-danger text-center">:message</small>') !!}
           </div>
           <div class="col-md-6">
-            <label>Número/piso</label>
+            <label>Número/Piso<small class="text-danger">*</small></label>
             <input type="text" class="form-control {{ $errors->has('destinatario_numero') ? 'is-invalid' : '' }}" name="destinatario_numero" id="destinatario_numero" autocomplete="off" value="{{ old('destinatario_numero') }}" placeholder="1234">
             {!! $errors->first('destinatario_numero','<small class="form-text text-danger text-center">:message</small>') !!}
           </div>
@@ -156,11 +156,13 @@
         <div class="form-group row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Correo<small class="text-danger">*</small></label>
-            <input type="mail" class="form-control {{ $errors->has('destinatario_correo') ? 'is-invalid' : '' }}" name="destinatario_correo" id="destinatario_correo" value="{{ old('destinatario_correo') }}" placeholder="Email" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
+            <input type="mail" class="form-control {{ $errors->has('destinatario_correo') ? 'is-invalid' : '' }}" name="destinatario_correo" id="destinatario_correo" value="{{ old('destinatario_correo') }}" placeholder="correo@correo.cl" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
+            {!! $errors->first('destinatario_correo','<small class="form-text text-danger text-center">:message</small>') !!}
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">Teléfono<small class="text-danger">*</small></label>
-            <input type="tel" class="form-control" name="destinatario_telefono" id="destinatario_telefono" autocomplete="off" maxlength="9" pattern="[0-9]{9}" placeholder="Ingrese teléfono aqui..." value="{{ old('destinatario_telefono') }}" required>
+            <input type="tel" class="form-control {{ $errors->has('destinatario_telefono') ? 'is-invalid' : '' }}" name="destinatario_telefono" id="destinatario_telefono" autocomplete="off" maxlength="9" pattern="[0-9]{9}" placeholder="9XXXXXXX" value="{{ old('destinatario_telefono') }}" required>
+            {!! $errors->first('destinatario_telefono','<small class="form-text text-danger text-center">:message</small>') !!}
           </div>
         </div>
 
@@ -170,8 +172,8 @@
         </div>
 
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Categoría</label>
-          <div class="input-group col-sm-10">
+          <label class="col-sm-3 col-form-label">Categoría</label>
+          <div class="input-group col-sm-9">
             <select class="custom-select" id="categoria" name="categoria">
               @foreach ($categorias as $key => $value)
               @continue(!$value[1])
@@ -182,8 +184,8 @@
         </div>
 
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Servicios</label>
-          <div class="input-group col-sm-10">
+          <label class="col-sm-3 col-form-label">Servicios</label>
+          <div class="input-group col-sm-9">
             <select class="custom-select" id="servicio" name="servicio">
               @foreach ($servicios as $key2 => $value2)
               @continue(!$value2[2])
@@ -194,8 +196,8 @@
         </div>
 
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Precio<small class="text-danger">*</small></label>
-          <div class="input-group col-sm-10">
+          <label class="col-sm-3 col-form-label">Precio<small class="text-danger">*</small></label>
+          <div class="input-group col-sm-9">
             <div class="input-group-prepend">
               <span class="input-group-text">
                 <i class="fas fa-dollar-sign"></i>
@@ -208,7 +210,7 @@
 
         <div class="form-group">
           <label for="comentario" class="col-form-label">Mensaje</label>
-          <textarea class="form-control  {{ $errors->has('mensaje') ? 'is-invalid' : '' }}" rows="3" name="mensaje" id="mensaje" placeholder="..." maxlength="255" onkeyup="countChars(this,255);">{{ old('mensaje') }}</textarea>
+          <textarea class="form-control  {{ $errors->has('mensaje') ? 'is-invalid' : '' }}" rows="3" name="mensaje" id="mensaje" maxlength="255" onkeyup="countChars(this,255);">{{ old('mensaje') }}</textarea>
           {!! $errors->first('mensaje', '<small class="form-text text-danger">:message</small>') !!}
           <p id="limitC"></p>
         </div>

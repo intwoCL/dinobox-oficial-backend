@@ -13,10 +13,10 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
   // - {USUARIO}
   Route::resource('usuario','UsuarioController',['except'=>['show']]);
   Route::get('usuario/{id}','UsuarioController@show')->name('usuario.show');
-  Route::get('usuario/eliminados','UsuarioController@indexDelete')->name('usuario.indexDelete');
   Route::put('usuario/{id}/password','UsuarioController@password')->name('usuario.password');
   Route::get('usuario/{id}/vehiculo','VehiculoController@index')->name('vehiculo.index');
   Route::post('usuario/{id}/vehiculo','VehiculoController@store')->name('vehiculo.store');
+  Route::get('usuarios/eliminados','UsuarioController@indexDelete')->name('usuario.indexDelete');
   Route::get('repartidores','UsuarioController@indexRepartidores')->name('repartidor.index');
 
   // - {CLIENTE}
@@ -45,14 +45,18 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
   Route::put('sistema/edit','SistemaController@update')->name('sistema.update');
   Route::put('sistema/updateLogin','SistemaController@updateLogin')->name('sistema.updateLogin');
 
+  Route::get('grupo','GrupoController@index')->name('grupo.index');
+  Route::post('grupo','GrupoController@store')->name('grupo.store');
+
 });
 
 
-
-
-// MODE MAIN
+// MODE MASTER
 Route::middleware('auth.usuario')->group( function () {
   Route::post('/admin/modeMain/admin','Auth\AuthAdminController@modeMainAdmin')->name('auth.modeMain.admin');
   Route::post('/admin/modeMain/user','Auth\AuthAdminController@modeMainUser')->name('auth.modeMain.user');
 });
 
+Route::middleware('auth.cliente')->group( function () {
+  Route::post('/admin/modeMain/cliente','Auth\AuthAdminController@modeMainUser')->name('auth.modeMain.cliente');
+});

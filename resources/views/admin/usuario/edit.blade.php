@@ -36,32 +36,32 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputnombre" class="col-sm-2 col-form-label">Nombre</label>
+                <label for="inputnombre" class="col-sm-2 col-form-label">Nombre<small class="text-danger">*</small> </label>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ $u->nombre }}" placeholder="nombre" required>
+                  <input type="text" class="form-control {{ $errors->has('nombre') ? 'is-invalid' : '' }}" name="nombre" id="nombre" autocomplete="off" value="{{ $u->nombre }}" placeholder="Nombres" required>
                   {!! $errors->first('nombre', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ $u->apellido }}" placeholder="apellido" required>
+                  <input type="text" class="form-control {{ $errors->has('apellido') ? 'is-invalid' : '' }}" name="apellido" id="apellido" autocomplete="off" value="{{ $u->apellido }}" placeholder="Apellidos" required>
                   {!! $errors->first('apellido', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputUsername" class="col-sm-2 col-form-label">Usuario</label>
+                <label for="inputUsername" class="col-sm-2 col-form-label">Usuario <small class="text-danger">*</small> </label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" name="username" id="username" autocomplete="off" value="{{ $u->username }}" placeholder="Nombre de usuario" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
                   {!! $errors->first('username', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
-                <label for="inputEmail" class="col-sm-2 col-form-label">Correo</label>
+                <label for="inputEmail" class="col-sm-2 col-form-label">Correo<small class="text-danger">*</small> </label>
                 <div class="col-sm-10">
-                  <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ $u->correo }}" placeholder="example@correo.cl" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
+                  <input type="mail" class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" name="correo" id="email" value="{{ $u->correo }}" placeholder="correo@correo.cl" onkeyup="javascript:this.value=this.value.toLowerCase();" required>
                   {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row" id="data_1">
-                <label for="fecha" class="col-sm-4 col-form-label">Fecha Nacimiento</label>
+                <label for="fecha" class="col-sm-4 col-form-label">Fecha Nacimiento<small class="text-danger">*</small> </label>
                 <div class="input-group date col-sm-8">
                   <span class="input-group-addon btn btn-info btn-sm"><i class="fa fa-calendar"></i></span>
                   <input type="text" class="form-control" readonly name="birthdate" required value="{{ $u->getFechaNacimiento()->getDate() }}">
@@ -70,7 +70,8 @@
                   {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
                 </div>
               </div>
-              <div class="form-group">
+
+              {{-- <div class="form-group">
                 <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
                 <div class="input-group">
                   <img src="{{ $u->present()->getPhoto() }}"  class='Responsive image img-thumbnail'  width='200px' height='200px' alt="">
@@ -84,7 +85,8 @@
               </div>
               <div class="form-group row text-center">
                 <div id="preview"></div>
-              </div>
+              </div> --}}
+
               <hr>
               <div class="form-group row">
                 <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Rol</label>
@@ -127,7 +129,7 @@
             @method('PUT')
             <div class="card-body">
               <div class="form-group row">
-                <label for="inputUsername" class="col-sm-12 col-form-label">Contraseña <small>(123123)</small></label>
+                <label for="inputUsername" class="col-sm-12 col-form-label">Contraseña<small class="text-danger">*</small>  <small>(123123)</small></label>
                 <div class="col-sm-10">
                   <input type="password" class="form-control {{ $errors->has('password_2') ? 'is-invalid' : '' }}" value="123123" name="password_2" id="password_2" autocomplete="off" placeholder="*********" required>
                   {!! $errors->first('password_2', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
@@ -136,13 +138,12 @@
             </div>
             <div class="card-footer">
               <button type="submit" class="btn btn-success float-right">Guardar</button>
-
-              {{-- <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
-                <strong>MODO MAIN</strong>
-              </button> --}}
             </div>
           </form>
         </div>
+        <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
+          <strong>MODO SUPREMO DINO</strong>
+        </button>
       </div>
     </div>
   </div>
@@ -187,18 +188,19 @@
 <div class="modal fade" id="modalMain" tabindex="-1" role="dialog" aria-labelledby="modalAccionLabel" aria-hidden="true">
   <form action="{{ route('auth.modeMain.admin') }}" method="POST">
     @csrf
-    <input type="hidden" name="id_usuario" value="{{ $u->id }}">
+    <input type="hidden" name="id" value="{{ $u->id }}">
+    <input type="hidden" name="type" value="user">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalAccionLabel">ENTRAR CON MODO MAIN</h5>
+          <h5 class="modal-title" id="modalAccionLabel">ENTRAR CON MODO SUPREMO DINO</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <p>
-            MODO ADMIN
+            MODO SUPREMO DINO
           </p>
         </div>
         <div class="modal-footer">
