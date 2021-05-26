@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Maatwebsite\Excel\Row;
 
-Route::get('/','DashboardController@index')->name('root');
+Route::get('/','DashboardController@www')->name('root');
+Route::get('/hola','DashboardController@index')->name('rootI');
 //Accceso Administrador
 Route::get('/acceso','Auth\AuthUsuarioController@auth')->name('auth.usuario');
 Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');

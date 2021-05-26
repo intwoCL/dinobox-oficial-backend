@@ -66,7 +66,7 @@ class UsuarioController extends Controller
       // }
 
       $user->save();
-      
+
       //Agregar rol
       $su = new SucursalUsuario();
       $su->id_sucursal = 1;
