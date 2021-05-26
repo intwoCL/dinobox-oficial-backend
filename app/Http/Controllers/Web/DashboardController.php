@@ -24,7 +24,7 @@ class DashboardController extends Controller
       $repartidor = $orden->ordenRepartidor->repartidor ?? null;
       return view('web.cliente.orden_seguimiento',compact('codigo','orden','repartidor'));
     } catch (\Throwable $th) {
-      return "Error no ha visto";
+      return view('web.cliente.home.ordenError', compact('codigo'));
     }
   }
 }
