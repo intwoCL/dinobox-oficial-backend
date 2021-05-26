@@ -26,37 +26,18 @@
       </article>
 
       <div class="track">
-
-        <div class="step">
-          <span class="icon">
-            <i class="fa fa-2x fa-calendar-check"></i>
-          </span>
-          <span class="text">
-            Asignación de despacho
-          </span>
-        </div>
-
-        <div class="step">
-          <span class="icon">
-            <i class="fa fa-2x fa-truck"></i>
-          </span>
-          <span class="text">
-            En camino a despacho
-          </span>
-        </div>
-
-        <div class="step">
-          <span class="icon">
-            <i class="fa fa-2x fa-truck-loading"></i>
-          </span>
-          <span class="text">
-            Entregado
-          </span>
-        </div>
-
+        @if ($orden->estado == 20)
+          @include('web.cliente.local._asignacion_despacho')
+        @else
+          @if ($orden->estado == 70)
+            @include('web.cliente.local._camino_despacho')
+          @else
+            @if ($orden->estado == 80)
+              @include('web.cliente.local._entregado')
+            @endif
+          @endif
+        @endif
       </div>
-
-
 
       <hr>
       <a href="{{ route('root') }}" class="btn btn-warning" data-abc="true">

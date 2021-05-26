@@ -25,74 +25,37 @@
         </div>
       </article>
       <div class="track">
-
-        <div class="step active">
-          <span class="icon">
-            <i class="fa  fa-2x fa-calendar"></i>
-          </span>
-          <span class="text">
-            Pendiente
-          </span>
-        </div>
-
-        <div class="step active">
-          <span class="icon">
-            <i class="fa fa-2x fa-calendar-check"></i>
-          </span>
-          <span class="text">
-            Asignación de Retiro
-          </span>
-        </div>
-
-        <div class="step">
-          <span class="icon">
-            <i class="fa fa-2x fa-people-carry"></i>
-          </span>
-          <span class="text">
-            En transito a retiro
-          </span>
-        </div>
-
-        <div class="step">
-          <span class="icon">
-            <i class="fa fa-2x fa-box"></i>
-          </span>
-          <span class="text">
-            Recpecionado
-          </span>
-        </div>
-
-        <div class="step">
-          <span class="icon">
-            <i class="fa fa-2x fa-calendar-check"></i>
-          </span>
-          <span class="text">
-            Asignación de despacho
-          </span>
-        </div>
-
-        <div class="step">
-          <span class="icon">
-            <i class="fa fa-2x fa-truck"></i>
-          </span>
-          <span class="text">
-            En camino a despacho
-          </span>
-        </div>
-
-        <div class="step">
-          <span class="icon">
-            <i class="fa fa-2x fa-truck-loading"></i>
-          </span>
-          <span class="text">
-            Entregado
-          </span>
-        </div>
+        
+        @if ($orden->estado == 10)
+          @include('web.cliente.retiro._pendiente')
+        @else
+          @if ($orden->estado == 20)
+          @include('web.cliente.retiro._asignacion_retiro')
+          @else
+            @if ($orden->estado == 30)
+            @include('web.cliente.retiro._transito_retiro')
+            @else
+              @if ($orden->estado == 40)
+              @include('web.cliente.retiro._recepcionado')
+              @else
+                @if ($orden->estado == 60)
+                @include('web.cliente.retiro._asignacion_despacho')
+                @else
+                  @if ($orden->estado == 70)
+                  @include('web.cliente.retiro._camino_despacho')
+                  @else
+                    @if ($orden->estado == 80)
+                    @include('web.cliente.retiro._entregado')
+                    @endif
+                  @endif
+                @endif   
+              @endif
+            @endif
+          @endif
+        @endif
 
       </div>
-
-
-
+      
       <hr>
       <a href="{{ route('root') }}" class="btn btn-warning" data-abc="true">
         <i class="fa fa-chevron-left"></i>
