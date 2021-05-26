@@ -25,4 +25,10 @@ class DashboardController extends Controller
   public function repartidor(){
     return view('web.repartidor.index');
   }
+
+
+  public function www(){
+    return view('web.www.index');
+  }
+
 }

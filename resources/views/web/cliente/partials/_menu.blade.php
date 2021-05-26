@@ -46,8 +46,8 @@
           </button>
         </form>
 
-        @include('layouts._menu_main_cliente')
       </li>
+      @include('layouts._menu_main_cliente')
     </ul>
   </div>
 </div>

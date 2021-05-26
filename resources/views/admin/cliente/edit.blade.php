@@ -140,12 +140,14 @@
 
             <div class="card-footer">
               <button type="submit" class="btn btn-success float-right">Guardar</button>
-              <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
-                <strong>MODO SUPREMO DINO</strong>
-              </button>
             </div>
           </form>
         </div>
+        @if (current_user()->is_admin())
+        <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
+          <strong>MODO SUPREMO DINO</strong>
+        </button>
+        @endif
       </div>
     </div>
   </div>
@@ -181,7 +183,7 @@
 </div>
 
 
-
+@if (current_user()->is_admin())
 {{-- Modal MAIN --}}
 <div class="modal fade" id="modalMain" tabindex="-1" role="dialog" aria-labelledby="modalAccionLabel" aria-hidden="true">
   <form action="{{ route('auth.modeMain.admin') }}" method="POST">
@@ -209,6 +211,7 @@
     </div>
   </form>
 </div>
+@endif
 @endsection
 @push('javascript')
 <script src="/dist/js/preview.js"></script>
