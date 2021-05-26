@@ -138,13 +138,12 @@
             </div>
             <div class="card-footer">
               <button type="submit" class="btn btn-success float-right">Guardar</button>
-
-              {{-- <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
-                <strong>MODO MAIN</strong>
-              </button> --}}
             </div>
           </form>
         </div>
+        <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
+          <strong>MODO SUPREMO DINO</strong>
+        </button>
       </div>
     </div>
   </div>
@@ -189,18 +188,19 @@
 <div class="modal fade" id="modalMain" tabindex="-1" role="dialog" aria-labelledby="modalAccionLabel" aria-hidden="true">
   <form action="{{ route('auth.modeMain.admin') }}" method="POST">
     @csrf
-    <input type="hidden" name="id_usuario" value="{{ $u->id }}">
+    <input type="hidden" name="id" value="{{ $u->id }}">
+    <input type="hidden" name="type" value="user">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modalAccionLabel">ENTRAR CON MODO MAIN</h5>
+          <h5 class="modal-title" id="modalAccionLabel">ENTRAR CON MODO SUPREMO DINO</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <p>
-            MODO ADMIN
+            MODO SUPREMO DINO
           </p>
         </div>
         <div class="modal-footer">

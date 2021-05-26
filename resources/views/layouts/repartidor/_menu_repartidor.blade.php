@@ -1,3 +1,5 @@
+@include('layouts._menu_main')
+
 <li class="nav-header">Repartidor</li>
 
 <li class="nav-item {{ open('admin/sistema*') }}">

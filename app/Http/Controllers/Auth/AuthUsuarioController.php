@@ -29,8 +29,6 @@ class AuthUsuarioController extends Controller
       if ($u->password == $pass) {
         Auth::guard('usuario')->loginUsingId($u->id);
 
-        // UserSession::getInstance();
-
         if ($u->repartidor()) {
           return redirect()->route('repartidor.home');
         }

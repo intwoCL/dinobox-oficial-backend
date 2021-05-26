@@ -26,8 +26,8 @@
                   <input type="text" class="form-control" name="run" placeholder="Ej: 19222888K"
                     required="" maxlength="9" min="8" value="{{ old('run') }}" autocomplete="off" autofocus onkeyup="this.value = validarRut(this.value)">
                   <small id="error" class="text-danger"></small>
-                  {!! $errors->first('run','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
+                {!! $errors->first('run','<small id="run" class="form-text text-danger text-center">:message</small>') !!}
               </div>
               <div class="form-group row">
                 <label for="inputnombre" class="col-sm-2 col-form-label">Nombre<small class="text-danger">*</small></label>

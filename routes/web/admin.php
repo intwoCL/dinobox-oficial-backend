@@ -51,11 +51,12 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
 });
 
 
-
-
-// MODE MAIN
+// MODE MASTER
 Route::middleware('auth.usuario')->group( function () {
   Route::post('/admin/modeMain/admin','Auth\AuthAdminController@modeMainAdmin')->name('auth.modeMain.admin');
   Route::post('/admin/modeMain/user','Auth\AuthAdminController@modeMainUser')->name('auth.modeMain.user');
 });
 
+Route::middleware('auth.cliente')->group( function () {
+  Route::post('/admin/modeMain/cliente','Auth\AuthAdminController@modeMainUser')->name('auth.modeMain.cliente');
+});

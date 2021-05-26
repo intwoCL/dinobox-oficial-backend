@@ -1,5 +1,5 @@
+@include('layouts._menu_main')
 <li class="nav-header">Gestión</li>
-
 <li class="nav-item {{ open('orden*') }}">
   <a href="{{ route('ordenes.index.pendientes') }}" class="nav-link">
     <i class="fas fa-boxes nav-icon"></i>
