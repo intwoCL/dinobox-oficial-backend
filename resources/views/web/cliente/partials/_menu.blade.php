@@ -41,13 +41,16 @@
         </a>
       </li>
       <br>
+
       <li class="nav-item">
         <form action="{{ route('cliente.logout') }}" method="POST">
           @csrf
           <button type="submit" class="btn btn-danger btn-sm">
-            Cerrar sesión            
+            Cerrar sesión
           </button>
         </form>
+
+        @include('layouts._menu_main_cliente')
       </li>
     </ul>
   </div>

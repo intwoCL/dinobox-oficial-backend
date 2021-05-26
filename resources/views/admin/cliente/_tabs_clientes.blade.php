@@ -18,11 +18,11 @@
         Eliminados
       </a>
     </li>
-    {{-- <li class="nav-item">
+    <li class="nav-item">
       <a class="nav-link" href="#">
         <i class="fas fa-wallet mr-2"></i>
-        Historico
+        Ordenes
       </a>
-    </li> --}}
+    </li>
   </ul>
 </div>
