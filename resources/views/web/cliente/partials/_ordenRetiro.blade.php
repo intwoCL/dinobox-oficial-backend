@@ -25,38 +25,70 @@
         </div>
       </article>
       <div class="track">
+
         <div class="step active">
           <span class="icon">
-            <i class="fa  fa-2x fa-check-square"></i>
+            <i class="fa  fa-2x fa-calendar"></i>
           </span>
           <span class="text">
-            Orden confirmada
+            Pendiente
           </span>
         </div>
+
         <div class="step active">
+          <span class="icon">
+            <i class="fa fa-2x fa-calendar-check"></i>
+          </span>
+          <span class="text">
+            Asignación de Retiro
+          </span>
+        </div>
+
+        <div class="step">
           <span class="icon">
             <i class="fa fa-2x fa-people-carry"></i>
           </span>
           <span class="text">
-            Recogida por repartidor
+            En transito a retiro
           </span>
         </div>
+
+        <div class="step">
+          <span class="icon">
+            <i class="fa fa-2x fa-box"></i>
+          </span>
+          <span class="text">
+            Recpecionado
+          </span>
+        </div>
+
+        <div class="step">
+          <span class="icon">
+            <i class="fa fa-2x fa-calendar-check"></i>
+          </span>
+          <span class="text">
+            Asignación de despacho
+          </span>
+        </div>
+
         <div class="step">
           <span class="icon">
             <i class="fa fa-2x fa-truck"></i>
           </span>
           <span class="text">
-            En camino
+            En camino a despacho
           </span>
         </div>
+
         <div class="step">
           <span class="icon">
             <i class="fa fa-2x fa-truck-loading"></i>
           </span>
           <span class="text">
-            Listo para recoger
+            Entregado
           </span>
         </div>
+
       </div>
 
 

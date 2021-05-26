@@ -141,9 +141,9 @@ body {
 @include('web.cliente.partials._buscarCodigo')
 
 @if ($orden->getCategoria() == 'Local')
-  @include('web.cliente.partials._seguimiento')    
+  @include('web.cliente.partials._ordenLocal')
 @else
-
+  @include('web.cliente.partials._ordenRetiro')
 @endif
 
 {{-- @include('web.cliente.partials._indexFooter') --}}
