@@ -24,7 +24,6 @@
           </div>
         </div>
       </article>
-
       <div class="track">
         @if ($orden->estado == 20)
           @include('web.cliente.local._asignacion_despacho')
@@ -38,7 +37,6 @@
           @endif
         @endif
       </div>
-
       <hr>
       <a href="{{ route('root') }}" class="btn btn-warning" data-abc="true">
         <i class="fa fa-chevron-left"></i>

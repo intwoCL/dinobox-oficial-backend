@@ -220,5 +220,11 @@ class ClienteController extends Controller {
     return view('web.cliente.home.avisoNoRegistro');
   }
 
+  public function seguimientoOrden() {
+    // $data=Orden::paginate(3);
+    $cliente = current_client();
+    return view('web.cliente.home.historial',compact('cliente'));
+  }
+
 
 }

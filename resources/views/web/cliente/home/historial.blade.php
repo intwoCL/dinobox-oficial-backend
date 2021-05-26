@@ -28,7 +28,7 @@
   </div>
 
   @include('web.cliente.partials._footer')
-  
+
 </div>
 @endsection
 @push('javascript')

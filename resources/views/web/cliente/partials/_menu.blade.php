@@ -40,6 +40,13 @@
           {{-- <span class="float-right badge bg-success">12</span> --}}
         </a>
       </li>
+      <li class="nav-item">
+        <a href="{{ route('profile.historial') }}" class="nav-link">
+          <div class="fas fa-search mr-2"></div>
+          Seguimiento de mis Ordenes
+          {{-- <span class="float-right badge bg-success">12</span> --}}
+        </a>
+      </li>
       <br>
 
       <li class="nav-item">
