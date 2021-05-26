@@ -55,6 +55,7 @@ class RouteServiceProvider extends ServiceProvider
           require base_path('routes/web/email.php');
           require base_path('routes/web/orden.php');
           require base_path('routes/web/repartidor.php');
+          require base_path('routes/web/cliente.php');
         });
 
       // $this->mapWebAdminRoutes();

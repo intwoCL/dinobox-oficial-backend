@@ -212,19 +212,22 @@ class ClienteController extends Controller {
     return redirect()->route('root');
   }
 
+  //Registrado
   public function avisoRegistro() {
     return view('web.cliente.home.avisoRegistro');
   }
-  //no registro
+
+  //No registrado
   public function avisoNoRegistro() {
     return view('web.cliente.home.avisoNoRegistro');
   }
 
-  public function seguimientoOrden() {
-    // $data=Orden::paginate(3);
+  //Seguimiento privado
+  public function seguimientoOrden($codigo) {
     $cliente = current_client();
-    return view('web.cliente.home.historial',compact('cliente'));
+    $orden = Orden::where('codigo',$codigo)->where('activo',true)->where('id_cliente',$cliente->id)->firstOrFail();
+    $repartidor = $orden->ordenRepartidor->repartidor ?? null;
+    return view('web.cliente.home.seguimientoPrivado',compact('cliente','orden','repartidor','codigo'));
   }
-
 
 }

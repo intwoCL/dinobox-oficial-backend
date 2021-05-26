@@ -1,4 +1,4 @@
-<form action="{{ route('profile.direcciones.update', $d->id) }}" method="POST" enctype="multipart/form-data">
+<form class="form-submit" action="{{ route('profile.direcciones.update', $d->id) }}" method="POST">
   @csrf
   @method('PUT')
   <div class="form-group row">

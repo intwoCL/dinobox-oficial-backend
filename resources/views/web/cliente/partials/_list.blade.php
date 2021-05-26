@@ -18,7 +18,7 @@
           <tbody class="text-center">
             @foreach ($ordenes as $o)
             <tr data-widget="expandable-table" aria-expanded="true">
-              <td>{{ $o->codigo }}</td>
+              <td><a href="{{ route('profile.seguimiento', $o->codigo) }}">{{ $o->codigo }}</a></td>
               <td>{{ $o->getFecha()->getDate() }}</td>
               <td>{{ $o->remitente_direccion }}</td>
               <td>{{ $o->destinatario_direccion }}</td>

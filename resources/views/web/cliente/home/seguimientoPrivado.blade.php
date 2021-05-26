@@ -22,8 +22,12 @@
       @include('web.cliente.partials._menu')
     </div>
     <div class="col-md-8">
-      <h4 class="mb-3">Seguimiento</h4>
-      @include('web.cliente.partials._list')
+      @component('components.button._back2')
+        @slot('route', route('profile.historial'))
+        @slot('color', 'secondary')
+        @slot('body', 'Seguimiento')
+      @endcomponent
+        @include('web.cliente.partials._orden')
     </div>
   </div>
 

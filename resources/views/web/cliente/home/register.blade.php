@@ -71,7 +71,7 @@
       </div>
       <div class="card-body">
         <p class="login-box-msg"><strong>Registro de cliente</strong></p>
-        <form action="{{ route('cliente.register.store') }}" method="POST">
+        <form class="form-submit" action="{{ route('cliente.register.store') }}" method="POST">
           @csrf
           <div class="input-group mb-3">
             <div class="input-group col-12">
