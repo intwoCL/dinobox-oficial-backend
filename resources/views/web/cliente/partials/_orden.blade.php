@@ -49,7 +49,6 @@
 }
 
 .track .step.active:before {
-    /* background: #FF5722 */
     background:#0F860C;
 }
 

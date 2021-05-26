@@ -9,8 +9,6 @@
               <th>Fecha</th>
               <th>Origen</th>
               <th>Destino</th>
-              {{-- <th>Comuna Origen</th>
-              <th>Comuna Destino</th> --}}
               <th>Estado</th>
               <th>Precio</th>
             </tr>
@@ -22,8 +20,6 @@
               <td>{{ $o->getFecha()->getDate() }}</td>
               <td>{{ $o->remitente_direccion }}</td>
               <td>{{ $o->destinatario_direccion }}</td>
-              {{-- <td>{{ $o->remitenteComuna->nombre }}</td>
-              <td>{{ $o->destinatarioComuna->nombre }}</td> --}}
               <td>{{ $o->getEstado() }}</td>
               <td>$ {{ $o->getPrecio() }}</td>
             </tr>
@@ -32,7 +28,6 @@
         </table>
       </div>
       <div class="card-footer">
-        {{-- @include('web.cliente.partials._page') --}}
         {{ $ordenes->links('web.cliente.partials._page') }}
       </div>
     </div>

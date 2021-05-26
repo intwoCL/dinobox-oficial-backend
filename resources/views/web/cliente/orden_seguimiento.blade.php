@@ -35,7 +35,6 @@ body {
 
   @include('web.cliente.partials._orden')
 
-{{-- @include('web.cliente.partials._indexFooter') --}}
 @endsection
 @push('javascript')
 

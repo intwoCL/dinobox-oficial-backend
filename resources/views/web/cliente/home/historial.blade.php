@@ -5,11 +5,6 @@
     body {
       background-color: #fafaf8;
     }
-
-    .W-5 {
-      display: flex;
-      position: relative;
-    }
   </style>
 @endpush
 @section('content')

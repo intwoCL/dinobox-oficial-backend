@@ -52,21 +52,6 @@
     </div>
     {!! $errors->first('sexo','<small class="form-text text-danger text-center">:message</small>') !!}
   </div>
-  {{-- <div class="form-group row">
-    <label class="col-form-label" for="hf-rut">Foto <small>(Opcional)</small></label>
-    <div class="input-group">
-      <img src="{{ $cliente->present()->getPhoto() }}" class='Responsive image img-thumbnail'  width='200px' height='200px' alt="">
-    </div>
-  </div> --}}
-  {{-- <div class="form-group row">
-    <div class="input-group">
-      <input type="file" name="image" accept="image/*" onchange="preview(this)" />
-      <br>
-    </div>
-  </div> --}}
-  {{-- <div class="form-group row text-center">
-    <div id="preview"></div>
-  </div> --}}
   <div class="form-group">
     <button type="submit" class="btn btn-success">Guardar</button>
   </div>

@@ -47,7 +47,6 @@ class ClienteController extends Controller {
 
       return back()->with('success','Se ha actualizado');
     } catch (\Throwable $th) {
-      // return $th;
       return back()->with('info','Error intente nuevamente');
     }
   }
@@ -107,7 +106,6 @@ class ClienteController extends Controller {
 
       return back()->with('success','Se ha agregado exitosamente.');
     } catch (\Throwable $th) {
-      return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
@@ -172,7 +170,6 @@ class ClienteController extends Controller {
 
       return redirect()->route('cliente.register.aviso')->with('success,','Se ha creado exitosamente');
     } catch (\Throwable $th) {
-      // return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
@@ -200,8 +197,6 @@ class ClienteController extends Controller {
         return back()->with('info','Error. Intente nuevamente.');
       }
     } catch (\Throwable $th) {
-      // return $th;
-      // return back()->with('info','Error. Intente nuevamente.');
       return redirect()->route('cliente.register.noRegistro');
     }
   }
