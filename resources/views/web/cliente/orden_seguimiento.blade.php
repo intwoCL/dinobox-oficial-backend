@@ -139,7 +139,12 @@ body {
 @section('content')
 @include('layouts._nav2')
 @include('web.cliente.partials._buscarCodigo')
-@include('web.cliente.partials._seguimiento')
+
+@if ($orden->getCategoria() == 'Local')
+  @include('web.cliente.partials._seguimiento')    
+@else
+
+@endif
 
 {{-- @include('web.cliente.partials._indexFooter') --}}
 @endsection
