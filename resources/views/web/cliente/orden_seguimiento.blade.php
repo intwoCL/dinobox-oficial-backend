@@ -2,8 +2,6 @@
 @push('stylesheet')
 <style>
 
-<<<<<<< HEAD
-=======
 .intro-section {
       background-image: url("dist/img/dinobox-fondo.png");
       background-size: cover;
@@ -20,7 +18,6 @@
       color: #ffffff;
 }
 
->>>>>>> 526d37ab410639b3cc03dcd118cd1fad9e9d602c
 body {
     background-color: #eeeeee;
     font-family: 'Open Sans', serif
@@ -141,10 +138,7 @@ body {
 @endpush
 @section('content')
 @include('layouts._nav2')
-<<<<<<< HEAD
-=======
 @include('web.cliente.partials._buscarCodigo')
->>>>>>> 526d37ab410639b3cc03dcd118cd1fad9e9d602c
 @include('web.cliente.partials._seguimiento')
 
 {{-- @include('web.cliente.partials._indexFooter') --}}
