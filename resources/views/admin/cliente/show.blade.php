@@ -4,9 +4,8 @@
 @endpush
 @section('content')
 @component('components.button._back')
-  @slot('route', route('ordenes.index.pendientes'))
-  {{-- @slot('color', 'dark') --}}
-  @slot('body', "Ordenes pendientes")
+  @slot('route', route('admin.cliente.index'))
+  @slot('body', "Cliente " . $c->present()->nombre_completo())
 @endcomponent
 
 <section class="content">

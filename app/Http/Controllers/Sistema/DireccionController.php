@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sistema;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DireccionCreateRequest as DireccionCreateRequest;
 use App\Models\Sistema\Cliente;
 use App\Models\Sistema\Comuna;
 use App\Models\Sistema\Direccion;
@@ -18,7 +19,7 @@ class DireccionController extends Controller
     return view('admin.cliente.direccion.index',compact('c','comunas','regions'));
   }
 
-  public function store(Request $request, $id){
+  public function store(DireccionCreateRequest $request, $id){
     try {
       $cliente = Cliente::findOrFail($id);
       $direccion = new Direccion();
@@ -33,6 +34,7 @@ class DireccionController extends Controller
       // return back()->with('success','Se ha agregado exitosamente.');
       return redirect()->route('admin.cliente.direccion.index', $cliente->id)->with('success','Se ha agregado exitosamente.');
     } catch (\Throwable $th) {
+      return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }

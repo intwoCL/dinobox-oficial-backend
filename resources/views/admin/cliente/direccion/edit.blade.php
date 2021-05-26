@@ -25,27 +25,27 @@
             @method('PUT')
             <div class="card-body">
               <div class="form-group row">
-                <label for="inputnombre" class="col-sm-2 col-form-label">Calle</label>
+                <label for="inputnombre" class="col-sm-2 col-form-label">Calle<small class="text-danger">*</small></label>
                 <div class="col-sm-5">
                   <input type="text" class="form-control {{ $errors->has('calle') ? 'is-invalid' : '' }}" name="calle" id="calle" autocomplete="off" value="{{ old('calle') }}" placeholder="Calle" required>
                   {!! $errors->first('calle', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
                 <div class="col-sm-5">
-                  <input type="text" class="form-control {{ $errors->has('numero') ? 'is-invalid' : '' }}" name="numero" id="numero" autocomplete="off" value="{{ old('numero') }}" placeholder="Número">
+                  <input type="text" class="form-control {{ $errors->has('numero') ? 'is-invalid' : '' }}" name="numero" id="numero" autocomplete="off" value="{{ old('numero') }}" placeholder="Número" required>
                   {!! $errors->first('numero', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
-                <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Región</label>
+                <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Región<small class="text-danger">*</small></label>
                 <div class="col-sm-10">
-                  <select class="custom-select" id="select_region" name="region" onChange="CargarComunas()">
+                  <select class="custom-select" id="select_region" name="region" onChange="CargarComunas()" required>
                   </select>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Comuna</label>
+                <label for="formGroupExampleInput" class="col-sm-2 col-form-label">Comuna<small class="text-danger">*</small></label>
                 <div class="col-sm-10">
-                  <select class="custom-select {{ $errors->has('id_comuna') ? 'is-invalid' : '' }}" name='id_comuna' id="select_comuna">
+                  <select class="custom-select {{ $errors->has('id_comuna') ? 'is-invalid' : '' }}" name='id_comuna' id="select_comuna" required>
                   </select>
                 </div>
                 {!! $errors->first('id_comuna', ' <small id="inputPassword" class="form-text text-danger">:message</small>') !!}
@@ -53,14 +53,14 @@
               <div class="form-group row">
                 <label for="nameEvento" class="col-form-label col-sm-2">Datos adicionales</label>
                 <div class="input-group col-sm-10">
-                  <textarea class="form-control {{ $errors->has('dato_adicional') ? 'is-invalid' : '' }}" name="dato_adicional" id="textarea-input" rows="4" placeholder="" value="{{ old('dato_adicional') }}"></textarea>
+                  <textarea class="form-control {{ $errors->has('dato_adicional') ? 'is-invalid' : '' }}" name="dato_adicional" id="textarea-input" autocomplete="off" rows="4" placeholder="" value="{{ old('dato_adicional') }}"></textarea>
                   {!! $errors->first('dato_adicional','<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
                 <label for="nameEvento" class="col-form-label col-sm-2">Teléfono</label>
                 <div class="input-group col-sm-10">
-                  <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="Ingrese su teléfono aqui..." pattern="[0-9]{9}" title="Formato de 9 digitos">
+                  <input type="tel" class="form-control" name="telefono" id="telefono" autocomplete="off" maxlength="9" placeholder="9XXXXXXXX" pattern="[0-9]{9}" title="Formato de 9 digitos">
                 </div>
               </div>
             </div>

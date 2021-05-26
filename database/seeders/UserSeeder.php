@@ -27,6 +27,8 @@ class UserSeeder extends Seeder
       $u->username = "admin1";
       $u->password = $password;
       $u->nombre = "admin 1";
+      $u->id_grupo = 1;
+      $u->id_company = 1;
       $u->apellido = $faker->lastName;
       $u->correo = "admin@intwo.cl";
       $u->admin = true;
@@ -43,6 +45,8 @@ class UserSeeder extends Seeder
       $u->username = "gestor";
       $u->password = $password;
       $u->nombre = "gestor";
+      $u->id_grupo = 2;
+      $u->id_company = 1;
       $u->apellido = $faker->lastName;
       $u->correo = "gestor@intwo.cl";
       $u->run = "204657830";
@@ -58,6 +62,8 @@ class UserSeeder extends Seeder
       $u->username = "empleado";
       $u->password = $password;
       $u->nombre = "empleado";
+      $u->id_grupo = 2;
+      $u->id_company = 1;
       $u->apellido = $faker->lastName;
       $u->correo = "empleado@intwo.cl";
       $u->run = "10469537K";
@@ -75,6 +81,8 @@ class UserSeeder extends Seeder
         $u->username = "repartidor$i";
         $u->password = $password;
         $u->nombre = $faker->firstName;
+        $u->id_grupo = 3;
+        $u->id_company = 1;
         $u->apellido = $faker->lastName;
         $u->correo = "$u->apellido"."$i@intwo.cl";
         $u->run = "123123123$i";

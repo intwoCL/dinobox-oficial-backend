@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Sistema\Cliente;
 use App\Services\ImportImage;
 use App\Http\Requests\ClienteCreateRequest as ClientCreateRequest;
+use App\Http\Requests\ClienteUpdateRequest as ClientUpdateRequest;
 use App\Http\Requests\ClienteLoginRequest;
 use App\Http\Requests\PasswordClienteRequest;
 use App\Models\Sistema\Region;
@@ -44,18 +45,18 @@ class ClienteController extends Controller
       $cliente->sexo = $request->input('sexo');
       $cliente->id_usuario_creador = current_user()->id;
       $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
-
-      if(!empty($request->file('image'))){
-        $filename = time();
-        $folder = 'public/photo_clientes';
-        $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
-      }
+      
+      // if(!empty($request->file('image'))){
+      //   $filename = time();
+      //   $folder = 'public/photo_clientes';
+      //   $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      // }
 
       $cliente->save();
 
       return redirect()->route('admin.cliente.index')->with('success','Se ha creado correctamente.');
     } catch (\Throwable $th) {
-      throw $th;
+      return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
@@ -83,21 +84,29 @@ class ClienteController extends Controller
       $cliente = Cliente::findOrFail($id);
       $cliente->nombre = $request->input('nombre');
       $cliente->apellido = $request->input('apellido');
-      $cliente->correo = $request->input('correo');
       $cliente->telefono = $request->input('telefono');
       $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
       $cliente->sexo = $request->input('sexo');
 
-      if(!empty($request->file('image'))){
-        $filename = time();
-        $folder = 'public/photo_clientes';
-        $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      if($cliente->correo != $request->input('correo')){
+        $request->validate([
+          'correo' => 'required|min:4|max:60|email|unique:s_cliente,correo',
+        ]);
+          
+        $cliente->correo = $request->input('correo');
       }
+
+      // if(!empty($request->file('image'))){
+      //   $filename = time();
+      //   $folder = 'public/photo_clientes';
+      //   $cliente->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      // }
 
       $cliente->update();
 
       return back()->with('success','Se ha actualizado.');
     } catch (\Throwable $th) {
+      //return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
@@ -144,5 +153,4 @@ class ClienteController extends Controller
       return back()->with('info','Error Intente nuevamente.');
     }
   }
-
 }

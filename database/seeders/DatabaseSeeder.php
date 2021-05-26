@@ -31,6 +31,8 @@ class DatabaseSeeder extends Seeder
     Artisan::call('cities:import');
 
     $this->call(SistemaSeeder::class);
+    $this->call(GrupoCompanySeeder::class);
+
     $this->call(UserSeeder::class);
 
     Artisan::call('create:client');
