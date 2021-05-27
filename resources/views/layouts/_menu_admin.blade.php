@@ -9,7 +9,7 @@
 
 <li class="nav-header">Administración</li>
 
-<li class="nav-item {{ open('admin/sistema*') }}">
+<li class="nav-item {{ open('admin/grupo*') }}{{ open('admin/company*') }}{{ open('admin/sistema*') }}">
   <a href="{{ route('admin.sistema.index') }}" class="nav-link">
     <i class="fas fa-cogs nav-icon"></i>
     <p>Configuración</p>

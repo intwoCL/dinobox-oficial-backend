@@ -12,6 +12,8 @@ use App\Http\Requests\UsuarioUpdateRequest as UserUpdateRequest;
 use App\Lib\Permissions;
 use App\Models\Sistema\SucursalUsuario;
 use App\Models\Sistema\Vehiculo;
+use App\Models\Sistema\Company;
+use App\Models\Sistema\Grupo;
 use App\Services\ImportImage;
 use App\Services\SaveImage;
 use App\Services\Policies\Sistema\UsuarioPolicy;
@@ -45,7 +47,9 @@ class UsuarioController extends Controller
 
   public function create(){
     $roles = Permissions::ROLES;
-    return view('admin.usuario.create',compact('roles'));
+    $company = Company::get();
+    $grupo = Grupo::get();
+    return view('admin.usuario.create',compact('roles','company', 'grupo'));
   }
 
   public function store(UserCreateRequest $request){
@@ -58,7 +62,8 @@ class UsuarioController extends Controller
       $user->password = hash('sha256', $request->input('password'));
       $user->run = $request->input('run');
       $user->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
-
+      $user->id_company = $request->input('company',null);
+      $user->id_grupo = $request->input('grupo',null);
       // if(!empty($request->file('image'))) {
       //   $filename = time();
       //   $folder = 'public/photo_usuarios';
@@ -94,13 +99,15 @@ class UsuarioController extends Controller
     try {
       $roles = Permissions::ROLES;
       $u = Usuario::findOrFail($id);
-      return view('admin.usuario.edit',compact('u','roles'));
+      $company = Company::get();
+      $grupo = Grupo::get();
+      return view('admin.usuario.edit',compact('u','roles','company','grupo'));
     } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
     }
   }
 
-  public function update(UserUpdateRequest $request, $id){
+  public function update(Request $request, $id){
     try {
       $user = Usuario::findOrFail($id);
       $user->nombre = $request->input('nombre');
@@ -108,6 +115,8 @@ class UsuarioController extends Controller
       $user->correo = $request->input('correo');
       $user->username = $request->input('username');
       $user->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
+      $user->id_company = $request->input('company',null);
+      $user->id_grupo = $request->input('grupo',null);
 
       // if(!empty($request->file('image'))){
       //   $filename = time();

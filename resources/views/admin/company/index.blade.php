@@ -12,12 +12,12 @@
   <div class="row">
     <div class="col-md-6">
       <div class="card">
-        @include('admin.grupo._table_grupo')
+        @include('admin.company._table_company')
       </div>
     </div>
     <div class="col-md-6">
       <div class="card card-dark">
-        <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.grupo.store') }}"  enctype="multipart/form-data">
+        <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.company.store') }}"  enctype="multipart/form-data">
           @csrf
           <div class="card-body">
             <div class="form-group row">

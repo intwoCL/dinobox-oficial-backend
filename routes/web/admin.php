@@ -48,6 +48,9 @@ Route::middleware('auth.usuario')->prefix('admin')->namespace('Sistema')->name('
   Route::get('grupo','GrupoController@index')->name('grupo.index');
   Route::post('grupo','GrupoController@store')->name('grupo.store');
 
+  Route::get('company','CompanyController@index')->name('company.index');
+  Route::post('company','CompanyController@store')->name('company.store');
+
 });
 
 

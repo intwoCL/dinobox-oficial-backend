@@ -40,7 +40,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link">
+              <a href="{{ route('admin.company.index')}}"  class="nav-link">
                 <i class="far fa-address-card text-primary mr-2"></i>
                 Compañia
               </a>

@@ -93,6 +93,28 @@
                   </select>
                 </div>
               </div>
+
+              <hr>
+              <div class="form-group row">
+                <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Compañia<small class="text-danger">*</small></label>
+                <div class="col-sm-8">
+                  <select class="custom-select" name="company">
+                    @foreach ($company as $c)
+                      <option value="{{ $c->id }}">{{ $c->nombre }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Grupo<small class="text-danger">*</small></label>
+                <div class="col-sm-8">
+                  <select class="custom-select" name="grupo">
+                    @foreach ($grupo as $g)
+                      <option value="{{ $g->id }}">{{ $g->nombre }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
             </div>
             <div class="card-footer">
               <button type="submit" class="btn btn-success float-right">Guardar</button>
@@ -120,5 +142,6 @@
   showButtonPanel: true,
   autoclose: true
   });
+
 </script>
 @endpush

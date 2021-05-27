@@ -100,6 +100,30 @@
                   </select>
                 </div>
               </div>
+
+              <hr>
+              <div class="form-group row">
+                <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Compañia<small class="text-danger">*</small></label>
+                <div class="col-sm-8">
+                  <select class="custom-select" name="company">
+                    <option {{ $u->id_company == null ? 'selected' : '' }} value="">-- Sin compañia --</option>
+                    @foreach ($company as $c)
+                      <option {{ $u->id_company == $c->id ? 'selected' : '' }} value="{{ $c->id }}">{{ $c->nombre }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputTipoUsuario" class="col-sm-4 col-form-label">Grupo<small class="text-danger">*</small></label>
+                <div class="col-sm-8">
+                  <select class="custom-select" name="grupo">
+                    <option {{ $u->id_grupo == null ? 'selected' : '' }} value="">-- Sin grupo --</option>
+                    @foreach ($grupo as $g)
+                      <option  {{ $u->id_grupo == $g->id ? 'selected' : '' }} value="{{ $g->id }}">{{ $g->nombre }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
               @if ($u->last_session)
               <div class="form-group row">
                 <label for="plataforma_toma_hora" class="col-sm-4 col-form-label">Última conexión</label>
