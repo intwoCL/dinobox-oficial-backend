@@ -32,7 +32,6 @@
 </div>
 @endsection
 @push('javascript')
-{{-- <script src="/dist/js/preview.js"></script> --}}
 <script src="/vendor/clockpicker/js/bootstrap-clockpicker.min.js"></script>
 <script src="/vendor/datepicker2/js/bootstrap-datepicker.min.js"></script>
 <script src="/vendor/datepicker2/locales/bootstrap-datepicker.es.min.js" charset="UTF-8"></script>

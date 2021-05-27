@@ -9,6 +9,7 @@ use App\Services\ImportImage;
 use App\Http\Requests\ClienteCreateRequest as ClientCreateRequest;
 use App\Http\Requests\ClienteLoginRequest;
 use App\Http\Requests\PasswordClienteRequest;
+use App\Models\Orden\Orden;
 use App\Models\Sistema\Region;
 use App\Models\Sistema\Comuna;
 use App\Models\Sistema\Direccion;
@@ -46,7 +47,6 @@ class ClienteController extends Controller {
 
       return back()->with('success','Se ha actualizado');
     } catch (\Throwable $th) {
-      // return $th;
       return back()->with('info','Error intente nuevamente');
     }
   }
@@ -57,7 +57,7 @@ class ClienteController extends Controller {
     $cliente = current_client();
     return view('web.cliente.home.password', compact('cliente'));;
   }
-  
+
   //Actualizar Contraseña
   public function passwordUpdate(PasswordClienteRequest $request){
     try {
@@ -106,7 +106,6 @@ class ClienteController extends Controller {
 
       return back()->with('success','Se ha agregado exitosamente.');
     } catch (\Throwable $th) {
-      return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
@@ -120,7 +119,7 @@ class ClienteController extends Controller {
     $regions = Region::get();
     return view('web.cliente.home.direccionesEdit',compact('cliente','comunas','regions','d'));
   }
-  
+
   //Actualizar dirección
   public function direccionUpdate(Request $request, $id){
     try {
@@ -144,8 +143,9 @@ class ClienteController extends Controller {
   //Historial de movimientos
   //Index
   public function historial() {
+    $data=Orden::paginate(3);
     $cliente = current_client();
-    return view('web.cliente.home.historial',compact('cliente'));
+    return view('web.cliente.home.historial',compact('cliente'), ['ordenes'=>$data]);
   }
 
   //Registro Usuario
@@ -170,7 +170,6 @@ class ClienteController extends Controller {
 
       return redirect()->route('cliente.register.aviso')->with('success,','Se ha creado exitosamente');
     } catch (\Throwable $th) {
-      // return $th;
       return back()->with('info','Error Intente nuevamente.');
     }
   }
@@ -198,8 +197,7 @@ class ClienteController extends Controller {
         return back()->with('info','Error. Intente nuevamente.');
       }
     } catch (\Throwable $th) {
-      return $th;
-      return back()->with('info','Error. Intente nuevamente.');
+      return redirect()->route('cliente.register.noRegistro');
     }
   }
 
@@ -209,8 +207,22 @@ class ClienteController extends Controller {
     return redirect()->route('root');
   }
 
+  //Registrado
   public function avisoRegistro() {
     return view('web.cliente.home.avisoRegistro');
+  }
+
+  //No registrado
+  public function avisoNoRegistro() {
+    return view('web.cliente.home.avisoNoRegistro');
+  }
+
+  //Seguimiento privado
+  public function seguimientoOrden($codigo) {
+    $cliente = current_client();
+    $orden = Orden::where('codigo',$codigo)->where('activo',true)->where('id_cliente',$cliente->id)->firstOrFail();
+    $repartidor = $orden->ordenRepartidor->repartidor ?? null;
+    return view('web.cliente.home.seguimientoPrivado',compact('cliente','orden','repartidor','codigo'));
   }
 
 }

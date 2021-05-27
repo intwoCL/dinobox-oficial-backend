@@ -16,28 +16,24 @@
         <a href="{{ route('profile.cliente') }}" class="nav-link">
           <div class="fas fa-user-circle mr-2"></div>
           Perfil
-          {{-- <span class="float-right badge bg-primary">31</span> --}}
         </a>
       </li>
       <li class="nav-item">
         <a href="{{ route('profile.password') }}" class="nav-link">
           <div class="fas fa-lock mr-2"></div>
           Contraseña
-          {{-- <span class="float-right badge bg-success">12</span> --}}
         </a>
       </li>
       <li class="nav-item">
         <a href="{{ route('profile.direcciones') }}" class="nav-link">
           <i class="fas fa-home mr-2"></i>
           Direcciones
-          {{-- <span class="float-right badge bg-info">5</span> --}}
         </a>
       </li>
       <li class="nav-item">
         <a href="{{ route('profile.historial') }}" class="nav-link">
           <div class="fas fa-history mr-2"></div>
-          Historial de movimientos
-          {{-- <span class="float-right badge bg-success">12</span> --}}
+          Ordenes
         </a>
       </li>
       <br>
@@ -55,12 +51,3 @@
     </ul>
   </div>
 </div>
-
-{{-- <form class="card p-2">
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="Promo code">
-    <div class="input-group-append">
-      <button type="submit" class="btn btn-secondary">Redeem</button>
-    </div>
-  </div>
-</form> --}}

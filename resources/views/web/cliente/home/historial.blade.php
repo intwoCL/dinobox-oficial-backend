@@ -17,13 +17,13 @@
       @include('web.cliente.partials._menu')
     </div>
     <div class="col-md-8">
-      <h4 class="mb-3">Historial de movimientos</h4>
+      <h4 class="mb-3">Ordenes</h4>
       @include('web.cliente.partials._list')
     </div>
   </div>
 
   @include('web.cliente.partials._footer')
-  
+
 </div>
 @endsection
 @push('javascript')

@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{route('profile.direcciones')}}" method="post" id="formAdd">
+      <form class="form-submit" action="{{route('profile.direcciones')}}" method="post" id="formAdd">
         @csrf
         <input type="hidden" name="product_id" id="inputIdProduct">
         <div class="modal-body">

@@ -60,12 +60,26 @@ class Orden extends Model
     return $this->hasMany(OrdenRepartidor::class,'id_orden');
   }
 
+  public function ordenRepartidor(){
+    return $this->hasOne(OrdenRepartidor::class,'id_orden')->where(function($query){
+      $query->where('activo',true);
+    });
+  }
+
   public function getFechaEmision() {
     return new ConvertDatetime($this->created_at);
   }
 
   public function getEstado() {
     return self::ESTADO_GENERAL[$this->estado];
+  }
+
+  public function getServicio() {
+    return self::SERVICIOS[$this->servicio][0];
+  }
+
+  public function getCategoria() {
+    return self::CATEGORIAS[$this->categoria][0];
   }
 
   public function scopeGetPendientes($query) {
