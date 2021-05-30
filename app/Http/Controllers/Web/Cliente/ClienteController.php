@@ -142,7 +142,7 @@ class ClienteController extends Controller {
   //Index
   public function historial() {
     $cliente = current_client();
-    $data=Orden::where('id_cliente',$cliente->id)->paginate(3);
+    $data=Orden::where('id_cliente',$cliente->id)->paginate(6);
     return view('web.cliente.home.historial',compact('cliente'), ['ordenes'=>$data]);
   }
 
