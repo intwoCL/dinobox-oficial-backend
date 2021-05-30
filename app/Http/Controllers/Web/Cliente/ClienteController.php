@@ -31,10 +31,10 @@ class ClienteController extends Controller {
 
   //Perfil Cliente
   //Index Perfil
-  public function cliente() {
+  public function perfil() {
     $sistema = current_sistema();
     $cliente = current_client();
-    return view('web.cliente.home.cliente',compact('cliente'));
+    return view('web.cliente.home.perfil',compact('cliente'));
   }
 
   //Actualizar Datos
@@ -152,81 +152,12 @@ class ClienteController extends Controller {
     return view('web.cliente.home.historial',compact('cliente'), ['ordenes'=>$data]);
   }
 
-  //Registro Usuario
-  //Index
-  public function register() {
-    $sistema = Sistema::first();
-    return view('web.cliente.home.register',compact('sistema'));
-  }
-
-  //Viste Create
-  public function registerStore(Request $request) {
-    try {
-      $cliente = new Cliente();
-      $cliente->run = $request->input('run');
-      $cliente->nombre = $request->input('nombre');
-      $cliente->apellido = $request->input('apellido');
-      $cliente->correo = $request->input('correo');
-      $cliente->password = hash('sha256', $request->input('password'));
-      $cliente->telefono = $request->input('telefono');
-
-      $cliente->save();
-
-      return redirect()->route('cliente.register.aviso')->with('success,','Se ha creado exitosamente');
-    } catch (\Throwable $th) {
-      return back()->with('info','Error Intente nuevamente.');
-    }
-  }
-
-  //Login Cliente
-  public function auth() {
-    close_sessions();
-
-    $sistema = Sistema::first();
-    return view('web.cliente.home.login',compact('sistema'));
-  }
-
-  //Iniciar Sesión
-  public function login(ClienteLoginRequest $request) {
-    try {
-      $c = Cliente::findByCorreo($request->correo)->firstOrFail();
-      $pass =  hash('sha256', $request->password);
-
-      if($c->password == $pass) {
-        Auth::guard('cliente')->loginUsingId($c->id);
-
-        return redirect()->route('web.cliente.home');
-
-      } else {
-        return back()->with('info','Error. Intente nuevamente.');
-      }
-    } catch (\Throwable $th) {
-      return redirect()->route('cliente.register.noRegistro');
-    }
-  }
-
-  //Cerrar Sesión
-  public function logout() {
-    close_sessions();
-    return redirect()->route('root');
-  }
-
-  //Registrado
-  public function avisoRegistro() {
-    return view('web.cliente.home.avisoRegistro');
-  }
-
-  //No registrado
-  public function avisoNoRegistro() {
-    return view('web.cliente.home.avisoNoRegistro');
-  }
-
   //Seguimiento privado
-  public function seguimientoOrden($codigo) {
+  public function seguimiento($codigo) {
     $cliente = current_client();
     $orden = Orden::where('codigo',$codigo)->where('activo',true)->where('id_cliente',$cliente->id)->firstOrFail();
     $repartidor = $orden->ordenRepartidor->repartidor ?? null;
-    return view('web.cliente.home.seguimientoPrivado',compact('cliente','orden','repartidor','codigo'));
+    return view('web.cliente.home.seguimiento',compact('cliente','orden','repartidor','codigo'));
   }
 
 }

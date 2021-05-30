@@ -11,7 +11,7 @@
 <div class="container">
 
   @component('web.cliente.partials._nav_button_back')
-    @slot('route', 'adadsasd')
+    {{-- @slot('route', 'adadsasd') --}}
     {{-- @slot('color', 'secondary') --}}
     @slot('body', "")
   @endcomponent

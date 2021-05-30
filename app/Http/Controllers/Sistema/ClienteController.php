@@ -45,7 +45,7 @@ class ClienteController extends Controller
       $cliente->sexo = $request->input('sexo');
       $cliente->id_usuario_creador = current_user()->id;
       $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
-      
+
       // if(!empty($request->file('image'))){
       //   $filename = time();
       //   $folder = 'public/photo_clientes';
@@ -92,7 +92,7 @@ class ClienteController extends Controller
         $request->validate([
           'correo' => 'required|min:4|max:60|email|unique:s_cliente,correo',
         ]);
-          
+
         $cliente->correo = $request->input('correo');
       }
 

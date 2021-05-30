@@ -6,8 +6,8 @@ Route::middleware('auth.cliente')->prefix('web/cliente')->namespace('Web\Cliente
   //Perfil Cliente
   Route::get('/','ClienteController@home')->name('home');
 
-  Route::get('perfil','ClienteController@cliente')->name('cliente');
-  Route::put('perfil','ClienteController@profileUpdate')->name('cliente');
+  Route::get('perfil','ClienteController@perfil')->name('perfil');
+  Route::put('perfil','ClienteController@profileUpdate')->name('perfil.update');
 
   //Contraseña
   Route::get('clave','ClienteController@passwordIndex')->name('password');

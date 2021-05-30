@@ -10,7 +10,7 @@
               <th>Origen</th>
               <th>Destino</th>
               <th>Estado</th>
-              <th>Precio</th>
+              <th>Valor</th>
             </tr>
           </thead>
           <tbody class="text-center">

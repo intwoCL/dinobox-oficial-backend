@@ -13,15 +13,14 @@ Route::get('/acceso','Auth\AuthUsuarioController@auth')->name('auth.usuario');
 Route::post('/acceso','Auth\AuthUsuarioController@login')->name('auth.usuario');
 
 //Registro usuario
-Route::get('/register','Web\Cliente\ClienteController@register')->name('cliente.register');
-Route::post('/register','Web\Cliente\ClienteController@registerStore')->name('cliente.register.store');
-Route::get('/aviso','Web\Cliente\ClienteController@avisoRegistro')->name('cliente.register.aviso');
-Route::get('/NoRegistrado','Web\Cliente\ClienteController@avisoNoRegistro')->name('cliente.register.noRegistro');
+Route::get('/register','Auth\AuthClienteController@register')->name('cliente.register');
+Route::post('/register','Auth\AuthClienteController@registerStore')->name('cliente.register.store');
+Route::get('/aviso','Auth\AuthClienteController@avisoRegistro')->name('cliente.register.aviso');
 
 //Login Cliente
-Route::get('/login','Web\Cliente\ClienteController@auth')->name('cliente.login');
-Route::post('/login','Web\Cliente\ClienteController@login')->name('cliente.login');
-Route::post('/logout','Web\Cliente\ClienteController@logout')->name('cliente.logout');
+Route::get('/login','Auth\AuthClienteController@auth')->name('cliente.login');
+Route::post('/login','Auth\AuthClienteController@login')->name('cliente.login');
+Route::post('/logout','Auth\AuthClienteController@logout')->name('cliente.logout');
 
 
 Route::middleware('auth.usuario')->group( function () {

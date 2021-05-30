@@ -17,7 +17,7 @@
         <div class="fas fa-home fa-fw mr-2" aria-hidden="true"></div>
         Home
       </a>
-      <a href="{{ route('web.cliente.cliente') }}" class="list-group-item list-group-item-action {{ activeTab('web/cliente/perfil') }}">
+      <a href="{{ route('web.cliente.perfil') }}" class="list-group-item list-group-item-action {{ activeTab('web/cliente/perfil') }}">
         <div class="fas fa-user-circle fa-fw mr-2" aria-hidden="true"></div>
         Perfil
       </a>

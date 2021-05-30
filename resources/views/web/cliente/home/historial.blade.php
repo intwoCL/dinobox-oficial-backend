@@ -12,8 +12,10 @@
       @include('web.cliente.partials._menu')
     </div>
     <div class="col-md-8">
-      <h4 class="mb-3">Ordenes</h4>
-      @include('web.cliente.partials._list')
+      <h4 class="mb-3">
+        <strong>Ordenes</strong>
+      </h4>
+      @include('web.cliente.home._table_ordenes')
     </div>
   </div>
 

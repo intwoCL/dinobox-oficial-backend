@@ -1,5 +1,5 @@
 <nav class="navbar text-sm fixed-bottom navbar-dark bg-primary d-none d-sm-block d-md-none d-flex justify-content-center" style="position: fixed; bottom: 0px;left: 0px; height: 70px !important;">
-  <a class="navbar-brand pl-3 pr-2 text-center" href="{{ route('web.cliente.cliente') }}" title="Perfil">
+  <a class="navbar-brand pl-3 pr-2 text-center" href="{{ route('web.cliente.perfil.update') }}" title="Perfil">
     <i class="fa fa-user-circle {{ activeBarMenu('repartidor/home')}}"></i>
     {{-- <small class="">
       Perfil
