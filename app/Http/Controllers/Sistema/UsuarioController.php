@@ -64,11 +64,11 @@ class UsuarioController extends Controller
       $user->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
       $user->id_company = $request->input('company',null);
       $user->id_grupo = $request->input('grupo',null);
-      // if(!empty($request->file('image'))) {
-      //   $filename = time();
-      //   $folder = 'public/photo_usuarios';
-      //   $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
-      // }
+      if(!empty($request->file('image'))) {
+        $filename = time();
+        $folder = 'public/photo_usuarios';
+        $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      }
 
       $user->save();
 
@@ -118,11 +118,11 @@ class UsuarioController extends Controller
       $user->id_company = $request->input('company',null);
       $user->id_grupo = $request->input('grupo',null);
 
-      // if(!empty($request->file('image'))){
-      //   $filename = time();
-      //   $folder = 'public/photo_usuarios';
-      //   $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
-      // }
+      if(!empty($request->file('image'))){
+        $filename = time();
+        $folder = 'public/photo_usuarios';
+        $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      }
 
       //Actualizar el rol
       $rol = $user->sucursalUsuario;

@@ -71,7 +71,7 @@
                 </div>
               </div>
 
-              {{-- <div class="form-group">
+              <div class="form-group">
                 <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
                 <div class="input-group">
                   <img src="{{ $u->present()->getPhoto() }}"  class='Responsive image img-thumbnail'  width='200px' height='200px' alt="">
@@ -83,9 +83,9 @@
                   <br>
                 </div>
               </div>
-              <div class="form-group row text-center">
-                <div id="preview"></div>
-              </div> --}}
+              <div class="form-group row">
+                <div id="preview" class="text-center"></div>
+              </div>
 
               <hr>
               <div class="form-group row">

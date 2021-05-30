@@ -77,12 +77,12 @@
               @csrf
               <div class="form-group">
                 <label for="correo" class="sr-only">Correo</label>
-                <input type="text" name="correo" id="correo" autofocus class="form-control {{ $errors->has('correo') ? 'is-invalid' : '' }}" placeholder="Correo" value="{{ old('correo') }}" required>
+                <input type="email" name="correo" id="correo" autofocus class="form-control tolowercase {{ $errors->has('correo') ? 'is-invalid' : '' }}" placeholder="Correo" value="{{ old('correo') }}" required>
                 {!! $errors->first('correo', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
               <div class="form-group mb-3">
                 <label for="password" class="sr-only">Contraseña</label>
-                <input type="password" name="password" autocomplete="off" id="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Contraseña" required>
+                <input type="password" name="password" autocomplete="off" id="password" class="form-control tolowercase {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Contraseña" required>
                 {!! $errors->first('password', ' <small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
               </div>
               @if (session('info'))
@@ -91,12 +91,11 @@
               </div>
               @endif
               <div class="d-flex justify-content-between align-items-center mb-5">
-                <button type="submit" class="btn btn-block btn-primary button-prevent">
+                <button type="submit" class="btn btn-block btn-primary button-prevent btn-lg">
                   <i class="spinner fa fa-spinner fa-spin"></i>
-                  INICIAR
+                  INGRESAR
                 </button>
               </div>
-              <a class="d-flex justify-content-center" href="{{ route('cliente.register') }}"><small>¿Aún no te has registrado? Hazlo ahora</small></a>
             </form>
           </div>
         </div>
@@ -104,5 +103,13 @@
     </div>
   </main>
   <script src="{{ asset('js/app.js') }}"></script>
+  <script>
+    let toLowercase = function () {
+      jQuery('.tolowercase').on('keypress keydown blur',function () {
+        let currentVal = jQuery(this).val();
+        jQuery(this).val(currentVal.toLowerCase());
+      });
+    };
+  </script>
 </body>
 </html>

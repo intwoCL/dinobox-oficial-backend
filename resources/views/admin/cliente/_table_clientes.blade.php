@@ -2,7 +2,7 @@
   <table id="tableSelect" class="table table-bordered table-hover table-sm text-center">
     <thead>
     <tr>
-      <th>Foto</th>
+      {{-- <th>Foto</th> --}}
       <th>Rut</th>
       <th>Nombre</th>
       <th>Correo</th>
@@ -12,9 +12,6 @@
     <tbody>
       @foreach ($clientes as $c)
       <tr>
-        <td class="align-middle">
-          <img src="{{ $c->present()->getPhoto() }}" alt="Imagenes de fondo" height="50px" srcset="">
-        </td>
         <td class="align-middle">
           {{ $c->run }}
         </td>

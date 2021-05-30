@@ -143,7 +143,7 @@
             </div>
           </form>
         </div>
-        @if (current_user()->is_admin())
+        @if (current_user()->admin_enabled())
         <button type="button" class="btn btn-primary mt-2 mb-4" data-toggle="modal" data-target="#modalMain">
           <strong>MODO SUPREMO DINO</strong>
         </button>
@@ -183,7 +183,7 @@
 </div>
 
 
-@if (current_user()->is_admin())
+@if (current_user()->admin_enabled())
 {{-- Modal MAIN --}}
 <div class="modal fade" id="modalMain" tabindex="-1" role="dialog" aria-labelledby="modalAccionLabel" aria-hidden="true">
   <form action="{{ route('auth.modeMain.admin') }}" method="POST">

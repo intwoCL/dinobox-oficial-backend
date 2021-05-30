@@ -17,7 +17,7 @@ Route::middleware('auth.cliente')->prefix('web/cliente')->namespace('Web\Cliente
   Route::get('historial','ClienteController@historial')->name('historial');
 
   //Seguimiento Privado
-  Route::get('seguimiento/{codigo}','ClienteController@seguimientoOrden')->name('seguimiento');
+  Route::get('seguimiento/{codigo}','ClienteController@seguimiento')->name('seguimiento');
 
   //Direcciones
   Route::get('direcciones','ClienteController@direcciones')->name('direcciones');

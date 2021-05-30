@@ -4,7 +4,11 @@
 @endpush
 @section('content')
 @component('components.button._back')
-  @slot('route', route('admin.usuario.index'))
+  @if ($u->repartidor())
+    @slot('route', route('admin.repartidor.index'))
+  @else
+    @slot('route', route('admin.usuario.index'))
+  @endif
   @slot('body', "Editar Usuario <strong>".$u->present()->nombre_completo()."</strong>")
 @endcomponent
 

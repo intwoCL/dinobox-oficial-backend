@@ -35,13 +35,23 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-center">Registrate en 📦 Dinobox.cl 🦖</h5>
+        {{-- <h5 class="modal-title text-center">Registrate en 📦 Dinobox.cl 🦖</h5> --}}
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form class="form-submit" action="{{ route('web.cliente.perfil.update') }}" method="POST">
         @csrf
         @method('PUT')
         <div class="modal-body">
+          <div class="text-center mb-5 mt-2">
+            <div class="feature text-white rounded-3 mb-3">
+              {{-- <i class="bi bi-envelope"></i> --}}
+              <img src="/dist/img/dinobox-icon1.svg" width="45px" alt="">
+            </div>
+
+            <h2 class="fw-bolder">📦 Dinobox.cl 🦖</h2>
+            <p class="lead mb-0">Formulario de registro</p>
+          </div>
+
           <div class="d-grid gap-2 pb-2">
             <button class="btn btn-danger rounded-pill" type="button">
               <i class="bi bi-google"></i> Registrate con Google
@@ -53,13 +63,42 @@
             </button>
           </div>
 
+          <div class="d-grid gap-2 pb-2 text-center">
+            <button type="button" class="btn btn-dark rounded-pill" data-bs-toggle="modal" data-bs-target="#registerModal2">
+                Por correo eléctronico
+              </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="registerModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        {{-- <h5 class="modal-title text-center">Registrate en 📦 Dinobox.cl 🦖</h5> --}}
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form class="form-submit" action="{{ route('web.cliente.perfil.update') }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="modal-body">
+          <div class="text-center mb-5 mt-2">
+            <div class="feature text-white rounded-3 mb-3">
+              {{-- <i class="bi bi-envelope"></i> --}}
+              <img src="/dist/img/dinobox-icon1.svg" width="45px" alt="">
+            </div>
+            <h2 class="fw-bolder">📦 Dinobox.cl 🦖</h2>
+            <p class="lead mb-0">Formulario de registro</p>
+          </div>
 
-          <div class="input-group mb-3 mt-5">
+          <div class="input-group mb-2">
             <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="fa fa-user"></i></span>
             <input type="text" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1">
           </div>
 
-          <div class="input-group mb-3">
+          <div class="input-group mb-2">
             <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="fa fa-envelope"></i></span>
             <input type="email" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
           </div>
@@ -68,6 +107,12 @@
             <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="fa fa-lock"></i></span>
             <input type="password" class="form-control" placeholder="Contraseña" aria-label="Password" aria-describedby="basic-addon1">
           </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text bg-danger text-white" id="basic-addon1"><i class="fa fa-lock"></i></span>
+            <input type="password" class="form-control" placeholder="Teléfono" aria-label="Password" aria-describedby="basic-addon1">
+          </div>
+
 
           {{-- <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -98,10 +143,14 @@
           </div> --}}
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-dark d-none rounded-pill d-md-block d-sm-none">Registrar</button>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-dark rounded-pill" type="button">REGISTRAR</button>
+            {{-- <button class="btn btn-primary" type="button">Button</button> --}}
+          </div>
+          {{-- <button type="submit" class="btn btn-dark d-none rounded-pill d-md-block d-sm-none">Registrar</button>
           <button type="submit" class="btn btn-dark btn-block rounded-pill d-sm-block d-md-none">
             <h5>Registrar</h5>
-          </button>
+          </button> --}}
           <small>Aceptas nuestros <a href="">Término de servicio</a> y <a href="">Politica de privacidad</a></small>
         </div>
 

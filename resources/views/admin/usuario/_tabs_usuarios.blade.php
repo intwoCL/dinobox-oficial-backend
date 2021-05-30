@@ -16,7 +16,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link {{ activeTab("admin/usuario/eliminados") }}" href="{{ route('admin.usuario.indexDelete') }}">
+      <a class="nav-link {{ activeTab("admin/usuarios/eliminados") }}" href="{{ route('admin.usuario.indexDelete') }}">
         <i class="fa fa-users-slash mr-2"></i> Usuarios eliminados
       </a>
     </li>

@@ -17,6 +17,7 @@
         @slot('body', 'Seguimiento')
       @endcomponent
         @include('web.cliente.partials._orden')
+        @include('web.cliente.partials._orden2')
     </div>
   </div>
   @include('web.cliente.partials._footer')

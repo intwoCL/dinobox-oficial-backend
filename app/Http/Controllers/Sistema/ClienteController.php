@@ -5,16 +5,8 @@ namespace App\Http\Controllers\Sistema;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sistema\Cliente;
-use App\Services\ImportImage;
 use App\Http\Requests\ClienteCreateRequest as ClientCreateRequest;
-use App\Http\Requests\ClienteUpdateRequest as ClientUpdateRequest;
-use App\Http\Requests\ClienteLoginRequest;
-use App\Http\Requests\PasswordClienteRequest;
-use App\Models\Sistema\Region;
-use App\Models\Sistema\Comuna;
 use App\Models\Sistema\Direccion;
-use App\Models\Sistema\Sistema;
-use Auth;
 
 class ClienteController extends Controller
 {

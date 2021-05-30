@@ -12,7 +12,7 @@ function current_user(){
   return auth('usuario')->user();
 }
 
-function is_admin(){
+function current_admin_enabled(){
   return current_user()->admin;
 }
 
@@ -43,6 +43,7 @@ function close_sessions(){
   // session()->flush();
   // session()->forget('permissions');
   session()->forget('modeMain');
+  session()->forget('sistema_session');
   return true;
 }
 
