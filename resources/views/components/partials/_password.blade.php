@@ -3,7 +3,7 @@
     <div class="card-header">
       <h3 class="card-title">Actualizar contraseña</h3>
     </div>
-    <form class="form-horizontal form-submit" method="POST" action="{{ route('profile.cliente.password') }}"  enctype="multipart/form-data">
+    <form class="form-horizontal form-submit" method="POST" action="{{ route('web.cliente.cliente.password') }}"  enctype="multipart/form-data">
       @csrf
       @method('PUT')
       <div class="card-body">

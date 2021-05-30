@@ -2,24 +2,26 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth.cliente')->namespace('Web\Cliente')->group( function () {
+Route::middleware('auth.cliente')->prefix('web/cliente')->namespace('Web\Cliente')->name('web.cliente.')->group( function () {
   //Perfil Cliente
-  Route::get('/profile/cliente', 'ClienteController@cliente')->name('profile.cliente');
-  Route::put('/profile/cliente', 'ClienteController@profileUpdate')->name('profile.cliente');
+  Route::get('/','ClienteController@home')->name('home');
+
+  Route::get('perfil','ClienteController@cliente')->name('cliente');
+  Route::put('perfil','ClienteController@profileUpdate')->name('cliente');
 
   //Contraseña
-  Route::get('/profile/password', 'ClienteController@passwordIndex')->name('profile.password');
-  Route::post('/profile/password', 'ClienteController@passwordUpdate')->name('profile.password.update');
+  Route::get('clave','ClienteController@passwordIndex')->name('password');
+  Route::post('clave','ClienteController@passwordUpdate')->name('password.update');
 
   //Historial
-  Route::get('/profile/historial', 'ClienteController@historial')->name('profile.historial');
+  Route::get('historial','ClienteController@historial')->name('historial');
 
   //Seguimiento Privado
-  Route::get('/profile/seguimiento/{codigo}', 'ClienteController@seguimientoOrden')->name('profile.seguimiento');
+  Route::get('seguimiento/{codigo}','ClienteController@seguimientoOrden')->name('seguimiento');
 
   //Direcciones
-  Route::get('/profile/direcciones', 'ClienteController@direcciones')->name('profile.direcciones');
-  Route::get('/profile/direcciones/{id}', 'ClienteController@direccionesIndex')->name('profile.direcciones.edit');
-  Route::put('/profile/direcciones/{id}', 'ClienteController@direccionUpdate')->name('profile.direcciones.update');
-  Route::post('/profile/direcciones', 'ClienteController@direccionStore')->name('profile.direcciones');
+  Route::get('direcciones','ClienteController@direcciones')->name('direcciones');
+  Route::post('direcciones','ClienteController@direccionStore')->name('direcciones');
+  Route::get('{id_direccion}/direccion','ClienteController@direccionesIndex')->name('direcciones.edit');
+  Route::put('{id_direccion}/direccion','ClienteController@direccionUpdate')->name('direcciones.update');
 });

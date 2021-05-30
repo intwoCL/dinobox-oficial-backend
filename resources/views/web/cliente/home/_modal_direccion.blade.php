@@ -7,7 +7,7 @@
         </button>
       </div>
       <h4 class="text-center"><strong>Nueva Dirección</strong></h4>
-      <form class="form-submit" action="{{route('profile.direcciones')}}" method="post" id="formAdd">
+      <form class="form-submit" action="{{route('web.cliente.direcciones')}}" method="post" id="formAdd">
         @csrf
         <input type="hidden" name="product_id" id="inputIdProduct">
         <div class="modal-body">
@@ -56,23 +56,13 @@
             </div>
           </div>
 
-          <div class="form-group row">
+          {{-- <div class="form-group row">
             <label for="nameEvento" class="col-form-label col-sm-4">Favorito</label>
-            {{-- <div class="input-group"> --}}
               <div class="custom-control custom-switch input-group col-sm-8">
                 <input type="checkbox" class="custom-control-input" name="favorito" id="customSwitch1">
                 <label class="custom-control-label" for="customSwitch1"></label>
               </div>
-            {{-- </div> --}}
-          </div>
-
-          <div class="switch">
-            <label>
-              Off
-              <input type="checkbox">
-              <span class="lever"></span> On
-            </label>
-          </div>
+          </div> --}}
 
         </div>
         <div class="modal-footer">

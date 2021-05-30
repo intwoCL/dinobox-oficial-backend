@@ -1,4 +1,4 @@
-<form class="form-submit" action="{{ route('profile.direcciones.update', $d->id) }}" method="POST">
+<form class="form-submit" action="{{ route('web.cliente.direcciones.update', $d->id) }}" method="POST">
   @csrf
   @method('PUT')
   <div class="form-group row">

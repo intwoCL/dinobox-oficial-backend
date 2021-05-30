@@ -26,7 +26,13 @@
       width: 100%;
       overflow: hidden;
       height: 100%;
-      background-image: linear-gradient(to top, #ffffff 1%, rgb(45, 20, 65) 40%);
+      filter: blur(.4px);
+      -webkit-filter: blur(.5px);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      /* background-image: linear-gradient(to top, #f3f3f3 1%, #696868 40%); */
+      background-image: url("{{ asset(current_sistema()->present()->getImagenFondo()) }}");
     }
     .bgTop {
       z-index: -3;

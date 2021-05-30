@@ -18,7 +18,7 @@
     </div>
     <div class="col-md-8">
       @component('components.button._back2')
-        @slot('route', route('profile.historial'))
+        @slot('route', route('web.cliente.historial'))
         @slot('color', 'secondary')
         @slot('body', 'Seguimiento')
       @endcomponent

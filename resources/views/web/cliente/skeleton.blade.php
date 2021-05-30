@@ -8,23 +8,6 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
   <style>
-    .color {
-      border-radius: 0px 10px 10px;
-      background: rgba(255, 255, 255, 0.95);
-      width: 100%;
-      position: relative;
-      box-shadow: none;
-      margin-bottom: 20px;
-      overflow: unset;
-      display: block;
-      flex-direction: column;
-      -webkit-box-pack: start;
-      justify-content: flex-start;
-      -webkit-box-align: center;
-      align-items: center;
-      padding: 20px 15px;
-    }
-
     .list-group-item.active {
       z-index: 2;
       color: #fff;

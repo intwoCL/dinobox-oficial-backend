@@ -1,4 +1,4 @@
-<form class="form-horizontal form-submit" method="POST" action="{{ route('profile.password.update') }}">
+<form class="form-horizontal form-submit" method="POST" action="{{ route('web.cliente.password.update') }}">
   @csrf
   <div class="card-body">
     <div class="form-group row">

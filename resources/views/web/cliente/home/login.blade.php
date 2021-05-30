@@ -14,7 +14,7 @@
     }
 
     .intro-section {
-      background-image: url("{{ $sistema->present()->getImagenFondo() }}");
+      background-image: url("{{ asset($sistema->present()->getImagenFondo()) }}");
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;

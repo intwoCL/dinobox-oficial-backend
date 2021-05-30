@@ -19,7 +19,7 @@
     <div class="col-md-8">
       <h4 class="mb-3 text-white">Mi contraseña</h4>
       <div class="card">
-        <form class="form-submit" method="POST" action="{{ route('profile.password.update') }}">
+        <form class="form-submit" method="POST" action="{{ route('web.cliente.password.update') }}">
           @csrf
           <div class="card-body">
             <div class="form-group row">

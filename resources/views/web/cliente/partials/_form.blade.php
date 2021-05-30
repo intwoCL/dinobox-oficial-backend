@@ -1,7 +1,7 @@
 <div class="col-md-4">
   <div class="card shadow text-center" style="height: 150px;">
     <div class="card-header">
-      <a href="{{ route('profile.direcciones.edit', $d->id) }}">
+      <a href="{{ route('web.cliente.direcciones.edit', $d->id) }}">
         <i class="fas fa-map-marker-alt mr-2"></i>
         {{ $d->comuna->nombre }}
         @if ($d->favorito)

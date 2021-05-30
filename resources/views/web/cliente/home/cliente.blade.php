@@ -24,7 +24,7 @@
     <div class="col-md-8 content-form">
       <h4 class="mb-3 text-white">Mi perfil</h4>
       <div class="card shadow rounded">
-        <form class="form-submit" action="{{ route('profile.cliente') }}" method="POST">
+        <form class="form-submit" action="{{ route('web.cliente.cliente') }}" method="POST">
           @csrf
           @method('PUT')
           <div class="card-body">

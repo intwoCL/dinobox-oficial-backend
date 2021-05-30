@@ -12,11 +12,11 @@
     </div>
     <div class="col-md-8">
       @component('components.button._back2')
-        @slot('route', route('profile.direcciones'))
+        @slot('route', route('web.cliente.direcciones'))
         @slot('color', 'secondary')
         @slot('body', 'Editar dirección')
       @endcomponent
-      <form class="form-submit" action="{{ route('profile.direcciones.update', $d->id) }}" method="POST">
+      <form class="form-submit" action="{{ route('web.cliente.direcciones.update', $d->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="card">

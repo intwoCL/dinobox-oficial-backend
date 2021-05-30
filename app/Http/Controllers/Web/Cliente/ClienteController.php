@@ -24,9 +24,15 @@ class ClienteController extends Controller {
     $this->policy = new ClientePolicy();
   }
 
+  public function home() {
+    $cliente = current_client();
+    return view('web.cliente.home.index',compact('cliente'));
+  }
+
   //Perfil Cliente
   //Index Perfil
   public function cliente() {
+    $sistema = current_sistema();
     $cliente = current_client();
     return view('web.cliente.home.cliente',compact('cliente'));
   }
@@ -115,7 +121,7 @@ class ClienteController extends Controller {
     $this->policy->direccionesIndex($d,$cliente);
     $comunas = Comuna::orderBy('nombre')->get();
     $regions = Region::get();
-    return view('web.cliente.home.direccionesEdit',compact('cliente','comunas','regions','d'));
+    return view('web.cliente.home.direccion_edit',compact('cliente','comunas','regions','d'));
   }
 
   //Actualizar dirección
@@ -189,7 +195,7 @@ class ClienteController extends Controller {
       if($c->password == $pass) {
         Auth::guard('cliente')->loginUsingId($c->id);
 
-        return redirect()->route('profile.cliente');
+        return redirect()->route('web.cliente.home');
 
       } else {
         return back()->with('info','Error. Intente nuevamente.');

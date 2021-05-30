@@ -43,7 +43,7 @@ class AuthAdminController extends Controller
       } else {
         if ($type == 'client') {
           Auth::guard('cliente')->loginUsingId($id);
-          return redirect()->route('profile.cliente');
+          return redirect()->route('web.cliente.home');
         }
       }
 

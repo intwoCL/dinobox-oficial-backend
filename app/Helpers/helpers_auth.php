@@ -1,6 +1,8 @@
 
 <?php
 
+use App\Models\Sistema\Sistema;
+
 /**
  * session user
  *
@@ -17,6 +19,17 @@ function is_admin(){
 function current_client(){
   return auth('cliente')->user();
 }
+
+function current_sistema(){
+  $name = 'sistema_session';
+  if (session()->has($name)) {
+    return session()->get($name);
+  }
+  session([$name => Sistema::first()]);
+  return session()->get($name);
+}
+
+
 
 function close_sessions(){
   if(Auth::guard('cliente')->check()){
