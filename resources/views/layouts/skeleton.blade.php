@@ -32,8 +32,8 @@
     @yield('app')
   </div>
   @stack('extra')
-  <script src="{{ mix('js/manifest.js') }}"></script>
-  <script src="{{ mix('js/vendor.js') }}"></script>
+  <script src="{{ mix('js/www/manifest.js') }}"></script>
+  <script src="{{ mix('js/www/vendor.js') }}"></script>
   <script src="{{ mix('js/app.js') }}"></script>
   <script src="/vendor/intwo/input.js"></script>
   @include('layouts._toast')

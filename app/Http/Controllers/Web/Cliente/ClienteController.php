@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Web\Cliente;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sistema\Cliente;
-use App\Services\ImportImage;
 use App\Http\Requests\ClienteCreateRequest as ClientCreateRequest;
 use App\Http\Requests\ClienteLoginRequest;
 use App\Http\Requests\PasswordClienteRequest;
@@ -38,11 +37,10 @@ class ClienteController extends Controller {
       $cliente = Cliente::find(current_client()->id);
       $cliente->nombre = $request->input('nombre');
       $cliente->apellido = $request->input('apellido');
-      $cliente->correo = $request->input('correo');
+      // $cliente->correo = $request->input('correo');
       $cliente->telefono = $request->input('telefono');
-      $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
-      $cliente->sexo = $request->input('sexo');
-
+      // $cliente->birthdate = date_format(date_create($request->input('birthdate')),'Y-m-d');
+      // $cliente->sexo = $request->input('sexo');
       $cliente->update();
 
       return back()->with('success','Se ha actualizado');

@@ -1,6 +1,5 @@
 <h4 class="d-flex justify-content-between align-items-center mb-3">
-  <span class="text-muted">Mi cuenta</span>
-  <span class="badge badge-secondary badge-pill"></span>
+  Mi cuenta
 </h4>
 <div class="card card-widget widget-user-2">
   <div class="widget-user-header">
@@ -10,33 +9,26 @@
     <h3 class="widget-user-username">{{ current_client()->nombre . ' ' .current_client()->apellido}}</h3>
     <h5 class="widget-user-desc">{{ current_client()->correo }}</h5>
   </div>
-  <div class="card-body ">
+  <div class="card-body">
+    <div class="list-group">
+      <a href="{{ route('profile.cliente') }}" class="list-group-item list-group-item-action {{ activeTab('profile/cliente') }}">
+        <div class="fas fa-user-circle fa-fw mr-2" aria-hidden="true"></div>
+        Perfil
+      </a>
+      <a href="{{ route('profile.password') }}" class="list-group-item list-group-item-action {{ activeTab('profile/password') }}">
+        <div class="fas fa-user-lock fa-fw mr-2" aria-hidden="true"></div>
+        Contraseña
+      </a>
+      <a href="{{ route('profile.direcciones') }}" class="list-group-item list-group-item-action {{ activeTab('profile/direcciones*') }}">
+        <div class="fas fa-home fa-fw mr-2" aria-hidden="true"></div>
+        Direcciones
+      </a>
+      <a href="{{ route('profile.historial') }}" class="list-group-item list-group-item-action {{ activeTab('profile/historial') }}{{ activeTab('profile/seguimiento*') }}">
+        <div class="fas fa-history fa-fw mr-2" aria-hidden="true"></div>
+        Ordenes
+      </a>
+    </div>
     <ul class="nav flex-column">
-      <li class="nav-item">
-        <a href="{{ route('profile.cliente') }}" class="nav-link">
-          <div class="fas fa-user-circle mr-2"></div>
-          Perfil
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="{{ route('profile.password') }}" class="nav-link">
-          <div class="fas fa-lock mr-2"></div>
-          Contraseña
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="{{ route('profile.direcciones') }}" class="nav-link">
-          <i class="fas fa-home mr-2"></i>
-          Direcciones
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="{{ route('profile.historial') }}" class="nav-link">
-          <div class="fas fa-history mr-2"></div>
-          Ordenes
-        </a>
-      </li>
-      <br>
 
       <li class="nav-item">
         <form action="{{ route('cliente.logout') }}" method="POST">

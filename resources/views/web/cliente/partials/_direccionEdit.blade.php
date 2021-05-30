@@ -2,9 +2,9 @@
   @csrf
   @method('PUT')
   <div class="form-group row">
-    <label for="inputnombre" class="col-sm-2 col-form-label">Calle</label>
+    <label for="inputnombre" class="col-sm-2 col-form-label">Dirección</label>
     <div class="col-sm-5">
-      <input type="text" class="form-control" name="calle" id="calle" autocomplete="new-street" value="{{ $d->calle }}" placeholder="Calle" required>
+      <input type="text" class="form-control" name="calle" id="calle/pasaje/villa" autocomplete="new-street" value="{{ $d->calle }}" placeholder="Calle" required>
     </div>
     <div class="col-sm-5">
       <input type="number" class="form-control" name="numero" id="numero" autocomplete="new-number" value="{{ $d->numero }}" placeholder="Número">
@@ -30,9 +30,7 @@
   <div class="form-group row">
     <label for="nameEvento" class="col-form-label col-sm-2">Datos adicionales</label>
     <div class="input-group col-sm-8">
-      <textarea class="form-control" name="dato_adicional" id="textarea-input" rows="4" placeholder="" autocomplete="new-glosa">
-        {{ $d->dato_adicional }}
-      </textarea>
+      <input class="form-control" name="dato_adicional" value=" {{ $d->dato_adicional }}" placeholder="" autocomplete="new-glosa">
     </div>
   </div>
 
@@ -53,7 +51,10 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <button type="submit" class="btn btn-success">Guardar</button>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-dark d-none rounded-pill d-md-block d-sm-none">Guardar</button>
+    <button type="submit" class="btn btn-dark btn-block rounded-pill d-sm-block d-md-none">
+      <h5>GUARDAR</h5>
+    </button>
   </div>
 </form>

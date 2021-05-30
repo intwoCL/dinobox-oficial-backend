@@ -1,10 +1,5 @@
 @extends('web.cliente.app')
 @push('stylesheet')
-  <style>
-    body {
-      background-color: #fafaf8;
-    }
-  </style>
 @endpush
 @section('content')
 
@@ -19,7 +14,7 @@
       <h4 class="mb-3">
         Mis direcciones
       </h4>
-      
+
       <div class="row">
         <div class="col-md-4">
           <div class="card shadow text-center" style="height: 150px;">
@@ -32,19 +27,21 @@
           </div>
         </div>
         @foreach (current_client()->direcciones as $d)
-      
-        @include('web.cliente.partials._form')
-  
+          @include('web.cliente.partials._form')
         @endforeach
       </div>
     </div>
   </div>
 
   @include('web.cliente.partials._footer')
-  
+
 </div>
-@include('web.cliente.partials._modal_add_direction')
+@include('web.cliente.home._modal_direccion')
 @endsection
+
+@push('extra')
+@include('web.cliente.partials._bar_menu_sm')
+@endpush
 @push('javascript')
 <script>
   var comunas = [
@@ -57,7 +54,7 @@
       {'name':'{{ $r->nombre }}','id_region':'{{ $r->id }}'},
     @endforeach
   ];
-  
+
   //Modal Create
   CargarRegiones('select_region')
   CargarComunas();

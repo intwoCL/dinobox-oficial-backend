@@ -1,11 +1,6 @@
 @extends('web.cliente.app')
 @push('stylesheet')
 
-  <style>
-    body {
-      background-color: #fafaf8;
-    }
-  </style>
 @endpush
 @section('content')
 

@@ -31,7 +31,7 @@
       <i class="fa fa-2x fa-box"></i>
     </span>
     <span class="text">
-      Recpecionado
+      Recepcionado
     </span>
   </div>
 @endif
@@ -50,7 +50,7 @@
     <i class="fa fa-2x fa-truck"></i>
   </span>
   <span class="text">
-    En camino a despacho
+    <small>En camino a despacho</small>
   </span>
 </div>
 <div class="step {{ $e >= 80 ? 'active' : ''}}">

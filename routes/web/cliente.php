@@ -22,7 +22,4 @@ Route::middleware('auth.cliente')->namespace('Web\Cliente')->group( function () 
   Route::get('/profile/direcciones/{id}', 'ClienteController@direccionesIndex')->name('profile.direcciones.edit');
   Route::put('/profile/direcciones/{id}', 'ClienteController@direccionUpdate')->name('profile.direcciones.update');
   Route::post('/profile/direcciones', 'ClienteController@direccionStore')->name('profile.direcciones');
-
 });
-
-
