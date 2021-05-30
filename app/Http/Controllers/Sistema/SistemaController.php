@@ -24,11 +24,19 @@ class SistemaController extends Controller
     $folder = 'public/photo_sistema';
 
     if (!empty($request->file('image'))) {
+      $request->validate([
+        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      ]);
+
       $filename = time();
       $sistema->imagen_fondo = ImportImage::save($request, 'image', $filename, $folder);
     }
 
     if (!empty($request->file('image2'))) {
+      $request->validate([
+        'image2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      ]);
+
       $filename = time();
       $sistema->imagen_logo = ImportImage::save($request, 'image2', $filename, $folder);
     }
@@ -49,6 +57,9 @@ class SistemaController extends Controller
     $config['primary_color'] = $request->input('primary_color',Sistema::COLOR_BASE);
     $config['primary_color_text'] = $request->input('primary_color_text',Sistema::COLOR_TEXT_BASE);
     $config['login_oscuro'] = $request->input('login_oscuro',false);
+
+    $config['view']['registro_cliente'] = $request->input('login_registro_cliente',false);
+    $config['view']['ingreso_cliente'] = $request->input('login_ingreso_cliente',false);
 
     $sistema->config = $config;
     $sistema->update();

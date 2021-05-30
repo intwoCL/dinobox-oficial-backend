@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Lib\IconRender;
-use App\Lib\Icons;
 use App\Models\Orden\Orden;
-use App\Models\Sistema\DepartamentoUsuario;
 use App\Models\Sistema\Sistema;
 use Illuminate\Http\Request;
 
@@ -14,7 +12,8 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
   public function www(){
-    return view('web.home.index');
+    $sistema = Sistema::first();
+    return view('web.home.index',compact('sistema'));
   }
 
   public function ordenSeguimiento($codigo) {

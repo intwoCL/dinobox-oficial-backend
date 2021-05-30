@@ -89,15 +89,17 @@
               <div class="col-md-6">
                 <div class="card card-primary">
                   <div class="card-header">
-                    <h3 class="card-title">Color de presentacion</h3>
+                    <h3 class="card-title">
+                      Configuración del sistema
+                    </h3>
                   </div>
                   <form class="form-horizontal form-submit" method="POST" action="{{ route('admin.sistema.updateLogin') }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="card-body">
                       <div class="form-group row">
-                        <label for="formGroupExampleInput" class="col-sm-4 col-form-label">Login oscuro</label>
-                        <div class="col-sm-8">
+                        <label class="col-sm-4 col-form-label">Login oscuro</label>
+                        <div class="col-sm-4">
                           <select class="form-control" name="login_oscuro" required>
                             <option {{ $sistema->getLoginOscuro() ? 'selected' : '' }} value="1">Activado</option>
                             <option {{ !$sistema->getLoginOscuro() ? 'selected' : '' }} value="0">Desactivado</option>
@@ -106,17 +108,44 @@
                       </div>
 
                       <div class="form-group row">
-                        <label class="col-sm-5" for="hf-rut">Color de fondo</small></label>
-                        <div class="col-sm-7">
+                        <label class="col-sm-4">Color de fondo</small></label>
+                        <div class="col-sm-4">
                           <input type="text" id="colorpicker2" class="form-control" name="primary_color" value="{{ $sistema->getPrimaryColor() }}" required/>
                         </div>
                       </div>
+
                       <div class="form-group row">
-                        <label class="col-sm-5" for="hf-rut">Color de texto</small></label>
-                        <div class="col-sm-7">
+                        <label class="col-sm-4">Color de texto</small></label>
+                        <div class="col-sm-4">
                           <input type="text" id="colorpicker3" class="form-control" name="primary_color_text" value="{{ $sistema->getPrimaryColorText() }}" required>
                         </div>
                       </div>
+
+                      <hr>
+                      <div class="form-group row">
+                        <label class="col-sm-12">
+                          Configuración de registro cliente
+                        </label>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-4">Registar clientes</label>
+                        <div class="col-sm-4">
+                          <select class="form-control" name="login_registro_cliente" required>
+                            <option {{ $sistema->canRegistroCliente() ? 'selected' : '' }} value="1">Activado</option>
+                            <option {{ !$sistema->canRegistroCliente() ? 'selected' : '' }} value="0">Desactivado</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label class="col-sm-4">Acceso a clientes</small></label>
+                        <div class="col-sm-4">
+                          <select class="form-control" name="login_ingreso_cliente" required>
+                            <option {{ $sistema->canIngresoCliente() ? 'selected' : '' }} value="1">Activado</option>
+                            <option {{ !$sistema->canIngresoCliente() ? 'selected' : '' }} value="0">Desactivado</option>
+                          </select>
+                        </div>
+                      </div>
+
                     </div>
                     <div class="card-footer">
                       <button type="submit" class="btn btn-success float-right">Guardar</button>

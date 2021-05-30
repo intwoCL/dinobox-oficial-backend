@@ -39,4 +39,11 @@ class Sistema extends Model
     return $this->config['sistema_color'] ?? self::COLOR_BASE;
   }
 
+  public function canRegistroCliente(){
+    return $this->config['view']['registro_cliente'] ?? false;
+  }
+
+  public function canIngresoCliente(){
+    return $this->config['view']['ingreso_cliente'] ?? false;
+  }
 }
