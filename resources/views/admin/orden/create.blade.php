@@ -17,7 +17,7 @@
 @endcomponent
 <section class="content">
   <div class="row">
-    @include('orden._form2')
+    @include('admin.orden._form2')
     <div class="col-md-6">
       {{-- @include('components.maps._map') --}}
     </div>

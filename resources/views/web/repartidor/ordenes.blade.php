@@ -1,6 +1,43 @@
 @extends('web.repartidor.app')
 @push('stylesheet')
+<style>
+  .btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+  }
+  .btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+  }
+  .btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+  }
 
+  .btn-round {
+    justify-items: center;
+    text-align: center;
+    align-items: center;
+    padding: 4px 4px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+</style>
 @endpush
 @section('content')
 @component('components.button._back')
@@ -10,19 +47,60 @@
   <div class="container">
     <div class="row pb-3">
       @foreach ($ordenes as $or)
+      @php
+        $orden = $or->orden;
+      @endphp
       <div class="col-md-12">
-        <a href="{{ route('repartidor.ordenShow',$or->orden->codigo) }}" class="list-group-item list-group-item-action">
+        <a href="{{ route('repartidor.ordenShow',$orden->codigo) }}" class="list-group-item list-group-item-action">
           <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{ $or->orden->codigo }}</h5>
-            {{-- <h5 class="mb-1">{{ $or->orden->getFecha()->getDate() }}</h5> --}}
-            <small class="text-muted">{{ $or->orden->getFecha()->getDate() }}</small>
-          </div>
-          <p class="mb-1">
+            <div class="row">
+              <div class="col-12">
+                <h5 class="mb-1">
+                  <strong>{{ $orden->codigo }}</strong>
+                </h5>
+              </div>
+              {{-- <div class="col-12">
+                <h5 class="mb-1">
+                  <span class="badge badge-pill badge-primary">
+                    <strong>{{ $or->orden->getEstado() }}</strong>
+                  </span>
+                </h5>
+              </div> --}}
+            </div>
 
+
+            {{-- <h5 class="mb-1">{{ $or->orden->getFecha()->getDate() }}</h5> --}}
+            {{-- <small class="text-muted">{{ $or->orden->getFecha()->getDate() }}</small> --}}
+            <h5 class="mb-1">
+              <span class="badge badge-pill badge-primary">
+                <strong>{{ $orden->getEstado() }}</strong>
+              </span>
+            </h5>
+          </div>
+          {{-- <p class="mb-1">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus corporis, odit suscipit error ipsam nisi blanditiis dolorem, neque quos repudiandae, cumque iste libero. Aspernatur omnis ad dignissimos nostrum quo incidunt!
-          </p>
+          </p> --}}
           {{-- <small class="text-muted">And some muted small print.</small> --}}
-          <small class="text-muted">{{ $or->orden->getEstado() }}</small>
+          <div class="row">
+            <div class="col-6">
+              <strong>Dirección:</strong> {{ $orden->getRemitenteDireccion() }}
+              <br>
+              <strong>Comuna:</strong> {{ $orden->remitenteComuna->nombre }}
+            </div>
+            <div class="col-6">
+              <strong>Dirección:</strong> {{ $orden->getRemitenteDireccion() }}
+              <br>
+              <strong>Comuna:</strong> {{ $orden->remitenteComuna->nombre }}
+            </div>
+          </div>
+
+          <div class="pt-2 mt-2">
+            @foreach ($orden->getEstados() as $key => $item)
+              <span class="btn-round {{ $key <= $orden->estado ? 'bg-success' : '' }} mr-2">
+                <i class="fa fa-{{ $item[1] }}"></i>
+              </span>
+            @endforeach
+          </div>
         </a>
       </div>
       @endforeach

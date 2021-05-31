@@ -21,16 +21,16 @@ class Orden extends Model
   ];
 
   const ESTADO_GENERAL = [
-    10 => 'Pendiente',
-    20 => 'Asignación de retiro',
-    30 => 'En transito a retiro',
-    40 => 'Recepcionado',
-    // 50 => 'Recepción de despacho',
-    60 => 'Asignación de despacho',
-    70 => 'En camino a despacho',
-    80 => 'Entregado',
-    401 => 'Cancelado',
-    404 => 'Error',
+    10 => ['Pendiente','check-circle'], //Orden aceptada
+    20 => ['Asignado a retiro','user-check'],
+    30 => ['En camino a retiro','truck'],
+    40 => ['Recepcionado','box'],
+    // 50 => 'Recepción de despacho','home'],
+    60 => ['Asignado de despacho','user-check'],
+    70 => ['En camino a despacho','truck'],
+    80 => ['Entregado','check-square'],
+    401 => ['Cancelado','home'],
+    404 => ['Error','home'],
   ];
 
   const SERVICIOS = [
@@ -71,7 +71,7 @@ class Orden extends Model
   }
 
   public function getEstado() {
-    return self::ESTADO_GENERAL[$this->estado];
+    return self::ESTADO_GENERAL[$this->estado][0];
   }
 
   public function getServicio() {
@@ -108,5 +108,44 @@ class Orden extends Model
 
   public function getDestinatarioDireccion() {
     return $this->destinatario_direccion . " " . $this->destinatario_numero;
+  }
+
+  public function getEstados() {
+    $estados = array();
+    if ($this->categoria == 10) {
+      // RETIRO
+      $estados[10] = self::ESTADO_GENERAL[10];
+      $estados[20] = self::ESTADO_GENERAL[20];
+      $estados[30] = self::ESTADO_GENERAL[30];
+      $estados[40] = self::ESTADO_GENERAL[40];
+      $estados[70] = self::ESTADO_GENERAL[70];
+      $estados[80] = self::ESTADO_GENERAL[80];
+    }else{
+      // LOCAL
+      $estados[10] = self::ESTADO_GENERAL[10];
+      $estados[60] = self::ESTADO_GENERAL[60];
+      $estados[70] = self::ESTADO_GENERAL[70];
+      $estados[80] = self::ESTADO_GENERAL[80];
+    }
+    return $estados;
+  }
+
+  public function getPorcentaje() {
+    $estados = $this->getEstados();
+    // $total = count($estados);
+    $total = $this->categoria == 10 ? 6 : 4;
+    $count = 0;
+    foreach ($estados as $key => $value) {
+      if ($key <= $this->estado) {
+        $count++;
+      }
+    }
+    $porcentaje = ($count * 100)/$total;
+
+    return round($porcentaje);
+  }
+
+  public function getEstadosHtml() {
+
   }
 }

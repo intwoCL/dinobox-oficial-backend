@@ -8,10 +8,10 @@
 @endcomponent
 <section class="content">
   <div class="row">
-    @include('orden._tabs_ordenes')
+    @include('admin.orden._tabs_ordenes')
     <div class="col-md-12">
       <div class="card">
-        @include('orden._table_ordenes')
+        @include('admin.orden._table_ordenes')
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
 
 {{-- <h1>{{ session('codigo') }}</h1> --}}
 
-@include('orden._modal_vincular')
+@include('admin.orden._modal_vincular')
 @endsection
 @push('javascript')
 <script src="/vendor/datatables/jquery.dataTables.js"></script>

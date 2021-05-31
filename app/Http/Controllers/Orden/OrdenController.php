@@ -23,14 +23,14 @@ class OrdenController extends Controller
     $repartidores = Usuario::getAllRepartidores();
 
     $icon = (new IconRender('delivery_app', Sistema::first()->getSistemaColor()))->getIMGBase64();
-    return view('orden.index', compact('ordenes','repartidores','icon'));
+    return view('admin.orden.index', compact('ordenes','repartidores','icon'));
   }
 
   public function indexAsignados($fecha) {
     try {
       $ordenes = Orden::getAsignados($fecha);
       $fecha = (new ConvertDatetime($fecha))->getDate();
-      return view('orden.index_asignados', compact('ordenes','fecha'));
+      return view('admin.orden.index_asignados', compact('ordenes','fecha'));
     } catch (\Throwable $th) {
       return back()->with('danger','error intente nuevamente');
     }
@@ -54,7 +54,7 @@ class OrdenController extends Controller
     // $icon = (new IconRender('undraw_drone_delivery', Sistema::first()->getSistemaColor()))->getIMGBase64();
     $icon = (new IconServices())->getImagen();
     $regions = Region::get();
-    return view('orden.create', compact('comunas','regions','icon','categorias','servicios'));
+    return view('admin.orden.create', compact('comunas','regions','icon','categorias','servicios'));
   }
 
 
@@ -109,14 +109,14 @@ class OrdenController extends Controller
     //$repartidor = (count($orden->repartidores) > 0) ?  $orden->repartidores->first()->repartidor : null;
     $repartidor = $orden->ordenRepartidor->repartidor ?? null;
     //return $orden->repartidores;
-    return view('orden.show', compact('orden','repartidor'));
+    return view('admin.orden.show', compact('orden','repartidor'));
   }
 
   public function seguimiento($codigo) {
     $orden = Orden::where('codigo',$codigo)->where('activo',true)->with(['repartidores','cliente'])->firstOrFail();
     $repartidor = (count($orden->repartidores) > 0) ?  $orden->repartidores->first()->repartidor : null;
     // return $orden->repartidores;
-    return view('orden.seguimiento', compact('orden','repartidor'));
+    return view('admin.orden.seguimiento', compact('orden','repartidor'));
   }
 
   // PRIVATE

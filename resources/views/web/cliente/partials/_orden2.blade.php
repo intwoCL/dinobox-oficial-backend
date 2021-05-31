@@ -125,7 +125,7 @@
     <div class="card-body">
       <div class="pb-3">
         <div class="progress" style="height: 20px;">
-          <div class="progress-bar bg-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar bg-primary" role="progressbar" style="width: {{ $orden->getPorcentaje() }}%" aria-valuenow="{{ $orden->getPorcentaje() }}" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
       </div>
       <div class="steps d-flex flex-wrap flex-sm-nowrap justify-content-between padding-top-2x padding-bottom-1x">

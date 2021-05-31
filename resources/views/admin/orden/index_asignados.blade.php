@@ -8,7 +8,7 @@
 @endcomponent
 <section class="content">
   <div class="row">
-    @include('orden._tabs_ordenes')
+    @include('admin.orden._tabs_ordenes')
     <div class="col-md-12">
 
       <div class="card">
@@ -33,7 +33,7 @@
         <div class="card-header">
           <div class="card-title">Ordenes <strong>{{ $fecha }}</strong></div>
         </div>
-        @include('orden._table_ordenes_asignadas')
+        @include('admin.orden._table_ordenes_asignadas')
       </div>
     </div>
   </div>

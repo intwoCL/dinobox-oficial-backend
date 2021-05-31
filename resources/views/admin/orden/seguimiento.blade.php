@@ -9,7 +9,7 @@
   @slot('body', "Orden $orden->codigo seguimiento")
 @endcomponent
 <section class="content">
-  @include('orden._tabs_orden')
+  @include('admin.orden._tabs_orden')
   <div class="container-fluid py-2">
     <div class="row">
       <div class="col-md-3">
