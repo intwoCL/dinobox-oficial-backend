@@ -14,16 +14,19 @@
       background-color: #4e4e4e;
       border-color: #4e4e4e;
     }
+    .content-form {
+      margin-top: 25px;
+    }
 
     @media (max-width: 575.98px) {
       .content-form {
-        margin-top: 50px;
+        margin-top: 30px;
       }
     }
 
     @media (min-width: 576px) and (max-width: 767.98px) {
       .content-form {
-        margin-top: 50px;
+        margin-top: 30px;
       }
     }
 

@@ -16,7 +16,7 @@
         @slot('color', 'secondary')
         @slot('body', 'Editar dirección')
       @endcomponent
-      <form class="form-submit" action="{{ route('web.cliente.direcciones.update', $d->id) }}" method="POST">
+      <form class="form-submit" action="{{ route('web.cliente.direccion.update', $d->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="card">
@@ -26,7 +26,7 @@
               <div class="col-sm-5">
                 <input type="text" class="form-control" name="calle" id="calle/pasaje/villa" autocomplete="new-street" value="{{ $d->calle }}" placeholder="Calle" required>
               </div>
-              <div class="col-sm-5">
+              <div class="col-sm-3">
                 <input type="number" class="form-control" name="numero" id="numero" autocomplete="new-number" value="{{ $d->numero }}" placeholder="Número">
               </div>
             </div>
@@ -61,21 +61,27 @@
               </div>
             </div>
 
-            <div class="form-group row">
-              <label for="nameEvento" class="col-form-label col-sm-2">Favorito</label>
-              <div class="input-group col-sm-10">
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" name="favorito" id="customSwitch1" {{ $d->favorito ? 'checked' : '' }}>
-                  <label class="custom-control-label" for="customSwitch1"></label>
-                </div>
-              </div>
+            @if (!$d->favorito)
+            <div class="form-group row pt-2">
+              <button type="button" class="btn btn-dark d-none rounded-pill d-md-block d-sm-none" data-toggle="modal" data-target="#favoritoModal">
+                <i class="fa fa-star mr-2 text-warning"></i>
+                Añadir como favorito
+              </button>
             </div>
+            @endif
           </div>
           <div class="card-footer">
             <button type="submit" class="btn btn-dark d-none rounded-pill d-md-block d-sm-none">Guardar</button>
             <button type="submit" class="btn btn-dark btn-block rounded-pill d-sm-block d-md-none">
               <h5>GUARDAR</h5>
             </button>
+
+            @if (!$d->favorito)
+            <button type="button" class="btn btn-dark btn-block rounded-pill d-sm-block d-md-none" data-toggle="modal" data-target="#favoritoModal">
+              <h5><i class="fa fa-star mr-2 text-warning"></i> AÑADIR COMO FAVORITO</h5>
+            </button>
+            @endif
+
           </div>
         </div>
       </form>
@@ -85,6 +91,10 @@
   @include('web.cliente.partials._footer')
 
 </div>
+@if (!$d->favorito)
+@include('web.cliente.home._modal_favorito')
+@endif
+
 @endsection
 @push('javascript')
 <script>

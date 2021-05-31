@@ -28,7 +28,7 @@
         </table>
       </div>
       <div class="card-footer">
-        {{ $ordenes->links('web.cliente.partials._page') }}
+        {{ $ordenes->links('components.paginator._bootstrap4') }}
       </div>
     </div>
   </div>

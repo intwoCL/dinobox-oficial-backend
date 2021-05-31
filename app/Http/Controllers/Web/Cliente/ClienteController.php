@@ -121,10 +121,9 @@ class ClienteController extends Controller {
     $this->policy->direccionesIndex($d,$cliente);
     $comunas = Comuna::orderBy('nombre')->get();
     $regions = Region::get();
-    return view('web.cliente.home.direccion_edit',compact('cliente','comunas','regions','d'));
+    return view('web.cliente.home.direccion',compact('cliente','comunas','regions','d'));
   }
 
-  //Actualizar dirección
   public function direccionUpdate(Request $request, $id){
     try {
       $cliente = current_client();
@@ -140,6 +139,24 @@ class ClienteController extends Controller {
       return back()->with('success','Se ha actualizado exitosamente.');
     } catch (\Throwable $th) {
       return $th;
+      return back()->with('info','Error Intente nuevamente.');
+    }
+  }
+
+  public function direccionFavorito(Request $request, $id){
+    try {
+      $cliente = current_client();
+
+      // buscar una forma de actualizar mas rapido
+      foreach ($cliente->direcciones as $d) {
+        $d->favorito = false;
+        if ($d->id == $id) {
+          $d->favorito = true;
+        }
+        $d->update();
+      }
+      return back()->with('success','Se ha actualizado exitosamente.');
+    } catch (\Throwable $th) {
       return back()->with('info','Error Intente nuevamente.');
     }
   }

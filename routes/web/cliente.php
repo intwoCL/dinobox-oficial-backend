@@ -22,6 +22,7 @@ Route::middleware('auth.cliente')->prefix('web/cliente')->namespace('Web\Cliente
   //Direcciones
   Route::get('direcciones','ClienteController@direcciones')->name('direcciones');
   Route::post('direcciones','ClienteController@direccionStore')->name('direcciones');
-  Route::get('{id_direccion}/direccion','ClienteController@direccionesIndex')->name('direcciones.edit');
-  Route::put('{id_direccion}/direccion','ClienteController@direccionUpdate')->name('direcciones.update');
+  Route::get('{id_direccion}/direccion','ClienteController@direccionesIndex')->name('direccion.show');
+  Route::put('{id_direccion}/direccion','ClienteController@direccionUpdate')->name('direccion.update');
+  Route::put('{id_direccion}/direccion/favorito','ClienteController@direccionFavorito')->name('direccion.favorito');
 });

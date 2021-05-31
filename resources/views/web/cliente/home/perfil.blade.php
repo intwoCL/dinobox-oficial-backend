@@ -4,7 +4,7 @@
 @endpush
 <div class="container">
   @component('web.cliente.partials._nav_button_back')
-    @slot('route', 'adadsasd')
+    @slot('route', route('web.cliente.home'))
     {{-- @slot('color', 'secondary') --}}
     @slot('body', "")
   @endcomponent
@@ -15,7 +15,7 @@
     </div>
 
     <div class="col-md-8 content-form">
-      <h4 class="mb-3 text-white">Mi perfil</h4>
+      <h4 class="mb-3 text-white">Mi perfil 22</h4>
       <div class="card shadow rounded">
         <form class="form-submit" action="{{ route('web.cliente.perfil.update') }}" method="POST">
           @csrf

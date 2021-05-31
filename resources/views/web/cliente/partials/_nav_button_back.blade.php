@@ -8,10 +8,3 @@
     <i class="{{ $icon ?? '' }}"></i> {!! $body !!}
   </h4>
 </nav>
-{{--
-@component('web.cliente.partials._nav_button_back')
-@slot('route', 'adadsasd')
-@slot('color', 'secondary')
-@slot('body', "Editar Cliente <strong>Estado</strong>")
-@endcomponent --}}
-{{-- <a class="navbar-brand" href="#">Dinobox</a> --}}
