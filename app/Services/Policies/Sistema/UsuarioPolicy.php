@@ -3,7 +3,6 @@
 namespace App\Services\Policies\Sistema;
 
 use App\Services\Policies\PolicyModel;
-use App\Services\Policies\UserP;
 
 class UsuarioPolicy extends PolicyModel
 {
@@ -16,7 +15,7 @@ class UsuarioPolicy extends PolicyModel
   // use UserP;
 
   public function index() {
-    if (current_user()->admin || current_user()->gestor() || current_user()->empleado()) {
+    if (current_user()->admin_enabled() || current_user()->gestor() || current_user()->empleado()) {
       return true;
     }
     return $this->abort();

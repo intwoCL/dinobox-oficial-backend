@@ -19,4 +19,17 @@ class Vehiculo extends Model
   public function present(){
     return new VehiculoPresenter($this);
   }
+
+  public function getNombreHtml() {
+    return "<strong>$this->patente</strong> -  ";
+  }
+
+  // $table->foreignId('id_usuario')->references('id')->on('s_usuario');
+  // $table->string('patente');
+  // $table->string('modelo');
+  // $table->string('marca');
+  // $table->integer('tipo');
+  // $table->string('imagen')->nullable();
+  // $table->boolean('favorito')->default(false);
+  // $table->timestamps();
 }

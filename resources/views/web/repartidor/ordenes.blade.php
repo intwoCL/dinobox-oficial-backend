@@ -19,16 +19,9 @@
             <div class="row">
               <div class="col-12">
                 <h5 class="mb-1">
-                  <strong>{{ $orden->codigo }}</strong>
+                  N° <strong>{{ $orden->codigo }}</strong>
                 </h5>
               </div>
-              {{-- <div class="col-12">
-                <h5 class="mb-1">
-                  <span class="badge badge-pill badge-primary">
-                    <strong>{{ $or->orden->getEstado() }}</strong>
-                  </span>
-                </h5>
-              </div> --}}
             </div>
 
 

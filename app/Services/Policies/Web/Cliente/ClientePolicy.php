@@ -3,7 +3,6 @@
 namespace App\Services\Policies\Web\Cliente;
 
 use App\Services\Policies\PolicyModel;
-use App\Services\Policies\UserP;
 
 class ClientePolicy extends PolicyModel {
   public function index() {

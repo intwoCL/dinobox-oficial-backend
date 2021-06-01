@@ -34,22 +34,22 @@
               <div class="form-group row">
                 <label for="inputUsername" class="col-sm-2 col-form-label">Patente<small class="text-danger">*</small> </label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control {{ $errors->has('patente') ? 'is-invalid' : '' }}" value="" name="patente" id="patente" autocomplete="off" placeholder="XX-XX-XX" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" required>
-                  {!! $errors->first('patente', '<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                  <input type="text" class="form-control {{ $errors->has('patente') ? 'is-invalid' : '' }}" value="" name="patente" id="patente" autocomplete="off" maxlength="6" placeholder="XXXX11" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" required>
+                  {!! $errors->first('patente','<small class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputUsername" class="col-sm-2 col-form-label">Modelo<small class="text-danger">*</small> </label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control {{ $errors->has('modelo') ? 'is-invalid' : '' }}" value="" name="modelo" id="modelo" autocomplete="off" placeholder="Modelo" required>
-                  {!! $errors->first('modelo', '<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                  {!! $errors->first('modelo','<small class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputUsername" class="col-sm-2 col-form-label">Marca<small class="text-danger">*</small> </label>
                 <div class="col-sm-10">
                   <input type="text" class="form-control {{ $errors->has('marca') ? 'is-invalid' : '' }}" value="" name="marca" id="marca" autocomplete="off" placeholder="Marca" required>
-                  {!! $errors->first('marca', '<small id="inputPassword" class="form-text text-danger text-center">:message</small>') !!}
+                  {!! $errors->first('marca', '<small class="form-text text-danger text-center">:message</small>') !!}
                 </div>
               </div>
               <div class="form-group row">

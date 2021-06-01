@@ -1,6 +1,5 @@
 @extends('web.repartidor.app')
 @push('stylesheet')
-
 @endpush
 @section('content')
 @component('components.button._back')
@@ -10,44 +9,52 @@
 @endcomponent
 <section class="content">
   <div class="container">
-    <div class="row pb-2">
-      <div class="col-md-12">
-        <div class="list-group-item list-group-item-action">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{ $orden->codigo }}</h5>
-            {{-- <h5 class="mb-1">{{ $or->orden->getFecha()->getDate() }}</h5> --}}
-            <small class="text-muted">{{ $orden->getFecha()->getDate() }}</small>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              asdasd
-            </div>
-            <div class="col-md-12">
-              <p>
-                <strong>Mensaje:</strong>{{ $orden->mensaje }}
-              </p>
-            </div>
-          </div>
-          {{-- <small class="text-muted">And some muted small print.</small> --}}
-          <h6>
-            <span class="badge badge-primary">{{ $orden->getEstado() }}</span>
-          </h6>
-          {{-- <small></small> --}}
+    <div class="row">
+      <div class="col-md-12 pb-2">
+        <div class="d-flex justify-content-center">
           @foreach ($orden->getEstados() as $key => $item)
-            <span class="btn-round {{ $key <= $orden->estado ? 'bg-success' : '' }} mr-2">
-              <i class="fa fa-{{ $item[1] }}"></i>
-            </span>
+          <span class="btn-round {{ $key <= $orden->estado ? 'bg-success' : 'bg-gray' }} mr-2">
+            <i class="fa fa-{{ $item[1] }} pt-2"></i>
+          </span>
           @endforeach
         </div>
       </div>
+
       <div class="col-md-12">
-        <div class="list-group-item list-group-item-action">
+        <div class="list-group-item list-group-item-action" data-toggle="modal" data-target="#infoModal">
+          <div class="d-flex w-100 justify-content-between pb-2">
+            <h4 class="mb-1">
+              <span class="badge badge-primary">{{ $orden->getEstado() }}</span>
+            </h4>
+            {{-- <h5 class="mb-1">{{ $orden->codigo }}</h5> --}}
+            <small class="text-muted">{{ $orden->getFecha()->getDate() }}</small>
+          </div>
+          <div class="row">
+            {{-- <div class="col-md-12">
+              asdasd
+            </div> --}}
+            {{-- <div class="col-md-12">
+              <p>
+                <strong>Mensaje:</strong>{{ $orden->mensaje }}
+              </p>
+            </div> --}}
+          </div>
+          {{-- <h6>
+            <span class="badge badge-primary">{{ $orden->getEstado() }}</span>
+          </h6> --}}
+
+
+        </div>
+      </div>
+
+      @if ($orden->categoria == 10)
+      <div class="col-md-12">
+        <div class="list-group-item list-group-item-action {{ $orden->estado <= 60 ? 'border border-success' : '' }}" data-toggle="modal" data-target="#retiroModal">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">
-              <i class="fas fa-house-user mr-2"></i>
-              Retiro
+              <i class="fas fa-house-user mr-2 {{ $orden->estado < 60 ? 'text-success' : '' }}"></i>
+              <strong>Retiro</strong>
             </h5>
-            {{-- <small class="text-muted">{{ $orden->getFecha()->getDate() }}</small> --}}
           </div>
           <div class="row">
             <div class="col-md-12">
@@ -57,23 +64,18 @@
                 <strong>Comuna:</strong> {{ $orden->remitenteComuna->nombre }}
               </p>
             </div>
-            {{-- <div class="col-md-12">
-              asdasd
-            </div> --}}
           </div>
-          {{-- <small class="text-muted">And some muted small print.</small> --}}
-          {{-- <small class="text-muted">{{ $orden->getEstado() }}</small> --}}
         </div>
       </div>
+      @endif
+
       <div class="col-md-12">
-        <div class="list-group-item list-group-item-action">
+        <div class="list-group-item list-group-item-action {{ $orden->estado >= 60 ? 'border border-success' : '' }}" data-toggle="modal" data-target="#despachoModal">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">
-              <i class="fas fa-truck mr-2"></i>
-              Despacho
+              <i class="fas fa-truck mr-2 {{ $orden->estado >= 60 ? 'text-success' : '' }}"></i>
+              <strong>Despacho</strong>
             </h5>
-            {{-- <h5 class="mb-1">{{ $or->orden->getFecha()->getDate() }}</h5> --}}
-            {{-- <small class="text-muted">{{ $orden->getFecha()->getDate() }}</small> --}}
           </div>
           <div class="row">
             <div class="col-md-12">
@@ -83,19 +85,17 @@
                 <strong>Comuna:</strong> {{ $orden->destinatarioComuna->nombre }}
               </p>
             </div>
-            {{-- <div class="col-md-12">
-              asdasd
-            </div> --}}
+            <div class="col-md-12">
+              <strong>Mensaje: </strong>
+              <p>
+                {{ $orden->mensaje }}
+              </p>
+            </div>
           </div>
-          {{-- <small class="text-muted">{{ $orden->getEstado() }}</small> --}}
         </div>
       </div>
+
       <div class="col-md-12">
-        {{-- <div class="list-group-item list-group-item-action">
-          <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#notificarModal">
-            Cambiar estado
-          </button>
-        </div> --}}
         <div class="card text-center">
           <div class="card-body">
             <a class="btn btn-app bg-info">
@@ -143,14 +143,25 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="labelNotificacion">Cambiar en transito a retiro</h5>
+        <h5 class="modal-title" id="labelNotificacion">Cambiar estado de la orden</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{route('repartidor.ordenUpdate', $ordenRepartidor->orden->codigo)}}" method="POST">
+      <form action="{{route('repartidor.orden.estado', $orden->codigo)}}" method="POST">
         @method("PUT")
         @csrf
+        <input type="hidden" name="or" value="{{ $ordenRepartidor->id }}">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Seleccionar estado</label>
+            <select class="form-control" id="estado_orden" name="estado_orden">
+              @foreach ($orden->getEstados() as $keyE => $estado)
+                <option {{ $keyE <= $orden->estado ? 'disabled' : '' }} value="{{ $keyE }}">{{ $estado[0] }}</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           <button type="submit" class="btn btn-primary">Guardar</button>
@@ -179,6 +190,81 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelNotificacion">RETIRO</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{route('repartidor.ordenUpdate', $orden->codigo)}}" method="POST">
+        @method("PUT")
+        @csrf
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="retiroModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelNotificacion">
+          <i class="fas fa-house-user mr-2"></i>
+          OPCIONES DE RETIRO
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="POST">
+        @method("PUT")
+        @csrf
+        <div class="modal-footer justify-content-between">
+          <button class="btn btn-app bg-primary" data-toggle="modal" data-target="#llamarModal">
+            <i class="fas fa-phone-square"></i> <strong>Marcar Remitente</strong>
+          </button>
+          <button class="btn btn-app bg-success" data-toggle="modal" data-target="#llamarModal">
+            <i class="fas fa-phone-square"></i> <strong>Recepcionar</strong>
+          </button>
+
+          {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> --}}
+          {{-- <button type="submit" class="btn btn-primary">Guardar</button> --}}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="despachoModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelNotificacion">Cambiar en transito a retiro</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{route('repartidor.ordenUpdate', $ordenRepartidor->orden->codigo)}}" method="POST">
+        @method("PUT")
+        @csrf
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 
 @endsection
 @push('extra')

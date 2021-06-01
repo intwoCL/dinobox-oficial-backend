@@ -16,6 +16,7 @@ class CreateTableSUsuario extends Migration
         Schema::create('s_usuario', function (Blueprint $table) {
             $table->id();
             // $table->string('run');
+            $table->string('run')->unique();
             $table->string('username')->unique();
             $table->string('password');
             $table->string('nombre');
@@ -33,8 +34,12 @@ class CreateTableSUsuario extends Migration
             $table->boolean('admin')->default(false);
             $table->boolean('bloqueado')->default(false);
             $table->boolean('activo')->default(true);
+
+            // log de vehiculo
+            $table->integer('en_ruta_id_vechiculo')->nullable();
+            $table->boolean('en_ruta_conectado')->default(false);
+
             $table->timestamps();
-            $table->string('run')->unique();
         });
     }
 

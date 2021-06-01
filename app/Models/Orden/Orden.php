@@ -71,7 +71,7 @@ class Orden extends Model
   }
 
   public function getEstado() {
-    return self::ESTADO_GENERAL[$this->estado][0];
+    return self::ESTADO_GENERAL[$this->estado][0] ?? 'n/a';
   }
 
   public function getServicio() {
@@ -143,9 +143,5 @@ class Orden extends Model
     $porcentaje = ($count * 100)/$total;
 
     return round($porcentaje);
-  }
-
-  public function getEstadosHtml() {
-
   }
 }

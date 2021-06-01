@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Casts\Json;
+use App\Models\Cuenta\ControlAcceso;
 use App\Models\Orden\OrdenRepartidor;
 use App\Presenters\Sistema\UsuarioPresenter;
 use App\Services\ConvertDatetime;
@@ -46,8 +47,16 @@ class Usuario extends Authenticatable
     return $this->hasMany(OrdenRepartidor::class,'id_repartidor');
   }
 
+  public function ControlesAcceso(){
+    return $this->hasMany(ControlAcceso::class,'id_usuario');
+  }
+
   public function vehiculos(){
     return $this->hasMany(Vehiculo::class,'id_usuario');
+  }
+
+  public function enRuta() {
+    return $this->repartidor() && $this->ruta;
   }
 
   // public function sucursalesUsuario(){
