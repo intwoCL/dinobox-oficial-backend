@@ -14,7 +14,7 @@
         $orden = $or->orden;
       @endphp
       <div class="col-md-12">
-        <a href="{{ route('repartidor.ordenShow',$orden->codigo) }}" class="list-group-item list-group-item-action">
+        <a href="{{ route('web.repartidor.ordenShow',$orden->codigo) }}" class="list-group-item list-group-item-action">
           <div class="d-flex w-100 justify-content-between">
             <div class="row">
               <div class="col-12">

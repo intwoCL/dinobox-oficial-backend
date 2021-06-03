@@ -1,9 +1,15 @@
 @extends('web.repartidor.app')
 @push('stylesheet')
+<style>
+  .border {
+    /* border: 28px solid #dee2e6!important; */
+    outline: 1px solid #28a745;
+  }
+</style>
 @endpush
 @section('content')
 @component('components.button._back')
-  @slot('route', route('repartidor.ordenes'))
+  @slot('route', route('web.repartidor.ordenes'))
   @slot('color', 'secondary')
   @slot('body', "Orden <strong>$orden->codigo</strong>")
 @endcomponent
@@ -13,7 +19,7 @@
       <div class="col-md-12 pb-2">
         <div class="d-flex justify-content-center">
           @foreach ($orden->getEstados() as $key => $item)
-          <span class="btn-round {{ $key <= $orden->estado ? 'bg-success' : 'bg-gray' }} mr-2">
+          <span class="btn-round {{ $key <= $orden->estado ? 'bg-success' : 'bg-gray' }} mr-2" data-enabled="{{ $key <= $orden->estado ? 'true' : 'false' }}" data-selected="{{ $key == $orden->estado ? 'true' : 'false' }}" data-estado="{{ $item[0] }}" data-toggle="modal" data-target="#trackModal">
             <i class="fa fa-{{ $item[1] }} pt-2"></i>
           </span>
           @endforeach
@@ -98,22 +104,31 @@
       <div class="col-md-12">
         <div class="card text-center">
           <div class="card-body">
-            <a class="btn btn-app bg-info">
+            {{-- <a class="btn btn-app bg-primary">
               <i class="fas fa-map-marked"></i> <strong>Mapa</strong>
-            </a>
-            <button class="btn btn-app bg-warning" data-toggle="modal" data-target="#notificarModal">
+            </a> --}}
+            {{-- <button class="btn btn-app bg-dark" data-toggle="modal" data-target="#notificarModal">
               <i class="fas fa-bell"></i> <strong>Notificar</strong>
-            </button>
-            <a class="btn btn-app bg-success">
+            </button> --}}
+
+            {{-- <a class="btn btn-app bg-success">
               <i class="fas fa-comment-alt"></i> <strong>Comentario</strong>
-            </a>
-            <button class="btn btn-app bg-primary" data-toggle="modal" data-target="#llamarModal">
+            </a> --}}
+
+            <button class="btn btn-app bg-success" data-toggle="modal" data-target="#llamarModal">
+              <i class="fas fa-list-alt"></i> <strong>Historial</strong>
+            </button>
+
+            {{-- <button class="btn btn-app bg-primary" data-toggle="modal" data-target="#llamarModal">
               <i class="fas fa-phone-square-alt"></i> <strong>Marcar remitente</strong>
             </button>
             <button class="btn btn-app bg-primary" data-toggle="modal" data-target="#llamarModal">
               <i class="fas fa-phone-square"></i> <strong>Marcar destinatario</strong>
-            </button>
+            </button> --}}
 
+            <button class="btn btn-app bg-success" {{ $orden->estado == 80 ? '' : 'disabled' }} data-toggle="modal" data-target="#llamarModal">
+              <i class="fas fa-calendar-check"></i> <strong>Finalizar orden</strong>
+            </button>
 
             {{-- <a class="btn btn-app bg-secondary">
               <span class="badge bg-success">300</span>
@@ -138,8 +153,8 @@
   </div>
 </section>
 
-<!-- Modal -->
-<div class="modal fade" id="notificarModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+{{-- TRACK inicio --}}
+<div class="modal fade" id="trackModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -148,7 +163,120 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{route('repartidor.orden.estado', $orden->codigo)}}" method="POST">
+      <div class="modal-body">
+        <strong><div id="mensaje"></div></strong>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        {{-- <button type="submit" class="btn btn-primary">Guardar</button> --}}
+      </div>
+    </div>
+  </div>
+</div>
+
+{{-- RETIRO --}}
+<div class="modal fade" id="retiroModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelNotificacion">
+          <i class="fas fa-house-user mr-2"></i>
+          OPCIONES DE RETIRO
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              <strong>Dirección:</strong> {{ $orden->getRemitenteDireccion() }}
+              <br>
+              <strong>Comuna:</strong> {{ $orden->remitenteComuna->nombre }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button class="btn btn-app bg-dark" data-toggle="modal" data-target="#notificarRemitenteModal">
+          <i class="fas fa-bell"></i> <strong>Notificar</strong>
+        </button>
+
+        <button class="btn btn-app bg-primary" data-toggle="modal" data-target="#llamarModal">
+          <i class="fas fa-phone-square-alt"></i> <strong>Marcar Remitente</strong>
+        </button>
+        <a class="btn btn-app bg-success" href="{{ $orden->getGoogleMapsRemitente() }}">
+          <i class="fas fa-map-marked"></i> <strong>Mapa</strong>
+        </a>
+        <a href="{{ route('web.repartidor.formulario.retiro',$orden->codigo) }}" class="btn btn-app bg-success">
+          <i class="fas fa-clipboard-check"></i> <strong>Formulario de Retiro</strong>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{-- DESPACHO --}}
+<div class="modal" id="despachoModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelNotificacion">Cambiar en transito a retiro</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer justify-content-between">
+
+        <button class="btn btn-app bg-primary" data-toggle="modal" data-target="#llamarModal">
+          <i class="fas fa-phone-square-alt"></i> <strong>Marcar Destinatario</strong>
+        </button>
+        <a class="btn btn-app bg-success" href="{{ $orden->getGoogleMapsRemitente() }}">
+          <i class="fas fa-map-marked"></i> <strong>Mapa</strong>
+        </a>
+        <a href="{{ route('web.repartidor.formulario.despacho',$orden->codigo) }}" class="btn btn-app bg-success">
+          <i class="fas fa-clipboard-check"></i> <strong>Formulario de Despacho</strong>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{-- [ NOTIFICAR REMITENTE ] --}}
+<div class="modal" id="notificarRemitenteModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelNotificacion">Cambiar estado de la orden</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="notificarModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelNotificacion">Cambiar estado de la orden</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{route('web.repartidor.orden.estado', $orden->codigo)}}" method="POST">
         @method("PUT")
         @csrf
         <input type="hidden" name="or" value="{{ $ordenRepartidor->id }}">
@@ -157,7 +285,10 @@
             <label for="exampleFormControlSelect1">Seleccionar estado</label>
             <select class="form-control" id="estado_orden" name="estado_orden">
               @foreach ($orden->getEstados() as $keyE => $estado)
-                <option {{ $keyE <= $orden->estado ? 'disabled' : '' }} value="{{ $keyE }}">{{ $estado[0] }}</option>
+                @php
+                  $disabled = $keyE <= $orden->estado ? 'disabled' : '';
+                @endphp
+                <option {{ $disabled }} value="{{ $keyE }}">{{ $estado[0] }}</option>
               @endforeach
             </select>
           </div>
@@ -171,7 +302,8 @@
   </div>
 </div>
 
-<div class="modal fade" id="llamarModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+
+<div class="modal" id="llamarModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -200,70 +332,17 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{route('repartidor.ordenUpdate', $orden->codigo)}}" method="POST">
+      {{-- <form action="{{route('repartidor.ordenUpdate', $orden->codigo)}}" method="POST"> --}}
         @method("PUT")
         @csrf
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           <button type="submit" class="btn btn-primary">Guardar</button>
         </div>
-      </form>
+      {{-- </form> --}}
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="retiroModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="labelNotificacion">
-          <i class="fas fa-house-user mr-2"></i>
-          OPCIONES DE RETIRO
-        </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="" method="POST">
-        @method("PUT")
-        @csrf
-        <div class="modal-footer justify-content-between">
-          <button class="btn btn-app bg-primary" data-toggle="modal" data-target="#llamarModal">
-            <i class="fas fa-phone-square"></i> <strong>Marcar Remitente</strong>
-          </button>
-          <button class="btn btn-app bg-success" data-toggle="modal" data-target="#llamarModal">
-            <i class="fas fa-phone-square"></i> <strong>Recepcionar</strong>
-          </button>
-
-          {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button> --}}
-          {{-- <button type="submit" class="btn btn-primary">Guardar</button> --}}
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="despachoModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="labelNotificacion">Cambiar en transito a retiro</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="{{route('repartidor.ordenUpdate', $ordenRepartidor->orden->codigo)}}" method="POST">
-        @method("PUT")
-        @csrf
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary">Guardar</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
 
 
 @endsection
@@ -271,4 +350,53 @@
 {{-- @include('layouts.repartidor._bar_menu_orden') --}}
 @endpush
 @push('javascript')
+
+<script>
+  $('#trackModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var estado = button.data('estado');
+    var selected = button.data('selected');
+    var enabled = button.data('enabled');
+
+
+    var modal = $(this);
+    modal.find('#mensaje').text('New message to ' + estado);
+    console.log("UODATE");
+    // modal.find('.modal-title').text('New message to ' + recipient)
+    // modal.find('.modal-body input').val(recipient)
+  });
+
+  $('#notificarRemitenteModal').on('show.bs.modal', function (event) {
+    $('#retiroModal').modal('hide');
+    var button = $(event.relatedTarget);
+    // var estado = button.data('estado');
+    // var selected = button.data('selected');
+    // var enabled = button.data('enabled');
+
+    // alert('NOTIFICAR');
+    // var modal = $(this);
+    // modal.find('#mensaje').text('New message to ' + estado);
+    // console.log("UODATE");
+    // modal.find('.modal-title').text('New message to ' + recipient)
+    // modal.find('.modal-body input').val(recipient)
+
+  });
+
+  $('#notificarRemitenteModal').on('hidden.bs.modal', function (event) {
+    $('#retiroModal').modal('show');
+    var button = $(event.relatedTarget);
+    // var estado = button.data('estado');
+    // var selected = button.data('selected');
+    // var enabled = button.data('enabled');
+
+    // alert('OCULTO');
+    // var modal = $(this);
+    // modal.find('#mensaje').text('New message to ' + estado);
+    // console.log("UODATE");
+    // modal.find('.modal-title').text('New message to ' + recipient)
+    // modal.find('.modal-body input').val(recipient)
+  });
+
+</script>
+
 @endpush

@@ -21,7 +21,7 @@
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         {{-- <span class="dropdown-item dropdown-header">15 Notifications</span> --}}
         <div class="dropdown-divider"></div>
-        <a href="{{ route('repartidor.me') }}" class="dropdown-item">
+        <a href="{{ route('web.repartidor.me') }}" class="dropdown-item">
           <i class="fas fa-user mr-2"></i> Mi perfil
           {{-- <span class="float-right text-muted text-sm">3 mins</span> --}}
         </a>

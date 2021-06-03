@@ -1,7 +1,7 @@
 <div class="col-md-12 d-none d-md-block d-sm-none">
   <ul class="nav nav-tabs">
     <li class="nav-item">
-      <a class="nav-link  {{ activeTab("repartidor/profile") }}" href="{{ route('repartidor.profile') }}">
+      <a class="nav-link  {{ activeTab("repartidor/profile") }}" href="{{ route('web.repartidor.profile') }}">
         <i class="fas fa-user mr-2"></i>
         {{ $u->nombre }}
         {{-- Actualizar --}}

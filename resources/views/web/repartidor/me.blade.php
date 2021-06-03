@@ -30,7 +30,7 @@
                 <b>Friends</b> <a class="float-right">13,287</a>
               </li>
             </ul> --}}
-            <a href="{{ route('repartidor.profile') }}" class="btn btn-primary btn-block btn-lg"><b>EDITAR</b></a>
+            <a href="{{ route('web.repartidor.profile') }}" class="btn btn-primary btn-block btn-lg"><b>EDITAR</b></a>
           </div>
         </div>
         {{-- <div class="card card-primary">

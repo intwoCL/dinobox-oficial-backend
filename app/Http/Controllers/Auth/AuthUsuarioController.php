@@ -30,7 +30,7 @@ class AuthUsuarioController extends Controller
         Auth::guard('usuario')->loginUsingId($u->id);
 
         if ($u->repartidor()) {
-          return redirect()->route('repartidor.home');
+          return redirect()->route('web.repartidor.home');
         }
 
         return redirect()->route('home');

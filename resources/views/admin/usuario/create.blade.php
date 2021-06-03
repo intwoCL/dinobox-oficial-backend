@@ -71,8 +71,8 @@
                   {!! $errors->first('birthdate','<small id="inputPassword" class="form-text text-danger">:message</small>') !!}
                 </div>
               </div>
-              {{-- <div class="form-group">
-                <label class="col-form-label" for="hf-rut">Imagen <small>(Opcional)</small></label>
+              <div class="form-group">
+                <label class="col-form-label">Imagen <small>(Opcional)</small></label>
                 <div class="input-group">
                   <input type="file" name="image" accept="image/*" onchange="preview(this)" />
                   <br>
@@ -80,7 +80,7 @@
               </div>
               <div class="form-group center-text">
                 <div id="preview"></div>
-              </div>--}}
+              </div>
 
               <hr>
               <div class="form-group row">

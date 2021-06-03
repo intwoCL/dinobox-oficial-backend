@@ -26,7 +26,7 @@ class CreateTableOrOrden extends Migration
             $table->integer('id_direccion')->nullable();
 
             // Datos Remitente
-            $table->string('remitente_rut')->nullable();
+            $table->string('remitente_run')->nullable();
             $table->string('remitente_nombre');
             $table->string('remitente_direccion')->nullable();
             $table->string('remitente_numero')->nullable();
@@ -37,6 +37,7 @@ class CreateTableOrOrden extends Migration
             $table->foreignId('remitente_id_comuna')->references('id')->on('s_comuna');
 
             // Datos Destinatario
+            // $table->string('destinatario_run')->nullable();
             $table->string('destinatario_nombre');
             $table->string('destinatario_direccion')->nullable();
             $table->string('destinatario_numero')->nullable();
@@ -48,13 +49,13 @@ class CreateTableOrOrden extends Migration
 
             // Recepcion de remitente
             $table->boolean('receptor_remitente')->default(false);
-            $table->string('recepcion_remitente_rut')->nullable();
+            $table->string('recepcion_remitente_run')->nullable();
             $table->string('recepcion_remitente_nombre')->nullable();
             $table->json('recepcion_remitente_imagen')->nullable();
 
             //Datos recepcion destinatario
             $table->boolean('receptor_destinatario')->default(false);
-            $table->string('recepcion_destinatario_rut')->nullable();
+            $table->string('recepcion_destinatario_run')->nullable();
             $table->string('recepcion_destinatario_nombre')->nullable();
             $table->json('recepcion_destinatario_imagen')->nullable();
 

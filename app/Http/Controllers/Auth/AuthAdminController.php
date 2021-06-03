@@ -37,7 +37,7 @@ class AuthAdminController extends Controller
         Auth::guard('usuario')->loginUsingId($id);
 
         if (current_user()->repartidor()) {
-          return redirect()->route('repartidor.home');
+          return redirect()->route('web.repartidor.home');
         }
         return redirect()->route('home');
       } else {

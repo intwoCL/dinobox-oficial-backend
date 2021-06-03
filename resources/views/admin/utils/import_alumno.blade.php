@@ -21,7 +21,7 @@
             @csrf
             <div class="card-body">
               <div class="form-group row">
-                <label class="col-sm-4 col-form-label" for="hf-rut">SUBIR ARCHIVO</label>
+                <label class="col-sm-4 col-form-label">SUBIR ARCHIVO</label>
                 <div class="col-sm-8">
                   <input type="file" name="document" accept="" required/>
                 </div>

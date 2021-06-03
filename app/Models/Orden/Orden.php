@@ -9,6 +9,7 @@ use App\Services\ConvertDatetime;
 use App\Services\Currency;
 use App\Models\Sistema\Comuna;
 use App\Models\Sistema\Usuario;
+use App\Services\GoogleMaps;
 
 class Orden extends Model
 {
@@ -68,6 +69,17 @@ class Orden extends Model
 
   public function getFechaEmision() {
     return new ConvertDatetime($this->created_at);
+  }
+
+  public function getGoogleMaps($direccion, $location = []) {
+    return new GoogleMaps($direccion, $location);
+  }
+
+  public function getGoogleMapsRemitente() {
+    $d = $this->remitente_direccion." ".$this->remitente_numero . ', ';
+    $c = $this->remitenteComuna->nombre.", ".$this->remitenteComuna->region->nombre;
+    $direccion = "$d, $c";
+    return $this->getGoogleMaps($direccion)->search();
   }
 
   public function getEstado() {

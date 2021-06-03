@@ -20,31 +20,17 @@ class RepartidorController extends Controller
     return view('web.repartidor.index',compact('icon'));
   }
 
-  public function ordenes() {
-    $today = date('Y-m-d');
-    // $ordenes = OrdenRepartidor::where('id_repartidor',current_user()->id)->with(['orden'])->get()->where('orden.fecha_entrega',$today);
 
-    $ordenes = OrdenRepartidor::where('id_repartidor',current_user()->id)->with(['orden'])->get()->where('orden.fecha_entrega',$today);
-    return view('web.repartidor.ordenes',compact('ordenes'));
-  }
+  // public function ordenUpdate($codigo) {
+  //   $today = date('Y-m-d');
+  //   $ordenRepartidor = OrdenRepartidor::where('id_repartidor',current_user()->id)->with(['orden'])->get()->where('orden.fecha_entrega',$today)->where('orden.codigo', $codigo)->first();
 
-  public function orden($codigo) {
-    $today = date('Y-m-d');
-    $ordenRepartidor = OrdenRepartidor::where('id_repartidor',current_user()->id)->with(['orden'])->get()->where('orden.fecha_entrega',$today)->where('orden.codigo', $codigo)->first();
-    $orden = $ordenRepartidor->orden;
-    return view('web.repartidor.orden',compact('ordenRepartidor', 'orden'));
-  }
+  //   $ordenRepartidor->orden->estado = 3 ;
+  //   $ordenRepartidor->orden->update();
 
-  public function ordenUpdate($codigo) {
-    $today = date('Y-m-d');
-    $ordenRepartidor = OrdenRepartidor::where('id_repartidor',current_user()->id)->with(['orden'])->get()->where('orden.fecha_entrega',$today)->where('orden.codigo', $codigo)->first();
+  //   return back()->with('success', 'Se ha cambiado');
 
-    $ordenRepartidor->orden->estado = 3 ;
-    $ordenRepartidor->orden->update();
-
-    return back()->with('success', 'Se ha cambiado');
-
-  }
+  // }
 
   public function me() {
     $u = current_user();

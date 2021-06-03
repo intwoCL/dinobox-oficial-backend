@@ -17,7 +17,7 @@
           <div class="card-header">
             <h3 class="card-title">Actualizar Usuario</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('repartidor.profile.update') }}"  enctype="multipart/form-data">
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('web.repartidor.profile.update') }}"  enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card-body">
@@ -73,7 +73,7 @@
           <div class="card-header">
             <h3 class="card-title">Actualizar contraseña</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{ route('repartidor.profile.password') }}" >
+          <form class="form-horizontal form-submit" method="POST" action="{{ route('web.repartidor.profile.password') }}" >
             @csrf
             @method('PUT')
             <div class="card-body">
@@ -108,7 +108,7 @@
           <div class="card-header">
             <h3 class="card-title">Cambiar Tema</h3>
           </div>
-          <form class="form-horizontal form-submit" method="POST" action="{{route('repartidor.profile.theme') }}"  enctype="multipart/form-data">
+          <form class="form-horizontal form-submit" method="POST" action="{{route('web.repartidor.profile.theme') }}"  enctype="multipart/form-data">
             @csrf
             <div class="card-body">
               <div class="selector form-group" hidden id='theme-system-selector'>

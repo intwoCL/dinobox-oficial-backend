@@ -14,11 +14,12 @@ class CreateTableOrHistorial extends Migration
     {
         Schema::create('or_historial', function (Blueprint $table) {
             $table->id();
+            // $table->dateTime('fecha');
             $table->foreignId('id_orden')->references('id')->on('or_orden');
             $table->integer('estado_orden')->nullable();
             $table->integer('id_usuario')->nullable();
             $table->integer('id_repartidor')->nullable();
-            $table->string('comantario')->nullable();
+            $table->string('comentario')->nullable();
             // $table->integer('posicion_retiro')->nullable();
             // $table->integer('posicion_despacho')->nullable();
             $table->boolean('activo')->default(true);

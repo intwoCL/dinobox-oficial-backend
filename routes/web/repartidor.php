@@ -2,23 +2,30 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth.usuario')->group( function () {
-  Route::get('repartidor/home','Web\Repartidor\RepartidorController@index')->name('repartidor.home');
-  Route::get('repartidor/ordenes','Web\Repartidor\RepartidorController@ordenes')->name('repartidor.ordenes');
-  Route::get('repartidor/orden/{codigo}','Web\Repartidor\RepartidorController@orden')->name('repartidor.ordenShow');
-  Route::put('repartidor/orden/{codigo}','Web\Repartidor\RepartidorController@ordenUpdate')->name('repartidor.ordenUpdate');
+Route::middleware('auth.usuario')->prefix('repartidor')->namespace('Web\Repartidor')->name('web.repartidor.')->group( function () {
+  Route::get('home','RepartidorController@index')->name('home');
 
-  // Modal
-  Route::put('repartidor/orden/{codigo}/estado','Web\Repartidor\OrdenController@updateEstado')->name('repartidor.orden.estado');
+  // [ ORDENES ]
+  Route::get('ordenes','OrdenController@ordenes')->name('ordenes');
+  Route::get('orden/{codigo}','OrdenController@orden')->name('ordenShow');
+  // Route::put('orden/{codigo}','RepartidorController@ordenUpdate')->name('ordenUpdate');
 
+  Route::get('orden/{codigo}/retiro','OrdenController@fomularioRetiro')->name('formulario.retiro');
+  Route::post('orden/{codigo}/retiro','OrdenController@fomularioRetiroStore')->name('formulario.retiro');
 
-
-  Route::get('repartidor/me','Web\Repartidor\RepartidorController@me')->name('repartidor.me');
-  Route::get('repartidor/profile','Web\Repartidor\RepartidorController@profile')->name('repartidor.profile');
-  Route::put('repartidor/profile','Web\Repartidor\RepartidorController@profileUpdate')->name('repartidor.profile.update');
-  Route::put('repartidor/profile/password','Web\Repartidor\RepartidorController@profilePasswordUpdate')->name('repartidor.profile.password');
-  Route::put('repartidor/profile/theme','Web\Repartidor\RepartidorController@profileThemeUpdate')->name('repartidor.profile.theme');
+  Route::get('orden/{codigo}/despacho','OrdenController@fomularioDespacho')->name('formulario.despacho');
+  Route::post('orden/{codigo}/despacho','OrdenController@fomularioDespachoStore')->name('formulario.despacho');
 
 
+  // { Modal }
+  Route::put('orden/{codigo}/estado','OrdenController@updateEstado')->name('orden.estado');
+
+
+  // [ PERFIL ]
+  Route::get('me','RepartidorController@me')->name('me');
+  Route::get('profile','RepartidorController@profile')->name('profile');
+  Route::put('profile','RepartidorController@profileUpdate')->name('profile.update');
+  Route::put('profile/password','RepartidorController@profilePasswordUpdate')->name('profile.password');
+  Route::put('profile/theme','RepartidorController@profileThemeUpdate')->name('profile.theme');
 
 });
