@@ -236,7 +236,7 @@
             </div>
 
             <div class="form-group row">
-              <button type="button" {{ $orden->estado == 30 ? '' : 'disabled' }} class="btn btn-success btn-lg btn-block py-3" data-toggle="modal" data-target="#infoModal">
+              <button type="button" {{ $orden->estado == 70 ? '' : 'disabled' }} class="btn btn-success btn-lg btn-block py-3" data-toggle="modal" data-target="#infoModal">
                 <strong>GUARDAR</strong>
               </button>
             </div>

@@ -19,6 +19,7 @@ class Orden extends Model
 
   protected $casts = [
     'config' => Json::class,
+    'files' => Json::class,
   ];
 
   const ESTADO_GENERAL = [

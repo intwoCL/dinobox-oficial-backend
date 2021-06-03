@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Sistema\Cliente;
 use App\Models\Sistema\SucursalUsuario;
 use App\Models\Sistema\Usuario;
+use App\Models\Sistema\Vehiculo;
 use Illuminate\Database\Seeder;
 
 use Faker\Factory as Fake;
@@ -91,6 +92,17 @@ class UserSeeder extends Seeder
         $u->id_grupo = 1;
         $u->save();
 
+
+        $v = new Vehiculo();
+        $v->id_usuario = $u->id;
+        $v->patente = "AAA".$i;
+        $d = rand (1,20);
+        $a = $this->getMarcaAuto()[$d];
+        $v->modelo = $a[0];
+        $v->marca = $a[0];
+        $v->tipo = $a[1];
+        $v->save();
+
         $su = new SucursalUsuario();
         $su->id_sucursal = 1;
         $su->id_usuario = $u->id;
@@ -105,5 +117,30 @@ class UserSeeder extends Seeder
       $c->apellido = $faker->lastName;
       $c->correo = "cliente@intwo.cl";
       $c->save();
+    }
+
+    private function getMarcaAuto() {
+      return array(
+        1 => ['BMW',2],
+        2 => ['Mercedes-Benz',2],
+        3 => ['Audi',2],
+        4 => ['Lexus',2],
+        5 => ['Renault',2],
+        6 => ['Ford',2],
+        7 => ['Opel',2],
+        8 => ['Seat',2],
+        9 => ['Honda Cargo 150',1],
+        10 => ['Yamaha YB 125 Express',1],
+        11 => ['Boxer 150 de Bajaj',1],
+        12 => ['Bat de Carabela',1],
+        13 => ['Suzuki Huracán 2021',1],
+        14 => ['Huracán 2021',1],
+        15 => ['Volkswagen Transporter',3],
+        16 => ['Citroën Berlingo',3],
+        17 => ['Peugeot Expert',3],
+        18 => ['Volkswagen Nuevo Crafter',3],
+        19 => ['Renault Trafic Furgón',3],
+        20 => ['Volkswagen Nuevo Crafter',3],
+      );
     }
 }

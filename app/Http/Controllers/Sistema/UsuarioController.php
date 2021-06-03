@@ -15,7 +15,6 @@ use App\Models\Sistema\Vehiculo;
 use App\Models\Sistema\Company;
 use App\Models\Sistema\Grupo;
 use App\Services\ImportImage;
-use App\Services\SaveImage;
 use App\Services\Policies\Sistema\UsuarioPolicy;
 
 class UsuarioController extends Controller

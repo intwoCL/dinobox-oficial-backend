@@ -27,10 +27,10 @@ class SaveImage {
 
       $image->save($ruta . $filename,30,'jpg');
       $filename = $folder . $name. '.' . $ext;
-      
+
       return $filename;
     } catch (\Throwable $th) {
-      return $th;
+      return 400;
     }
   }
 

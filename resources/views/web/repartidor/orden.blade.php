@@ -55,7 +55,7 @@
 
       @if ($orden->categoria == 10)
       <div class="col-md-12">
-        <div class="list-group-item list-group-item-action {{ $orden->estado <= 60 ? 'border border-success' : '' }}" data-toggle="modal" data-target="#retiroModal">
+        <div class="list-group-item list-group-item-action {{ $orden->estado < 40 ? 'border border-success' : '' }}" data-toggle="modal" data-target="#retiroModal">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">
               <i class="fas fa-house-user mr-2 {{ $orden->estado < 60 ? 'text-success' : '' }}"></i>
@@ -69,6 +69,9 @@
                 <br>
                 <strong>Comuna:</strong> {{ $orden->remitenteComuna->nombre }}
               </p>
+              <p>
+                <strong>Nombre remitente:</strong> {{ $orden->remitente_nombre }}
+              </p>
             </div>
           </div>
         </div>
@@ -76,7 +79,7 @@
       @endif
 
       <div class="col-md-12">
-        <div class="list-group-item list-group-item-action {{ $orden->estado >= 60 ? 'border border-success' : '' }}" data-toggle="modal" data-target="#despachoModal">
+        <div class="list-group-item list-group-item-action {{ $orden->estado >= 40 ? 'border border-success' : '' }}" data-toggle="modal" data-target="#despachoModal">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">
               <i class="fas fa-truck mr-2 {{ $orden->estado >= 60 ? 'text-success' : '' }}"></i>
@@ -92,6 +95,9 @@
               </p>
             </div>
             <div class="col-md-12">
+              <p>
+                <strong>Nombre destinatario:</strong> {{ $orden->destinatario_nombre }}
+              </p>
               <strong>Mensaje: </strong>
               <p>
                 {{ $orden->mensaje }}
@@ -198,8 +204,9 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer justify-content-between">
-        <button class="btn btn-app bg-dark" data-toggle="modal" data-target="#notificarRemitenteModal">
+      <div class="modal-footer justify-content-center">
+
+        <button class="btn btn-app bg-warning" {{ $orden->estado == 20 ? '' : 'disabled' }} data-toggle="modal" data-target="#notificarRemitenteModal">
           <i class="fas fa-bell"></i> <strong>Notificar</strong>
         </button>
 
@@ -218,19 +225,37 @@
 </div>
 
 {{-- DESPACHO --}}
-<div class="modal" id="despachoModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+<div class="modal fade" id="despachoModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="labelNotificacion">Cambiar en transito a retiro</h5>
+        <h5 class="modal-title" id="labelNotificacion">
+          <i class="fas fa-truck mr-2"></i>
+          OPCIONES DE DESPACHO
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-footer justify-content-between">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p>
+              <strong>Dirección:</strong> {{ $orden->getRemitenteDireccion() }}
+              <br>
+              <strong>Comuna:</strong> {{ $orden->remitenteComuna->nombre }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+
+        <button class="btn btn-app bg-warning" {{ ($orden->estado == 40 || $orden->estado == 60) ? '' : 'disabled' }} data-toggle="modal" data-target="#notificarDestinatarioModal">
+          <i class="fas fa-bell"></i> <strong>Notificar</strong>
+        </button>
 
         <button class="btn btn-app bg-primary" data-toggle="modal" data-target="#llamarModal">
-          <i class="fas fa-phone-square-alt"></i> <strong>Marcar Destinatario</strong>
+          <i class="fas fa-phone-square-alt"></i> <strong>Marcar Remitente</strong>
         </button>
         <a class="btn btn-app bg-success" href="{{ $orden->getGoogleMapsRemitente() }}">
           <i class="fas fa-map-marked"></i> <strong>Mapa</strong>
@@ -248,25 +273,51 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="labelNotificacion">Cambiar estado de la orden</h5>
+        <h5 class="modal-title" id="labelNotificacion">Notificar en camino a <strong>retiro</strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <div class="form-group">
-
+      <form class="form-submit" action="{{ route('web.repartidor.orden.estado',$orden->codigo) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <input type="hidden" name="or" value="{{ $ordenRepartidor->id }}">
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary btn-lg btn-block">
+            <strong>ENVIAR</strong>
+          </button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
-      </div>
+      </form>
     </div>
   </div>
 </div>
 
-<!-- Modal -->
+{{-- [ NOTIFICAR DESTINATARIO ] --}}
+<div class="modal" id="notificarDestinatarioModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelNotificacion">Notificar en camino a <strong>despacho</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form-submit" action="{{ route('web.repartidor.orden.estado',$orden->codigo) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <input type="hidden" name="or" value="{{ $ordenRepartidor->id }}">
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary btn-lg btn-block">
+            <strong>ENVIAR</strong>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
 <div class="modal" id="notificarModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -354,49 +405,26 @@
 <script>
   $('#trackModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
-    var estado = button.data('estado');
-    var selected = button.data('selected');
-    var enabled = button.data('enabled');
-
-
     var modal = $(this);
     modal.find('#mensaje').text('New message to ' + estado);
-    console.log("UODATE");
-    // modal.find('.modal-title').text('New message to ' + recipient)
-    // modal.find('.modal-body input').val(recipient)
   });
 
   $('#notificarRemitenteModal').on('show.bs.modal', function (event) {
     $('#retiroModal').modal('hide');
-    var button = $(event.relatedTarget);
-    // var estado = button.data('estado');
-    // var selected = button.data('selected');
-    // var enabled = button.data('enabled');
-
-    // alert('NOTIFICAR');
-    // var modal = $(this);
-    // modal.find('#mensaje').text('New message to ' + estado);
-    // console.log("UODATE");
-    // modal.find('.modal-title').text('New message to ' + recipient)
-    // modal.find('.modal-body input').val(recipient)
-
   });
 
   $('#notificarRemitenteModal').on('hidden.bs.modal', function (event) {
     $('#retiroModal').modal('show');
-    var button = $(event.relatedTarget);
-    // var estado = button.data('estado');
-    // var selected = button.data('selected');
-    // var enabled = button.data('enabled');
-
-    // alert('OCULTO');
-    // var modal = $(this);
-    // modal.find('#mensaje').text('New message to ' + estado);
-    // console.log("UODATE");
-    // modal.find('.modal-title').text('New message to ' + recipient)
-    // modal.find('.modal-body input').val(recipient)
   });
 
+
+  $('#notificarDestinatarioModal').on('show.bs.modal', function (event) {
+    $('#despachoModal').modal('hide');
+  });
+
+  $('#notificarDestinatarioModal').on('hidden.bs.modal', function (event) {
+    $('#despachoModal').modal('show');
+  });
 </script>
 
 @endpush

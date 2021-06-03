@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 class ImportImage
 {
   public static function save(Request $request, $inputName = 'image' ,$name = '', $folderSave = 'public/trash'){
-  
+
       // $request->validate([
       //   $inputName => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
       // ]);

@@ -51,18 +51,26 @@ class CreateTableOrOrden extends Migration
             $table->boolean('receptor_remitente')->default(false);
             $table->string('recepcion_remitente_run')->nullable();
             $table->string('recepcion_remitente_nombre')->nullable();
-            $table->json('recepcion_remitente_imagen')->nullable();
+            // $table->json('recepcion_remitente_imagen')->nullable();
 
             //Datos recepcion destinatario
             $table->boolean('receptor_destinatario')->default(false);
             $table->string('recepcion_destinatario_run')->nullable();
             $table->string('recepcion_destinatario_nombre')->nullable();
-            $table->json('recepcion_destinatario_imagen')->nullable();
+            // $table->json('recepcion_destinatario_imagen')->nullable();
 
             // Extras con integraciones
             $table->json('config')->nullable();
 
+            $table->boolean('activo')->default(true);
+            $table->boolean('id_usuario_validado')->default(true);
+
+
             // Datos Orden
+            $table->json('files')->nullable();
+
+            // Verificacion
+            $table->integer('id_usuario_verificador')->nullable();
 
             $table->integer('servicio')->default(10);
             $table->integer('categoria')->nullable();

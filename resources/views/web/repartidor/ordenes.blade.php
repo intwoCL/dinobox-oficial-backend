@@ -44,9 +44,9 @@
               <strong>Comuna:</strong> {{ $orden->remitenteComuna->nombre }}
             </div>
             <div class="col-6">
-              <strong>Dirección:</strong> {{ $orden->getRemitenteDireccion() }}
+              <strong>Dirección:</strong> {{ $orden->getDestinatarioDireccion() }}
               <br>
-              <strong>Comuna:</strong> {{ $orden->remitenteComuna->nombre }}
+              <strong>Comuna:</strong> {{ $orden->destinatarioComuna->nombre }}
             </div>
           </div>
 
