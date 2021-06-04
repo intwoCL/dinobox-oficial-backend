@@ -23,9 +23,13 @@ Route::middleware('auth.usuario')->prefix('repartidor')->namespace('Web\Repartid
 
   // [ PERFIL ]
   Route::get('me','RepartidorController@me')->name('me');
-  Route::get('profile','RepartidorController@profile')->name('profile');
-  Route::put('profile','RepartidorController@profileUpdate')->name('profile.update');
-  Route::put('profile/password','RepartidorController@profilePasswordUpdate')->name('profile.password');
-  Route::put('profile/theme','RepartidorController@profileThemeUpdate')->name('profile.theme');
 
+  Route::get('perfil','RepartidorController@profile')->name('profile');
+  Route::put('perfil','RepartidorController@profileUpdate')->name('profile.update');
+
+  Route::get('perfil/password','RepartidorController@profilePassword')->name('profile.password');
+  Route::put('perfil/password','RepartidorController@profilePasswordUpdate')->name('profile.password');
+
+  Route::get('perfil/theme','RepartidorController@profileTheme')->name('profile.theme');
+  Route::put('perfil/theme','RepartidorController@profileThemeUpdate')->name('profile.theme');
 });

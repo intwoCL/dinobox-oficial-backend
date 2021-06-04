@@ -1,20 +1,12 @@
 @extends('web.repartidor.app')
 @push('stylesheet')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
 @endpush
 @section('content')
-{{-- @component('components.button._back')
-  @slot('body', 'Ordenes de hoy')
-@endcomponent --}}
-
-
 <header>
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">
-        {{-- <i class="fa fa-people-carry mr-2"></i> --}}
-        <strong>Dinobox.cl</strong>
+        <strong>📦 Dinobox.cl 🦖</strong>
       </a>
     </div>
   </div>
@@ -23,53 +15,63 @@
 <main role="main">
   <section class="my-4 text-center">
     <div class="container">
-      <h1>Bienvenid@ a Dinobox {{ current_user()->nombre }}</h1>
+      <h1>Bienveni<em><strong>Rawr</strong></em> <br> {{ current_user()->nombre }}</h1>
       {{-- <h3>{{ current_user()->isHappy() ? "FELIZ CUMPLEAÑOS" : ''}}</h3> --}}
-      <p>
-        <div id="typed-strings">
-          <p>Sistema de gestión </p>
-          <p>Gestionado en un solo lugar.</p>
-        </div>
-        <span id="typed"></span>
-      </p>
-      <img src="{{ $icon }}" width="100%" height="300px" alt="">
-      {{-- <p> --}}
+      <div class="mb-2">
+        <img src="{{ $icon }}" width="100%" height="300px" alt="">
+      </div>
 
-        <button type="button" class="btn btn-primary btn-block btn-lg my-2" data-toggle="modal" data-target="#habilitarModal">
-          <strong>EN RUTA</strong>
+      <div class="col-md-12">
+        <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#habilitarModal">
+          <strong>INICIA TU RUTA</strong>
         </button>
-      {{-- </p> --}}
+      </div>
     </div>
   </section>
-
 
   <div class="modal fade" id="habilitarModal" tabindex="-2" role="dialog" aria-labelledby="labelhabilitarModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="labelNotificacion">Seleccionar vehiculo</h5>
+          <h5 class="modal-title" id="labelNotificacion">Selecciona tu vehiculo</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body text-center">
-          @forelse (current_user()->vehiculos as $v)
-            <button class="btn btn-app bg-primary" data-toggle="modal" data-target="#vehiculoModal">
-              @if ($v->favorito)
-                <span class="badge bg-white">
-                  <i class="fas fa-star text-warning"></i>
-                </span>
-              @endif
-              {!! $v->present()->getIcon() !!}
-              <strong> {{ $v->patente }}</strong>
-              <strong> {{ $v->modelo }}</strong>
-            </button>
-          @empty
+        <div class="modal-body justify-content-center">
+          <div class="row">
+
+            @forelse (current_user()->vehiculos as $v)
+            <div class="col-md-4 col-sm-6 col-xs-6 col-6 mb-2">
+              <div class="card-sl">
+                <div class="card-image">
+                  <img src="{{ $v->present()->getPhoto() }}" />
+                </div>
+                @if ($v->favorito)
+                  <a class="card-action" href="#">
+                    <i class="fa fa-2x fa-heart"></i>
+                  </a>
+                @endif
+                <div class="card-heading">
+                  {!! $v->present()->getIcon() !!} {{ $v->patente }}
+                </div>
+                <div class="card-text">
+                  <strong> {{ $v->modelo }}</strong>
+                </div>
+                <button type="button" class="card-button btn btn-primary" data-toggle="modal" data-target="#vehiculoModal">
+                  <strong>ENCENDER</strong>
+                </button>
+              </div>
+            </div>
+
+            @empty
             No tienes vehiculos
-          @endforelse
-      </div>
+            @endforelse
+          </div>
+        </div>
     </div>
   </div>
+
 
 
   {{-- <div class="modal" id="vehiculoModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">

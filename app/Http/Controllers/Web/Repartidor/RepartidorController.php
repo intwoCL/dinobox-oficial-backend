@@ -34,17 +34,17 @@ class RepartidorController extends Controller
 
   public function me() {
     $u = current_user();
-    return view('web.repartidor.me',compact('u'));
+    return view('web.repartidor.perfil.index',compact('u'));
   }
 
   public function profile() {
     $u = current_user();
-    return view('web.repartidor.profile',compact('u'));
+    return view('web.repartidor.perfil.edit',compact('u'));
   }
 
   public function profilePassword(Request $request) {
-    // $u = current_user();
-    // return view('web.repartidor.profile',compact('u'));
+    $u = current_user();
+    return view('web.repartidor.perfil.password',compact('u'));
   }
 
   public function profilePasswordUpdate(Request $request) {
@@ -53,7 +53,7 @@ class RepartidorController extends Controller
   }
 
   public function profileThemeUpdate(Request $request) {
-    // $u = current_user();
-    // return view('web.repartidor.profile',compact('u'));
+    $u = current_user();
+    return view('web.repartidor.perfil.theme',compact('u'));
   }
 }

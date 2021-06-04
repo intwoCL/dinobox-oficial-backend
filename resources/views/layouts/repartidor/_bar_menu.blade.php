@@ -8,7 +8,7 @@
   <a class="navbar-brand pl-5 pr-2" href="" title="Despacho">
     <i class="fa fa-truck"></i>
   </a>
-  <a class="navbar-brand pl-5 pr-3" href="" title="Historial">
-    <i class="fa fa-calendar-alt"></i>
+  <a class="navbar-brand pl-5 pr-3" href="" title="Codigo orden" data-toggle="modal" data-target="#qrModal">
+    <i class="fa fa-qrcode"></i>
   </a>
 </nav>

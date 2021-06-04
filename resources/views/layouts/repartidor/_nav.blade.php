@@ -15,9 +15,7 @@
       <div class="mr-2" data-toggle="dropdown" type="button">
         <i class="fas fa-user-circle fa-2x text-primary mr-2"></i>
       </div>
-      {{-- <a class="nav-link bg-primary" data-toggle="dropdown" href="#">
-        <i class="far fa-tool"></i> Configuración
-      </a> --}}
+
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
         {{-- <span class="dropdown-item dropdown-header">15 Notifications</span> --}}
         <div class="dropdown-divider"></div>
@@ -33,7 +31,7 @@
         <div class="dropdown-divider"></div>
         <form action="{{ route('auth.user.logout') }}" method="POST">
           @csrf
-          <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt mr-2"></i> Salir</button>
+          <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt mr-2"></i> Cerrar sesión</button>
         </form>
       </div>
     </li>
