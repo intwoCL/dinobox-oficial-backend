@@ -16,6 +16,7 @@ use App\Models\Sistema\Company;
 use App\Models\Sistema\Grupo;
 use App\Services\ImportImage;
 use App\Services\Policies\Sistema\UsuarioPolicy;
+use App\Services\SaveImage;
 
 class UsuarioController extends Controller
 {
@@ -117,10 +118,23 @@ class UsuarioController extends Controller
       $user->id_company = $request->input('company',null);
       $user->id_grupo = $request->input('grupo',null);
 
+      // if(!empty($request->file('image'))){
+      //   $filename = time();
+      //   $folder = 'public/photo_usuarios';
+      //   $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
+      // }
+
       if(!empty($request->file('image'))){
         $filename = time();
-        $folder = 'public/photo_usuarios';
-        $user->imagen = ImportImage::save($request, 'image', $filename, $folder);
+        $folder = 'photo_usuarios';
+
+        $imagen = SaveImage::save($request, 'image', $filename, $folder);
+
+        if($imagen != 400) {
+          $user->imagen = $imagen;
+        } else {
+          return back()->with('warning','Error. Imagen');
+        }
       }
 
       //Actualizar el rol
