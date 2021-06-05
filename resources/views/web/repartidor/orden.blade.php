@@ -326,8 +326,6 @@
   </div>
 </div>
 
-
-
 <div class="modal" id="notificarModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -337,7 +335,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{route('web.repartidor.orden.estado', $orden->codigo)}}" method="POST">
+      <form class="form-submit" action="{{route('web.repartidor.orden.estado', $orden->codigo)}}" method="POST">
         @method("PUT")
         @csrf
         <input type="hidden" name="or" value="{{ $ordenRepartidor->id }}">
@@ -363,9 +361,8 @@
   </div>
 </div>
 
-
 <div class="modal" id="llamarModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="labelNotificacion">Llamar a {{ $orden->remitente_telefono }}</h5>

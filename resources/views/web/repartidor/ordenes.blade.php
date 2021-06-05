@@ -8,10 +8,28 @@
 @endcomponent
 <section class="content">
   <div class="container">
-    <button type="button" class="btn btn-primary rounded-circle" data-toggle="modal" data-target="#qrModal">
-      <i class="fa fa-search"></i>
-    </button>
+
+
     <div class="row pb-3">
+      <div class="col-md-12 pb-2">
+        <ul class="nav nav-pills nav-fill">
+          <li class="nav-item">
+            <a class="nav-link active" href="#"><strong>Ordenes activadas</strong></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><strong>Realizadas</strong></a>
+          </li>
+          <li class="nav-item">
+            {{-- <a class="nav-link" href="#">Link</a> --}}
+            <button type="button" class="btn btn-primary rounded-circle" data-toggle="modal" data-target="#qrModal">
+              <i class="fa fa-search"></i>
+            </button>
+          </li>
+          {{-- <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li> --}}
+        </ul>
+      </div>
       @foreach ($ordenes as $or)
       @php
         $orden = $or->orden;
@@ -78,38 +96,37 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="row">
+        <section class="row" id="demo-content">
+          <div class="col-md-12 d-flex justify-content-center">
+            <a class="btn btn-primary btn-sm mb-2 mr-2" id="startButton"><i class="fas fa-camera"></i></a>
+            <a class="btn btn-primary btn-sm mb-2" id="resetButton">Reset</a>
+          </div>
 
-          <section class="container" id="demo-content">
-              <a class="btn btn-primary btn-sm mb-2" id="startButton"><i class="fas fa-camera"></i></a>
-              <a class="btn btn-primary btn-sm mb-2" id="resetButton">Reset</a>
+          <div class="col-md-12">
+            <video id="video" width="100%" class="rounded border border-dark"></video>
+          </div>
 
-
-            <div class="col-md-12">
-              <video id="video" width="100%" style="border: 1px solid gray"></video>
+          <div class="col-md-12">
+            <div id="sourceSelectPanel" style="display:none">
+              <label for="sourceSelect">Cambiar dispositivo:</label>
+              <select class="form-control" id="sourceSelect" style="max-width:400px">
+              </select>
             </div>
-
-            <div class="col-md-12">
-              <div id="sourceSelectPanel" style="display:none">
-                <label for="sourceSelect">Change video source:</label>
-                <select class="form-control" id="sourceSelect" style="max-width:400px">
-                </select>
-              </div>
+          </div>
+          <div class="col-md-12">
+            <div style="display: table">
+              <label for="decoding-style">Camara:</label>
+              <select class="form-control" id="decoding-style" size="1">
+                <option value="once">Decode once</option>
+                <option value="continuously">Decode continuously</option>
+              </select>
             </div>
-            <div class="col-md-12">
-              <div style="display: table">
-                <label for="decoding-style"> Decoding Style:</label>
-                <select class="form-control" id="decoding-style" size="1">
-                  <option value="once">Decode once</option>
-                  <option value="continuously">Decode continuously</option>
-                </select>
-              </div>
-            </div>
-
+          </div>
+          <div class="col-md-12">
             <label>Result:</label>
             <pre><code id="result"></code></pre>
-          </section>
-        </div>
+          </div>
+        </section>
       </div>
       {{-- <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -173,42 +190,44 @@
   window.addEventListener('load', function () {
     let selectedDeviceId;
     const codeReader = new ZXing.BrowserQRCodeReader();
-    // console.log('ZXing code reader initialized');
+    console.log('ZXing code reader initialized');
 
-    codeReader.getVideoInputDevices();
+    codeReader.getVideoInputDevices()
       .then((videoInputDevices) => {
         const sourceSelect = document.getElementById('sourceSelect')
-        selectedDeviceId = videoInputDevices[0].deviceId;
+        selectedDeviceId = videoInputDevices[0].deviceId
         if (videoInputDevices.length >= 1) {
           videoInputDevices.forEach((element) => {
-            const sourceOption = document.createElement('option');
-            sourceOption.text = element.label;
-            sourceOption.value = element.deviceId;
-            sourceSelect.appendChild(sourceOption);
+            const sourceOption = document.createElement('option')
+            sourceOption.text = element.label
+            sourceOption.value = element.deviceId
+            sourceSelect.appendChild(sourceOption)
           })
 
           sourceSelect.onchange = () => {
             selectedDeviceId = sourceSelect.value;
           };
 
-          const sourceSelectPanel = document.getElementById('sourceSelectPanel');
-          sourceSelectPanel.style.display = 'block';
+          const sourceSelectPanel = document.getElementById('sourceSelectPanel')
+          sourceSelectPanel.style.display = 'block'
         }
 
         document.getElementById('startButton').addEventListener('click', () => {
 
           const decodingStyle = document.getElementById('decoding-style').value;
+
           if (decodingStyle == "once") {
             decodeOnce(codeReader, selectedDeviceId);
           } else {
             decodeContinuously(codeReader, selectedDeviceId);
           }
-          // console.log(`Started decode from camera with id ${selectedDeviceId}`);
+
+          console.log(`Started decode from camera with id ${selectedDeviceId}`)
         })
 
         document.getElementById('resetButton').addEventListener('click', () => {
-          codeReader.reset();
-          document.getElementById('result').value = '';
+          codeReader.reset()
+          document.getElementById('result').textContent = '';
           console.log('Reset.')
         })
 

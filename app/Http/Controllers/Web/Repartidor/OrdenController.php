@@ -17,7 +17,13 @@ class OrdenController extends Controller
     $today = date('Y-m-d');
     // $ordenes = OrdenRepartidor::where('id_repartidor',current_user()->id)->with(['orden'])->get()->where('orden.fecha_entrega',$today);
 
-    $ordenes = OrdenRepartidor::where('id_repartidor',current_user()->id)->with(['orden','orden.remitenteComuna','orden.destinatarioComuna'])->get()->where('orden.fecha_entrega',$today);
+    $ordenes = OrdenRepartidor::where('id_repartidor',current_user()->id)->with(['orden','orden.remitenteComuna','orden.destinatarioComuna'])->get()->where('orden.fecha_entrega',$today)->where('orden.estado','<',80);
+    return view('web.repartidor.ordenes',compact('ordenes'));
+  }
+
+  public function ordenesRealizadas() {
+    $today = date('Y-m-d');
+    $ordenes = OrdenRepartidor::where('id_repartidor',current_user()->id)->with(['orden','orden.remitenteComuna','orden.destinatarioComuna'])->get()->where('orden.fecha_entrega',$today)->where('orden.estado',80);
     return view('web.repartidor.ordenes',compact('ordenes'));
   }
 

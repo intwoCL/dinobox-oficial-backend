@@ -18,9 +18,10 @@ class HomeController extends Controller
 
   public function ordenSeguimiento($codigo) {
     try {
+      $sistema = current_sistema();
       $orden = Orden::where('codigo',$codigo)->where('activo',true)->firstOrFail();
       $repartidor = $orden->ordenRepartidor->repartidor ?? null;
-      return view('web.home.orden_seguimiento',compact('codigo','orden','repartidor'));
+      return view('web.home.orden_seguimiento',compact('codigo','orden','repartidor','sistema'));
     } catch (\Throwable $th) {
       return redirect()->route('root')
                       ->with('danger','No se ha encontrado')

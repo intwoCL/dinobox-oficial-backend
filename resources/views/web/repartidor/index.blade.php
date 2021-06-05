@@ -20,15 +20,16 @@
       <div class="mb-2">
         <img src="{{ $icon }}" width="100%" height="300px" alt="">
       </div>
-
       <div class="col-md-12">
+        @if (empty($ca))
         <button type="button" class="card-button btn btn-primary" data-toggle="modal" data-target="#iniciarModal">
           <strong>INICIAR RECORRIDO</strong>
         </button>
-
+        @else
         <button type="button" class="card-button btn btn-danger" data-toggle="modal" data-target="#terminarModal">
           <strong>TERMINAR RECORRIDO</strong>
         </button>
+        @endif
       </div>
     </div>
   </section>
@@ -72,7 +73,6 @@
               </button>
             </div>
           </div>
-
           @empty
           No tienes vehiculos
           @endforelse
@@ -92,7 +92,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('web.repartidor.iniciarRecorrido') }}" method="POST">
+      <form class="form-submit" action="{{ route('web.repartidor.iniciarRecorrido') }}" method="POST">
         @csrf
         <input type="hidden" name="id_vehiculo" id="id_vehiculo_modal" value="">
         <div class="modal-body">
@@ -124,7 +124,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('web.repartidor.terminarRecorrido') }}" method="POST">
+      <form class="form-submit" action="{{ route('web.repartidor.terminarRecorrido') }}" method="POST">
         @csrf
         <div class="modal-body">
           <div class="row">

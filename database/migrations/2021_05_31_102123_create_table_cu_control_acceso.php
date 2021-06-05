@@ -15,10 +15,11 @@ class CreateTableCuControlAcceso extends Migration
     {
       Schema::create('cu_control_acceso', function (Blueprint $table) {
         $table->id();
-        // $table->dateTime('fecha');
+        $table->dateTime('fecha_registro');
+        $table->dateTime('fecha_salida')->nullable();
         $table->foreignId('id_usuario')->references('id')->on('s_usuario');
         $table->integer('id_vehiculo')->nullable();
-        $table->integer('estado')->default(10);
+        $table->boolean('estado')->default(true);
         $table->timestamps();
       });
     }
