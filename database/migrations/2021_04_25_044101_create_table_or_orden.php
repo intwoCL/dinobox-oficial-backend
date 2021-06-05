@@ -62,7 +62,6 @@ class CreateTableOrOrden extends Migration
             // Extras con integraciones
             $table->json('config')->nullable();
 
-            $table->boolean('activo')->default(true);
             $table->boolean('id_usuario_validado')->default(true);
 
 
