@@ -51,7 +51,7 @@ class OrdenController extends Controller
 
       if(!empty($request->file('image'))){
         $filename = time();
-        $folder = 'public/ordenes';
+        $folder = 'ordenes';
 
         $imagen = SaveImage::save($request, 'image', $filename, $folder);
 
@@ -65,6 +65,8 @@ class OrdenController extends Controller
           // 'image1' => ImportImage::save($request, 'image', $filename, $folder)
         // ];
       }
+
+      $orden->receptor_remitente_fecha = date("Y-m-d H:i:s");
       $orden->estado = 40;
       $orden->update();
 
@@ -87,7 +89,7 @@ class OrdenController extends Controller
 
           if(!empty($request->file('image'))){
             $filename = time();
-            $folder = 'public/ordenes';
+            $folder = 'ordenes';
 
             $imagen = SaveImage::save($request, 'image', $filename, $folder);
 
@@ -102,6 +104,7 @@ class OrdenController extends Controller
             // 'image1' => ImportImage::save($request, 'image', $filename, $folder)
           // ];
           }
+          $orden->receptor_destinatario_fecha = date("Y-m-d H:i:s");
           $orden->estado = 80;
           $orden->update();
 

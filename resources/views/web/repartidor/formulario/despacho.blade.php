@@ -35,6 +35,7 @@
         </div>
       </div>
 
+      @if ($orden->estado == 70)
       <div class="col-md-12">
         <div class="list-group-item border border-primary">
           <form class="form-submit" action="{{ route('web.repartidor.formulario.retiro',$orden->codigo) }}" method="post" enctype="multipart/form-data">
@@ -125,6 +126,26 @@
           </form>
         </div>
       </div>
+      @else
+
+      <div class="col-md-12">
+        <div class="list-group-item list-group-item-action">
+          <div class="d-flex w-100 justify-content-between pb-2">
+            <small class="text-muted">{{ $orden->getFecha()->getDate() }}</small>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p>{{ $orden->recepcion_remitente_run }}</p>
+              <p>{{ $orden->recepcion_remitente_nombre }}</p>
+            </div>
+            <div class="col-md-12">
+              <img class="" width="100%" src="{{ asset($orden->present()->getImagenDestinatario()) }}" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      @endif
     </div>
   </div>
 </section>

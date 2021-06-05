@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth.usuario')->prefix('repartidor')->namespace('Web\Repartidor')->name('web.repartidor.')->group( function () {
   Route::get('home','RepartidorController@index')->name('home');
 
+  Route::post('iniciar_recorrido','RepartidorController@iniciarRecorrido')->name('iniciarRecorrido');
+  Route::post('terminar_recorrido','RepartidorController@terminarRecorrido')->name('terminarRecorrido');
+
+
   // [ ORDENES ]
   Route::get('ordenes','OrdenController@ordenes')->name('ordenes');
   Route::get('orden/{codigo}','OrdenController@orden')->name('ordenShow');
@@ -22,7 +26,7 @@ Route::middleware('auth.usuario')->prefix('repartidor')->namespace('Web\Repartid
 
 
   // [ PERFIL ]
-  Route::get('me','RepartidorController@me')->name('me');
+  Route::get('yo','RepartidorController@me')->name('me');
 
   Route::get('perfil','RepartidorController@profile')->name('profile');
   Route::put('perfil','RepartidorController@profileUpdate')->name('profile.update');

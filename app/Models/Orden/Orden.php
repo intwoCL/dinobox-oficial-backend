@@ -9,6 +9,7 @@ use App\Services\ConvertDatetime;
 use App\Services\Currency;
 use App\Models\Sistema\Comuna;
 use App\Models\Sistema\Usuario;
+use App\Presenters\Orden\OrdenPresenter;
 use App\Services\GoogleMaps;
 
 class Orden extends Model
@@ -50,6 +51,14 @@ class Orden extends Model
     return new ConvertDatetime($this->fecha_entrega);
   }
 
+  public function getFechaRemitente() {
+    return new ConvertDatetime($this->receptor_remitente_fecha);
+  }
+
+  public function getFechaDestinatario() {
+    return new ConvertDatetime($this->receptor_destinatario_fecha);
+  }
+
   public function cliente() {
     return $this->belongsTo(Usuario::class,'id_cliente');
   }
@@ -66,6 +75,10 @@ class Orden extends Model
     return $this->hasOne(OrdenRepartidor::class,'id_orden')->where(function($query){
       $query->where('activo',true);
     });
+  }
+
+  public function present(){
+    return new OrdenPresenter($this);
   }
 
   public function getFechaEmision() {

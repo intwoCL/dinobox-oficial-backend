@@ -22,110 +22,144 @@
       </div>
 
       <div class="col-md-12">
-        <button type="button" class="btn btn-primary btn-block btn-lg" data-toggle="modal" data-target="#habilitarModal">
-          <strong>INICIA TU RUTA</strong>
+        <button type="button" class="card-button btn btn-primary" data-toggle="modal" data-target="#iniciarModal">
+          <strong>INICIAR RECORRIDO</strong>
+        </button>
+
+        <button type="button" class="card-button btn btn-danger" data-toggle="modal" data-target="#terminarModal">
+          <strong>TERMINAR RECORRIDO</strong>
         </button>
       </div>
     </div>
   </section>
 
-  <div class="modal fade" id="habilitarModal" tabindex="-2" role="dialog" aria-labelledby="labelhabilitarModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="labelNotificacion">Selecciona tu vehiculo</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body justify-content-center">
-          <div class="row">
 
-            @forelse (current_user()->vehiculos as $v)
-            <div class="col-md-4 col-sm-6 col-xs-6 col-6 mb-2">
-              <div class="card-sl">
-                <div class="card-image">
-                  <img src="{{ $v->present()->getPhoto() }}" />
-                </div>
-                @if ($v->favorito)
-                  <a class="card-action" href="#">
-                    <i class="fa fa-2x fa-heart"></i>
-                  </a>
-                @endif
-                <div class="card-heading">
-                  {!! $v->present()->getIcon() !!} {{ $v->patente }}
-                </div>
-                <div class="card-text">
-                  <strong> {{ $v->modelo }}</strong>
-                </div>
-                <button type="button" class="card-button btn btn-primary" data-toggle="modal" data-target="#vehiculoModal">
-                  <strong>ENCENDER</strong>
-                </button>
+{{-- VEHICULOS --}}
+<div class="modal fade" id="iniciarModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelNotificacion">
+          <i class="fas fa-truck mr-2"></i>
+          ¿Con cuál vehículo repartirás hoy?
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+          @forelse (current_user()->vehiculos as $v)
+          <div class="col-md-4 col-sm-6 col-xs-6 col-6 mb-2">
+            <div class="card-sl">
+              <div class="card-image">
+                <img src="{{ $v->present()->getPhoto() }}" />
               </div>
+              @if ($v->favorito)
+                <a class="card-action" href="#">
+                  <i class="fa fa-2x fa-heart"></i>
+                </a>
+              @endif
+              <div class="card-heading">
+                {!! $v->present()->getIcon() !!} {{ $v->patente }}
+              </div>
+              <div class="card-text">
+                <strong> {{ $v->modelo }}</strong>
+              </div>
+              <button type="button" class="card-button btn btn-primary" data-id="{{ $v->id }}" data-patente="{{ $v->patente }}" data-modelo="{{ $v->modelo }}" data-toggle="modal" data-target="#notificarModal">
+                <strong>ENCENDER</strong>
+              </button>
             </div>
-
-            @empty
-            No tienes vehiculos
-            @endforelse
           </div>
-        </div>
-    </div>
-  </div>
 
-
-
-  {{-- <div class="modal" id="vehiculoModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="labelNotificacion">Seleccionar vehiculo</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-footer">
-          <form action="" method="POST">
-            @method("PUT")
-            @csrf
-            <div class="media">
-              <div class="media-body">
-                <h5 class="mt-0">Activar recorrido</h5>
-                <p>Iniciaras el recorrido con #nombre , patente #asdad, tus clientes podran ver al auto que vienes a repartir para ellos.</p>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block ">ACTIVAR RECORRIDO</button>
-          </form>
+          @empty
+          No tienes vehiculos
+          @endforelse
         </div>
       </div>
     </div>
-  </div> --}}
-</main>
+  </div>
+</div>
+
+{{-- ACEPTACIÓN --}}
+<div class="modal" id="notificarModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelNotificacion">Confimación de vehículo seleccionado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ route('web.repartidor.iniciarRecorrido') }}" method="POST">
+        @csrf
+        <input type="hidden" name="id_vehiculo" id="id_vehiculo_modal" value="">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <h5>
+                Hey <strong>{{ current_user()->nombre }}</strong>!
+                Iniciarás el recorrido <span id="modelo_modal"></span>, patente <strong><span id="patente_modal"></span></strong>.
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary btn-block "><strong>ACTIVAR RECORRIDO</strong></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{{-- TERMINAR --}}
+<div class="modal" id="terminarModal" tabindex="-1" role="dialog" aria-labelledby="labelNotificacion" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelNotificacion">Confimación de termino de ruta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ route('web.repartidor.terminarRecorrido') }}" method="POST">
+        @csrf
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+              <h5>
+                Vas a finalizar tu recorrido
+              </h5>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block "><strong>TERMINAR RECORRIDO</strong></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 @endsection
 @push('javascript')
 <script>
-  $(function () {
-    $('#habilitarModal').on('show.bs.modal', function (event) {
-      console.log('ABIERTO uno');
 
-      // var button = $(event.relatedTarget);
-      // var recipient = button.data('whatever');
-      // var modal = $(this);
-      // modal.find('.modal-title').text('New message to ' + recipient);
-      // modal.find('.modal-body input').val(recipient);
-    });
+  $('#notificarModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var modelo = button.data('modelo');
+    var patente = button.data('patente');
+    var id = button.data('id');
+    var modal = $(this);
+    modal.find('#id_vehiculo_modal').val(id);
+    modal.find('#modelo_modal').text(modelo);
+    modal.find('#patente_modal').text(patente);
+    $('#iniciarModal').modal('hide');
+  });
 
-    $('#vehiculoModal').on('show.bs.modal', function (event) {
-      console.log('ABIERTO');
-      // $('#habilitarModal').modal('hide');
-      // $('#vehiculoModal').modal('show');
-        // $('#modalFind').modal('hide');
-      // var button = $(event.relatedTarget);
-      // var recipient = button.data('whatever');
-      // var modal = $(this);
-      // modal.find('.modal-title').text('New message to ' + recipient);
-      // modal.find('.modal-body input').val(recipient);
-    });
-
+  $('#notificarModal').on('hidden.bs.modal', function (event) {
+    $('#iniciarModal').modal('show');
   });
 </script>
 @endpush

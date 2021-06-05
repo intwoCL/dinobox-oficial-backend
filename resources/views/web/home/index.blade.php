@@ -299,8 +299,6 @@
       <p class="m-0 text-center text-white">Copyright &copy; Dinobox.cl 2021</p>
   </div>
 </footer>
-
-
 @endsection
 @push('javascript')
 

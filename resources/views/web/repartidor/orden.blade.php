@@ -60,6 +60,9 @@
             <h5 class="mb-1">
               <i class="fas fa-house-user mr-2 {{ $orden->estado < 60 ? 'text-success' : '' }}"></i>
               <strong>Retiro</strong>
+              @if ($orden->estado >= 40)
+                <i class="fa fa-check-circle ml-2 text-success"></i>
+              @endif
             </h5>
           </div>
           <div class="row">
@@ -84,6 +87,9 @@
             <h5 class="mb-1">
               <i class="fas fa-truck mr-2 {{ $orden->estado >= 60 ? 'text-success' : '' }}"></i>
               <strong>Despacho</strong>
+              @if ($orden->estado >= 80)
+                <i class="fa fa-check-circle ml-2 text-success"></i>
+              @endif
             </h5>
           </div>
           <div class="row">
@@ -216,9 +222,11 @@
         <a class="btn btn-app bg-success" href="{{ $orden->getGoogleMapsRemitente() }}">
           <i class="fas fa-map-marked"></i> <strong>Mapa</strong>
         </a>
-        <a href="{{ route('web.repartidor.formulario.retiro',$orden->codigo) }}" class="btn btn-app bg-success">
-          <i class="fas fa-clipboard-check"></i> <strong>Formulario de Retiro</strong>
-        </a>
+        @if ($orden->estado >= 30)
+          <a href="{{ route('web.repartidor.formulario.retiro',$orden->codigo) }}" class="btn btn-app bg-success">
+            <i class="fas fa-clipboard-check"></i> <strong>Formulario de Retiro</strong>
+          </a>
+        @endif
       </div>
     </div>
   </div>
@@ -260,9 +268,11 @@
         <a class="btn btn-app bg-success" href="{{ $orden->getGoogleMapsRemitente() }}">
           <i class="fas fa-map-marked"></i> <strong>Mapa</strong>
         </a>
-        <a href="{{ route('web.repartidor.formulario.despacho',$orden->codigo) }}" class="btn btn-app bg-success">
-          <i class="fas fa-clipboard-check"></i> <strong>Formulario de Despacho</strong>
-        </a>
+        @if ($orden->estado >= 70)
+          <a href="{{ route('web.repartidor.formulario.despacho',$orden->codigo) }}" {{ ($orden->estado >= 70) ? '' : 'disabled' }}  class="btn btn-app bg-success">
+            <i class="fas fa-clipboard-check"></i> <strong>Formulario de Despacho</strong>
+          </a>
+        @endif
       </div>
     </div>
   </div>
@@ -405,8 +415,9 @@
 <script>
   $('#trackModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
-    var modal = $(this);
-    modal.find('#mensaje').text('New message to ' + estado);
+    // var recipient = button.data('whatever');
+    // var modal = $(this);
+    // modal.find('#mensaje').text('New message to ' + estado);
   });
 
   $('#notificarRemitenteModal').on('show.bs.modal', function (event) {

@@ -77,13 +77,39 @@ class UserSeeder extends Seeder
       $su->rol = 2;
       $su->save();
 
-      for ($i=1; $i < 100; $i++) {
+      $u = new Usuario();
+      $u->username = "bemtorres";
+      $u->password = $password;
+      $u->nombre = 'Benjamin';
+      $u->apellido = "Mora";
+      $u->correo = "repartidor@dinobox.cl";
+      $u->id_grupo = 3;
+      $u->id_company = 1;
+      $u->run = "1111111111";
+      $u->sexo = 2;
+      $u->save();
+
+      $v = new Vehiculo();
+      $v->id_usuario = $u->id;
+      $v->patente = "AAA11";
+      $d = rand (1,20);
+      $a = $this->getMarcaAuto()[$d];
+      $v->modelo = $a[0];
+      $v->marca = $a[0];
+      $v->tipo = $a[1];
+      $v->save();
+
+      $su = new SucursalUsuario();
+      $su->id_sucursal = 1;
+      $su->id_usuario = $u->id;
+      $su->rol = 3;
+      $su->save();
+
+      for ($i=2; $i < 100; $i++) {
         $u = new Usuario();
         $u->username = "repartidor$i";
         $u->password = $password;
         $u->nombre = $faker->firstName;
-        $u->id_grupo = 3;
-        $u->id_company = 1;
         $u->apellido = $faker->lastName;
         $u->correo = "$u->apellido"."$i@intwo.cl";
         $u->run = "123123123$i";

@@ -21,7 +21,7 @@ class OrdenSeeder extends Seeder
     {
       $faker = Fake::create();
       $c = Cliente::first();
-      for ($i=10; $i < 100; $i++) {
+      for ($i=1; $i < 100; $i++) {
         $o = new Orden();
         // $o->codigo_transaccion = 123456789010;
         $o->codigo = $i;

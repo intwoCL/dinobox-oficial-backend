@@ -48,12 +48,14 @@ class CreateTableOrOrden extends Migration
             $table->foreignId('destinatario_id_comuna')->references('id')->on('s_comuna');
 
             // Recepcion de remitente
+            $table->datetime('receptor_remitente_fecha')->nullable();
             $table->boolean('receptor_remitente')->default(false);
             $table->string('recepcion_remitente_run')->nullable();
             $table->string('recepcion_remitente_nombre')->nullable();
             // $table->json('recepcion_remitente_imagen')->nullable();
 
             //Datos recepcion destinatario
+            $table->datetime('receptor_destinatario_fecha')->nullable();
             $table->boolean('receptor_destinatario')->default(false);
             $table->string('recepcion_destinatario_run')->nullable();
             $table->string('recepcion_destinatario_nombre')->nullable();

@@ -4,10 +4,10 @@
       <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="/home" class="nav-link"><i class="fa fa-home"></i> Home</a>
+      <a href="{{ route('web.repartidor.home') }}" class="nav-link"><i class="fa fa-home"></i> Home</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="{{ route('settings.profile') }}" class="nav-link">Perfil</a>
+      <a href="{{ route('web.repartidor.me') }}" class="nav-link">Perfil</a>
     </li>
   </ul>
   <ul class="navbar-nav ml-auto">
