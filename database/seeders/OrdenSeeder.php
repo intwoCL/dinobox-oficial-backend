@@ -24,7 +24,7 @@ class OrdenSeeder extends Seeder
       for ($i=10; $i < 100; $i++) {
         $o = new Orden();
         // $o->codigo_transaccion = 123456789010;
-        $o->codigo = $faker->numberBetween(0,7000) + $i;
+        $o->codigo = $i;
         $o->id_sucursal = 1;
         $o->id_usuario = 1;
 
